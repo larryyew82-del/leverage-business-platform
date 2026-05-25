@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Partner Portal — Leverage Business</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1929;--gold:#C9A961;--gold2:#B8954A;--white:#fff;--off:#FAFAF8;--text:#1C1C1E;--text2:#3A3A3C;--text3:#636366;--border:#E8E4DC;--g:#1A7A4A;--gbg:#E8F5EE;--b:#1E5B8A;--bbg:#E8F0F8;--a:#C65D00;--abg:#FFF3E8;--r:#C0392B;--rbg:#FDECEA;--fd:"Playfair Display",Georgia,serif;--fb:"IBM Plex Sans",sans-serif;--fm:"IBM Plex Mono",monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);color:var(--text);background:var(--off);display:flex;min-height:100vh;font-size:14px}
+.sidebar{width:220px;flex-shrink:0;background:var(--navy);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50}
+.sb-logo{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:9px}
+.sb-lm{width:28px;height:28px;background:var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--navy);font-family:var(--fd);flex-shrink:0}
+.sb-brand{font-family:var(--fd);font-size:15px;color:#fff;font-weight:500}
+.sb-firm{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.07)}
+.sb-firm-lbl{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.sb-firm-name{font-size:13px;font-weight:500;color:#fff;margin-top:2px}
+.sb-tier{display:inline-block;margin-top:3px;padding:1px 7px;border-radius:8px;font-size:9px;font-weight:700;background:rgba(201,169,97,.2);color:var(--gold)}
+.sb-nav{flex:1;padding:6px 8px}
+.nav-item{display:flex;align-items:center;gap:8px;padding:8px 9px;border-radius:6px;cursor:pointer;color:rgba(255,255,255,.55);font-size:13px;margin-bottom:1px;border:1px solid transparent;transition:all .15s}
+.nav-item:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.85)}
+.nav-item.active{background:rgba(201,169,97,.12);color:var(--gold);border-color:rgba(201,169,97,.2)}
+.nav-item svg{width:15px;height:15px;flex-shrink:0}
+.sb-user{padding:10px 14px;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:8px}
+.sb-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:11px;color:var(--navy);font-weight:600;flex-shrink:0}
+.sb-uname{font-size:12px;font-weight:500;color:#fff}
+.sb-urole{font-size:10px;color:rgba(255,255,255,.3)}
+.sb-logout{border:none;background:none;color:rgba(255,255,255,.3);cursor:pointer;padding:3px;margin-left:auto}
+.sb-logout:hover{color:rgba(255,255,255,.7)}
+.sb-logout svg{width:14px;height:14px;display:block}
+.main{margin-left:220px;flex:1;display:flex;flex-direction:column}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.tb-title{font-size:14px;font-weight:600;color:var(--text)}
+.lang-pill{display:flex;background:var(--off);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.lb{font-size:10px;font-weight:600;padding:4px 9px;cursor:pointer;border:none;background:transparent;color:var(--text3);font-family:var(--fb)}
+.lb.active{background:var(--navy);color:var(--gold)}
+.content{flex:1;padding:20px 24px 48px}
+.view{display:none}.view.active{display:block}
+.page-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.page-title{font-family:var(--fd);font-size:22px;font-weight:400;color:var(--navy)}
+.page-sub{font-size:12px;color:var(--text3);margin-top:2px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kpi{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.kpi-lbl{font-size:11px;color:var(--text3);margin-bottom:3px}
+.kpi-val{font-family:var(--fd);font-size:28px;font-weight:400;color:var(--navy);line-height:1}
+.kpi-sub{font-size:10px;color:var(--text3);margin-top:2px}
+.kpi.g .kpi-val{color:var(--g)}
+.kpi.a .kpi-val{color:var(--a)}
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:12px}
+.card-hdr{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.card-title{font-size:13px;font-weight:600;color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text);font-family:var(--fb);transition:all .15s;white-space:nowrap}
+.btn:hover{border-color:var(--navy);color:var(--navy)}
+.btn svg{width:13px;height:13px}
+.btn-navy{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-navy:hover{background:#0F2236}
+.btn-sm{padding:4px 9px;font-size:11px}
+.grid2{display:grid;grid-template-columns:1fr 240px;gap:12px;align-items:start}
+.client-row{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-bottom:1px solid var(--border);font-size:12px;transition:background .15s}
+.client-row:last-child{border-bottom:none}
+.client-row:hover{background:var(--off)}
+.c-av{width:30px;height:30px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0;margin-top:1px}
+.c-name{font-size:13px;font-weight:500;color:var(--text);margin-bottom:1px}
+.c-meta{font-size:10px;color:var(--text3);margin-bottom:3px}
+.prog-mini{width:80px;height:3px;background:var(--border);border-radius:2px;overflow:hidden;display:inline-block;vertical-align:middle}
+.prog-mini-fill{height:100%;background:var(--gold);border-radius:2px}
+.a-status{font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;flex-shrink:0}
+.bg-g{background:var(--gbg);color:var(--g)}
+.bg-b{background:var(--bbg);color:var(--b)}
+.bg-a{background:var(--abg);color:var(--a)}
+.bg-r{background:var(--rbg);color:var(--r)}
+.bg-s{background:#F5F5F5;color:#636366}
+.inv-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border);font-size:12px;transition:background .15s}
+.inv-row:last-child{border-bottom:none}
+.inv-row:hover{background:var(--off)}
+.inv-num{font-family:var(--fm);font-size:10px;color:var(--text3);width:100px;flex-shrink:0}
+.inv-desc{flex:1;color:var(--text2)}
+.inv-amt{font-weight:600;color:var(--text);width:80px;text-align:right;flex-shrink:0}
+.esc-item{display:flex;align-items:flex-start;gap:9px;padding:10px 14px;border-bottom:1px solid var(--border);font-size:12px}
+.esc-item:last-child{border-bottom:none}
+.esc-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.esc-info{flex:1}
+.esc-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px}
+.esc-meta{font-size:10px;color:var(--text3)}
+.form-grp{margin-bottom:12px}
+.form-lbl{display:block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text2);margin-bottom:5px}
+.form-inp{width:100%;padding:9px 11px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;font-family:var(--fb);color:var(--text);outline:none;background:var(--white)}
+.form-inp:focus{border-color:var(--gold)}
+[data-lang]{display:none}[data-lang].la{display:block}span[data-lang]{display:none}span[data-lang].la{display:inline}
+.toast-wrap{position:fixed;bottom:20px;right:20px;z-index:300;display:flex;flex-direction:column;gap:8px}
+.toast{background:var(--navy);color:#fff;padding:10px 16px;border-radius:8px;font-size:13px;display:flex;align-items:center;gap:8px;animation:slideIn .3s ease}
+.toast.ok{background:var(--g)}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:none;opacity:1}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sb-logo"><div class="sb-lm">L</div><span class="sb-brand">Leverage Business</span></div>
+  <div class="sb-firm">
+    <div class="sb-firm-lbl"><span data-lang="en" class="la">Partner firm</span><span data-lang="zh">合作伙伴</span><span data-lang="ms">Firma rakan</span></div>
+    <div class="sb-firm-name" id="sb-firm">JB Compliance Sdn Bhd</div>
+    <div class="sb-tier">Tier 2 White-Label</div>
+  </div>
+  <nav class="sb-nav">
+    <div class="nav-item active" data-view="overview" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      <span data-lang="en" class="la">Overview</span><span data-lang="zh">概览</span><span data-lang="ms">Gambaran</span>
+    </div>
+    <div class="nav-item" data-view="clients" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      <span data-lang="en" class="la">My Clients</span><span data-lang="zh">我的客户</span><span data-lang="ms">Klien Saya</span>
+    </div>
+    <div class="nav-item" data-view="billing" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16a2 2 0 002 2z"/></svg>
+      <span data-lang="en" class="la">Billing</span><span data-lang="zh">账单</span><span data-lang="ms">Bil</span>
+    </div>
+    <div class="nav-item" data-view="escalate" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+      <span data-lang="en" class="la">Escalate to Larry</span><span data-lang="zh">上报至总监</span><span data-lang="ms">Eskalasi ke Larry</span>
+    </div>
+  </nav>
+  <div class="sb-user">
+    <div class="sb-av" id="sb-av">JB</div>
+    <div style="flex:1;min-width:0"><div class="sb-uname" id="sb-name">Loading...</div><div class="sb-urole">Partner Admin</div></div>
+    <button class="sb-logout" onclick="doLogout()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg></button>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div class="tb-title" id="tb-title">Partner Overview</div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="lang-pill">
+        <button class="lb active" onclick="setLang('en')">EN</button>
+        <button class="lb" onclick="setLang('zh')">中文</button>
+        <button class="lb" onclick="setLang('ms')">BM</button>
+      </div>
+      <div style="font-size:11px;color:var(--text3);font-style:italic">Powered by Leverage Business</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+<!-- OVERVIEW -->
+<div class="view active" id="view-overview">
+  <div style="background:var(--navy);border-radius:10px;padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+    <div>
+      <div style="font-size:12px;font-weight:600;color:var(--gold);margin-bottom:2px">Powered by Leverage Business Sdn Bhd</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.55);line-height:1.6">Your clients are managed on the Leverage platform. All applications, documents, and compliance tracking are handled by Leverage Business handlers on your behalf. Leverage Business is invisible to your clients.</div>
+    </div>
+    <button class="btn btn-sm" onclick="switchView(document.querySelector('[data-view=escalate]'))" style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.7);flex-shrink:0">Contact Larry</button>
+  </div>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-lbl">Active clients</div><div class="kpi-val">2</div><div class="kpi-sub">JB Compliance referred</div></div>
+    <div class="kpi g"><div class="kpi-lbl">Completed</div><div class="kpi-val">1</div><div class="kpi-sub">All approvals received</div></div>
+    <div class="kpi a"><div class="kpi-lbl">Invoices due</div><div class="kpi-val">RM 28k</div><div class="kpi-sub">Outstanding to Leverage</div></div>
+    <div class="kpi"><div class="kpi-lbl">Total referrals</div><div class="kpi-val">3</div><div class="kpi-sub">All time</div></div>
+  </div>
+  <div class="grid2">
+    <div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Client status summary</span></div>
+        <div class="client-row">
+          <div class="c-av">YO</div>
+          <div style="flex:1">
+            <div class="c-name">Yifeng Optical Sdn Bhd</div>
+            <div class="c-meta">LB-2026-0047 · Standard · Manufacturing · Penang FIZ</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:3px"><div class="prog-mini"><div class="prog-mini-fill" style="width:54%"></div></div><span style="font-size:10px;color:var(--text3)">54% · Est. Sep 2026</span></div>
+          </div>
+          <span class="a-status bg-a" style="margin-top:2px">Action needed</span>
+        </div>
+        <div class="client-row">
+          <div class="c-av">GF</div>
+          <div style="flex:1">
+            <div class="c-name">Guangzhou Food Tech Sdn Bhd</div>
+            <div class="c-meta">LB-2026-0039 · Standard · Food · Shah Alam</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:3px"><div class="prog-mini"><div class="prog-mini-fill" style="width:38%"></div></div><span style="font-size:10px;color:var(--text3)">38% · Est. Dec 2026</span></div>
+          </div>
+          <span class="a-status bg-b" style="margin-top:2px">On track</span>
+        </div>
+        <div class="client-row" style="background:rgba(26,122,74,.03)">
+          <div class="c-av" style="background:var(--g)">TS</div>
+          <div style="flex:1">
+            <div class="c-name">Taiwan Solar Systems Sdn Bhd</div>
+            <div class="c-meta">LB-2025-0088 · Standard · Renewable Energy · Selangor</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:3px"><div class="prog-mini"><div class="prog-mini-fill" style="width:100%;background:var(--g)"></div></div><span style="font-size:10px;color:var(--g);font-weight:500">Completed · Dec 2025</span></div>
+          </div>
+          <span class="a-status bg-g" style="margin-top:2px">All approved</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Your agreement</span></div>
+        <div style="padding:12px 14px;font-size:12px;color:var(--text2);line-height:1.7">
+          <div style="margin-bottom:6px"><strong>Tier 2 White-Label</strong></div>
+          <div style="margin-bottom:4px">• Leverage is invisible to clients</div>
+          <div style="margin-bottom:4px">• You invoice clients directly</div>
+          <div style="margin-bottom:4px">• Leverage invoices JB Compliance</div>
+          <div style="margin-bottom:8px">• Client data stays on this platform if partnership ends</div>
+          <div style="font-size:10px;color:var(--text3)">Per-engagement billing · 30-day payment terms</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CLIENTS -->
+<div class="view" id="view-clients">
+  <div class="page-hdr"><div><h1 class="page-title">My Clients</h1><p class="page-sub">2 active · 1 completed · 3 total referrals</p></div></div>
+  <div class="card">
+    <div class="client-row" style="cursor:default">
+      <div class="c-av">YO</div>
+      <div style="flex:1">
+        <div class="c-name">Yifeng Optical Sdn Bhd</div>
+        <div class="c-meta">LB-2026-0047 · Standard Package · Manufacturing (ELEC) · Penang FIZ</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:3px"><div class="prog-mini"><div class="prog-mini-fill" style="width:54%"></div></div><span style="font-size:10px;color:var(--text3)">54% complete · Handler: Sarah Tan</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+        <span class="a-status bg-a">Action needed</span>
+        <button class="btn btn-sm" onclick="switchView(document.querySelector('[data-view=escalate]'))">Escalate</button>
+      </div>
+    </div>
+    <div class="client-row" style="cursor:default">
+      <div class="c-av">GF</div>
+      <div style="flex:1">
+        <div class="c-name">Guangzhou Food Tech Sdn Bhd</div>
+        <div class="c-meta">LB-2026-0039 · Standard Package · Food Processing · Shah Alam</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:3px"><div class="prog-mini"><div class="prog-mini-fill" style="width:38%"></div></div><span style="font-size:10px;color:var(--text3)">38% complete · Handler: Sarah Tan</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+        <span class="a-status bg-b">On track</span>
+        <button class="btn btn-sm" onclick="switchView(document.querySelector('[data-view=escalate]'))">Escalate</button>
+      </div>
+    </div>
+    <div class="client-row" style="background:rgba(26,122,74,.03);cursor:default">
+      <div class="c-av" style="background:var(--g)">TS</div>
+      <div style="flex:1">
+        <div class="c-name">Taiwan Solar Systems Sdn Bhd</div>
+        <div class="c-meta">LB-2025-0088 · Standard Package · Renewable Energy · Selangor</div>
+        <div style="font-size:10px;color:var(--g);font-weight:500;margin-top:3px">✓ Completed December 2025 — All authorities approved</div>
+      </div>
+      <span class="a-status bg-g">All approved</span>
+    </div>
+  </div>
+  <div style="background:var(--abg);border:1px solid rgba(198,93,0,.2);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--a);line-height:1.6">
+    <strong style="display:block;margin-bottom:2px">Note on client visibility</strong>
+    You can see engagement progress and status for clients you referred. Document contents and internal handler notes are not visible to partner firms. To discuss any specific application, use the Escalate tab to contact Larry directly.
+  </div>
+</div>
+
+<!-- BILLING -->
+<div class="view" id="view-billing">
+  <div class="page-hdr"><div><h1 class="page-title">Billing</h1><p class="page-sub">Invoices from Leverage Business to JB Compliance Sdn Bhd · 30-day payment terms</p></div></div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-hdr"><span class="card-title">Outstanding invoices</span></div>
+    <div class="inv-row"><span class="inv-num">LB-INV-2026-004</span><div class="inv-desc"><div style="font-weight:500">Yifeng Optical — Standard Package (Milestone 2: 40%)</div><div style="font-size:10px;color:var(--text3)">Due 15 Apr 2026 · 26 days remaining</div></div><span class="inv-amt">RM 18,000</span><span class="a-status bg-a">Due</span></div>
+    <div class="inv-row"><span class="inv-num">LB-INV-2026-007</span><div class="inv-desc"><div style="font-weight:500">Guangzhou Food Tech — Standard Package (Milestone 1: 30%)</div><div style="font-size:10px;color:var(--text3)">Due 20 Apr 2026 · 31 days remaining</div></div><span class="inv-amt">RM 10,200</span><span class="a-status bg-a">Due</span></div>
+  </div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-hdr"><span class="card-title">Paid invoices</span></div>
+    <div class="inv-row" style="background:rgba(26,122,74,.03)"><span class="inv-num">LB-INV-2026-001</span><div class="inv-desc"><div style="font-weight:500">Yifeng Optical — Standard Package (Milestone 1: 30%)</div><div style="font-size:10px;color:var(--text3)">Paid 15 Mar 2026</div></div><span class="inv-amt" style="color:var(--g)">RM 13,500</span><span class="a-status bg-g">Paid</span></div>
+    <div class="inv-row" style="background:rgba(26,122,74,.03)"><span class="inv-num">LB-INV-2025-039</span><div class="inv-desc"><div style="font-weight:500">Taiwan Solar — Standard Package (Final: 100%)</div><div style="font-size:10px;color:var(--text3)">Paid 10 Jan 2026</div></div><span class="inv-amt" style="color:var(--g)">RM 34,000</span><span class="a-status bg-g">Paid</span></div>
+  </div>
+  <div style="background:var(--off);border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--text2)">Invoices are issued by Leverage Business Sdn Bhd to JB Compliance Sdn Bhd. For billing queries contact <a href="mailto:larry@leveragebusiness.my" style="color:var(--navy);font-weight:500">larry@leveragebusiness.my</a>.</div>
+</div>
+
+<!-- ESCALATE -->
+<div class="view" id="view-escalate">
+  <div class="page-hdr"><div><h1 class="page-title">Escalate to Larry</h1><p class="page-sub">Direct line to Leverage Business director for partnership and client matters</p></div></div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-hdr"><span class="card-title">Open items</span></div>
+    <div class="esc-item"><div class="esc-dot" style="background:var(--a)"></div><div class="esc-info"><div class="esc-title">Yifeng Optical — Client asking about MIDA timeline</div><div class="esc-meta">Raised 19 Mar · Awaiting Larry's response · 1 day</div></div><span class="a-status bg-a">Open</span></div>
+    <div class="esc-item"><div class="esc-dot" style="background:var(--g)"></div><div class="esc-info"><div class="esc-title">Billing query: LB-INV-2026-004 — instalment request</div><div class="esc-meta">Raised 15 Mar · Larry replied 16 Mar — approved 2 instalments</div></div><span class="a-status bg-g">Resolved</span></div>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><span class="card-title">New escalation</span></div>
+    <div style="padding:14px 16px">
+      <div class="form-grp"><label class="form-lbl">Subject</label><input class="form-inp" id="esc-subj" placeholder="e.g. Client asking about MIDA Pioneer Status"></div>
+      <div class="form-grp">
+        <label class="form-lbl">Client (if applicable)</label>
+        <select class="form-inp">
+          <option value="">Not client-specific</option>
+          <option>Yifeng Optical (LB-2026-0047)</option>
+          <option>Guangzhou Food Tech (LB-2026-0039)</option>
+        </select>
+      </div>
+      <div class="form-grp"><label class="form-lbl">Details</label><textarea class="form-inp" rows="3" placeholder="Describe the situation..." style="resize:vertical"></textarea></div>
+      <button class="btn btn-navy btn-sm" onclick="submitEscalation()">Submit escalation</button>
+    </div>
+  </div>
+  <div style="background:var(--navy);border-radius:10px;padding:14px 16px;margin-top:4px">
+    <div style="font-size:12px;color:var(--gold);font-weight:600;margin-bottom:6px">Direct contact — Larry</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.7">larry@leveragebusiness.my<br>+60 12-XXX XXXX<br>Available Monday – Friday, 9am – 6pm MYT</div>
+  </div>
+</div>
+
+  </div>
+</div>
+
+<div class="toast-wrap" id="toasts"></div>
+
+<script>
+let lang = localStorage.getItem('lb-lang')||'en';
+
+async function init() {
+  try {
+    const res = await fetch('/api/auth/me');
+    if(!res.ok){location.href='/login';return;}
+    const data = await res.json();
+    const u = data.user;
+    if(!['partner','larry'].includes(u.role)){location.href='/login';return;}
+    const init = u.name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+    document.getElementById('sb-av').textContent = init;
+    document.getElementById('sb-name').textContent = u.name;
+    document.getElementById('sb-firm').textContent = u.company || 'Partner Firm';
+    setLang(lang,false);
+  } catch {location.href='/login';}
+}
+
+function switchView(el) {
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  el.classList.add('active');
+  const view = el.dataset.view;
+  document.getElementById('view-'+view).classList.add('active');
+  const labels = {overview:'Partner Overview',clients:'My Clients',billing:'Billing',escalate:'Escalate to Larry'};
+  document.getElementById('tb-title').textContent = labels[view]||view;
+}
+
+function setLang(l,save=true){lang=l;if(save)localStorage.setItem('lb-lang',l);document.querySelectorAll('[data-lang]').forEach(el=>el.classList.toggle('la',el.dataset.lang===l));document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('active',b.textContent.trim()==={en:'EN',zh:'中文',ms:'BM'}[l]));}
+
+function submitEscalation() {
+  const subj = document.getElementById('esc-subj').value.trim();
+  if(!subj){showToast('Please enter a subject');return;}
+  showToast('Escalation submitted — Larry will respond within 1 business day','ok');
+  document.getElementById('esc-subj').value = '';
+}
+
+function showToast(msg,type='info'){const wrap=document.getElementById('toasts');const t=document.createElement('div');t.className=`toast${type==='ok'?' ok':''}`;t.textContent=msg;wrap.appendChild(t);setTimeout(()=>t.remove(),3500);}
+
+async function doLogout(){await fetch('/api/auth/logout',{method:'POST'});location.href='/login';}
+
+init();
+</script>
+</body>
+</html>
