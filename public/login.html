@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — Leverage Business</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1929;--gold:#C9A961;--gold2:#B8954A;--white:#fff;--off:#FAFAF8;--text:#1C1C1E;--text-mid:#3A3A3C;--text-soft:#636366;--border:#E8E4DC;--red:#C0392B;--red-bg:#FDECEA;--fd:"Playfair Display",Georgia,serif;--fb:"IBM Plex Sans",sans-serif;--fm:"IBM Plex Mono",monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);color:var(--text);background:var(--white);min-height:100vh;display:flex;align-items:stretch}
+.left{flex:1;background:var(--navy);display:flex;flex-direction:column;justify-content:space-between;padding:48px;min-height:100vh}
+.left-logo{display:flex;align-items:center;gap:10px;font-family:var(--fd);font-size:18px;color:#fff;font-weight:500}
+.logo-mark{width:32px;height:32px;background:var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:var(--navy);font-family:var(--fd)}
+.left-body{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:400px}
+.left-eyebrow{font-family:var(--fm);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.left-title{font-family:var(--fd);font-size:36px;font-weight:400;color:#fff;line-height:1.2;margin-bottom:16px}
+.left-title em{font-style:italic;color:var(--gold)}
+.left-sub{font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:32px}
+.stat-pills{display:flex;flex-direction:column;gap:10px}
+.stat-pill{display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(255,255,255,.05);border-radius:8px;border:1px solid rgba(255,255,255,.07)}
+.sp-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.sp-text{font-size:13px;color:rgba(255,255,255,.65)}
+.sp-num{font-family:var(--fm);font-size:12px;color:var(--gold);margin-left:auto}
+.left-footer{font-size:12px;color:rgba(255,255,255,.2)}
+.right{width:480px;display:flex;flex-direction:column;justify-content:center;padding:64px 56px;background:var(--white)}
+.right-back{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text-soft);cursor:pointer;margin-bottom:40px;border:none;background:none;font-family:var(--fb)}
+.right-title{font-family:var(--fd);font-size:30px;font-weight:400;color:var(--navy);margin-bottom:6px}
+.right-sub{font-size:14px;color:var(--text-soft);margin-bottom:32px;line-height:1.6}
+.form-group{margin-bottom:18px}
+.form-label{display:block;font-size:12px;font-weight:600;color:var(--text-mid);margin-bottom:6px}
+.form-input{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--fb);color:var(--text);background:var(--white);outline:none;transition:border-color .2s}
+.form-input:focus{border-color:var(--gold)}
+.pwd-wrap{position:relative}
+.pwd-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);border:none;background:none;cursor:pointer;color:var(--text-soft);padding:4px}
+.alert{padding:11px 14px;border-radius:8px;font-size:13px;margin-bottom:18px;display:none;background:var(--red-bg);color:var(--red);border:1px solid rgba(192,57,43,.15)}
+.alert.show{display:flex;align-items:flex-start;gap:9px}
+.btn-submit{width:100%;padding:13px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:500;font-family:var(--fb);cursor:pointer;margin-top:4px;transition:all .2s}
+.btn-submit:hover:not(:disabled){background:#0F2236;transform:translateY(-1px)}
+.btn-submit:disabled{opacity:.6;cursor:not-allowed}
+.divider{display:flex;align-items:center;gap:12px;margin:24px 0}
+.divider-line{flex:1;height:1px;background:var(--border)}
+.divider-text{font-size:12px;color:var(--text-soft)}
+.demo-section{background:var(--off);border:1px solid var(--border);border-radius:10px;padding:16px}
+.demo-title{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);margin-bottom:12px}
+.demo-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;cursor:pointer;transition:background .15s;border:1px solid transparent;margin-bottom:4px}
+.demo-item:hover{background:var(--white);border-color:var(--border)}
+.demo-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;text-transform:uppercase;flex-shrink:0}
+.badge-larry{background:var(--navy);color:var(--gold)}
+.badge-handler{background:#E8F0F8;color:#1E5B8A}
+.badge-client{background:#E8F5EE;color:#1A7A4A}
+.badge-partner{background:#FFF3E8;color:#C65D00}
+.demo-email{font-size:12px;color:var(--text-mid);flex:1}
+.demo-fill{font-size:10px;color:var(--gold);font-weight:500}
+.right-footer{margin-top:28px;font-size:12px;color:var(--text-soft);text-align:center}
+.right-footer a{color:var(--navy);font-weight:500}
+</style>
+</head>
+<body>
+<div class="left">
+  <div class="left-logo"><div class="logo-mark">L</div>Leverage Business</div>
+  <div class="left-body">
+    <div class="left-eyebrow">Client and Team Portal</div>
+    <div class="left-title">Your Malaysia<br><em>operations desk.</em></div>
+    <p class="left-sub">Track every government authority, upload documents, communicate with your handler, and manage your compliance calendar.</p>
+    <div class="stat-pills">
+      <div class="stat-pill"><div class="sp-dot"></div><span class="sp-text">Agency applications tracked</span><span class="sp-num">25+</span></div>
+      <div class="stat-pill"><div class="sp-dot"></div><span class="sp-text">Average MIDA turnaround</span><span class="sp-num">9.2 wks</span></div>
+      <div class="stat-pill"><div class="sp-dot"></div><span class="sp-text">Audit trail retention</span><span class="sp-num">7 years</span></div>
+    </div>
+  </div>
+  <div class="left-footer">Leverage Business Sdn Bhd · Penang, Malaysia</div>
+</div>
+<div class="right">
+  <button class="right-back" onclick="location.href='/'">← Back to website</button>
+  <div class="right-title">Welcome back.</div>
+  <p class="right-sub">Sign in to access your portal. You will be redirected based on your account type.</p>
+  <div class="alert" id="error-alert"><span id="error-msg">Invalid email or password.</span></div>
+  <form id="login-form" onsubmit="handleLogin(event)">
+    <div class="form-group">
+      <label class="form-label" for="email">Email address</label>
+      <input class="form-input" type="email" id="email" placeholder="you@company.com" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="password">Password</label>
+      <div class="pwd-wrap">
+        <input class="form-input" type="password" id="password" placeholder="Your password" required>
+        <button type="button" class="pwd-toggle" onclick="document.getElementById('password').type=document.getElementById('password').type==='password'?'text':'password'">👁</button>
+      </div>
+    </div>
+    <button type="submit" class="btn-submit" id="submit-btn">Sign in</button>
+  </form>
+  <div class="divider"><div class="divider-line"></div><span class="divider-text">Demo accounts</span><div class="divider-line"></div></div>
+  <div class="demo-section">
+    <div class="demo-title">Click to fill credentials</div>
+    <div class="demo-item" onclick="fillDemo('larry@leveragebusiness.my','Larry@Admin2026')"><span class="demo-badge badge-larry">Admin</span><span class="demo-email">larry@leveragebusiness.my</span><span class="demo-fill">Fill →</span></div>
+    <div class="demo-item" onclick="fillDemo('sarah@leveragebusiness.my','Handler@2026')"><span class="demo-badge badge-handler">Handler</span><span class="demo-email">sarah@leveragebusiness.my</span><span class="demo-fill">Fill →</span></div>
+    <div class="demo-item" onclick="fillDemo('chen@yifengoptical.com','Client@2026')"><span class="demo-badge badge-client">Client</span><span class="demo-email">chen@yifengoptical.com</span><span class="demo-fill">Fill →</span></div>
+    <div class="demo-item" onclick="fillDemo('admin@jbcompliance.com.my','Partner@2026')"><span class="demo-badge badge-partner">Partner</span><span class="demo-email">admin@jbcompliance.com.my</span><span class="demo-fill">Fill →</span></div>
+  </div>
+  <div class="right-footer">Need access? <a href="mailto:larry@leveragebusiness.my">Contact Leverage Business</a></div>
+</div>
+<script>
+function fillDemo(e,p){document.getElementById('email').value=e;document.getElementById('password').value=p;hideError();}
+function showError(m){document.getElementById('error-msg').textContent=m;document.getElementById('error-alert').classList.add('show');}
+function hideError(){document.getElementById('error-alert').classList.remove('show');}
+async function handleLogin(e){
+  e.preventDefault();hideError();
+  const email=document.getElementById('email').value.trim();
+  const password=document.getElementById('password').value;
+  const btn=document.getElementById('submit-btn');btn.disabled=true;btn.textContent='Signing in...';
+  try{
+    const res=await fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
+    const data=await res.json();
+    if(data.success){window.location.href=data.redirect;}
+    else{showError(data.error||'Invalid email or password.');btn.disabled=false;btn.textContent='Sign in';}
+  }catch(err){showError('Connection error. Please try again.');btn.disabled=false;btn.textContent='Sign in';}
+}
+['email','password'].forEach(id=>document.getElementById(id).addEventListener('input',hideError));
+</script>
+</body>
+</html>
