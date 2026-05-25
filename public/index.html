@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leverage Business — Malaysia Market Entry</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1929;--gold:#C9A961;--white:#fff;--off:#FAFAF8;--text:#1C1C1E;--text-mid:#3A3A3C;--text-soft:#636366;--border:#E8E4DC;--fd:"Playfair Display",Georgia,serif;--fb:"IBM Plex Sans",sans-serif;--fm:"IBM Plex Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:var(--fb);color:var(--text);background:var(--white)}a{text-decoration:none;color:inherit}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--fd);font-size:17px;font-weight:500;color:var(--navy)}
+.logo-mark{width:30px;height:30px;background:var(--navy);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--gold)}
+.nav-links{display:flex;gap:32px}.nav-links a{font-size:14px;color:var(--text-soft)}
+.nav-cta{display:flex;gap:10px}
+.btn{font-size:14px;font-weight:500;padding:8px 18px;border-radius:6px;cursor:pointer;font-family:var(--fb);border:none}
+.btn-ghost{background:var(--white);border:1px solid var(--border);color:var(--text)}
+.btn-navy{background:var(--navy);color:#fff}
+.hero{padding:128px 48px 80px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 400px;gap:60px;align-items:center}
+.eyebrow{font-family:var(--fm);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+h1{font-family:var(--fd);font-size:50px;font-weight:400;color:var(--navy);line-height:1.1;margin-bottom:18px}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:17px;color:var(--text-mid);line-height:1.7;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px}
+.btn-lg{font-size:15px;padding:13px 28px;border-radius:8px}
+.hero-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:0 8px 40px rgba(10,25,41,.07)}
+.hc-lbl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-soft);margin-bottom:12px}
+.hc-num{font-family:var(--fd);font-size:40px;color:var(--navy);line-height:1}
+.hc-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin:12px 0}
+.hc-fill{height:100%;background:linear-gradient(90deg,#B8954A,var(--gold));width:54%}
+.auth-row{display:flex;align-items:center;gap:8px;font-size:12px;margin-bottom:6px}
+.a-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.a-name{flex:1;color:var(--text-mid)}
+.a-badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px}
+.bg-g{background:#E8F5EE;color:#1A7A4A}.bg-b{background:#E8F0F8;color:#1E5B8A}.bg-a{background:#FFF3E8;color:#C65D00}.bg-x{background:#F5F5F5;color:#636366}
+.stats{background:var(--navy);padding:52px 48px;display:flex;justify-content:center;gap:80px}
+.stat-n{font-family:var(--fd);font-size:40px;color:var(--gold);display:block;line-height:1}
+.stat-l{font-size:12px;color:rgba(255,255,255,.45);margin-top:5px}
+.sec{padding:80px 48px;max-width:1100px;margin:0 auto}
+.sec-lbl{font-family:var(--fm);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+h2{font-family:var(--fd);font-size:36px;font-weight:400;color:var(--navy);margin-bottom:12px}
+.sec-sub{font-size:15px;color:var(--text-mid);line-height:1.7;margin-bottom:40px}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.how-card{background:var(--off);border-radius:12px;padding:24px}
+.how-n{font-family:var(--fm);font-size:11px;color:var(--gold);margin-bottom:12px}
+.how-t{font-family:var(--fd);font-size:17px;color:var(--navy);margin-bottom:7px}
+.how-b{font-size:13px;color:var(--text-soft);line-height:1.6}
+.ind-bg{background:var(--off);padding:80px 0}
+.ind-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ind-card{border:1px solid var(--border);border-radius:12px;padding:22px;background:var(--white)}
+.ind-name{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:5px}
+.ind-agencies{font-size:11px;color:var(--text-soft)}
+.cta{padding:80px 48px;text-align:center}
+.cta h2{margin-bottom:14px}
+.cta-sub{font-size:16px;color:var(--text-soft);margin-bottom:32px}
+.cta-btns{display:flex;justify-content:center;gap:12px}
+footer{background:var(--navy);padding:40px 48px;display:flex;align-items:center;justify-content:space-between}
+.ft-brand{font-family:var(--fd);font-size:15px;color:#fff}
+.ft-links a{font-size:13px;color:rgba(255,255,255,.4);margin-left:20px}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo"><div class="logo-mark">L</div>Leverage Business</a>
+  <div class="nav-links"><a href="#how">How it works</a><a href="#industries">Industries</a></div>
+  <div class="nav-cta">
+    <button class="btn btn-ghost" onclick="location.href='/login'">Sign in</button>
+    <button class="btn btn-navy" onclick="location.href='/login'">Book a call</button>
+  </div>
+</nav>
+<div style="padding-top:64px">
+<div class="hero">
+  <div>
+    <div class="eyebrow">Malaysia Market Entry Specialists</div>
+    <h1>Your company, <em>licensed and operating</em> in Malaysia.</h1>
+    <p class="hero-sub">Leverage Business manages every government authority — from company registration through to workforce permits — so your team can focus on building the business.</p>
+    <div class="hero-btns">
+      <button class="btn btn-navy btn-lg" onclick="location.href='/login'">Access your portal</button>
+      <button class="btn btn-ghost btn-lg" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">How it works</button>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="hc-lbl">Live engagement · Yifeng Optical</div>
+    <div class="hc-num">54% <span style="font-size:14px;color:var(--text-soft)">complete</span></div>
+    <div class="hc-bar"><div class="hc-fill"></div></div>
+    <div class="auth-row"><div class="a-dot" style="background:#1A7A4A"></div><span class="a-name">SSM — Company Registration</span><span class="a-badge bg-g">Approved</span></div>
+    <div class="auth-row"><div class="a-dot" style="background:#1A7A4A"></div><span class="a-name">LHDN — Tax File</span><span class="a-badge bg-g">Approved</span></div>
+    <div class="auth-row"><div class="a-dot" style="background:#1E5B8A"></div><span class="a-name">PBT — Premise Licence</span><span class="a-badge bg-b">Filed</span></div>
+    <div class="auth-row"><div class="a-dot" style="background:#C65D00"></div><span class="a-name">MIDA — ICA 10 Exemption</span><span class="a-badge bg-a">Action needed</span></div>
+    <div class="auth-row"><div class="a-dot" style="background:#C8C8CC"></div><span class="a-name">JKDM — Duty Exemption</span><span class="a-badge bg-x">Blocked</span></div>
+  </div>
+</div>
+</div>
+<div class="stats">
+  <div class="stat"><span class="stat-n">42</span><div class="stat-l">Industry sub-segments</div></div>
+  <div class="stat"><span class="stat-n">25+</span><div class="stat-l">Government agencies</div></div>
+  <div class="stat"><span class="stat-n">9.2</span><div class="stat-l">Weeks avg MIDA turnaround</div></div>
+  <div class="stat"><span class="stat-n">0</span><div class="stat-l">Wrong-sequence applications</div></div>
+</div>
+<div id="how"><div class="sec">
+  <div class="sec-lbl">The process</div>
+  <h2>Four phases. One accountable partner.</h2>
+  <p class="sec-sub">We map the dependency chain before we file anything — the wrong sequence costs 3-9 months.</p>
+  <div class="how-grid">
+    <div class="how-card"><div class="how-n">01 — Scope</div><div class="how-t">Map every authority</div><div class="how-b">Every agency in the correct sequence. No surprises ten weeks in.</div></div>
+    <div class="how-card"><div class="how-n">02 — Prepare</div><div class="how-t">Build the package</div><div class="how-b">Handler prepares every application and reviews before filing.</div></div>
+    <div class="how-card"><div class="how-n">03 — File</div><div class="how-t">Track in real time</div><div class="how-b">See every status update in your portal instantly.</div></div>
+    <div class="how-card"><div class="how-n">04 — Operate</div><div class="how-t">Stay compliant</div><div class="how-b">We manage renewals and annual obligations after you are operational.</div></div>
+  </div>
+</div></div>
+<div id="industries" class="ind-bg"><div class="sec" style="padding-top:0;padding-bottom:0">
+  <div class="sec-lbl">What we cover</div>
+  <h2>Six industries. 42 sub-segments.</h2>
+  <p class="sec-sub">Every industry has its own agency stack — we have mapped all of them.</p>
+  <div class="ind-grid">
+    <div class="ind-card"><div style="font-size:22px;margin-bottom:10px">⚙️</div><div class="ind-name">Manufacturing</div><div class="ind-agencies">MIDA · JKDM · ESD/JIM · KDN · DOSH</div></div>
+    <div class="ind-card"><div style="font-size:22px;margin-bottom:10px">📦</div><div class="ind-name">Export / Import / Distribution</div><div class="ind-agencies">JKDM · MAQIS · MOH FoSIM · GACC</div></div>
+    <div class="ind-card"><div style="font-size:22px;margin-bottom:10px">🏗️</div><div class="ind-name">Construction</div><div class="ind-agencies">CIDB · MOF · SPAN · PETRONAS VR</div></div>
+    <div class="ind-card"><div style="font-size:22px;margin-bottom:10px">🏥</div><div class="ind-name">Healthcare</div><div class="ind-agencies">MOH · NPRA · MDA · PHFSA</div></div>
+    <div class="ind-card"><div style="font-size:22px;margin-bottom:10px">🎓</div><div class="ind-name">Private Education</div><div class="ind-agencies">MOE · MOHE · MQA · IPTS</div></div>
+    <div class="ind-card"><div style="font-size:22px;margin-bottom:10px">⚡</div><div class="ind-name">Renewable Energy</div><div class="ind-agencies">SEDA · ST · MGTC · MyHIJAU</div></div>
+  </div>
+</div></div>
+<div class="cta">
+  <div style="max-width:560px;margin:0 auto">
+    <h2>Ready to set up in Malaysia?</h2>
+    <p class="cta-sub">Book a scoping call. Fixed scope, fixed price proposal within 48 hours.</p>
+    <div class="cta-btns">
+      <button class="btn btn-navy btn-lg" onclick="location.href='/login'">Access your portal</button>
+      <button class="btn btn-ghost btn-lg" onclick="location.href='mailto:larry@leveragebusiness.my'">Contact us</button>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="ft-brand">Leverage Business Sdn Bhd</div>
+  <div class="ft-links"><a href="/login">Client Portal</a><a href="mailto:larry@leveragebusiness.my">Contact</a></div>
+</footer>
+</body>
+</html>
