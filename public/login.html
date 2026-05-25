@@ -6,117 +6,327 @@
 <title>Sign In — Leverage Business</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0A1929;--gold:#C9A961;--gold2:#B8954A;--white:#fff;--off:#FAFAF8;--text:#1C1C1E;--text-mid:#3A3A3C;--text-soft:#636366;--border:#E8E4DC;--red:#C0392B;--red-bg:#FDECEA;--fd:"Playfair Display",Georgia,serif;--fb:"IBM Plex Sans",sans-serif;--fm:"IBM Plex Mono",monospace}
+:root{--navy:#0A1929;--navy2:#0F2236;--gold:#C9A961;--gold2:#B8954A;--white:#fff;--off:#FAFAF8;--text:#1C1C1E;--text-mid:#3A3A3C;--text-soft:#636366;--border:#E8E4DC;--red:#C0392B;--red-bg:#FDECEA;--fd:"Playfair Display",Georgia,serif;--fb:"IBM Plex Sans",sans-serif;--fm:"IBM Plex Mono",monospace}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--fb);color:var(--text);background:var(--white);min-height:100vh;display:flex;align-items:stretch}
-.left{flex:1;background:var(--navy);display:flex;flex-direction:column;justify-content:space-between;padding:48px;min-height:100vh}
-.left-logo{display:flex;align-items:center;gap:10px;font-family:var(--fd);font-size:18px;color:#fff;font-weight:500}
-.logo-mark{width:32px;height:32px;background:var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:var(--navy);font-family:var(--fd)}
-.left-body{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:400px}
-.left-eyebrow{font-family:var(--fm);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
-.left-title{font-family:var(--fd);font-size:36px;font-weight:400;color:#fff;line-height:1.2;margin-bottom:16px}
+body{font-family:var(--fb);color:var(--text);background:var(--white);min-height:100vh;display:flex}
+/* LEFT */
+.left{flex:1;background:var(--navy);display:flex;flex-direction:column;padding:40px;min-height:100vh}
+.left-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:auto}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--fd);font-size:16px;color:#fff;font-weight:500}
+.logo-mark{width:30px;height:30px;background:var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--navy)}
+/* LANG SWITCHER */
+.lang-switcher{display:flex;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:6px;overflow:hidden}
+.lang-btn{font-size:11px;font-weight:600;padding:5px 9px;cursor:pointer;border:none;background:transparent;color:rgba(255,255,255,.5);font-family:var(--fb);transition:all .15s}
+.lang-btn:hover{color:#fff}
+.lang-btn.active{background:var(--gold);color:var(--navy)}
+.left-body{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:380px;padding:40px 0}
+.eyebrow{font-family:var(--fm);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.left-title{font-family:var(--fd);font-size:34px;font-weight:400;color:#fff;line-height:1.2;margin-bottom:14px}
 .left-title em{font-style:italic;color:var(--gold)}
-.left-sub{font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:32px}
-.stat-pills{display:flex;flex-direction:column;gap:10px}
-.stat-pill{display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(255,255,255,.05);border-radius:8px;border:1px solid rgba(255,255,255,.07)}
-.sp-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0}
-.sp-text{font-size:13px;color:rgba(255,255,255,.65)}
-.sp-num{font-family:var(--fm);font-size:12px;color:var(--gold);margin-left:auto}
-.left-footer{font-size:12px;color:rgba(255,255,255,.2)}
-.right{width:480px;display:flex;flex-direction:column;justify-content:center;padding:64px 56px;background:var(--white)}
-.right-back{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text-soft);cursor:pointer;margin-bottom:40px;border:none;background:none;font-family:var(--fb)}
-.right-title{font-family:var(--fd);font-size:30px;font-weight:400;color:var(--navy);margin-bottom:6px}
-.right-sub{font-size:14px;color:var(--text-soft);margin-bottom:32px;line-height:1.6}
-.form-group{margin-bottom:18px}
-.form-label{display:block;font-size:12px;font-weight:600;color:var(--text-mid);margin-bottom:6px}
-.form-input{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--fb);color:var(--text);background:var(--white);outline:none;transition:border-color .2s}
-.form-input:focus{border-color:var(--gold)}
+.left-sub{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:28px}
+.stat-pills{display:flex;flex-direction:column;gap:8px}
+.stat-pill{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.05);border-radius:7px;border:1px solid rgba(255,255,255,.07)}
+.sp-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.sp-text{font-size:12px;color:rgba(255,255,255,.6)}
+.sp-num{font-family:var(--fm);font-size:11px;color:var(--gold);margin-left:auto}
+.left-footer{font-size:11px;color:rgba(255,255,255,.2);margin-top:auto;padding-top:24px}
+/* RIGHT */
+.right{width:460px;flex-shrink:0;display:flex;flex-direction:column;justify-content:center;padding:56px 48px;background:var(--white)}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text-soft);cursor:pointer;border:none;background:none;font-family:var(--fb);margin-bottom:36px;padding:0;transition:color .2s}
+.back-btn:hover{color:var(--navy)}
+.right-title{font-family:var(--fd);font-size:28px;font-weight:400;color:var(--navy);margin-bottom:5px}
+.right-sub{font-size:13px;color:var(--text-soft);margin-bottom:28px;line-height:1.6}
+/* FORM */
+.form-group{margin-bottom:16px}
+.form-label{display:block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text-mid);margin-bottom:6px}
+.form-input{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--fb);color:var(--text);background:var(--white);outline:none;transition:border-color .2s,box-shadow .2s}
+.form-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,169,97,.12)}
+.form-input.has-error{border-color:var(--red)}
 .pwd-wrap{position:relative}
-.pwd-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);border:none;background:none;cursor:pointer;color:var(--text-soft);padding:4px}
-.alert{padding:11px 14px;border-radius:8px;font-size:13px;margin-bottom:18px;display:none;background:var(--red-bg);color:var(--red);border:1px solid rgba(192,57,43,.15)}
-.alert.show{display:flex;align-items:flex-start;gap:9px}
-.btn-submit{width:100%;padding:13px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:500;font-family:var(--fb);cursor:pointer;margin-top:4px;transition:all .2s}
-.btn-submit:hover:not(:disabled){background:#0F2236;transform:translateY(-1px)}
-.btn-submit:disabled{opacity:.6;cursor:not-allowed}
-.divider{display:flex;align-items:center;gap:12px;margin:24px 0}
-.divider-line{flex:1;height:1px;background:var(--border)}
-.divider-text{font-size:12px;color:var(--text-soft)}
-.demo-section{background:var(--off);border:1px solid var(--border);border-radius:10px;padding:16px}
-.demo-title{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);margin-bottom:12px}
-.demo-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;cursor:pointer;transition:background .15s;border:1px solid transparent;margin-bottom:4px}
-.demo-item:hover{background:var(--white);border-color:var(--border)}
-.demo-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;text-transform:uppercase;flex-shrink:0}
-.badge-larry{background:var(--navy);color:var(--gold)}
-.badge-handler{background:#E8F0F8;color:#1E5B8A}
-.badge-client{background:#E8F5EE;color:#1A7A4A}
-.badge-partner{background:#FFF3E8;color:#C65D00}
+.pwd-eye{position:absolute;right:11px;top:50%;transform:translateY(-50%);border:none;background:none;cursor:pointer;color:var(--text-soft);padding:4px;font-size:14px}
+/* ERROR */
+.error-box{background:var(--red-bg);color:var(--red);border:1px solid rgba(192,57,43,.2);border-radius:8px;padding:10px 13px;font-size:13px;margin-bottom:16px;display:none;align-items:center;gap:8px}
+.error-box.show{display:flex}
+/* SUBMIT */
+.btn-submit{width:100%;padding:13px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;font-family:var(--fb);cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.btn-submit:hover:not(:disabled){background:var(--navy2);transform:translateY(-1px);box-shadow:0 4px 16px rgba(10,25,41,.2)}
+.btn-submit:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.btn-submit .spinner{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;margin-right:6px}
+.btn-submit.loading .spinner{display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* SUCCESS OVERLAY */
+.success-overlay{display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
+.success-overlay.show{display:flex}
+.success-icon{width:56px;height:56px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:24px}
+.success-title{font-family:var(--fd);font-size:22px;color:var(--navy);margin-bottom:6px}
+.success-sub{font-size:13px;color:var(--text-soft);margin-bottom:20px}
+.progress-bar-wrap{width:100%;background:var(--off);border-radius:4px;height:4px;overflow:hidden}
+.progress-bar-fill{height:100%;background:var(--gold);border-radius:4px;animation:fill 1.5s ease forwards}
+@keyframes fill{from{width:0}to{width:100%}}
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:10px;margin:20px 0}
+.div-line{flex:1;height:1px;background:var(--border)}
+.div-txt{font-size:11px;color:var(--text-soft)}
+/* DEMO */
+.demo-box{background:var(--off);border:1px solid var(--border);border-radius:10px;padding:14px}
+.demo-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft);margin-bottom:10px}
+.demo-item{display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:6px;cursor:pointer;border:1px solid transparent;transition:all .15s;margin-bottom:3px}
+.demo-item:hover{background:#fff;border-color:var(--border)}
+.demo-item:last-child{margin-bottom:0}
+.role-tag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;text-transform:uppercase;flex-shrink:0;letter-spacing:.04em}
+.tag-larry{background:var(--navy);color:var(--gold)}
+.tag-handler{background:#E8F0F8;color:#1E5B8A}
+.tag-client{background:#E8F5EE;color:#1A7A4A}
+.tag-partner{background:#FFF3E8;color:#C65D00}
 .demo-email{font-size:12px;color:var(--text-mid);flex:1}
-.demo-fill{font-size:10px;color:var(--gold);font-weight:500}
-.right-footer{margin-top:28px;font-size:12px;color:var(--text-soft);text-align:center}
-.right-footer a{color:var(--navy);font-weight:500}
+.demo-hint{font-size:10px;color:var(--gold);font-weight:600}
+.right-footer{margin-top:24px;font-size:12px;color:var(--text-soft);text-align:center}
+.right-footer a{color:var(--navy);font-weight:600;cursor:pointer}
+/* LANG */
+[data-lang]{display:none}
+[data-lang].la{display:block}
+span[data-lang]{display:none}
+span[data-lang].la{display:inline}
 </style>
 </head>
 <body>
+
+<!-- LEFT PANEL -->
 <div class="left">
-  <div class="left-logo"><div class="logo-mark">L</div>Leverage Business</div>
-  <div class="left-body">
-    <div class="left-eyebrow">Client and Team Portal</div>
-    <div class="left-title">Your Malaysia<br><em>operations desk.</em></div>
-    <p class="left-sub">Track every government authority, upload documents, communicate with your handler, and manage your compliance calendar.</p>
-    <div class="stat-pills">
-      <div class="stat-pill"><div class="sp-dot"></div><span class="sp-text">Agency applications tracked</span><span class="sp-num">25+</span></div>
-      <div class="stat-pill"><div class="sp-dot"></div><span class="sp-text">Average MIDA turnaround</span><span class="sp-num">9.2 wks</span></div>
-      <div class="stat-pill"><div class="sp-dot"></div><span class="sp-text">Audit trail retention</span><span class="sp-num">7 years</span></div>
+  <div class="left-top">
+    <div class="logo"><div class="logo-mark">L</div>Leverage Business</div>
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+      <button class="lang-btn" onclick="setLang('ms')">BM</button>
     </div>
   </div>
+
+  <div class="left-body">
+    <div class="eyebrow">
+      <span data-lang="en" class="la">Client & Team Portal</span>
+      <span data-lang="zh">客户与团队平台</span>
+      <span data-lang="ms">Portal Klien & Pasukan</span>
+    </div>
+    <div class="left-title">
+      <span data-lang="en" class="la">Your Malaysia <em>operations desk.</em></span>
+      <span data-lang="zh">您的马来西亚<em>运营中心。</em></span>
+      <span data-lang="ms">Meja operasi Malaysia <em>anda.</em></span>
+    </div>
+    <p class="left-sub">
+      <span data-lang="en" class="la">Track every government authority, upload documents, and manage your compliance calendar — all in one place.</span>
+      <span data-lang="zh">追踪所有政府部门申请、上传文件、管理合规日历——一站搞定。</span>
+      <span data-lang="ms">Jejak setiap pihak berkuasa kerajaan, muat naik dokumen, dan urus kalendar pematuhan — semuanya di satu tempat.</span>
+    </p>
+    <div class="stat-pills">
+      <div class="stat-pill"><div class="sp-dot"></div><span class="sp-text"><span data-lang="en" class="la">Government agencies tracked</span><span data-lang="zh">政府部门已对接</span><span data-lang="ms">Agensi kerajaan dijejak</span></span><span class="sp-num">25+</span></div>
+      <div class="stat-pill"><div class="sp-dot"></div><span class="sp-text"><span data-lang="en" class="la">Average MIDA turnaround</span><span data-lang="zh">平均MIDA处理时间</span><span data-lang="ms">Purata masa MIDA</span></span><span class="sp-num">9.2 wks</span></div>
+      <div class="stat-pill"><div class="sp-dot"></div><span class="sp-text"><span data-lang="en" class="la">Audit trail retention</span><span data-lang="zh">审计记录保存期</span><span data-lang="ms">Pengekalan jejak audit</span></span><span class="sp-num">7 yrs</span></div>
+    </div>
+  </div>
+
   <div class="left-footer">Leverage Business Sdn Bhd · Penang, Malaysia</div>
 </div>
-<div class="right">
-  <button class="right-back" onclick="location.href='/'">← Back to website</button>
-  <div class="right-title">Welcome back.</div>
-  <p class="right-sub">Sign in to access your portal. You will be redirected based on your account type.</p>
-  <div class="alert" id="error-alert"><span id="error-msg">Invalid email or password.</span></div>
-  <form id="login-form" onsubmit="handleLogin(event)">
+
+<!-- RIGHT PANEL -->
+<div class="right" id="right-panel">
+
+  <!-- BACK BUTTON -->
+  <button class="back-btn" onclick="location.href='/'">
+    ← <span data-lang="en" class="la">Back to website</span><span data-lang="zh">返回官网</span><span data-lang="ms">Kembali ke laman web</span>
+  </button>
+
+  <!-- LOGIN FORM -->
+  <div id="login-section">
+    <div class="right-title">
+      <span data-lang="en" class="la">Welcome back.</span>
+      <span data-lang="zh">欢迎回来。</span>
+      <span data-lang="ms">Selamat kembali.</span>
+    </div>
+    <p class="right-sub">
+      <span data-lang="en" class="la">Sign in to your account. You will be taken to the right dashboard automatically.</span>
+      <span data-lang="zh">登录您的账户，系统将自动跳转至您的专属仪表板。</span>
+      <span data-lang="ms">Log masuk ke akaun anda. Anda akan dibawa ke papan pemuka yang betul secara automatik.</span>
+    </p>
+
+    <div class="error-box" id="err-box">
+      ⚠ <span id="err-msg"></span>
+    </div>
+
     <div class="form-group">
-      <label class="form-label" for="email">Email address</label>
-      <input class="form-input" type="email" id="email" placeholder="you@company.com" required>
+      <label class="form-label" for="email">
+        <span data-lang="en" class="la">Email address</span>
+        <span data-lang="zh">电子邮件</span>
+        <span data-lang="ms">Alamat e-mel</span>
+      </label>
+      <input class="form-input" type="email" id="email" placeholder="you@company.com" autocomplete="email">
     </div>
     <div class="form-group">
-      <label class="form-label" for="password">Password</label>
+      <label class="form-label" for="password">
+        <span data-lang="en" class="la">Password</span>
+        <span data-lang="zh">密码</span>
+        <span data-lang="ms">Kata laluan</span>
+      </label>
       <div class="pwd-wrap">
-        <input class="form-input" type="password" id="password" placeholder="Your password" required>
-        <button type="button" class="pwd-toggle" onclick="document.getElementById('password').type=document.getElementById('password').type==='password'?'text':'password'">👁</button>
+        <input class="form-input" type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+        <button type="button" class="pwd-eye" id="eye-btn" onclick="togglePwd()">👁</button>
       </div>
     </div>
-    <button type="submit" class="btn-submit" id="submit-btn">Sign in</button>
-  </form>
-  <div class="divider"><div class="divider-line"></div><span class="divider-text">Demo accounts</span><div class="divider-line"></div></div>
-  <div class="demo-section">
-    <div class="demo-title">Click to fill credentials</div>
-    <div class="demo-item" onclick="fillDemo('larry@leveragebusiness.my','Larry@Admin2026')"><span class="demo-badge badge-larry">Admin</span><span class="demo-email">larry@leveragebusiness.my</span><span class="demo-fill">Fill →</span></div>
-    <div class="demo-item" onclick="fillDemo('sarah@leveragebusiness.my','Handler@2026')"><span class="demo-badge badge-handler">Handler</span><span class="demo-email">sarah@leveragebusiness.my</span><span class="demo-fill">Fill →</span></div>
-    <div class="demo-item" onclick="fillDemo('chen@yifengoptical.com','Client@2026')"><span class="demo-badge badge-client">Client</span><span class="demo-email">chen@yifengoptical.com</span><span class="demo-fill">Fill →</span></div>
-    <div class="demo-item" onclick="fillDemo('admin@jbcompliance.com.my','Partner@2026')"><span class="demo-badge badge-partner">Partner</span><span class="demo-email">admin@jbcompliance.com.my</span><span class="demo-fill">Fill →</span></div>
+
+    <button class="btn-submit" id="submit-btn" onclick="handleLogin()">
+      <span class="spinner" id="spinner"></span>
+      <span id="btn-label"><span data-lang="en" class="la">Sign in</span><span data-lang="zh">登录</span><span data-lang="ms">Log masuk</span></span>
+    </button>
+
+    <div class="divider"><div class="div-line"></div><span class="div-txt"><span data-lang="en" class="la">Demo accounts — click to fill</span><span data-lang="zh">演示账号 — 点击填充</span><span data-lang="ms">Akaun demo — klik untuk isi</span></span><div class="div-line"></div></div>
+
+    <div class="demo-box">
+      <div class="demo-title"><span data-lang="en" class="la">Click any account to fill credentials</span><span data-lang="zh">点击任意账号自动填充</span><span data-lang="ms">Klik mana-mana akaun untuk isi kelayakan</span></div>
+      <div class="demo-item" onclick="fillDemo('larry@leveragebusiness.my','Larry@Admin2026')">
+        <span class="role-tag tag-larry">Admin</span>
+        <span class="demo-email">larry@leveragebusiness.my</span>
+        <span class="demo-hint">→ /admin</span>
+      </div>
+      <div class="demo-item" onclick="fillDemo('sarah@leveragebusiness.my','Handler@2026')">
+        <span class="role-tag tag-handler">Handler</span>
+        <span class="demo-email">sarah@leveragebusiness.my</span>
+        <span class="demo-hint">→ /handler</span>
+      </div>
+      <div class="demo-item" onclick="fillDemo('chen@yifengoptical.com','Client@2026')">
+        <span class="role-tag tag-client">Client</span>
+        <span class="demo-email">chen@yifengoptical.com</span>
+        <span class="demo-hint">→ /portal</span>
+      </div>
+      <div class="demo-item" onclick="fillDemo('admin@jbcompliance.com.my','Partner@2026')">
+        <span class="role-tag tag-partner">Partner</span>
+        <span class="demo-email">admin@jbcompliance.com.my</span>
+        <span class="demo-hint">→ /partner</span>
+      </div>
+    </div>
+
+    <div class="right-footer">
+      <span data-lang="en" class="la">Need an account? <a href="mailto:larry@leveragebusiness.my">Contact Leverage Business</a></span>
+      <span data-lang="zh">需要账号？<a href="mailto:larry@leveragebusiness.my">联系我们</a></span>
+      <span data-lang="ms">Perlukan akaun? <a href="mailto:larry@leveragebusiness.my">Hubungi kami</a></span>
+    </div>
   </div>
-  <div class="right-footer">Need access? <a href="mailto:larry@leveragebusiness.my">Contact Leverage Business</a></div>
+
+  <!-- SUCCESS STATE -->
+  <div class="success-overlay" id="success-section">
+    <div class="success-icon">✓</div>
+    <div class="success-title" id="success-title">
+      <span data-lang="en" class="la">Signed in!</span>
+      <span data-lang="zh">登录成功！</span>
+      <span data-lang="ms">Berjaya log masuk!</span>
+    </div>
+    <p class="success-sub" id="success-sub">
+      <span data-lang="en" class="la">Taking you to your dashboard...</span>
+      <span data-lang="zh">正在跳转至您的仪表板...</span>
+      <span data-lang="ms">Membawa anda ke papan pemuka...</span>
+    </p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill"></div></div>
+  </div>
+
 </div>
+
 <script>
-function fillDemo(e,p){document.getElementById('email').value=e;document.getElementById('password').value=p;hideError();}
-function showError(m){document.getElementById('error-msg').textContent=m;document.getElementById('error-alert').classList.add('show');}
-function hideError(){document.getElementById('error-alert').classList.remove('show');}
-async function handleLogin(e){
-  e.preventDefault();hideError();
-  const email=document.getElementById('email').value.trim();
-  const password=document.getElementById('password').value;
-  const btn=document.getElementById('submit-btn');btn.disabled=true;btn.textContent='Signing in...';
-  try{
-    const res=await fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
-    const data=await res.json();
-    if(data.success){window.location.href=data.redirect;}
-    else{showError(data.error||'Invalid email or password.');btn.disabled=false;btn.textContent='Sign in';}
-  }catch(err){showError('Connection error. Please try again.');btn.disabled=false;btn.textContent='Sign in';}
+let lang = localStorage.getItem('lb-lang') || 'en';
+setLang(lang, false);
+
+function setLang(l, save) {
+  lang = l;
+  if (save !== false) localStorage.setItem('lb-lang', l);
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    el.classList.toggle('la', el.dataset.lang === l);
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    const map = { en: 'EN', zh: '中文', ms: 'BM' };
+    btn.classList.toggle('active', btn.textContent.trim() === map[l]);
+  });
+  document.documentElement.lang = l === 'zh' ? 'zh-CN' : l === 'ms' ? 'ms' : 'en';
 }
-['email','password'].forEach(id=>document.getElementById(id).addEventListener('input',hideError));
+
+function togglePwd() {
+  const inp = document.getElementById('password');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+  document.getElementById('eye-btn').textContent = inp.type === 'password' ? '👁' : '🙈';
+}
+
+function fillDemo(email, pw) {
+  document.getElementById('email').value = email;
+  document.getElementById('password').value = pw;
+  clearError();
+  document.getElementById('email').classList.remove('has-error');
+  document.getElementById('password').classList.remove('has-error');
+}
+
+function showError(msg) {
+  const box = document.getElementById('err-box');
+  document.getElementById('err-msg').textContent = msg;
+  box.classList.add('show');
+  document.getElementById('email').classList.add('has-error');
+  document.getElementById('password').classList.add('has-error');
+}
+
+function clearError() {
+  document.getElementById('err-box').classList.remove('show');
+  document.getElementById('email').classList.remove('has-error');
+  document.getElementById('password').classList.remove('has-error');
+}
+
+function setLoading(on) {
+  const btn = document.getElementById('submit-btn');
+  const spinner = document.getElementById('spinner');
+  btn.disabled = on;
+  spinner.style.display = on ? 'inline-block' : 'none';
+}
+
+async function handleLogin() {
+  clearError();
+  const email = document.getElementById('email').value.trim();
+  const pw = document.getElementById('password').value;
+
+  const errors = {
+    en: { empty: 'Please enter your email and password.', invalid: 'Invalid email or password.', inactive: 'Your account is not active. Contact Leverage Business.', server: 'Connection error. Please try again.' },
+    zh: { empty: '请输入电子邮件和密码。', invalid: '邮箱或密码不正确。', inactive: '您的账号未激活，请联系 Leverage Business。', server: '连接错误，请重试。' },
+    ms: { empty: 'Sila masukkan e-mel dan kata laluan anda.', invalid: 'E-mel atau kata laluan tidak sah.', inactive: 'Akaun anda tidak aktif. Hubungi Leverage Business.', server: 'Ralat sambungan. Sila cuba lagi.' }
+  };
+  const t = errors[lang] || errors.en;
+
+  if (!email || !pw) { showError(t.empty); return; }
+
+  setLoading(true);
+  try {
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password: pw })
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      // Show success state then redirect
+      document.getElementById('login-section').style.display = 'none';
+      document.getElementById('success-section').classList.add('show');
+      // Redirect after animation completes
+      setTimeout(() => { window.location.href = data.redirect; }, 1600);
+    } else {
+      const msg = data.error || t.invalid;
+      if (msg.toLowerCase().includes('not active')) showError(t.inactive);
+      else showError(t.invalid);
+      setLoading(false);
+    }
+  } catch {
+    showError(t.server);
+    setLoading(false);
+  }
+}
+
+// Enter key submits
+['email', 'password'].forEach(id => {
+  document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') handleLogin(); });
+  document.getElementById(id).addEventListener('input', clearError);
+});
 </script>
 </body>
 </html>
