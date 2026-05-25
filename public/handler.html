@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Handler Workbench — Leverage Business</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1929;--gold:#C9A961;--gold2:#B8954A;--white:#fff;--off:#FAFAF8;--text:#1C1C1E;--text2:#3A3A3C;--text3:#636366;--border:#E8E4DC;--g:#1A7A4A;--gbg:#E8F5EE;--b:#1E5B8A;--bbg:#E8F0F8;--a:#C65D00;--abg:#FFF3E8;--r:#C0392B;--rbg:#FDECEA;--fd:"Playfair Display",Georgia,serif;--fb:"IBM Plex Sans",sans-serif;--fm:"IBM Plex Mono",monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);color:var(--text);background:var(--off);display:flex;min-height:100vh;font-size:14px}
+.sidebar{width:220px;flex-shrink:0;background:var(--navy);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50}
+.sb-logo{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:9px}
+.sb-lm{width:28px;height:28px;background:var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--navy);font-family:var(--fd);flex-shrink:0}
+.sb-brand{font-family:var(--fd);font-size:15px;color:#fff;font-weight:500}
+.sb-role-lbl{padding:8px 16px;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(255,255,255,.07)}
+.sb-nav{flex:1;padding:6px 8px}
+.nav-section{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25);padding:8px 6px 3px}
+.nav-item{display:flex;align-items:center;gap:8px;padding:8px 9px;border-radius:6px;cursor:pointer;color:rgba(255,255,255,.55);font-size:13px;margin-bottom:1px;border:1px solid transparent;transition:all .15s}
+.nav-item:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.85)}
+.nav-item.active{background:rgba(201,169,97,.12);color:var(--gold);border-color:rgba(201,169,97,.2)}
+.nav-item svg{width:15px;height:15px;flex-shrink:0}
+.nav-badge{margin-left:auto;background:var(--a);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px}
+.sb-user{padding:10px 14px;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:8px}
+.sb-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:11px;color:var(--navy);font-weight:600;flex-shrink:0}
+.sb-uname{font-size:12px;font-weight:500;color:#fff}
+.sb-urole{font-size:10px;color:rgba(255,255,255,.3)}
+.sb-logout{border:none;background:none;color:rgba(255,255,255,.3);cursor:pointer;padding:3px;margin-left:auto}
+.sb-logout:hover{color:rgba(255,255,255,.7)}
+.sb-logout svg{width:14px;height:14px;display:block}
+.main{margin-left:220px;flex:1;display:flex;flex-direction:column}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.tb-left{display:flex;align-items:center;gap:10px}
+.tb-title{font-size:14px;font-weight:600;color:var(--text)}
+.live-badge{display:flex;align-items:center;gap:4px;background:var(--gbg);color:var(--g);font-size:10px;font-weight:600;padding:3px 8px;border-radius:10px;border:1px solid rgba(26,122,74,.15)}
+.live-dot{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.lang-pill{display:flex;background:var(--off);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.lb{font-size:10px;font-weight:600;padding:4px 9px;cursor:pointer;border:none;background:transparent;color:var(--text3);font-family:var(--fb)}
+.lb.active{background:var(--navy);color:var(--gold)}
+.content{flex:1;padding:20px 24px 48px}
+.view{display:none}.view.active{display:block}
+.page-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.page-title{font-family:var(--fd);font-size:22px;font-weight:400;color:var(--navy)}
+.page-sub{font-size:12px;color:var(--text3);margin-top:2px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kpi{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.kpi-lbl{font-size:11px;color:var(--text3);margin-bottom:3px}
+.kpi-val{font-family:var(--fd);font-size:28px;font-weight:400;color:var(--navy);line-height:1}
+.kpi-sub{font-size:10px;color:var(--text3);margin-top:2px}
+.kpi.a .kpi-val{color:var(--a)}
+.kpi.r .kpi-val{color:var(--r)}
+.kpi.g .kpi-val{color:var(--g)}
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:12px}
+.card-hdr{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.card-title{font-size:13px;font-weight:600;color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text);font-family:var(--fb);transition:all .15s;white-space:nowrap}
+.btn:hover{border-color:var(--navy);color:var(--navy)}
+.btn svg{width:13px;height:13px}
+.btn-navy{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-navy:hover{background:#0F2236}
+.btn-gold{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.btn-sm{padding:4px 9px;font-size:11px}
+.grid2{display:grid;grid-template-columns:1fr 240px;gap:12px;align-items:start}
+.task-item{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border-bottom:1px solid var(--border);transition:background .15s;cursor:pointer}
+.task-item:last-child{border-bottom:none}
+.task-item:hover{background:var(--off)}
+.t-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.t-info{flex:1}
+.t-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px}
+.t-meta{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.t-tag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px}
+.t-actions{display:flex;gap:5px;margin-top:6px}
+.bg-g{background:var(--gbg);color:var(--g)}
+.bg-b{background:var(--bbg);color:var(--b)}
+.bg-a{background:var(--abg);color:var(--a)}
+.bg-r{background:var(--rbg);color:var(--r)}
+.bg-s{background:#F5F5F5;color:#636366}
+.a-status{font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px}
+.client-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}
+.client-item:last-child{border-bottom:none}
+.client-item:hover{background:var(--off)}
+.c-av{width:30px;height:30px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0}
+.c-name{font-size:13px;font-weight:500;color:var(--text)}
+.c-meta{font-size:10px;color:var(--text3)}
+.prog-mini{width:60px;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.prog-mini-fill{height:100%;background:var(--gold);border-radius:2px}
+.sla-item{display:flex;align-items:center;gap:9px;padding:8px 14px;border-bottom:1px solid var(--border);font-size:12px}
+.sla-item:last-child{border-bottom:none}
+.sla-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.sla-name{flex:1;color:var(--text2)}
+.doc-item{display:flex;align-items:center;gap:9px;padding:10px 14px;border-bottom:1px solid var(--border);transition:background .15s}
+.doc-item:last-child{border-bottom:none}
+.doc-item:hover{background:var(--off)}
+.d-icon{width:30px;height:30px;border-radius:6px;background:var(--rbg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.d-icon svg{width:14px;height:14px;color:var(--r)}
+.d-info{flex:1;min-width:0}
+.d-name{font-size:12px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.d-meta{font-size:10px;color:var(--text3);margin-top:1px}
+.modal-overlay{position:fixed;inset:0;background:rgba(10,25,41,.45);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--white);border-radius:12px;width:480px;max-width:95vw;overflow:hidden;box-shadow:0 20px 60px rgba(10,25,41,.15)}
+.modal-hdr{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.modal-title{font-family:var(--fd);font-size:18px;font-weight:400;color:var(--navy)}
+.modal-close{border:none;background:none;cursor:pointer;color:var(--text3);font-size:18px;padding:2px 6px}
+.modal-body{padding:16px 22px;max-height:70vh;overflow-y:auto}
+.modal-footer{padding:12px 22px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+.form-grp{margin-bottom:12px}
+.form-lbl{display:block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text2);margin-bottom:5px}
+.form-inp{width:100%;padding:9px 11px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;font-family:var(--fb);color:var(--text);outline:none;background:var(--white)}
+.form-inp:focus{border-color:var(--gold)}
+.auth-row-task{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid var(--border);font-size:12px}
+.auth-row-task:last-child{border-bottom:none}
+.auth-code{font-family:var(--fm);font-size:10px;font-weight:500;width:44px;flex-shrink:0}
+.auth-name{flex:1;color:var(--text2)}
+.ref-inp{width:140px;padding:4px 7px;border:1px solid var(--border);border-radius:5px;font-size:11px;font-family:var(--fm);outline:none}
+.ref-inp:focus{border-color:var(--gold)}
+[data-lang]{display:none}[data-lang].la{display:block}span[data-lang]{display:none}span[data-lang].la{display:inline}
+.toast-wrap{position:fixed;bottom:20px;right:20px;z-index:300;display:flex;flex-direction:column;gap:8px}
+.toast{background:var(--navy);color:#fff;padding:10px 16px;border-radius:8px;font-size:13px;display:flex;align-items:center;gap:8px;animation:slideIn .3s ease}
+.toast.ok{background:var(--g)}
+.toast.warn{background:var(--a)}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:none;opacity:1}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sb-logo"><div class="sb-lm">L</div><span class="sb-brand">Leverage Business</span></div>
+  <div class="sb-role-lbl" id="sb-role-lbl">Handler</div>
+  <nav class="sb-nav">
+    <div class="nav-section"><span data-lang="en" class="la">Workbench</span><span data-lang="zh">工作台</span><span data-lang="ms">Meja Kerja</span></div>
+    <div class="nav-item active" data-view="workbench" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      <span data-lang="en" class="la">Dashboard</span><span data-lang="zh">工作台</span><span data-lang="ms">Papan Pemuka</span>
+    </div>
+    <div class="nav-item" data-view="clients" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      <span data-lang="en" class="la">My Clients</span><span data-lang="zh">我的客户</span><span data-lang="ms">Klien Saya</span>
+      <span class="nav-badge">3</span>
+    </div>
+    <div class="nav-item" data-view="tasks" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+      <span data-lang="en" class="la">Active Tasks</span><span data-lang="zh">进行中任务</span><span data-lang="ms">Tugas Aktif</span>
+      <span class="nav-badge">5</span>
+    </div>
+    <div class="nav-item" data-view="docs" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      <span data-lang="en" class="la">Doc Review</span><span data-lang="zh">文件审核</span><span data-lang="ms">Semakan Dokumen</span>
+      <span class="nav-badge">3</span>
+    </div>
+    <div class="nav-item" data-view="filing" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      <span data-lang="en" class="la">Filing Queue</span><span data-lang="zh">提交队列</span><span data-lang="ms">Giliran Pemfailan</span>
+    </div>
+  </nav>
+  <div class="sb-user">
+    <div class="sb-av" id="sb-av">ST</div>
+    <div style="flex:1;min-width:0"><div class="sb-uname" id="sb-name">Sarah Tan</div><div class="sb-urole" id="sb-urole">Handler</div></div>
+    <button class="sb-logout" onclick="doLogout()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg></button>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div class="tb-left">
+      <div class="tb-title" id="tb-title">Handler Workbench</div>
+      <div class="live-badge"><div class="live-dot"></div>Live</div>
+    </div>
+    <div class="lang-pill">
+      <button class="lb active" onclick="setLang('en')">EN</button>
+      <button class="lb" onclick="setLang('zh')">中文</button>
+      <button class="lb" onclick="setLang('ms')">BM</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+<!-- WORKBENCH -->
+<div class="view active" id="view-workbench">
+  <div class="page-hdr">
+    <div><h1 class="page-title" id="wb-greeting">Good morning</h1><p class="page-sub"><span data-lang="en" class="la">Here is your workbench for today.</span><span data-lang="zh">今日工作台概览。</span><span data-lang="ms">Berikut adalah meja kerja anda untuk hari ini.</span></p></div>
+  </div>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-lbl"><span data-lang="en" class="la">Active clients</span><span data-lang="zh">活跃客户</span><span data-lang="ms">Klien aktif</span></div><div class="kpi-val">3</div><div class="kpi-sub">Standard package</div></div>
+    <div class="kpi a"><div class="kpi-lbl"><span data-lang="en" class="la">Actions needed</span><span data-lang="zh">待处理任务</span><span data-lang="ms">Tindakan diperlukan</span></div><div class="kpi-val">5</div><div class="kpi-sub">Require attention today</div></div>
+    <div class="kpi"><div class="kpi-lbl"><span data-lang="en" class="la">Docs to review</span><span data-lang="zh">待审核文件</span><span data-lang="ms">Dokumen untuk semak</span></div><div class="kpi-val">3</div></div>
+    <div class="kpi r"><div class="kpi-lbl"><span data-lang="en" class="la">SLA at risk</span><span data-lang="zh">SLA风险</span><span data-lang="ms">SLA berisiko</span></div><div class="kpi-val">2</div></div>
+  </div>
+  <div class="grid2">
+    <div>
+      <div class="card">
+        <div class="card-hdr">
+          <span class="card-title"><span data-lang="en" class="la">Priority actions</span><span data-lang="zh">优先任务</span><span data-lang="ms">Tindakan prioriti</span></span>
+          <div class="live-badge" style="font-size:10px"><div class="live-dot"></div>Live</div>
+        </div>
+        <div class="task-item"><div class="t-dot" style="background:var(--r)"></div><div class="t-info"><div class="t-title">Yifeng Optical — Machinery list upload overdue</div><div class="t-meta"><span class="t-tag bg-r">Client overdue · 5 days</span><span>LB-2026-0047</span></div><div class="t-actions"><button class="btn btn-sm" onclick="chaseClient()">📧 Chase client</button><button class="btn btn-sm" onclick="switchView(document.querySelector('[data-view=clients]'))">View file</button></div></div></div>
+        <div class="task-item"><div class="t-dot" style="background:var(--b)"></div><div class="t-info"><div class="t-title">Yifeng Optical — Review Audited Accounts 2024 (re-upload)</div><div class="t-meta"><span class="t-tag bg-b">Doc review</span><span>LB-2026-0047</span></div><div class="t-actions"><button class="btn btn-navy btn-sm" onclick="openDocReview()">Review now</button></div></div></div>
+        <div class="task-item"><div class="t-dot" style="background:var(--a)"></div><div class="t-info"><div class="t-title">Guangzhou Food Tech — PBT inspection follow-up</div><div class="t-meta"><span class="t-tag bg-a">Gov pending</span><span>Filed 15 Mar · Ref: MBSP/2026/P/00234</span></div><div class="t-actions"><button class="btn btn-sm">Check MBSP portal</button></div></div></div>
+        <div class="task-item"><div class="t-dot" style="background:var(--g)"></div><div class="t-info"><div class="t-title">Taiwan Solar Systems — Stage 2 activation ready</div><div class="t-meta"><span class="t-tag bg-g">Ready to activate</span><span>LB-2026-0052 · Authority stack configured</span></div><div class="t-actions"><button class="btn btn-gold btn-sm" onclick="showToast('Stage 2 activated for Taiwan Solar','ok')">Activate Stage 2</button></div></div></div>
+        <div class="task-item"><div class="t-dot" style="background:var(--b)"></div><div class="t-info"><div class="t-title">Yifeng Optical — MIDA Form 1 ready for handler review</div><div class="t-meta"><span class="t-tag bg-b">Ready to file</span><span>Awaiting machinery list from client</span></div><div class="t-actions"><button class="btn btn-sm">Preview form</button><button class="btn btn-navy btn-sm" onclick="openFilingModal()">File with gov ref →</button></div></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:12px">
+        <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la">SLA tracker</span><span data-lang="zh">SLA追踪</span><span data-lang="ms">Penjejak SLA</span></span></div>
+        <div class="sla-item"><div class="sla-dot" style="background:var(--r)"></div><div class="sla-name">MIDA upload — Yifeng</div><span class="a-status bg-r">Breached</span></div>
+        <div class="sla-item"><div class="sla-dot" style="background:var(--a)"></div><div class="sla-name">PBT response — Guangzhou</div><span class="a-status bg-a">At risk · 2d</span></div>
+        <div class="sla-item"><div class="sla-dot" style="background:var(--g)"></div><div class="sla-name">LHDN filing — Taiwan Solar</div><span class="a-status bg-g">On track</span></div>
+        <div class="sla-item"><div class="sla-dot" style="background:var(--g)"></div><div class="sla-name">SSM docs — Yifeng</div><span class="a-status bg-g">Complete</span></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la">My clients</span><span data-lang="zh">我的客户</span><span data-lang="ms">Klien saya</span></span></div>
+        <div class="client-item"><div class="c-av">YO</div><div style="flex:1"><div class="c-name">Yifeng Optical</div><div class="c-meta">Standard · Mfg · Penang FIZ</div></div><div class="prog-mini"><div class="prog-mini-fill" style="width:54%"></div></div><span style="font-size:10px;color:var(--text3);margin-left:4px">54%</span></div>
+        <div class="client-item"><div class="c-av">GF</div><div style="flex:1"><div class="c-name">Guangzhou Food Tech</div><div class="c-meta">Standard · Food · Shah Alam</div></div><div class="prog-mini"><div class="prog-mini-fill" style="width:38%"></div></div><span style="font-size:10px;color:var(--text3);margin-left:4px">38%</span></div>
+        <div class="client-item"><div class="c-av">TS</div><div style="flex:1"><div class="c-name">Taiwan Solar</div><div class="c-meta">Standard · RE · Selangor</div></div><div class="prog-mini"><div class="prog-mini-fill" style="width:5%"></div></div><span style="font-size:10px;color:var(--text3);margin-left:4px">5%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CLIENTS -->
+<div class="view" id="view-clients">
+  <div class="page-hdr"><div><h1 class="page-title"><span data-lang="en" class="la">My Clients</span><span data-lang="zh">我的客户</span><span data-lang="ms">Klien Saya</span></h1><p class="page-sub">3 active engagements · All Standard Package</p></div></div>
+  <div class="card">
+    <div class="client-item" style="cursor:default;padding:12px 14px;border-bottom:1px solid var(--border)">
+      <div class="c-av">YO</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px"><div class="c-name">Yifeng Optical Sdn Bhd</div><span class="a-status bg-a" style="font-size:9px">2 actions needed</span></div>
+        <div class="c-meta">LB-2026-0047 · Standard · Manufacturing (ELEC) · Penang FIZ · Chen Ming</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:4px"><div class="prog-mini" style="width:80px"><div class="prog-mini-fill" style="width:54%"></div></div><span style="font-size:10px;color:var(--text3)">54% complete · Est. Sep 2026</span></div>
+      </div>
+      <div style="display:flex;gap:5px"><button class="btn btn-sm">View tasks</button><button class="btn btn-sm">Message</button></div>
+    </div>
+    <div class="client-item" style="cursor:default;padding:12px 14px;border-bottom:1px solid var(--border)">
+      <div class="c-av">GF</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px"><div class="c-name">Guangzhou Food Tech Sdn Bhd</div><span class="a-status bg-b" style="font-size:9px">Gov processing</span></div>
+        <div class="c-meta">LB-2026-0039 · Standard · Food Processing · Shah Alam · Lin Fang</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:4px"><div class="prog-mini" style="width:80px"><div class="prog-mini-fill" style="width:38%"></div></div><span style="font-size:10px;color:var(--text3)">38% complete · Est. Dec 2026</span></div>
+      </div>
+      <div style="display:flex;gap:5px"><button class="btn btn-sm">View tasks</button><button class="btn btn-sm">Message</button></div>
+    </div>
+    <div class="client-item" style="cursor:default;padding:12px 14px">
+      <div class="c-av">TS</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px"><div class="c-name">Taiwan Solar Systems Sdn Bhd</div><span class="a-status bg-g" style="font-size:9px">Stage 2 ready</span></div>
+        <div class="c-meta">LB-2026-0052 · Standard · Renewable Energy · Selangor · Wu Jianming</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:4px"><div class="prog-mini" style="width:80px"><div class="prog-mini-fill" style="width:5%"></div></div><span style="font-size:10px;color:var(--text3)">5% complete · Est. Feb 2027</span></div>
+      </div>
+      <div style="display:flex;gap:5px"><button class="btn btn-gold btn-sm" onclick="showToast('Stage 2 activated','ok')">Activate Stage 2</button><button class="btn btn-sm">Message</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- TASKS -->
+<div class="view" id="view-tasks">
+  <div class="page-hdr"><div><h1 class="page-title"><span data-lang="en" class="la">Active Tasks</span><span data-lang="zh">进行中任务</span><span data-lang="ms">Tugas Aktif</span></h1><p class="page-sub">All open authority tasks across your 3 clients</p></div></div>
+  <div class="card">
+    <div class="task-item"><div class="t-dot" style="background:var(--a)"></div><div class="t-info"><div class="t-title">Yifeng — MIDA ICA 10 Exemption</div><div class="t-meta"><span class="t-tag bg-a">Waiting client docs</span><span>Handler review mandatory before filing</span><span style="font-family:var(--fm);font-size:10px">LB-2026-0047</span></div></div></div>
+    <div class="task-item"><div class="t-dot" style="background:var(--b)"></div><div class="t-info"><div class="t-title">Yifeng — PBT Premise Licence (MBSP inspection)</div><div class="t-meta"><span class="t-tag bg-b">Filed · Gov processing</span><span>Ref: MBSP/2026/P/00234 · Filed 15 Mar</span></div></div></div>
+    <div class="task-item"><div class="t-dot" style="background:var(--g)"></div><div class="t-info"><div class="t-title">Guangzhou Food — SSM Company Registration</div><div class="t-meta"><span class="t-tag bg-g">Approved</span><span>Co. No: 202600YYYYYY · 14 Mar 2026</span></div></div></div>
+    <div class="task-item"><div class="t-dot" style="background:var(--a)"></div><div class="t-info"><div class="t-title">Guangzhou Food — LHDN Tax File</div><div class="t-meta"><span class="t-tag bg-a">Client docs needed</span><span>Waiting: Director passports (Liu Hai, Wang Rong)</span></div></div></div>
+    <div class="task-item"><div class="t-dot" style="background:var(--b)"></div><div class="t-info"><div class="t-title">Taiwan Solar — Stage 2 configuration</div><div class="t-meta"><span class="t-tag bg-b">Ready to activate</span><span>Authority stack for SEDA, ST, MGTC configured</span></div></div></div>
+  </div>
+</div>
+
+<!-- DOC REVIEW -->
+<div class="view" id="view-docs">
+  <div class="page-hdr"><div><h1 class="page-title"><span data-lang="en" class="la">Document Review</span><span data-lang="zh">文件审核</span><span data-lang="ms">Semakan Dokumen</span></h1><p class="page-sub">3 client uploads awaiting your review</p></div></div>
+  <div class="card">
+    <div class="doc-item">
+      <div class="d-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div>
+      <div class="d-info"><div class="d-name">Audited_Accounts_2024.pdf</div><div class="d-meta" style="color:var(--a)">Re-uploaded · Needs review · Yifeng Optical · Wang Fang · 19 Mar 10:45</div></div>
+      <div style="display:flex;gap:5px">
+        <button class="btn btn-sm">Preview</button>
+        <button class="btn btn-navy btn-sm" onclick="acceptDoc(this,'Audited_Accounts_2024.pdf')">Accept</button>
+        <button class="btn btn-sm" style="color:var(--r);border-color:rgba(192,57,43,.2)" onclick="flagDoc(this)">Flag</button>
+      </div>
+    </div>
+    <div class="doc-item">
+      <div class="d-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div>
+      <div class="d-info"><div class="d-name">Tenancy_Agreement_Penang_FIZ.pdf</div><div class="d-meta">First upload · Yifeng Optical · Chen Ming · 14 Mar</div></div>
+      <div style="display:flex;gap:5px">
+        <button class="btn btn-sm">Preview</button>
+        <button class="btn btn-navy btn-sm" onclick="acceptDoc(this,'Tenancy_Agreement_Penang_FIZ.pdf')">Accept</button>
+        <button class="btn btn-sm" style="color:var(--r);border-color:rgba(192,57,43,.2)" onclick="flagDoc(this)">Flag</button>
+      </div>
+    </div>
+    <div class="doc-item">
+      <div class="d-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div>
+      <div class="d-info"><div class="d-name">Guangzhou_Food_Passport_LiuHai.pdf</div><div class="d-meta">First upload · Guangzhou Food Tech · Lin Fang · 19 Mar</div></div>
+      <div style="display:flex;gap:5px">
+        <button class="btn btn-sm">Preview</button>
+        <button class="btn btn-navy btn-sm" onclick="acceptDoc(this,'Guangzhou_Food_Passport_LiuHai.pdf')">Accept</button>
+        <button class="btn btn-sm" style="color:var(--r);border-color:rgba(192,57,43,.2)" onclick="flagDoc(this)">Flag</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILING QUEUE -->
+<div class="view" id="view-filing">
+  <div class="page-hdr"><div><h1 class="page-title"><span data-lang="en" class="la">Filing Queue</span><span data-lang="zh">提交队列</span><span data-lang="ms">Giliran Pemfailan</span></h1><p class="page-sub">Tasks ready to file — government reference number required before marking as filed</p></div></div>
+  <div class="card" style="padding:14px 16px;background:var(--abg);border-color:rgba(198,93,0,.2);margin-bottom:12px">
+    <div style="font-size:12px;font-weight:600;color:var(--a);margin-bottom:3px">⚠ Filing rule enforced</div>
+    <div style="font-size:12px;color:var(--text2)">You cannot mark any task as "Filed" without entering the government reference number first. This is a hard system rule — no exceptions.</div>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><span class="card-title">Ready to file (1)</span></div>
+    <div style="padding:14px 16px">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px">Yifeng Optical — PBT Premise Licence (MBSP)</div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:10px">All documents verified · Ready to submit to MBSP · LB-2026-0047</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <label style="font-size:11px;font-weight:600;color:var(--text2);white-space:nowrap">Gov ref no. *</label>
+            <input id="filing-ref" class="form-inp" style="width:180px;padding:5px 9px;font-size:12px;border-radius:6px;font-family:var(--fm)" placeholder="MBSP/2026/P/XXXXX">
+            <button class="btn btn-navy btn-sm" onclick="fileTask()">Mark as Filed →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+</div>
+
+<!-- FILING MODAL -->
+<div class="modal-overlay" id="filing-modal" onclick="if(event.target===this)document.getElementById('filing-modal').classList.remove('open')">
+  <div class="modal">
+    <div class="modal-hdr"><span class="modal-title">File with Government</span><button class="modal-close" onclick="document.getElementById('filing-modal').classList.remove('open')">×</button></div>
+    <div class="modal-body">
+      <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:4px">Yifeng Optical — MIDA ICA 10 Exemption</div>
+      <div style="font-size:12px;color:var(--text3);margin-bottom:14px">Enter the government reference number before filing. This is required and cannot be bypassed.</div>
+      <div class="form-grp"><label class="form-lbl">Government Reference Number *</label><input class="form-inp" id="modal-ref" placeholder="MIDA/2026/ICA/XXXXX"></div>
+      <div style="font-size:11px;color:var(--text3);background:var(--off);padding:8px 10px;border-radius:6px">The system will log your user ID, timestamp, and this reference number in the immutable audit trail.</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="document.getElementById('filing-modal').classList.remove('open')">Cancel</button>
+      <button class="btn btn-navy" onclick="submitFiling()">Confirm & File</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toasts"></div>
+
+<script>
+let lang = localStorage.getItem('lb-lang')||'en';
+
+async function init() {
+  try {
+    const res = await fetch('/api/auth/me');
+    if(!res.ok){location.href='/login';return;}
+    const data = await res.json();
+    const u = data.user;
+    if(!['handler','larry'].includes(u.role)){location.href='/login';return;}
+    const init = u.name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+    document.getElementById('sb-av').textContent = init;
+    document.getElementById('sb-name').textContent = u.name;
+    document.getElementById('sb-urole').textContent = u.role==='larry'?'Administrator':'Handler';
+    document.getElementById('sb-role-lbl').textContent = u.role==='larry'?'Admin + Handler Access':'Handler Workbench';
+    const h = new Date().getHours();
+    const greet = h<12?'Good morning':h<18?'Good afternoon':'Good evening';
+    document.getElementById('wb-greeting').textContent = greet + ', ' + u.name.split(' ')[0];
+    setLang(lang,false);
+  } catch {location.href='/login';}
+}
+
+function switchView(el) {
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  el.classList.add('active');
+  const view = el.dataset.view;
+  document.getElementById('view-'+view).classList.add('active');
+  const labels = {workbench:'Handler Workbench',clients:'My Clients',tasks:'Active Tasks',docs:'Document Review',filing:'Filing Queue'};
+  document.getElementById('tb-title').textContent = labels[view]||view;
+}
+
+function setLang(l,save=true){lang=l;if(save)localStorage.setItem('lb-lang',l);document.querySelectorAll('[data-lang]').forEach(el=>el.classList.toggle('la',el.dataset.lang===l));document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('active',b.textContent.trim()==={en:'EN',zh:'中文',ms:'BM'}[l]));}
+
+function chaseClient(){showToast('Chaser email sent to Chen Ming','ok');}
+
+function openDocReview(){switchView(document.querySelector('[data-view=docs]'));}
+
+function openFilingModal(){document.getElementById('filing-modal').classList.add('open');}
+
+function submitFiling() {
+  const ref = document.getElementById('modal-ref').value.trim();
+  if(!ref){alert('Government reference number is required.');return;}
+  document.getElementById('filing-modal').classList.remove('open');
+  showToast('Filed: MIDA ICA 10 — Ref: '+ref,'ok');
+}
+
+function fileTask() {
+  const ref = document.getElementById('filing-ref').value.trim();
+  if(!ref){showToast('Reference number required before filing','warn');return;}
+  showToast('Filed: PBT Premise Licence — Ref: '+ref,'ok');
+}
+
+function acceptDoc(btn,name){btn.closest('.doc-item').style.opacity='.5';showToast('Accepted: '+name,'ok');}
+
+function flagDoc(btn){
+  const note = prompt('Flag reason (will be sent to client):');
+  if(note===null)return;
+  btn.closest('.doc-item').style.opacity='.5';showToast('Document flagged and client notified','warn');
+}
+
+function showToast(msg,type='info'){const wrap=document.getElementById('toasts');const t=document.createElement('div');t.className=`toast${type==='ok'?' ok':type==='warn'?' warn':''}`;t.textContent=msg;wrap.appendChild(t);setTimeout(()=>t.remove(),3500);}
+
+async function doLogout(){await fetch('/api/auth/logout',{method:'POST'});location.href='/login';}
+
+init();
+</script>
+</body>
+</html>
