@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin — Leverage Business</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1929;--gold:#C9A961;--gold2:#B8954A;--white:#fff;--off:#FAFAF8;--text:#1C1C1E;--text2:#3A3A3C;--text3:#636366;--border:#E8E4DC;--g:#1A7A4A;--gbg:#E8F5EE;--b:#1E5B8A;--bbg:#E8F0F8;--a:#C65D00;--abg:#FFF3E8;--r:#C0392B;--rbg:#FDECEA;--fd:"Playfair Display",Georgia,serif;--fb:"IBM Plex Sans",sans-serif;--fm:"IBM Plex Mono",monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);color:var(--text);background:var(--off);display:flex;min-height:100vh;font-size:14px}
+.sidebar{width:220px;flex-shrink:0;background:var(--navy);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50}
+.sb-logo{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:9px}
+.sb-lm{width:28px;height:28px;background:var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--navy);font-family:var(--fd);flex-shrink:0}
+.sb-brand{font-family:var(--fd);font-size:15px;color:#fff;font-weight:500}
+.sb-role-lbl{padding:8px 16px;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(255,255,255,.07)}
+.sb-nav{flex:1;padding:6px 8px}
+.nav-item{display:flex;align-items:center;gap:8px;padding:8px 9px;border-radius:6px;cursor:pointer;color:rgba(255,255,255,.55);font-size:13px;margin-bottom:1px;border:1px solid transparent;transition:all .15s}
+.nav-item:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.85)}
+.nav-item.active{background:rgba(201,169,97,.12);color:var(--gold);border-color:rgba(201,169,97,.2)}
+.nav-item svg{width:15px;height:15px;flex-shrink:0}
+.sb-user{padding:10px 14px;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:8px}
+.sb-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:11px;color:var(--navy);font-weight:600;flex-shrink:0}
+.sb-uname{font-size:12px;font-weight:500;color:#fff}
+.sb-urole{font-size:10px;color:rgba(255,255,255,.3)}
+.sb-logout{border:none;background:none;color:rgba(255,255,255,.3);cursor:pointer;padding:3px;border-radius:4px;margin-left:auto}
+.sb-logout:hover{color:rgba(255,255,255,.7)}
+.sb-logout svg{width:14px;height:14px;display:block}
+.main{margin-left:220px;flex:1;display:flex;flex-direction:column}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.tb-title{font-size:14px;font-weight:600;color:var(--text)}
+.tb-right{display:flex;align-items:center;gap:8px}
+.lang-pill{display:flex;background:var(--off);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.lb{font-size:10px;font-weight:600;padding:4px 9px;cursor:pointer;border:none;background:transparent;color:var(--text3);font-family:var(--fb)}
+.lb.active{background:var(--navy);color:var(--gold)}
+.content{flex:1;padding:20px 24px 48px}
+.view{display:none}.view.active{display:block}
+.page-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.page-title{font-family:var(--fd);font-size:22px;font-weight:400;color:var(--navy)}
+.page-sub{font-size:12px;color:var(--text3);margin-top:2px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kpi{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.kpi-lbl{font-size:11px;color:var(--text3);margin-bottom:3px}
+.kpi-val{font-family:var(--fd);font-size:28px;font-weight:400;color:var(--navy);line-height:1}
+.kpi-sub{font-size:10px;color:var(--text3);margin-top:2px}
+.kpi.g .kpi-val{color:var(--g)}
+.kpi.a .kpi-val{color:var(--a)}
+.kpi.r .kpi-val{color:var(--r)}
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:12px}
+.card-hdr{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.card-title{font-size:13px;font-weight:600;color:var(--text)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:9px 14px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);background:var(--off);border-bottom:1px solid var(--border)}
+td{padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--text)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--off)}
+.role-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.rb-larry{background:var(--navy);color:var(--gold)}
+.rb-handler{background:var(--bbg);color:var(--b)}
+.rb-client{background:var(--gbg);color:var(--g)}
+.rb-partner{background:var(--abg);color:var(--a)}
+.status-dot{display:inline-flex;align-items:center;gap:5px;font-size:12px}
+.sd-active::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--g)}
+.sd-inactive::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--text3)}
+.mono{font-family:var(--fm);font-size:11px;color:var(--text3)}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text);font-family:var(--fb);transition:all .15s;white-space:nowrap}
+.btn:hover{border-color:var(--navy);color:var(--navy)}
+.btn svg{width:13px;height:13px}
+.btn-navy{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-navy:hover{background:#0F2236}
+.btn-danger{background:var(--rbg);color:var(--r);border-color:rgba(192,57,43,.2)}
+.btn-danger:hover{background:var(--r);color:#fff}
+.btn-sm{padding:4px 9px;font-size:11px}
+.btn-icon{padding:5px;border:1px solid var(--border);border-radius:5px;background:transparent;cursor:pointer;color:var(--text3);font-family:var(--fb)}
+.btn-icon:hover{border-color:var(--navy);color:var(--navy)}
+.btn-icon svg{width:13px;height:13px;display:block}
+.modal-overlay{position:fixed;inset:0;background:rgba(10,25,41,.45);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--white);border-radius:12px;width:460px;max-width:95vw;overflow:hidden;box-shadow:0 20px 60px rgba(10,25,41,.15)}
+.modal-hdr{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.modal-title{font-family:var(--fd);font-size:20px;font-weight:400;color:var(--navy)}
+.modal-close{border:none;background:none;cursor:pointer;color:var(--text3);font-size:18px;padding:2px 6px}
+.modal-body{padding:18px 22px}
+.form-grp{margin-bottom:13px}
+.form-lbl{display:block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text2);margin-bottom:5px}
+.form-inp{width:100%;padding:9px 11px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;font-family:var(--fb);color:var(--text);outline:none;background:var(--white)}
+.form-inp:focus{border-color:var(--gold)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal-footer{padding:12px 22px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+.alert{padding:8px 11px;border-radius:7px;font-size:12px;margin-bottom:10px;display:none}
+.alert.show{display:block}
+.alert-err{background:var(--rbg);color:var(--r);border:1px solid rgba(192,57,43,.15)}
+.alert-ok{background:var(--gbg);color:var(--g);border:1px solid rgba(26,122,74,.15)}
+.grid2{display:grid;grid-template-columns:1fr 240px;gap:12px;align-items:start}
+.health-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px}
+.health-cell{padding:10px;border-radius:8px;text-align:center}
+.hc-num{font-family:var(--fd);font-size:22px;font-weight:400;line-height:1;margin-bottom:2px}
+.hc-lbl{font-size:10px;font-weight:500}
+.client-row{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid var(--border);font-size:12px;transition:background .15s}
+.client-row:last-child{border-bottom:none}
+.client-row:hover{background:var(--off)}
+.c-av{width:28px;height:28px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#fff;flex-shrink:0}
+.prog-mini{width:60px;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.prog-mini-fill{height:100%;background:var(--gold);border-radius:2px}
+.partner-row{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid var(--border);font-size:12px}
+.partner-row:last-child{border-bottom:none}
+.a-status{font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px}
+.bg-g{background:var(--gbg);color:var(--g)}
+.bg-b{background:var(--bbg);color:var(--b)}
+.bg-a{background:var(--abg);color:var(--a)}
+.bg-r{background:var(--rbg);color:var(--r)}
+.live-badge{display:flex;align-items:center;gap:4px;background:var(--gbg);color:var(--g);font-size:10px;font-weight:600;padding:3px 8px;border-radius:10px;border:1px solid rgba(26,122,74,.15)}
+.live-dot{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+[data-lang]{display:none}[data-lang].la{display:block}span[data-lang]{display:none}span[data-lang].la{display:inline}
+.toast-wrap{position:fixed;bottom:20px;right:20px;z-index:300;display:flex;flex-direction:column;gap:8px}
+.toast{background:var(--navy);color:#fff;padding:10px 16px;border-radius:8px;font-size:13px;display:flex;align-items:center;gap:8px;animation:slideIn .3s ease;min-width:200px}
+.toast.ok{background:var(--g)}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:none;opacity:1}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sb-logo"><div class="sb-lm">L</div><span class="sb-brand">Leverage Business</span></div>
+  <div class="sb-role-lbl">Administrator</div>
+  <nav class="sb-nav">
+    <div class="nav-item active" data-view="dashboard" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      <span data-lang="en" class="la">Dashboard</span><span data-lang="zh">仪表板</span><span data-lang="ms">Papan Pemuka</span>
+    </div>
+    <div class="nav-item" data-view="users" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      <span data-lang="en" class="la">User Accounts</span><span data-lang="zh">用户账号</span><span data-lang="ms">Akaun Pengguna</span>
+    </div>
+    <div class="nav-item" data-view="clients" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+      <span data-lang="en" class="la">Client Portfolio</span><span data-lang="zh">客户组合</span><span data-lang="ms">Porfolio Klien</span>
+    </div>
+    <div class="nav-item" onclick="location.href='/handler'">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      <span data-lang="en" class="la">Handler View</span><span data-lang="zh">处理员视图</span><span data-lang="ms">Paparan Pengendali</span>
+    </div>
+  </nav>
+  <div class="sb-user">
+    <div class="sb-av" id="sb-av">L</div>
+    <div style="flex:1;min-width:0"><div class="sb-uname" id="sb-name">Larry</div><div class="sb-urole">Administrator</div></div>
+    <button class="sb-logout" onclick="doLogout()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg></button>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div class="tb-title" id="tb-title">Command Centre</div>
+    <div class="tb-right">
+      <div class="lang-pill">
+        <button class="lb active" onclick="setLang('en')">EN</button>
+        <button class="lb" onclick="setLang('zh')">中文</button>
+        <button class="lb" onclick="setLang('ms')">BM</button>
+      </div>
+      <div class="live-badge"><div class="live-dot"></div>Live</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+<!-- DASHBOARD -->
+<div class="view active" id="view-dashboard">
+  <div class="page-hdr"><div><h1 class="page-title"><span data-lang="en" class="la">Command Centre</span><span data-lang="zh">指挥中心</span><span data-lang="ms">Pusat Kawalan</span></h1><p class="page-sub"><span data-lang="en" class="la">Platform health and business overview</span><span data-lang="zh">平台健康状况及业务概览</span><span data-lang="ms">Kesihatan platform dan gambaran perniagaan</span></p></div></div>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-lbl"><span data-lang="en" class="la">Total users</span><span data-lang="zh">总用户</span><span data-lang="ms">Jumlah pengguna</span></div><div class="kpi-val" id="kpi-total">—</div><div class="kpi-sub"><span data-lang="en" class="la">All roles</span><span data-lang="zh">所有角色</span><span data-lang="ms">Semua peranan</span></div></div>
+    <div class="kpi g"><div class="kpi-lbl"><span data-lang="en" class="la">Active clients</span><span data-lang="zh">活跃客户</span><span data-lang="ms">Klien aktif</span></div><div class="kpi-val" id="kpi-clients">—</div></div>
+    <div class="kpi"><div class="kpi-lbl"><span data-lang="en" class="la">Handlers</span><span data-lang="zh">处理员</span><span data-lang="ms">Pengendali</span></div><div class="kpi-val" id="kpi-handlers">—</div></div>
+    <div class="kpi a"><div class="kpi-lbl"><span data-lang="en" class="la">Partner firms</span><span data-lang="zh">合作伙伴</span><span data-lang="ms">Firma rakan</span></div><div class="kpi-val" id="kpi-partners">—</div></div>
+  </div>
+  <div class="grid2">
+    <div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la">Platform health</span><span data-lang="zh">平台健康</span><span data-lang="ms">Kesihatan platform</span></span><div class="live-badge" style="font-size:10px"><div class="live-dot"></div>Live</div></div>
+        <div class="health-grid">
+          <div class="health-cell" style="background:var(--gbg)"><div class="hc-num" style="color:var(--g)">6</div><div class="hc-lbl" style="color:var(--g)">On track</div></div>
+          <div class="health-cell" style="background:var(--abg)"><div class="hc-num" style="color:var(--a)">2</div><div class="hc-lbl" style="color:var(--a)">At risk</div></div>
+          <div class="health-cell" style="background:var(--rbg)"><div class="hc-num" style="color:var(--r)">1</div><div class="hc-lbl" style="color:var(--r)">SLA breached</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hdr">
+          <span class="card-title"><span data-lang="en" class="la">All users</span><span data-lang="zh">所有用户</span><span data-lang="ms">Semua pengguna</span></span>
+          <button class="btn btn-navy btn-sm" onclick="openModal()">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 4v16m8-8H4"/></svg>
+            <span data-lang="en" class="la">Add user</span><span data-lang="zh">添加用户</span><span data-lang="ms">Tambah pengguna</span>
+          </button>
+        </div>
+        <div id="users-table"></div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:12px">
+        <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la">Client portfolio</span><span data-lang="zh">客户组合</span><span data-lang="ms">Portfolio klien</span></span></div>
+        <div class="client-row"><div class="c-av">YO</div><div style="flex:1"><div style="font-size:12px;font-weight:500">Yifeng Optical</div><div style="font-size:10px;color:var(--text3)">Sarah Tan · Standard</div></div><div class="prog-mini"><div class="prog-mini-fill" style="width:54%"></div></div><span style="font-size:10px;color:var(--text3);margin-left:4px">54%</span></div>
+        <div class="client-row"><div class="c-av">GF</div><div style="flex:1"><div style="font-size:12px;font-weight:500">Guangzhou Food Tech</div><div style="font-size:10px;color:var(--text3)">Sarah Tan · Standard</div></div><div class="prog-mini"><div class="prog-mini-fill" style="width:38%"></div></div><span style="font-size:10px;color:var(--text3);margin-left:4px">38%</span></div>
+        <div class="client-row"><div class="c-av">TS</div><div style="flex:1"><div style="font-size:12px;font-weight:500">Taiwan Solar</div><div style="font-size:10px;color:var(--text3)">Sarah Tan · Standard</div></div><div class="prog-mini"><div class="prog-mini-fill" style="width:5%"></div></div><span style="font-size:10px;color:var(--text3);margin-left:4px">5%</span></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la">Revenue pipeline</span><span data-lang="zh">业务营收</span><span data-lang="ms">Saluran hasil</span></span></div>
+        <div style="padding:12px 14px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px"><span style="color:var(--text3)">Signed (3 engagements)</span><span style="font-weight:600">RM 135,000</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px"><span style="color:var(--text3)">Milestone 1 collected</span><span style="font-weight:600;color:var(--g)">RM 40,500</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text3)">Outstanding</span><span style="font-weight:600;color:var(--a)">RM 94,500</span></div>
+          <div style="height:1px;background:var(--border);margin:10px 0"></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text3)">Partner firms (2)</span><span style="font-weight:600;color:var(--b)">3 clients referred</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- USERS -->
+<div class="view" id="view-users">
+  <div class="page-hdr">
+    <div><h1 class="page-title"><span data-lang="en" class="la">User Accounts</span><span data-lang="zh">用户账号</span><span data-lang="ms">Akaun Pengguna</span></h1><p class="page-sub"><span data-lang="en" class="la">Manage all platform logins across all roles</span><span data-lang="zh">管理所有角色的平台登录账号</span><span data-lang="ms">Urus semua log masuk platform merentas semua peranan</span></p></div>
+    <button class="btn btn-navy btn-sm" onclick="openModal()">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 4v16m8-8H4"/></svg>
+      <span data-lang="en" class="la">Add user</span><span data-lang="zh">添加用户</span><span data-lang="ms">Tambah pengguna</span>
+    </button>
+  </div>
+  <div class="card"><div id="users-table-full"></div></div>
+</div>
+
+<!-- CLIENTS -->
+<div class="view" id="view-clients">
+  <div class="page-hdr"><div><h1 class="page-title"><span data-lang="en" class="la">Client Portfolio</span><span data-lang="zh">客户组合</span><span data-lang="ms">Portfolio Klien</span></h1><p class="page-sub">3 active engagements · RM 135,000 signed</p></div></div>
+  <div class="card">
+    <table>
+      <thead><tr><th>Company</th><th>Package</th><th>Handler</th><th>Progress</th><th>Status</th><th>Next action</th></tr></thead>
+      <tbody>
+        <tr><td><div style="font-weight:500">Yifeng Optical Sdn Bhd</div><div class="mono">LB-2026-0047 · Manufacturing · Penang FIZ</div></td><td>Standard</td><td>Sarah Tan</td><td><div style="display:flex;align-items:center;gap:6px"><div class="prog-mini" style="width:70px"><div class="prog-mini-fill" style="width:54%"></div></div><span style="font-size:11px">54%</span></div></td><td><span class="a-status bg-a">Action needed</span></td><td><span style="font-size:11px;color:var(--text3)">Upload machinery list</span></td></tr>
+        <tr><td><div style="font-weight:500">Guangzhou Food Tech Sdn Bhd</div><div class="mono">LB-2026-0039 · Food · Shah Alam</div></td><td>Standard</td><td>Sarah Tan</td><td><div style="display:flex;align-items:center;gap:6px"><div class="prog-mini" style="width:70px"><div class="prog-mini-fill" style="width:38%"></div></div><span style="font-size:11px">38%</span></div></td><td><span class="a-status bg-b">Gov processing</span></td><td><span style="font-size:11px;color:var(--text3)">PBT inspection 2 Apr</span></td></tr>
+        <tr><td><div style="font-weight:500">Taiwan Solar Systems Sdn Bhd</div><div class="mono">LB-2026-0052 · RE · Selangor</div></td><td>Standard</td><td>Sarah Tan</td><td><div style="display:flex;align-items:center;gap:6px"><div class="prog-mini" style="width:70px"><div class="prog-mini-fill" style="width:5%"></div></div><span style="font-size:11px">5%</span></div></td><td><span class="a-status bg-g">Stage 2 ready</span></td><td><span style="font-size:11px;color:var(--text3)">Activate dashboard</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-hdr">
+      <span class="modal-title"><span data-lang="en" class="la">Add User Account</span><span data-lang="zh">添加用户账号</span><span data-lang="ms">Tambah Akaun Pengguna</span></span>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-err" id="modal-err"></div>
+      <div class="alert alert-ok" id="modal-ok"></div>
+      <div class="form-grid">
+        <div class="form-grp"><label class="form-lbl">Full Name</label><input class="form-inp" id="f-name" placeholder="Chen Ming"></div>
+        <div class="form-grp"><label class="form-lbl">Role</label><select class="form-inp" id="f-role"><option value="client">Client</option><option value="handler">Handler</option><option value="partner">Partner</option><option value="larry">Admin (Larry)</option></select></div>
+        <div class="form-grp" style="grid-column:1/-1"><label class="form-lbl">Email address</label><input class="form-inp" id="f-email" type="email" placeholder="user@company.com"></div>
+        <div class="form-grp" style="grid-column:1/-1"><label class="form-lbl">Password</label><input class="form-inp" id="f-password" type="password" placeholder="Min 8 characters"></div>
+        <div class="form-grp"><label class="form-lbl">Company name</label><input class="form-inp" id="f-company" placeholder="Yifeng Optical Sdn Bhd"></div>
+        <div class="form-grp"><label class="form-lbl">Client ID <span style="color:var(--text3);font-weight:400;text-transform:none;letter-spacing:0">(clients)</span></label><input class="form-inp" id="f-clientid" placeholder="LB-2026-XXXX"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-navy" onclick="createUser()"><span data-lang="en" class="la">Create account</span><span data-lang="zh">创建账号</span><span data-lang="ms">Cipta akaun</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toasts"></div>
+
+<script>
+let allUsers = [];
+let lang = localStorage.getItem('lb-lang')||'en';
+
+async function init() {
+  try {
+    const res = await fetch('/api/auth/me');
+    if(!res.ok){location.href='/login';return;}
+    const data = await res.json();
+    if(data.user.role!=='larry'){location.href='/login';return;}
+    const init = data.user.name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+    document.getElementById('sb-av').textContent = init;
+    document.getElementById('sb-name').textContent = data.user.name;
+    setLang(lang,false);
+    await loadUsers();
+  } catch {location.href='/login';}
+}
+
+async function loadUsers() {
+  try {
+    const res = await fetch('/api/admin/users');
+    const data = await res.json();
+    allUsers = data.users;
+    renderKPIs();
+    renderTable('users-table',true);
+    renderTable('users-table-full',false);
+  } catch(e){console.error(e);}
+}
+
+function renderKPIs() {
+  document.getElementById('kpi-total').textContent = allUsers.length;
+  document.getElementById('kpi-clients').textContent = allUsers.filter(u=>u.role==='client').length;
+  document.getElementById('kpi-handlers').textContent = allUsers.filter(u=>u.role==='handler').length;
+  document.getElementById('kpi-partners').textContent = allUsers.filter(u=>u.role==='partner').length;
+}
+
+function roleBadge(r){const m={larry:'rb-larry',handler:'rb-handler',client:'rb-client',partner:'rb-partner'};return `<span class="role-badge ${m[r]||''}">${r}</span>`;}
+
+function renderTable(id, compact) {
+  const el = document.getElementById(id);
+  if(!el)return;
+  if(!allUsers.length){el.innerHTML='<div style="padding:24px;text-align:center;color:var(--text3);font-size:13px">No users yet.</div>';return;}
+  const rows = allUsers.map(u=>`<tr>
+    <td><div style="font-weight:500">${u.name}</div><div class="mono">${u.email}</div></td>
+    <td>${roleBadge(u.role)}</td>
+    ${!compact?`<td>${u.company||'<span style="color:var(--text3)">—</span>'}</td><td>${u.clientId?`<span class="mono">${u.clientId}</span>`:'<span style="color:var(--text3)">—</span>'}</td>`:''}
+    <td><span class="status-dot ${u.status==='active'?'sd-active':'sd-inactive'}">${u.status}</span></td>
+    <td><div class="mono">${u.lastLogin?new Date(u.lastLogin).toLocaleDateString('en-MY'):'Never'}</div></td>
+    <td style="white-space:nowrap">
+      <div style="display:flex;gap:5px">
+        ${u.status==='active'?`<button class="btn-icon btn-sm" onclick="toggleStatus('${u.id}','inactive')" title="Deactivate"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px"><path stroke-linecap="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg></button>`:
+        `<button class="btn-icon btn-sm" onclick="toggleStatus('${u.id}','active')" title="Activate"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></button>`}
+        <button class="btn-icon btn-sm" onclick="deleteUser('${u.id}','${u.name}')" title="Delete" style="color:var(--r)"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="width:13px;height:13px"><path stroke-linecap="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+      </div>
+    </td>
+  </tr>`).join('');
+  const cols = compact ? '<th>User</th><th>Role</th><th>Status</th><th>Last login</th><th>Actions</th>' :
+    '<th>User</th><th>Role</th><th>Company</th><th>Client ID</th><th>Status</th><th>Last login</th><th>Actions</th>';
+  el.innerHTML = `<table><thead><tr>${cols}</tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+function switchView(el) {
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  el.classList.add('active');
+  const view = el.dataset.view;
+  document.getElementById('view-'+view).classList.add('active');
+  const labels = {dashboard:'Command Centre',users:'User Accounts',clients:'Client Portfolio'};
+  document.getElementById('tb-title').textContent = labels[view]||view;
+}
+
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+  ['modal-err','modal-ok'].forEach(id=>{const e=document.getElementById(id);e.classList.remove('show');e.textContent='';});
+  ['f-name','f-email','f-password','f-company','f-clientid'].forEach(id=>document.getElementById(id).value='');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+
+async function createUser() {
+  const errEl=document.getElementById('modal-err'),okEl=document.getElementById('modal-ok');
+  errEl.classList.remove('show');okEl.classList.remove('show');
+  const body={name:document.getElementById('f-name').value.trim(),email:document.getElementById('f-email').value.trim(),password:document.getElementById('f-password').value,role:document.getElementById('f-role').value,company:document.getElementById('f-company').value.trim(),clientId:document.getElementById('f-clientid').value.trim()};
+  if(!body.name||!body.email||!body.password){errEl.textContent='Name, email and password are required.';errEl.classList.add('show');return;}
+  try {
+    const res=await fetch('/api/admin/users',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const data=await res.json();
+    if(data.success){okEl.textContent=`Account created for ${data.user.name} (${data.user.role}).`;okEl.classList.add('show');await loadUsers();setTimeout(closeModal,1600);}
+    else{errEl.textContent=data.error||'Failed.';errEl.classList.add('show');}
+  }catch{errEl.textContent='Server error.';errEl.classList.add('show');}
+}
+
+async function toggleStatus(id,status) {
+  const res=await fetch(`/api/admin/users/${id}/status`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status})});
+  if(res.ok){await loadUsers();showToast(`Account ${status==='active'?'activated':'deactivated'}`);}
+}
+
+async function deleteUser(id,name) {
+  if(!confirm(`Delete account for ${name}? This cannot be undone.`))return;
+  const res=await fetch(`/api/admin/users/${id}`,{method:'DELETE'});
+  if(res.ok){await loadUsers();showToast(`${name} removed`);}
+  else alert('Could not delete this account.');
+}
+
+function setLang(l,save=true) {
+  lang=l;if(save)localStorage.setItem('lb-lang',l);
+  document.querySelectorAll('[data-lang]').forEach(el=>el.classList.toggle('la',el.dataset.lang===l));
+  document.querySelectorAll('.lb').forEach(btn=>btn.classList.toggle('active',btn.textContent.trim()==={en:'EN',zh:'中文',ms:'BM'}[l]));
+}
+
+function showToast(msg) {
+  const wrap=document.getElementById('toasts');
+  const t=document.createElement('div');t.className='toast ok';t.textContent=msg;
+  wrap.appendChild(t);setTimeout(()=>t.remove(),3000);
+}
+
+async function doLogout(){await fetch('/api/auth/logout',{method:'POST'});location.href='/login';}
+
+init();
+</script>
+</body>
+</html>
