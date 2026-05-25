@@ -6,134 +6,332 @@
 <title>Leverage Business — Malaysia Market Entry</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0A1929;--gold:#C9A961;--white:#fff;--off:#FAFAF8;--text:#1C1C1E;--text-mid:#3A3A3C;--text-soft:#636366;--border:#E8E4DC;--fd:"Playfair Display",Georgia,serif;--fb:"IBM Plex Sans",sans-serif;--fm:"IBM Plex Mono",monospace}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:var(--fb);color:var(--text);background:var(--white)}a{text-decoration:none;color:inherit}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:10px;font-family:var(--fd);font-size:17px;font-weight:500;color:var(--navy)}
+:root{--navy:#0A1929;--gold:#C9A961;--gold2:#B8954A;--white:#fff;--off:#FAFAF8;--text:#1C1C1E;--text-mid:#3A3A3C;--text-soft:#636366;--border:#E8E4DC;--fd:"Playfair Display",Georgia,serif;--fb:"IBM Plex Sans",sans-serif;--fm:"IBM Plex Mono",monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);color:var(--text);background:var(--white);line-height:1.6}
+a{text-decoration:none;color:inherit}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--fd);font-size:17px;font-weight:500;color:var(--navy);flex-shrink:0}
 .logo-mark{width:30px;height:30px;background:var(--navy);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--gold)}
-.nav-links{display:flex;gap:32px}.nav-links a{font-size:14px;color:var(--text-soft)}
-.nav-cta{display:flex;gap:10px}
-.btn{font-size:14px;font-weight:500;padding:8px 18px;border-radius:6px;cursor:pointer;font-family:var(--fb);border:none}
-.btn-ghost{background:var(--white);border:1px solid var(--border);color:var(--text)}
-.btn-navy{background:var(--navy);color:#fff}
-.hero{padding:128px 48px 80px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 400px;gap:60px;align-items:center}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:14px;color:var(--text-soft);transition:color .2s;cursor:pointer}
+.nav-links a:hover{color:var(--navy)}
+.nav-right{display:flex;align-items:center;gap:10px}
+/* LANG SWITCHER */
+.lang-switcher{display:flex;align-items:center;background:var(--off);border:1px solid var(--border);border-radius:6px;overflow:hidden;flex-shrink:0}
+.lang-btn{font-size:12px;font-weight:600;padding:5px 10px;cursor:pointer;border:none;background:transparent;color:var(--text-soft);font-family:var(--fb);transition:all .15s;white-space:nowrap}
+.lang-btn:hover{color:var(--navy)}
+.lang-btn.active{background:var(--navy);color:var(--gold)}
+/* BTN */
+.btn-ghost{font-size:13px;font-weight:500;color:var(--text);padding:7px 14px;border-radius:6px;border:1px solid var(--border);background:var(--white);cursor:pointer;font-family:var(--fb)}
+.btn-ghost:hover{border-color:var(--navy);color:var(--navy)}
+.btn-navy{font-size:13px;font-weight:500;color:var(--white);padding:7px 16px;border-radius:6px;background:var(--navy);border:none;cursor:pointer;font-family:var(--fb)}
+.btn-navy:hover{background:#0F2236}
+/* HERO */
+.hero{padding:120px 48px 80px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 390px;gap:60px;align-items:center}
 .eyebrow{font-family:var(--fm);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
-h1{font-family:var(--fd);font-size:50px;font-weight:400;color:var(--navy);line-height:1.1;margin-bottom:18px}
+h1{font-family:var(--fd);font-size:48px;font-weight:400;color:var(--navy);line-height:1.1;margin-bottom:18px}
 h1 em{font-style:italic;color:var(--gold)}
-.hero-sub{font-size:17px;color:var(--text-mid);line-height:1.7;margin-bottom:32px}
-.hero-btns{display:flex;gap:12px}
-.btn-lg{font-size:15px;padding:13px 28px;border-radius:8px}
-.hero-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:0 8px 40px rgba(10,25,41,.07)}
+.hero-sub{font-size:16px;color:var(--text-mid);line-height:1.75;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-lg{font-size:15px;font-weight:500;padding:12px 26px;border-radius:8px;cursor:pointer;font-family:var(--fb);transition:all .2s}
+.btn-lg-primary{background:var(--navy);color:#fff;border:none}
+.btn-lg-primary:hover{background:#0F2236;transform:translateY(-1px);box-shadow:0 6px 20px rgba(10,25,41,.15)}
+.btn-lg-outline{background:transparent;color:var(--navy);border:1px solid var(--border)}
+.btn-lg-outline:hover{border-color:var(--navy)}
+/* HERO CARD */
+.hero-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:0 8px 40px rgba(10,25,41,.07)}
 .hc-lbl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-soft);margin-bottom:12px}
-.hc-num{font-family:var(--fd);font-size:40px;color:var(--navy);line-height:1}
-.hc-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin:12px 0}
+.hc-num{font-family:var(--fd);font-size:40px;color:var(--navy);line-height:1;margin-bottom:12px}
+.hc-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:16px}
 .hc-fill{height:100%;background:linear-gradient(90deg,#B8954A,var(--gold));width:54%}
 .auth-row{display:flex;align-items:center;gap:8px;font-size:12px;margin-bottom:6px}
 .a-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .a-name{flex:1;color:var(--text-mid)}
 .a-badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px}
 .bg-g{background:#E8F5EE;color:#1A7A4A}.bg-b{background:#E8F0F8;color:#1E5B8A}.bg-a{background:#FFF3E8;color:#C65D00}.bg-x{background:#F5F5F5;color:#636366}
-.stats{background:var(--navy);padding:52px 48px;display:flex;justify-content:center;gap:80px}
-.stat-n{font-family:var(--fd);font-size:40px;color:var(--gold);display:block;line-height:1}
+/* STATS */
+.stats{background:var(--navy);padding:48px;display:flex;justify-content:center;gap:72px;flex-wrap:wrap}
+.stat-n{font-family:var(--fd);font-size:38px;color:var(--gold);display:block;line-height:1}
 .stat-l{font-size:12px;color:rgba(255,255,255,.45);margin-top:5px}
+/* SECTION */
 .sec{padding:80px 48px;max-width:1100px;margin:0 auto}
 .sec-lbl{font-family:var(--fm);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-h2{font-family:var(--fd);font-size:36px;font-weight:400;color:var(--navy);margin-bottom:12px}
-.sec-sub{font-size:15px;color:var(--text-mid);line-height:1.7;margin-bottom:40px}
-.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+h2{font-family:var(--fd);font-size:36px;font-weight:400;color:var(--navy);margin-bottom:12px;line-height:1.2}
+.sec-sub{font-size:15px;color:var(--text-mid);line-height:1.7;margin-bottom:40px;max-width:520px}
+/* HOW */
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .how-card{background:var(--off);border-radius:12px;padding:24px}
 .how-n{font-family:var(--fm);font-size:11px;color:var(--gold);margin-bottom:12px}
 .how-t{font-family:var(--fd);font-size:17px;color:var(--navy);margin-bottom:7px}
-.how-b{font-size:13px;color:var(--text-soft);line-height:1.6}
+.how-b{font-size:13px;color:var(--text-soft);line-height:1.65}
+/* INDUSTRIES */
 .ind-bg{background:var(--off);padding:80px 0}
 .ind-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.ind-card{border:1px solid var(--border);border-radius:12px;padding:22px;background:var(--white)}
+.ind-card{border:1px solid var(--border);border-radius:12px;padding:22px;background:#fff;transition:all .2s}
+.ind-card:hover{border-color:rgba(201,169,97,.4);transform:translateY(-2px);box-shadow:0 4px 20px rgba(10,25,41,.06)}
+.ind-icon{font-size:22px;margin-bottom:12px}
 .ind-name{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:5px}
-.ind-agencies{font-size:11px;color:var(--text-soft)}
+.ind-agencies{font-size:11px;color:var(--text-soft);line-height:1.6}
+/* PLATFORM */
+.plat-bg{background:var(--off);padding:80px 0}
+.plat-inner{max-width:1100px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.feat-list{display:flex;flex-direction:column;gap:22px}
+.feat{display:flex;gap:13px;align-items:flex-start}
+.feat-icon{width:32px;height:32px;border-radius:7px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.feat-icon svg{width:14px;height:14px;color:var(--gold)}
+.feat-t{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:3px}
+.feat-b{font-size:12px;color:var(--text-soft);line-height:1.6}
+.plat-visual{background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:0 4px 24px rgba(10,25,41,.06)}
+.pv-hdr{font-size:11px;font-weight:600;color:var(--text-soft);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
+.pv-badge{font-size:10px;font-weight:700;background:#E8F5EE;color:#1A7A4A;padding:2px 7px;border-radius:10px}
+.pv-row{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}
+.pv-row:last-child{border-bottom:none}
+.pv-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.pv-code{font-family:var(--fm);font-size:10px;font-weight:500;color:var(--navy);width:44px;flex-shrink:0}
+.pv-name{flex:1;color:var(--text-mid)}
+.pv-st{font-size:11px;font-weight:600}
+/* CTA */
 .cta{padding:80px 48px;text-align:center}
 .cta h2{margin-bottom:14px}
-.cta-sub{font-size:16px;color:var(--text-soft);margin-bottom:32px}
-.cta-btns{display:flex;justify-content:center;gap:12px}
-footer{background:var(--navy);padding:40px 48px;display:flex;align-items:center;justify-content:space-between}
+.cta-sub{font-size:16px;color:var(--text-soft);margin-bottom:32px;line-height:1.7}
+.cta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+/* FOOTER */
+footer{background:var(--navy);padding:40px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
 .ft-brand{font-family:var(--fd);font-size:15px;color:#fff}
-.ft-links a{font-size:13px;color:rgba(255,255,255,.4);margin-left:20px}
+.ft-links{display:flex;gap:20px}
+.ft-links a{font-size:13px;color:rgba(255,255,255,.4);cursor:pointer}
+.ft-links a:hover{color:#fff}
+.ft-meta{font-size:12px;color:rgba(255,255,255,.25)}
+/* FADE */
+.fade-up{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fade-up.in{opacity:1;transform:none}
+/* LANG HIDE */
+[data-lang]{display:none}
+[data-lang].lang-active{display:block}
+span[data-lang]{display:none}
+span[data-lang].lang-active{display:inline}
 </style>
 </head>
 <body>
+
 <nav>
   <a href="/" class="logo"><div class="logo-mark">L</div>Leverage Business</a>
-  <div class="nav-links"><a href="#how">How it works</a><a href="#industries">Industries</a></div>
-  <div class="nav-cta">
-    <button class="btn btn-ghost" onclick="location.href='/login'">Sign in</button>
-    <button class="btn btn-navy" onclick="location.href='/login'">Book a call</button>
+  <div class="nav-links">
+    <a onclick="scrollTo('how')"><span data-lang="en" class="lang-active">How it works</span><span data-lang="zh">运作方式</span><span data-lang="ms">Cara kerja</span></a>
+    <a onclick="scrollTo('industries')"><span data-lang="en" class="lang-active">Industries</span><span data-lang="zh">行业</span><span data-lang="ms">Industri</span></a>
+    <a onclick="scrollTo('platform')"><span data-lang="en" class="lang-active">Platform</span><span data-lang="zh">平台</span><span data-lang="ms">Platform</span></a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+      <button class="lang-btn" onclick="setLang('ms')">BM</button>
+    </div>
+    <button class="btn-ghost" onclick="location.href='/login'">
+      <span data-lang="en" class="lang-active">Sign in</span><span data-lang="zh">登录</span><span data-lang="ms">Log masuk</span>
+    </button>
+    <button class="btn-navy" onclick="location.href='/login'">
+      <span data-lang="en" class="lang-active">Book a call</span><span data-lang="zh">预约咨询</span><span data-lang="ms">Tempah panggilan</span>
+    </button>
   </div>
 </nav>
+
+<!-- HERO -->
 <div style="padding-top:64px">
 <div class="hero">
   <div>
-    <div class="eyebrow">Malaysia Market Entry Specialists</div>
-    <h1>Your company, <em>licensed and operating</em> in Malaysia.</h1>
-    <p class="hero-sub">Leverage Business manages every government authority — from company registration through to workforce permits — so your team can focus on building the business.</p>
+    <div class="eyebrow">
+      <span data-lang="en" class="lang-active">Malaysia Market Entry Specialists</span>
+      <span data-lang="zh">马来西亚市场准入专家</span>
+      <span data-lang="ms">Pakar Kemasukan Pasaran Malaysia</span>
+    </div>
+    <h1>
+      <span data-lang="en" class="lang-active">Your company, <em>licensed and operating</em> in Malaysia.</span>
+      <span data-lang="zh">您的公司，在马来西亚<em>持牌运营。</em></span>
+      <span data-lang="ms">Syarikat anda, <em>berlesen dan beroperasi</em> di Malaysia.</span>
+    </h1>
+    <p class="hero-sub">
+      <span data-lang="en" class="lang-active">Leverage Business manages every government authority — from company registration through to workforce permits — so your team can focus on building the business.</span>
+      <span data-lang="zh">Leverage Business 负责管理所有政府部门事务——从公司注册到劳工准证——让您的团队专注于业务发展。</span>
+      <span data-lang="ms">Leverage Business menguruskan setiap urusan kerajaan — dari pendaftaran syarikat hingga permit tenaga kerja — supaya pasukan anda boleh fokus membina perniagaan.</span>
+    </p>
     <div class="hero-btns">
-      <button class="btn btn-navy btn-lg" onclick="location.href='/login'">Access your portal</button>
-      <button class="btn btn-ghost btn-lg" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">How it works</button>
+      <button class="btn-lg btn-lg-primary" onclick="location.href='/login'">
+        <span data-lang="en" class="lang-active">Access your portal</span>
+        <span data-lang="zh">进入客户平台</span>
+        <span data-lang="ms">Akses portal anda</span>
+      </button>
+      <button class="btn-lg btn-lg-outline" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">
+        <span data-lang="en" class="lang-active">How it works</span>
+        <span data-lang="zh">了解流程</span>
+        <span data-lang="ms">Cara kerja</span>
+      </button>
     </div>
   </div>
   <div class="hero-card">
-    <div class="hc-lbl">Live engagement · Yifeng Optical</div>
-    <div class="hc-num">54% <span style="font-size:14px;color:var(--text-soft)">complete</span></div>
+    <div class="hc-lbl">
+      <span data-lang="en" class="lang-active">Live engagement · Yifeng Optical</span>
+      <span data-lang="zh">进行中 · 逸丰光学</span>
+      <span data-lang="ms">Penglibatan semasa · Yifeng Optical</span>
+    </div>
+    <div class="hc-num">54% <span style="font-size:13px;color:var(--text-soft)">
+      <span data-lang="en" class="lang-active">complete</span>
+      <span data-lang="zh">完成</span>
+      <span data-lang="ms">selesai</span>
+    </span></div>
     <div class="hc-bar"><div class="hc-fill"></div></div>
-    <div class="auth-row"><div class="a-dot" style="background:#1A7A4A"></div><span class="a-name">SSM — Company Registration</span><span class="a-badge bg-g">Approved</span></div>
-    <div class="auth-row"><div class="a-dot" style="background:#1A7A4A"></div><span class="a-name">LHDN — Tax File</span><span class="a-badge bg-g">Approved</span></div>
-    <div class="auth-row"><div class="a-dot" style="background:#1E5B8A"></div><span class="a-name">PBT — Premise Licence</span><span class="a-badge bg-b">Filed</span></div>
-    <div class="auth-row"><div class="a-dot" style="background:#C65D00"></div><span class="a-name">MIDA — ICA 10 Exemption</span><span class="a-badge bg-a">Action needed</span></div>
-    <div class="auth-row"><div class="a-dot" style="background:#C8C8CC"></div><span class="a-name">JKDM — Duty Exemption</span><span class="a-badge bg-x">Blocked</span></div>
+    <div class="auth-row"><div class="a-dot" style="background:#1A7A4A"></div><span class="a-name">SSM — <span data-lang="en" class="lang-active">Company Registration</span><span data-lang="zh">公司注册</span><span data-lang="ms">Pendaftaran Syarikat</span></span><span class="a-badge bg-g"><span data-lang="en" class="lang-active">Approved</span><span data-lang="zh">已批准</span><span data-lang="ms">Diluluskan</span></span></div>
+    <div class="auth-row"><div class="a-dot" style="background:#1A7A4A"></div><span class="a-name">LHDN — <span data-lang="en" class="lang-active">Tax File</span><span data-lang="zh">税务档案</span><span data-lang="ms">Fail Cukai</span></span><span class="a-badge bg-g"><span data-lang="en" class="lang-active">Approved</span><span data-lang="zh">已批准</span><span data-lang="ms">Diluluskan</span></span></div>
+    <div class="auth-row"><div class="a-dot" style="background:#1E5B8A"></div><span class="a-name">PBT — <span data-lang="en" class="lang-active">Premise Licence</span><span data-lang="zh">营业执照</span><span data-lang="ms">Lesen Premis</span></span><span class="a-badge bg-b"><span data-lang="en" class="lang-active">Filed</span><span data-lang="zh">已提交</span><span data-lang="ms">Difailkan</span></span></div>
+    <div class="auth-row"><div class="a-dot" style="background:#C65D00"></div><span class="a-name">MIDA — ICA 10</span><span class="a-badge bg-a"><span data-lang="en" class="lang-active">Action needed</span><span data-lang="zh">需要行动</span><span data-lang="ms">Tindakan diperlukan</span></span></div>
+    <div class="auth-row"><div class="a-dot" style="background:#C8C8CC"></div><span class="a-name">JKDM — JPC 1</span><span class="a-badge bg-x"><span data-lang="en" class="lang-active">Blocked</span><span data-lang="zh">待解锁</span><span data-lang="ms">Disekat</span></span></div>
   </div>
 </div>
 </div>
+
+<!-- STATS -->
 <div class="stats">
-  <div class="stat"><span class="stat-n">42</span><div class="stat-l">Industry sub-segments</div></div>
-  <div class="stat"><span class="stat-n">25+</span><div class="stat-l">Government agencies</div></div>
-  <div class="stat"><span class="stat-n">9.2</span><div class="stat-l">Weeks avg MIDA turnaround</div></div>
-  <div class="stat"><span class="stat-n">0</span><div class="stat-l">Wrong-sequence applications</div></div>
+  <div class="stat"><span class="stat-n">42</span><div class="stat-l"><span data-lang="en" class="lang-active">Industry sub-segments</span><span data-lang="zh">行业细分领域</span><span data-lang="ms">Sub-segmen industri</span></div></div>
+  <div class="stat"><span class="stat-n">25+</span><div class="stat-l"><span data-lang="en" class="lang-active">Government agencies mapped</span><span data-lang="zh">已对接政府部门</span><span data-lang="ms">Agensi kerajaan dipetakan</span></div></div>
+  <div class="stat"><span class="stat-n">9.2</span><div class="stat-l"><span data-lang="en" class="lang-active">Weeks avg MIDA turnaround</span><span data-lang="zh">周平均MIDA处理时间</span><span data-lang="ms">Minggu purata MIDA</span></div></div>
+  <div class="stat"><span class="stat-n">0</span><div class="stat-l"><span data-lang="en" class="lang-active">Wrong-sequence applications</span><span data-lang="zh">错误顺序申请</span><span data-lang="ms">Permohonan salah urutan</span></div></div>
 </div>
-<div id="how"><div class="sec">
-  <div class="sec-lbl">The process</div>
-  <h2>Four phases. One accountable partner.</h2>
-  <p class="sec-sub">We map the dependency chain before we file anything — the wrong sequence costs 3-9 months.</p>
+
+<!-- HOW IT WORKS -->
+<div id="how">
+<div class="sec fade-up">
+  <div class="sec-lbl"><span data-lang="en" class="lang-active">The process</span><span data-lang="zh">服务流程</span><span data-lang="ms">Proses kami</span></div>
+  <h2><span data-lang="en" class="lang-active">Four phases. One accountable partner.</span><span data-lang="zh">四个阶段。一个负责到底的合作伙伴。</span><span data-lang="ms">Empat fasa. Satu rakan yang bertanggungjawab.</span></h2>
+  <p class="sec-sub"><span data-lang="en" class="lang-active">Most Malaysia market entry fails because applications are filed in the wrong order. We map the dependency chain before we file anything.</span><span data-lang="zh">大多数进入马来西亚市场的失败，是因为申请顺序错误。我们在提交任何申请之前，先梳理好所有依赖关系。</span><span data-lang="ms">Kebanyakan kegagalan kemasukan pasaran Malaysia berlaku kerana permohonan difailkan dalam susunan yang salah. Kami memetakan rantaian kebergantungan sebelum memfailkan apa-apa.</span></p>
   <div class="how-grid">
-    <div class="how-card"><div class="how-n">01 — Scope</div><div class="how-t">Map every authority</div><div class="how-b">Every agency in the correct sequence. No surprises ten weeks in.</div></div>
-    <div class="how-card"><div class="how-n">02 — Prepare</div><div class="how-t">Build the package</div><div class="how-b">Handler prepares every application and reviews before filing.</div></div>
-    <div class="how-card"><div class="how-n">03 — File</div><div class="how-t">Track in real time</div><div class="how-b">See every status update in your portal instantly.</div></div>
-    <div class="how-card"><div class="how-n">04 — Operate</div><div class="how-t">Stay compliant</div><div class="how-b">We manage renewals and annual obligations after you are operational.</div></div>
-  </div>
-</div></div>
-<div id="industries" class="ind-bg"><div class="sec" style="padding-top:0;padding-bottom:0">
-  <div class="sec-lbl">What we cover</div>
-  <h2>Six industries. 42 sub-segments.</h2>
-  <p class="sec-sub">Every industry has its own agency stack — we have mapped all of them.</p>
-  <div class="ind-grid">
-    <div class="ind-card"><div style="font-size:22px;margin-bottom:10px">⚙️</div><div class="ind-name">Manufacturing</div><div class="ind-agencies">MIDA · JKDM · ESD/JIM · KDN · DOSH</div></div>
-    <div class="ind-card"><div style="font-size:22px;margin-bottom:10px">📦</div><div class="ind-name">Export / Import / Distribution</div><div class="ind-agencies">JKDM · MAQIS · MOH FoSIM · GACC</div></div>
-    <div class="ind-card"><div style="font-size:22px;margin-bottom:10px">🏗️</div><div class="ind-name">Construction</div><div class="ind-agencies">CIDB · MOF · SPAN · PETRONAS VR</div></div>
-    <div class="ind-card"><div style="font-size:22px;margin-bottom:10px">🏥</div><div class="ind-name">Healthcare</div><div class="ind-agencies">MOH · NPRA · MDA · PHFSA</div></div>
-    <div class="ind-card"><div style="font-size:22px;margin-bottom:10px">🎓</div><div class="ind-name">Private Education</div><div class="ind-agencies">MOE · MOHE · MQA · IPTS</div></div>
-    <div class="ind-card"><div style="font-size:22px;margin-bottom:10px">⚡</div><div class="ind-name">Renewable Energy</div><div class="ind-agencies">SEDA · ST · MGTC · MyHIJAU</div></div>
-  </div>
-</div></div>
-<div class="cta">
-  <div style="max-width:560px;margin:0 auto">
-    <h2>Ready to set up in Malaysia?</h2>
-    <p class="cta-sub">Book a scoping call. Fixed scope, fixed price proposal within 48 hours.</p>
-    <div class="cta-btns">
-      <button class="btn btn-navy btn-lg" onclick="location.href='/login'">Access your portal</button>
-      <button class="btn btn-ghost btn-lg" onclick="location.href='mailto:larry@leveragebusiness.my'">Contact us</button>
+    <div class="how-card">
+      <div class="how-n">01</div>
+      <div class="how-t"><span data-lang="en" class="lang-active">Map every authority</span><span data-lang="zh">梳理所有部门</span><span data-lang="ms">Petakan setiap pihak berkuasa</span></div>
+      <div class="how-b"><span data-lang="en" class="lang-active">Every agency in the correct sequence. No surprises ten weeks in.</span><span data-lang="zh">按正确顺序确定所有涉及部门，十周内不出意外。</span><span data-lang="ms">Setiap agensi dalam urutan yang betul. Tiada kejutan sepuluh minggu kemudian.</span></div>
+    </div>
+    <div class="how-card">
+      <div class="how-n">02</div>
+      <div class="how-t"><span data-lang="en" class="lang-active">Build the package</span><span data-lang="zh">准备申请材料</span><span data-lang="ms">Bina pakej permohonan</span></div>
+      <div class="how-b"><span data-lang="en" class="lang-active">Handler prepares every application and reviews before filing.</span><span data-lang="zh">专责人员准备所有申请材料，提交前逐一审核。</span><span data-lang="ms">Pengendali menyediakan setiap permohonan dan menyemak sebelum memfailkan.</span></div>
+    </div>
+    <div class="how-card">
+      <div class="how-n">03</div>
+      <div class="how-t"><span data-lang="en" class="lang-active">Track in real time</span><span data-lang="zh">实时追踪进度</span><span data-lang="ms">Jejak masa nyata</span></div>
+      <div class="how-b"><span data-lang="en" class="lang-active">See every status update in your portal instantly.</span><span data-lang="zh">在客户平台即时查看每项申请的最新状态。</span><span data-lang="ms">Lihat setiap kemas kini status dalam portal anda dengan serta-merta.</span></div>
+    </div>
+    <div class="how-card">
+      <div class="how-n">04</div>
+      <div class="how-t"><span data-lang="en" class="lang-active">Stay compliant</span><span data-lang="zh">持续合规</span><span data-lang="ms">Kekal patuh undang-undang</span></div>
+      <div class="how-b"><span data-lang="en" class="lang-active">We manage renewals and obligations after you are operational.</span><span data-lang="zh">营业后，我们持续管理所有续期及合规事项。</span><span data-lang="ms">Kami menguruskan pembaharuan dan obligasi selepas anda beroperasi.</span></div>
     </div>
   </div>
 </div>
+</div>
+
+<!-- INDUSTRIES -->
+<div id="industries" class="ind-bg">
+<div class="sec fade-up" style="padding-top:0;padding-bottom:0">
+  <div class="sec-lbl"><span data-lang="en" class="lang-active">What we cover</span><span data-lang="zh">服务范围</span><span data-lang="ms">Skop perkhidmatan</span></div>
+  <h2><span data-lang="en" class="lang-active">Six industries. 42 sub-segments.</span><span data-lang="zh">六大行业，42个细分领域。</span><span data-lang="ms">Enam industri. 42 sub-segmen.</span></h2>
+  <p class="sec-sub"><span data-lang="en" class="lang-active">Every industry has its own agency stack. We have mapped all of them.</span><span data-lang="zh">每个行业都有其特定的监管部门。我们已全部梳理完毕。</span><span data-lang="ms">Setiap industri mempunyai susunan agensinya sendiri. Kami telah memetakan semuanya.</span></p>
+  <div class="ind-grid">
+    <div class="ind-card"><div class="ind-icon">⚙️</div><div class="ind-name"><span data-lang="en" class="lang-active">Manufacturing</span><span data-lang="zh">制造业</span><span data-lang="ms">Pembuatan</span></div><div class="ind-agencies">MIDA · JKDM · ESD/JIM · KDN · DOSH</div></div>
+    <div class="ind-card"><div class="ind-icon">📦</div><div class="ind-name"><span data-lang="en" class="lang-active">Export / Import / Distribution</span><span data-lang="zh">进出口 / 分销</span><span data-lang="ms">Eksport / Import / Pengedaran</span></div><div class="ind-agencies">JKDM · MAQIS · MOH FoSIM · GACC</div></div>
+    <div class="ind-card"><div class="ind-icon">🏗️</div><div class="ind-name"><span data-lang="en" class="lang-active">Construction</span><span data-lang="zh">建筑业</span><span data-lang="ms">Pembinaan</span></div><div class="ind-agencies">CIDB · MOF · SPAN · PETRONAS VR</div></div>
+    <div class="ind-card"><div class="ind-icon">🏥</div><div class="ind-name"><span data-lang="en" class="lang-active">Healthcare</span><span data-lang="zh">医疗保健</span><span data-lang="ms">Penjagaan Kesihatan</span></div><div class="ind-agencies">MOH · NPRA · MDA · PHFSA</div></div>
+    <div class="ind-card"><div class="ind-icon">🎓</div><div class="ind-name"><span data-lang="en" class="lang-active">Private Education</span><span data-lang="zh">私立教育</span><span data-lang="ms">Pendidikan Swasta</span></div><div class="ind-agencies">MOE · MOHE · MQA · IPTS</div></div>
+    <div class="ind-card"><div class="ind-icon">⚡</div><div class="ind-name"><span data-lang="en" class="lang-active">Renewable Energy</span><span data-lang="zh">可再生能源</span><span data-lang="ms">Tenaga Boleh Baharu</span></div><div class="ind-agencies">SEDA · ST · MGTC · MyHIJAU</div></div>
+  </div>
+</div>
+</div>
+
+<!-- PLATFORM -->
+<div id="platform" class="plat-bg">
+<div class="plat-inner fade-up">
+  <div>
+    <div class="sec-lbl"><span data-lang="en" class="lang-active">The platform</span><span data-lang="zh">我们的平台</span><span data-lang="ms">Platform kami</span></div>
+    <h2 style="margin-bottom:24px"><span data-lang="en" class="lang-active">Everything visible. Always.</span><span data-lang="zh">全程透明，随时掌握。</span><span data-lang="ms">Semua kelihatan. Sentiasa.</span></h2>
+    <div class="feat-list">
+      <div class="feat"><div class="feat-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div><div class="feat-t"><span data-lang="en" class="lang-active">Real-time authority tracking</span><span data-lang="zh">实时监管部门追踪</span><span data-lang="ms">Penjejakan pihak berkuasa masa nyata</span></div><div class="feat-b"><span data-lang="en" class="lang-active">Every application tracked live — approved, filed, action needed, blocked.</span><span data-lang="zh">每项申请实时追踪——已批准、已提交、需行动、待解锁。</span><span data-lang="ms">Setiap permohonan dijejak secara langsung — diluluskan, difailkan, tindakan diperlukan, disekat.</span></div></div></div>
+      <div class="feat"><div class="feat-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div><div class="feat-t"><span data-lang="en" class="lang-active">Dependency enforcement</span><span data-lang="zh">申请顺序管控</span><span data-lang="ms">Penguatkuasaan kebergantungan</span></div><div class="feat-b"><span data-lang="en" class="lang-active">The system knows JKDM cannot start before MIDA. Always enforced.</span><span data-lang="zh">系统自动管控申请顺序——JKDM必须在MIDA之后，规则严格执行。</span><span data-lang="ms">Sistem mengetahui JKDM tidak boleh bermula sebelum MIDA. Sentiasa dikuatkuasakan.</span></div></div></div>
+      <div class="feat"><div class="feat-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg></div><div><div class="feat-t"><span data-lang="en" class="lang-active">Document management</span><span data-lang="zh">文件管理</span><span data-lang="ms">Pengurusan dokumen</span></div><div class="feat-b"><span data-lang="en" class="lang-active">Upload once, linked to every authority that needs it.</span><span data-lang="zh">一次上传，自动关联所有相关部门。</span><span data-lang="ms">Muat naik sekali, dikaitkan dengan setiap pihak berkuasa yang memerlukannya.</span></div></div></div>
+      <div class="feat"><div class="feat-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><div><div class="feat-t"><span data-lang="en" class="lang-active">Compliance calendar</span><span data-lang="zh">合规日历</span><span data-lang="ms">Kalendar pematuhan</span></div><div class="feat-b"><span data-lang="en" class="lang-active">Every renewal and obligation tracked 3 years forward.</span><span data-lang="zh">所有续期及合规义务提前三年追踪提醒。</span><span data-lang="ms">Setiap pembaharuan dan obligasi dijejak tiga tahun ke hadapan.</span></div></div></div>
+    </div>
+  </div>
+  <div class="plat-visual">
+    <div class="pv-hdr"><span>Yifeng Optical Sdn Bhd</span><span class="pv-badge">54%</span></div>
+    <div class="pv-row"><div class="pv-dot" style="background:#1A7A4A"></div><span class="pv-code">SSM</span><span class="pv-name"><span data-lang="en" class="lang-active">Company Registration</span><span data-lang="zh">公司注册</span><span data-lang="ms">Pendaftaran Syarikat</span></span><span class="pv-st" style="color:#1A7A4A"><span data-lang="en" class="lang-active">Approved</span><span data-lang="zh">已批准</span><span data-lang="ms">Diluluskan</span></span></div>
+    <div class="pv-row"><div class="pv-dot" style="background:#1A7A4A"></div><span class="pv-code">LHDN</span><span class="pv-name"><span data-lang="en" class="lang-active">Tax File</span><span data-lang="zh">税务档案</span><span data-lang="ms">Fail Cukai</span></span><span class="pv-st" style="color:#1A7A4A"><span data-lang="en" class="lang-active">Approved</span><span data-lang="zh">已批准</span><span data-lang="ms">Diluluskan</span></span></div>
+    <div class="pv-row"><div class="pv-dot" style="background:#1A7A4A"></div><span class="pv-code">Bomba</span><span class="pv-name"><span data-lang="en" class="lang-active">Fire Certificate</span><span data-lang="zh">消防证书</span><span data-lang="ms">Sijil Bomba</span></span><span class="pv-st" style="color:#1A7A4A"><span data-lang="en" class="lang-active">Approved</span><span data-lang="zh">已批准</span><span data-lang="ms">Diluluskan</span></span></div>
+    <div class="pv-row"><div class="pv-dot" style="background:#1E5B8A"></div><span class="pv-code">PBT</span><span class="pv-name"><span data-lang="en" class="lang-active">Premise Licence</span><span data-lang="zh">营业执照</span><span data-lang="ms">Lesen Premis</span></span><span class="pv-st" style="color:#1E5B8A"><span data-lang="en" class="lang-active">Filed</span><span data-lang="zh">已提交</span><span data-lang="ms">Difailkan</span></span></div>
+    <div class="pv-row"><div class="pv-dot" style="background:#C65D00"></div><span class="pv-code">MIDA</span><span class="pv-name">ICA 10 Exemption</span><span class="pv-st" style="color:#C65D00"><span data-lang="en" class="lang-active">Action needed</span><span data-lang="zh">需要行动</span><span data-lang="ms">Tindakan diperlukan</span></span></div>
+    <div class="pv-row"><div class="pv-dot" style="background:#C8C8CC"></div><span class="pv-code">JKDM</span><span class="pv-name">JPC 1 Duty Exemption</span><span class="pv-st" style="color:#636366"><span data-lang="en" class="lang-active">Blocked</span><span data-lang="zh">待解锁</span><span data-lang="ms">Disekat</span></span></div>
+    <div class="pv-row"><div class="pv-dot" style="background:#C8C8CC"></div><span class="pv-code">ESD</span><span class="pv-name"><span data-lang="en" class="lang-active">Employment Pass ×3</span><span data-lang="zh">就业准证 ×3</span><span data-lang="ms">Pas Pekerjaan ×3</span></span><span class="pv-st" style="color:#636366"><span data-lang="en" class="lang-active">Blocked</span><span data-lang="zh">待解锁</span><span data-lang="ms">Disekat</span></span></div>
+  </div>
+</div>
+</div>
+
+<!-- CTA -->
+<div class="cta fade-up">
+  <div style="max-width:580px;margin:0 auto">
+    <h2><span data-lang="en" class="lang-active">Ready to set up in Malaysia?</span><span data-lang="zh">准备好在马来西亚设立公司了吗？</span><span data-lang="ms">Bersedia untuk menubuhkan syarikat di Malaysia?</span></h2>
+    <p class="cta-sub"><span data-lang="en" class="lang-active">Book a scoping call. Fixed scope, fixed price proposal within 48 hours.</span><span data-lang="zh">预约咨询电话。48小时内提供固定范围、固定价格的方案。</span><span data-lang="ms">Tempah panggilan skop. Cadangan skop tetap, harga tetap dalam masa 48 jam.</span></p>
+    <div class="cta-btns">
+      <button class="btn-lg btn-lg-primary" onclick="location.href='/login'"><span data-lang="en" class="lang-active">Access your portal</span><span data-lang="zh">进入客户平台</span><span data-lang="ms">Akses portal anda</span></button>
+      <button class="btn-lg btn-lg-outline" onclick="location.href='mailto:larry@leveragebusiness.my'"><span data-lang="en" class="lang-active">Contact us</span><span data-lang="zh">联系我们</span><span data-lang="ms">Hubungi kami</span></button>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="ft-brand">Leverage Business Sdn Bhd</div>
-  <div class="ft-links"><a href="/login">Client Portal</a><a href="mailto:larry@leveragebusiness.my">Contact</a></div>
+  <div class="ft-links">
+    <a onclick="location.href='/login'"><span data-lang="en" class="lang-active">Client Portal</span><span data-lang="zh">客户平台</span><span data-lang="ms">Portal Klien</span></a>
+    <a onclick="location.href='mailto:larry@leveragebusiness.my'"><span data-lang="en" class="lang-active">Contact</span><span data-lang="zh">联系我们</span><span data-lang="ms">Hubungi</span></a>
+  </div>
+  <div class="ft-meta">SSM No: XXXXXXXXXX · Penang, Malaysia</div>
 </footer>
+
+<script>
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  // Update all data-lang elements
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    if (el.dataset.lang === lang) {
+      el.classList.add('lang-active');
+    } else {
+      el.classList.remove('lang-active');
+    }
+  });
+  // Update lang buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.trim() === getLangLabel(lang));
+  });
+  // Update html lang attribute
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang === 'ms' ? 'ms' : 'en';
+  // Update page title
+  const titles = {en:'Leverage Business — Malaysia Market Entry', zh:'Leverage Business — 马来西亚市场准入', ms:'Leverage Business — Kemasukan Pasaran Malaysia'};
+  document.title = titles[lang];
+}
+
+function getLangLabel(lang) {
+  return {en:'EN', zh:'中文', ms:'BM'}[lang];
+}
+
+function scrollTo(id) {
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+// Scroll animations
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
