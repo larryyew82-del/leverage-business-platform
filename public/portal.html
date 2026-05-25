@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Client Portal — Leverage Business</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1929;--gold:#C9A961;--gold2:#B8954A;--white:#fff;--off:#FAFAF8;--text:#1C1C1E;--text2:#3A3A3C;--text3:#636366;--border:#E8E4DC;--g:#1A7A4A;--gbg:#E8F5EE;--b:#1E5B8A;--bbg:#E8F0F8;--a:#C65D00;--abg:#FFF3E8;--r:#C0392B;--rbg:#FDECEA;--fd:"Playfair Display",Georgia,serif;--fb:"IBM Plex Sans",sans-serif;--fm:"IBM Plex Mono",monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);color:var(--text);background:var(--off);display:flex;min-height:100vh;font-size:14px}
+.sidebar{width:228px;flex-shrink:0;background:var(--navy);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50}
+.sb-logo{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:9px}
+.sb-lm{width:28px;height:28px;background:var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--navy);font-family:var(--fd);flex-shrink:0}
+.sb-brand{font-family:var(--fd);font-size:15px;color:#fff;font-weight:500}
+.sb-client{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.07)}
+.sb-client-lbl{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.sb-client-name{font-size:13px;font-weight:500;color:#fff;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-client-id{font-family:var(--fm);font-size:10px;color:var(--gold);margin-top:3px;letter-spacing:.04em}
+.sb-nav{flex:1;padding:6px 8px;overflow-y:auto}
+.sb-nav::-webkit-scrollbar{display:none}
+.nav-section{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25);padding:8px 6px 3px}
+.nav-item{display:flex;align-items:center;gap:8px;padding:8px 9px;border-radius:6px;cursor:pointer;color:rgba(255,255,255,.55);font-size:13px;margin-bottom:1px;border:1px solid transparent;transition:all .15s}
+.nav-item:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.85)}
+.nav-item.active{background:rgba(201,169,97,.12);color:var(--gold);border-color:rgba(201,169,97,.2)}
+.nav-item svg{width:15px;height:15px;flex-shrink:0}
+.nav-badge{margin-left:auto;background:var(--a);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px}
+.nav-locked{margin-left:auto;opacity:.4;font-size:10px}
+.sb-user{padding:10px 14px;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:8px}
+.sb-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:11px;color:var(--navy);font-weight:600;flex-shrink:0}
+.sb-uinfo{flex:1;min-width:0}
+.sb-uname{font-size:12px;font-weight:500;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-urole{font-size:10px;color:rgba(255,255,255,.3)}
+.sb-logout{border:none;background:none;color:rgba(255,255,255,.3);cursor:pointer;padding:3px;border-radius:4px}
+.sb-logout:hover{color:rgba(255,255,255,.7)}
+.sb-logout svg{width:14px;height:14px;display:block}
+.main{margin-left:228px;flex:1;display:flex;flex-direction:column;min-height:100vh}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+.tb-left{display:flex;align-items:center;gap:12px}
+.tb-title{font-size:14px;font-weight:600;color:var(--text)}
+.live-badge{display:flex;align-items:center;gap:4px;background:var(--gbg);color:var(--g);font-size:10px;font-weight:600;padding:3px 8px;border-radius:10px;border:1px solid rgba(26,122,74,.15)}
+.live-dot{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.tb-right{display:flex;align-items:center;gap:8px}
+.lang-pill{display:flex;align-items:center;background:var(--off);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.lb{font-size:10px;font-weight:600;padding:4px 9px;cursor:pointer;border:none;background:transparent;color:var(--text3);font-family:var(--fb);transition:all .15s}
+.lb.active{background:var(--navy);color:var(--gold)}
+.notif-btn{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text3);position:relative}
+.notif-btn svg{width:15px;height:15px}
+.notif-dot{width:7px;height:7px;background:#ef4444;border-radius:50%;position:absolute;top:4px;right:4px;border:1.5px solid var(--white)}
+.content{flex:1;padding:20px 24px 48px}
+.view{display:none}
+.view.active{display:block}
+.page-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.page-title{font-family:var(--fd);font-size:22px;font-weight:400;color:var(--navy)}
+.page-sub{font-size:12px;color:var(--text3);margin-top:2px}
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:12px}
+.card-hdr{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.card-title{font-size:13px;font-weight:600;color:var(--text)}
+.grid2{display:grid;grid-template-columns:1fr 260px;gap:14px;align-items:start}
+/* PROGRESS HERO */
+.prog-hero{padding:16px;background:var(--navy)}
+.ph-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.ph-title{font-family:var(--fd);font-size:15px;color:#fff}
+.ph-id{font-family:var(--fm);font-size:9px;color:rgba(255,255,255,.35);margin-top:2px;letter-spacing:.05em}
+.ph-pct{font-family:var(--fd);font-size:30px;font-weight:400;color:var(--gold);line-height:1}
+.ph-sub{font-size:9px;color:rgba(255,255,255,.4);text-align:right;margin-top:1px}
+.prog-bar{height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;margin-bottom:6px}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));border-radius:2px;transition:width .8s ease}
+.phases{display:flex;gap:5px;margin-top:8px}
+.phase{padding:2px 8px;border-radius:10px;font-size:9px;font-weight:600}
+.ph-done{background:rgba(26,122,74,.3);color:#6FCF97}
+.ph-active{background:rgba(201,169,97,.2);color:var(--gold)}
+.ph-pend{background:rgba(255,255,255,.07);color:rgba(255,255,255,.3)}
+/* ACTION BANNER */
+.act-banner{padding:12px 16px;background:var(--abg);border-left:3px solid var(--a)}
+.act-lbl{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--a);margin-bottom:3px}
+.act-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
+.act-sub{font-size:12px;color:var(--text2);margin-bottom:8px;line-height:1.5}
+.act-btns{display:flex;gap:6px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text);font-family:var(--fb);transition:all .15s;white-space:nowrap}
+.btn:hover{border-color:var(--navy);color:var(--navy)}
+.btn svg{width:13px;height:13px}
+.btn-navy{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-navy:hover{background:#0F2236}
+.btn-gold{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.btn-gold:hover{background:var(--gold2)}
+.btn-sm{padding:4px 9px;font-size:11px}
+.btn-danger{background:var(--rbg);color:var(--r);border-color:rgba(192,57,43,.2)}
+/* AUTHORITY ROWS */
+.auth-list{padding:4px}
+.auth-row{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:5px;cursor:pointer;font-size:12px;transition:background .15s}
+.auth-row:hover{background:var(--off)}
+.a-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.a-code{font-family:var(--fm);font-size:10px;font-weight:500;color:var(--text);width:42px;flex-shrink:0}
+.a-name{flex:1;color:var(--text2)}
+.a-status{font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;margin-left:auto;flex-shrink:0}
+.bg-g{background:var(--gbg);color:var(--g)}
+.bg-b{background:var(--bbg);color:var(--b)}
+.bg-a{background:var(--abg);color:var(--a)}
+.bg-r{background:var(--rbg);color:var(--r)}
+.bg-s{background:#F5F5F5;color:#636366}
+/* DEADLINES */
+.dl-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}
+.dl-row:last-child{border-bottom:none}
+.dl-date{font-family:var(--fm);font-size:10px;width:44px;flex-shrink:0}
+.dl-urg .dl-date{color:var(--a);font-weight:600}
+.dl-info{flex:1;color:var(--text2)}
+.dl-tag{font-size:10px;font-weight:600;padding:2px 6px;border-radius:8px}
+/* HANDLER CARD */
+.h-card{background:var(--navy);border-radius:10px;padding:16px}
+.h-lbl{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:10px}
+.h-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:15px;color:var(--navy);font-weight:600;margin-bottom:6px}
+.h-name{font-size:14px;font-weight:500;color:#fff;margin-bottom:1px}
+.h-role{font-size:10px;color:rgba(255,255,255,.4);margin-bottom:10px}
+.h-contact{display:flex;align-items:center;gap:7px;padding:7px 9px;background:rgba(255,255,255,.05);border-radius:6px;font-size:12px;color:rgba(255,255,255,.65);margin-bottom:4px;cursor:pointer}
+.h-contact:hover{background:rgba(255,255,255,.08)}
+.h-contact svg{width:12px;height:12px;color:var(--gold);flex-shrink:0}
+/* DOCUMENTS */
+.doc-row{display:flex;align-items:center;gap:9px;padding:10px 14px;border-bottom:1px solid var(--border);font-size:12px;transition:background .15s}
+.doc-row:last-child{border-bottom:none}
+.doc-row:hover{background:var(--off)}
+.doc-icon{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--rbg)}
+.doc-icon svg{width:14px;height:14px;color:var(--r)}
+.doc-icon.lev{background:var(--navy)}
+.doc-icon.lev svg{color:var(--gold)}
+.doc-info{flex:1;min-width:0}
+.doc-name{font-size:12px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.doc-meta{font-size:10px;color:var(--text3);margin-top:1px}
+.doc-actions{display:flex;gap:5px;align-items:center;flex-shrink:0}
+.section-divider{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);padding:10px 14px 4px;display:flex;align-items:center;gap:8px}
+.section-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.upload-zone{border:2px dashed var(--border);border-radius:10px;padding:24px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:12px}
+.upload-zone:hover{border-color:var(--gold);background:rgba(201,169,97,.03)}
+.upload-zone svg{width:22px;height:22px;color:var(--text3);margin:0 auto 8px;display:block}
+.upload-zone p{font-size:12px;color:var(--text3)}
+/* MESSAGES */
+.msg-thread{display:flex;flex-direction:column;height:400px}
+.msg-body{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+.msg-body::-webkit-scrollbar{width:4px}
+.msg-body::-webkit-scrollbar-track{background:transparent}
+.msg-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.msg{display:flex;gap:7px}
+.msg.out{flex-direction:row-reverse}
+.m-av{width:24px;height:24px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;margin-top:2px}
+.av-h{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)}
+.av-c{background:var(--navy);color:#fff}
+.m-c{max-width:75%}
+.m-bub{padding:8px 12px;border-radius:10px;font-size:12px;line-height:1.55}
+.msg.in .m-bub{background:var(--off);color:var(--text);border-radius:2px 10px 10px 10px}
+.msg.out .m-bub{background:var(--navy);color:#fff;border-radius:10px 2px 10px 10px}
+.m-time{font-size:10px;color:var(--text3);margin-top:3px;padding:0 2px}
+.msg.out .m-time{text-align:right}
+.msg-foot{padding:10px 12px;border-top:1px solid var(--border);display:flex;gap:6px;align-items:flex-end}
+.msg-inp{flex:1;padding:8px 10px;border:1px solid var(--border);border-radius:7px;font-size:13px;font-family:var(--fb);outline:none;resize:none;min-height:36px;max-height:100px;line-height:1.4;color:var(--text);background:var(--white)}
+.msg-inp:focus{border-color:var(--gold)}
+.msg-send{width:34px;height:34px;background:var(--navy);border-radius:7px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.msg-send svg{width:14px;height:14px;color:#fff}
+/* CASHFLOW */
+.cf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px}
+.cf-card{background:var(--off);border-radius:8px;padding:12px}
+.cf-label{font-size:10px;color:var(--text3);margin-bottom:3px}
+.cf-val{font-size:18px;font-weight:600;color:var(--text);line-height:1}
+.cf-sub{font-size:10px;color:var(--text3);margin-top:2px}
+/* SUPPORT */
+.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.faq-item{padding:10px 14px;border-bottom:1px solid var(--border);cursor:pointer}
+.faq-item:last-child{border-bottom:none}
+.faq-item:hover{background:var(--off)}
+.faq-q{font-size:13px;font-weight:500;color:var(--text);display:flex;align-items:center;justify-content:space-between}
+.faq-q svg{width:14px;height:14px;color:var(--text3);flex-shrink:0}
+.faq-a{font-size:12px;color:var(--text2);line-height:1.6;margin-top:6px;display:none}
+.faq-a.open{display:block}
+/* LANG */
+[data-lang]{display:none}[data-lang].la{display:block}
+span[data-lang]{display:none}span[data-lang].la{display:inline}
+/* TOAST */
+.toast-wrap{position:fixed;bottom:20px;right:20px;z-index:200;display:flex;flex-direction:column;gap:8px}
+.toast{background:var(--navy);color:#fff;padding:10px 16px;border-radius:8px;font-size:13px;box-shadow:0 4px 16px rgba(10,25,41,.2);display:flex;align-items:center;gap:8px;animation:slideIn .3s ease;min-width:220px}
+.toast.success{background:var(--g)}
+.toast.warning{background:var(--a)}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:none;opacity:1}}
+.toast svg{width:15px;height:15px;flex-shrink:0}
+/* LOADING */
+.loading-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--off)}
+.loading-inner{text-align:center}
+.loading-logo{width:44px;height:44px;background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:22px;font-weight:600;color:var(--gold);margin:0 auto 12px}
+.loading-text{font-size:13px;color:var(--text3)}
+.spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--navy);border-radius:50%;animation:spin .7s linear infinite;margin:10px auto 0}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div id="app" style="display:none;width:100%;display:flex;min-height:100vh">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-lm">L</div>
+    <span class="sb-brand">Leverage Business</span>
+  </div>
+  <div class="sb-client">
+    <div class="sb-client-lbl"><span data-lang="en" class="la">Your company</span><span data-lang="zh">您的公司</span><span data-lang="ms">Syarikat anda</span></div>
+    <div class="sb-client-name" id="sb-company">Loading...</div>
+    <div class="sb-client-id" id="sb-client-id">—</div>
+  </div>
+  <nav class="sb-nav">
+    <div class="nav-section"><span data-lang="en" class="la">Main</span><span data-lang="zh">主菜单</span><span data-lang="ms">Utama</span></div>
+    <div class="nav-item active" data-view="overview" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      <span data-lang="en" class="la">Overview</span><span data-lang="zh">概览</span><span data-lang="ms">Gambaran</span>
+    </div>
+    <div class="nav-item" data-view="applications" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      <span data-lang="en" class="la">Applications</span><span data-lang="zh">申请进度</span><span data-lang="ms">Permohonan</span>
+    </div>
+    <div class="nav-item" data-view="documents" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      <span data-lang="en" class="la">Documents</span><span data-lang="zh">文件</span><span data-lang="ms">Dokumen</span>
+      <span class="nav-badge" id="doc-badge">3</span>
+    </div>
+    <div class="nav-item" data-view="messages" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+      <span data-lang="en" class="la">Messages</span><span data-lang="zh">消息</span><span data-lang="ms">Mesej</span>
+      <span class="nav-badge" id="msg-badge">2</span>
+    </div>
+    <div class="nav-item" data-view="cashflow" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+      <span data-lang="en" class="la">Cashflow</span><span data-lang="zh">资金安排</span><span data-lang="ms">Aliran Tunai</span>
+    </div>
+    <div class="nav-item" data-view="support" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      <span data-lang="en" class="la">Support</span><span data-lang="zh">支持</span><span data-lang="ms">Sokongan</span>
+    </div>
+  </nav>
+  <div class="sb-user">
+    <div class="sb-av" id="sb-av">?</div>
+    <div class="sb-uinfo">
+      <div class="sb-uname" id="sb-name">Loading...</div>
+      <div class="sb-urole"><span data-lang="en" class="la">Account Owner</span><span data-lang="zh">账号所有者</span><span data-lang="ms">Pemilik Akaun</span></div>
+    </div>
+    <button class="sb-logout" onclick="doLogout()" title="Sign out">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+    </button>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div class="tb-left">
+      <div class="tb-title" id="tb-title"><span data-lang="en" class="la">Overview</span><span data-lang="zh">概览</span><span data-lang="ms">Gambaran</span></div>
+      <div class="live-badge"><div class="live-dot"></div><span data-lang="en" class="la">Live</span><span data-lang="zh">实时</span><span data-lang="ms">Langsung</span></div>
+    </div>
+    <div class="tb-right">
+      <div class="lang-pill">
+        <button class="lb active" onclick="setLang('en')">EN</button>
+        <button class="lb" onclick="setLang('zh')">中文</button>
+        <button class="lb" onclick="setLang('ms')">BM</button>
+      </div>
+      <button class="notif-btn" onclick="showToast('No new notifications','info')">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+        <div class="notif-dot"></div>
+      </button>
+    </div>
+  </div>
+
+  <div class="content">
+
+<!-- ═══════════════ OVERVIEW ═══════════════ -->
+<div class="view active" id="view-overview">
+  <div class="page-hdr">
+    <div>
+      <h1 class="page-title" id="ov-welcome">Welcome back</h1>
+      <p class="page-sub" id="ov-sub">Loading your engagement...</p>
+    </div>
+    <button class="btn btn-sm" onclick="exportStatus()">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      <span data-lang="en" class="la">Export status report</span><span data-lang="zh">导出状态报告</span><span data-lang="ms">Eksport laporan</span>
+    </button>
+  </div>
+  <div class="grid2">
+    <div>
+      <div class="card">
+        <div class="prog-hero">
+          <div class="ph-row">
+            <div><div class="ph-title">Yifeng Optical Sdn Bhd</div><div class="ph-id">LB-2026-0047 · Standard Package · Manufacturing</div></div>
+            <div style="text-align:right"><div class="ph-pct">54%</div><div class="ph-sub">6 of 11 approved</div></div>
+          </div>
+          <div class="prog-bar"><div class="prog-fill" id="main-prog" style="width:54%"></div></div>
+          <div style="display:flex;justify-content:space-between;font-size:9px;color:rgba(255,255,255,.3);margin-bottom:6px"><span>3 Mar 2026</span><span>Est. Sep 2026</span></div>
+          <div class="phases">
+            <span class="phase ph-done">Phase 1: Setup ✓</span>
+            <span class="phase ph-active">Phase 2: Licensing</span>
+            <span class="phase ph-pend">Phase 3: Operations</span>
+          </div>
+        </div>
+        <div class="act-banner">
+          <div class="act-lbl">⚡ <span data-lang="en" class="la">Action Required</span><span data-lang="zh">需要行动</span><span data-lang="ms">Tindakan Diperlukan</span></div>
+          <div class="act-title"><span data-lang="en" class="la">Upload machinery list with HS codes</span><span data-lang="zh">上传含HS编码的机械清单</span><span data-lang="ms">Muat naik senarai jentera dengan kod HS</span></div>
+          <div class="act-sub"><span data-lang="en" class="la">Handler needs this to file MIDA application. Due: 20 March 2026.</span><span data-lang="zh">处理员需要此文件以提交MIDA申请，截止日期：2026年3月20日。</span><span data-lang="ms">Pengendali memerlukan ini untuk memfailkan permohonan MIDA. Tarikh akhir: 20 Mac 2026.</span></div>
+          <div class="act-btns">
+            <button class="btn btn-gold btn-sm" onclick="triggerUpload()">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+              <span data-lang="en" class="la">Upload Now</span><span data-lang="zh">立即上传</span><span data-lang="ms">Muat Naik Sekarang</span>
+            </button>
+            <button class="btn btn-sm" onclick="switchView(document.querySelector('[data-view=messages]'))">
+              <span data-lang="en" class="la">Ask handler</span><span data-lang="zh">询问处理员</span><span data-lang="ms">Tanya pengendali</span>
+            </button>
+          </div>
+        </div>
+        <div class="card-hdr">
+          <span class="card-title"><span data-lang="en" class="la">Authority Status</span><span data-lang="zh">部门申请状态</span><span data-lang="ms">Status Pihak Berkuasa</span></span>
+          <button class="btn btn-sm" onclick="switchView(document.querySelector('[data-view=applications]'))"><span data-lang="en" class="la">View all</span><span data-lang="zh">查看全部</span><span data-lang="ms">Lihat semua</span></button>
+        </div>
+        <div class="auth-list">
+          <div class="auth-row"><div class="a-dot" style="background:var(--g)"></div><span class="a-code">SSM</span><span class="a-name">Company Registration</span><span class="a-status bg-g">Approved</span></div>
+          <div class="auth-row"><div class="a-dot" style="background:var(--g)"></div><span class="a-code">LHDN</span><span class="a-name">Tax File + Employer</span><span class="a-status bg-g">Approved</span></div>
+          <div class="auth-row"><div class="a-dot" style="background:var(--g)"></div><span class="a-code">Bomba</span><span class="a-name">Fire Certificate</span><span class="a-status bg-g">Approved</span></div>
+          <div class="auth-row"><div class="a-dot" style="background:var(--b)"></div><span class="a-code">PBT</span><span class="a-name">Premise Licence (MBSP)</span><span class="a-status bg-b">Filed</span></div>
+          <div class="auth-row" style="background:rgba(198,93,0,.04)"><div class="a-dot" style="background:var(--a)"></div><span class="a-code" style="color:var(--a)">MIDA</span><span class="a-name" style="font-weight:500;color:var(--a)">ICA 10 Exemption</span><span class="a-status bg-a">Action needed</span></div>
+          <div class="auth-row"><div class="a-dot" style="background:#C8C8CC"></div><span class="a-code">JKDM</span><span class="a-name">JPC 1 Duty Exemption</span><span class="a-status bg-s">Blocked</span></div>
+          <div class="auth-row"><div class="a-dot" style="background:#C8C8CC"></div><span class="a-code">ESD</span><span class="a-name">Employment Pass × 3</span><span class="a-status bg-s">Blocked</span></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:12px">
+        <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la">Upcoming Deadlines</span><span data-lang="zh">即将到期</span><span data-lang="ms">Tarikh Akhir</span></span></div>
+        <div style="padding:6px 14px">
+          <div class="dl-row dl-urg"><span class="dl-date">20 Mar</span><div class="dl-info"><div style="font-size:12px;font-weight:500;color:var(--a)">Machinery list → MIDA</div><div style="font-size:10px;color:var(--text3)">Upload required · 5 days</div></div><span class="dl-tag bg-a">Urgent</span></div>
+          <div class="dl-row dl-urg"><span class="dl-date">22 Mar</span><div class="dl-info"><div style="font-size:12px;font-weight:500;color:var(--a)">Board resolution → JKDM</div><div style="font-size:10px;color:var(--text3)">Upload required · 7 days</div></div><span class="dl-tag bg-a">Urgent</span></div>
+          <div class="dl-row"><span class="dl-date">2 Apr</span><div class="dl-info"><div style="font-size:12px;font-weight:500">PBT premise inspection</div><div style="font-size:10px;color:var(--text3)">Handler attends · 18 days</div></div><span class="dl-tag bg-b">Upcoming</span></div>
+          <div class="dl-row"><span class="dl-date">15 Jun</span><div class="dl-info"><div style="font-size:12px;font-weight:500">MIDA Annual Report</div><div style="font-size:10px;color:var(--text3)">Post-approval obligation</div></div><span class="dl-tag bg-s">Scheduled</span></div>
+        </div>
+      </div>
+      <div class="h-card">
+        <div class="h-lbl"><span data-lang="en" class="la">Your Handler</span><span data-lang="zh">您的处理员</span><span data-lang="ms">Pengendali Anda</span></div>
+        <div class="h-av">ST</div>
+        <div class="h-name">Sarah Tan</div>
+        <div class="h-role">Manufacturing & EID Specialist</div>
+        <div class="h-contact" onclick="switchView(document.querySelector('[data-view=messages]'))">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+          <span data-lang="en" class="la">Message in portal</span><span data-lang="zh">平台内消息</span><span data-lang="ms">Mesej dalam portal</span>
+        </div>
+        <div class="h-contact">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          +60 12-345 6789
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ APPLICATIONS ═══════════════ -->
+<div class="view" id="view-applications">
+  <div class="page-hdr">
+    <div><h1 class="page-title"><span data-lang="en" class="la">Applications</span><span data-lang="zh">申请进度</span><span data-lang="ms">Permohonan</span></h1><p class="page-sub"><span data-lang="en" class="la">11 authorities · 3 approved · 1 filed · 1 action needed · 6 blocked</span><span data-lang="zh">11个部门 · 3已批准 · 1已提交 · 1需行动 · 6待解锁</span><span data-lang="ms">11 pihak berkuasa · 3 diluluskan · 1 difailkan · 1 tindakan diperlukan · 6 disekat</span></p></div>
+  </div>
+  <div id="tasks-list"></div>
+</div>
+
+<!-- ═══════════════ DOCUMENTS ═══════════════ -->
+<div class="view" id="view-documents">
+  <div class="page-hdr">
+    <div><h1 class="page-title"><span data-lang="en" class="la">Documents</span><span data-lang="zh">文件管理</span><span data-lang="ms">Dokumen</span></h1><p class="page-sub" id="doc-count-sub">18 uploaded · 3 pending action · 8 from Leverage Business</p></div>
+    <button class="btn btn-sm"><span data-lang="en" class="la">Download all</span><span data-lang="zh">全部下载</span><span data-lang="ms">Muat turun semua</span></button>
+  </div>
+  <div class="upload-zone" onclick="triggerUpload()">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+    <p><strong><span data-lang="en" class="la">Drag & drop or click to upload</span><span data-lang="zh">拖放或点击上传</span><span data-lang="ms">Seret & lepas atau klik untuk muat naik</span></strong> · PDF, JPG, PNG, Excel · Max 10MB</p>
+  </div>
+  <div id="docs-list"></div>
+</div>
+
+<!-- ═══════════════ MESSAGES ═══════════════ -->
+<div class="view" id="view-messages">
+  <div class="page-hdr"><div><h1 class="page-title"><span data-lang="en" class="la">Messages</span><span data-lang="zh">消息</span><span data-lang="ms">Mesej</span></h1><p class="page-sub"><span data-lang="en" class="la">Direct thread with your handler · Sarah Tan</span><span data-lang="zh">与处理员Sarah Tan的对话</span><span data-lang="ms">Utas langsung dengan pengendali anda · Sarah Tan</span></p></div></div>
+  <div class="card">
+    <div class="card-hdr">
+      <div style="display:flex;align-items:center;gap:9px">
+        <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:13px;font-weight:600;color:var(--navy)">ST</div>
+        <div><div style="font-size:13px;font-weight:600">Sarah Tan</div><div style="font-size:10px;color:var(--g)">● <span data-lang="en" class="la">Online now</span><span data-lang="zh">在线</span><span data-lang="ms">Dalam talian</span></div></div>
+      </div>
+      <div class="live-badge"><div class="live-dot"></div><span data-lang="en" class="la">Live</span><span data-lang="zh">实时</span><span data-lang="ms">Langsung</span></div>
+    </div>
+    <div class="msg-thread">
+      <div class="msg-body" id="msg-body">
+        <div class="msg in"><div class="m-av av-h">ST</div><div class="m-c"><div class="m-bub">Hi Chen Ming, your SSM and LHDN registrations are both approved ✓. Next priority: I need the machinery list with HS codes before we can file the MIDA application. Can you upload by 20 March?</div><div class="m-time">Sarah · 18 Mar, 10:30 AM</div></div></div>
+        <div class="msg out"><div class="m-av av-c" id="msg-av-init">CM</div><div class="m-c"><div class="m-bub">Will upload the machinery list this afternoon. Which columns are needed?</div><div class="m-time">You · 18 Mar, 2:15 PM</div></div></div>
+        <div class="msg in"><div class="m-av av-h">ST</div><div class="m-c"><div class="m-bub">Equipment name, model, manufacturer, quantity, CIF value (USD), and HS code (8-digit) for each item. I'll verify every HS code before we file.</div><div class="m-time">Sarah · 18 Mar, 2:45 PM</div></div></div>
+        <div class="msg in"><div class="m-av av-h">ST</div><div class="m-c"><div class="m-bub">Also — your Audited Accounts 2024 were flagged. Please re-upload with the auditor signature page included. The JKDM application will need this too.</div><div class="m-time">Sarah · 18 Mar, 3:02 PM</div></div></div>
+      </div>
+      <div class="msg-foot">
+        <textarea class="msg-inp" id="msg-inp" placeholder="Type a message..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg()}"></textarea>
+        <button class="msg-send" onclick="sendMsg()">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ CASHFLOW ═══════════════ -->
+<div class="view" id="view-cashflow">
+  <div class="page-hdr"><div><h1 class="page-title"><span data-lang="en" class="la">Cashflow</span><span data-lang="zh">资金安排</span><span data-lang="ms">Aliran Tunai</span></h1><p class="page-sub"><span data-lang="en" class="la">Standard Package · 3-milestone payment structure</span><span data-lang="zh">标准套餐 · 三阶段付款结构</span><span data-lang="ms">Pakej Standard · Struktur bayaran 3 peringkat</span></p></div></div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="cf-grid">
+      <div class="cf-card"><div class="cf-label"><span data-lang="en" class="la">Total engagement fee</span><span data-lang="zh">服务总费用</span><span data-lang="ms">Jumlah yuran</span></div><div class="cf-val">RM 45,000</div></div>
+      <div class="cf-card"><div class="cf-label"><span data-lang="en" class="la">Paid to date</span><span data-lang="zh">已付金额</span><span data-lang="ms">Telah dibayar</span></div><div class="cf-val" style="color:var(--g)">RM 13,500</div><div class="cf-sub">Milestone 1 (30%)</div></div>
+      <div class="cf-card"><div class="cf-label"><span data-lang="en" class="la">Remaining</span><span data-lang="zh">待付金额</span><span data-lang="ms">Baki</span></div><div class="cf-val" style="color:var(--a)">RM 31,500</div><div class="cf-sub">Milestones 2 + 3</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la">Payment schedule</span><span data-lang="zh">付款计划</span><span data-lang="ms">Jadual pembayaran</span></span></div>
+    <div style="padding:14px">
+      <div style="display:flex;align-items:center;gap:14px;padding:12px;background:var(--gbg);border-radius:8px;margin-bottom:8px">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:600;flex-shrink:0">1</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--g)">Milestone 1 — On signing (30%)</div><div style="font-size:11px;color:var(--text3)">Paid 3 Mar 2026</div></div>
+        <div style="text-align:right"><div style="font-size:15px;font-weight:600;color:var(--g)">RM 13,500</div><div style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;background:var(--g);color:#fff;display:inline-block;margin-top:2px">Paid</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:12px;background:var(--abg);border-radius:8px;margin-bottom:8px;border:1px solid rgba(198,93,0,.15)">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:600;flex-shrink:0">2</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--a)">Milestone 2 — MIDA approved (40%)</div><div style="font-size:11px;color:var(--text3)">Due: upon MIDA approval (est. Aug 2026)</div></div>
+        <div style="text-align:right"><div style="font-size:15px;font-weight:600;color:var(--a)">RM 18,000</div><div style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;background:var(--a);color:#fff;display:inline-block;margin-top:2px">Pending</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:12px;background:var(--off);border-radius:8px;border:1px solid var(--border)">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--text3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:600;flex-shrink:0">3</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:500">Milestone 3 — Completion (30%)</div><div style="font-size:11px;color:var(--text3)">Due: upon full operational status (est. Sep 2026)</div></div>
+        <div style="text-align:right"><div style="font-size:15px;font-weight:600">RM 13,500</div><div style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;background:var(--off);color:var(--text3);border:1px solid var(--border);display:inline-block;margin-top:2px">Future</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SUPPORT ═══════════════ -->
+<div class="view" id="view-support">
+  <div class="page-hdr"><div><h1 class="page-title"><span data-lang="en" class="la">Support</span><span data-lang="zh">支持</span><span data-lang="ms">Sokongan</span></h1><p class="page-sub"><span data-lang="en" class="la">Contact your handler or escalate to the director</span><span data-lang="zh">联系处理员或上报至总监</span><span data-lang="ms">Hubungi pengendali atau eskalasi kepada pengarah</span></p></div></div>
+  <div class="support-grid">
+    <div class="card" style="padding:16px"><div style="font-size:14px;font-weight:600;margin-bottom:4px">Sarah Tan — <span data-lang="en" class="la">Your Handler</span><span data-lang="zh">您的处理员</span><span data-lang="ms">Pengendali Anda</span></div><div style="font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:12px"><span data-lang="en" class="la">Primary contact for all application and compliance questions. Responds within 1 business day.</span><span data-lang="zh">所有申请及合规问题的主要联系人，1个工作日内回复。</span><span data-lang="ms">Hubungan utama untuk semua soalan permohonan dan pematuhan. Membalas dalam 1 hari bekerja.</span></div><div style="font-size:12px;color:var(--text2);padding:7px 0;border-top:1px solid var(--border)">📞 +60 12-345 6789</div><div style="font-size:12px;color:var(--text2);padding:7px 0;border-top:1px solid var(--border)">✉️ sarah@leveragebusiness.my</div></div>
+    <div class="card" style="padding:16px"><div style="font-size:14px;font-weight:600;margin-bottom:4px">Larry — <span data-lang="en" class="la">Director</span><span data-lang="zh">总监</span><span data-lang="ms">Pengarah</span></div><div style="font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:12px"><span data-lang="en" class="la">Escalate concerns not resolved by your handler. Available Monday–Friday.</span><span data-lang="zh">处理员未能解决的问题可直接上报总监，周一至周五可联系。</span><span data-lang="ms">Eskalasi isu yang tidak diselesaikan oleh pengendali. Tersedia Isnin–Jumaat.</span></div><div style="font-size:12px;color:var(--text2);padding:7px 0;border-top:1px solid var(--border)">✉️ larry@leveragebusiness.my</div></div>
+  </div>
+  <div class="card">
+    <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la">Frequently asked questions</span><span data-lang="zh">常见问题</span><span data-lang="ms">Soalan Lazim</span></span></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">Why is my JKDM application blocked?</span><span data-lang="zh">为什么我的JKDM申请被锁定？</span><span data-lang="ms">Mengapa permohonan JKDM saya disekat?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">JKDM (duty exemption) can only be filed after MIDA approval is received. This is a mandatory government sequence — the ministry requires the MIDA reference number before processing JPC 1 applications.</span><span data-lang="zh">JKDM关税豁免申请只能在获得MIDA批准后提交。这是政府强制规定的顺序——部门要求在处理JPC 1申请前提供MIDA参考编号。</span><span data-lang="ms">JKDM (pengecualian duti) hanya boleh difailkan selepas kelulusan MIDA diterima. Ini adalah urutan kerajaan yang wajib — kementerian memerlukan nombor rujukan MIDA sebelum memproses permohonan JPC 1.</span></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">How long does MIDA approval take?</span><span data-lang="zh">MIDA批准需要多长时间？</span><span data-lang="ms">Berapa lama kelulusan MIDA mengambil masa?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">MIDA ICA 10 Exemption typically takes 6–10 weeks from filing to approval. We will file as soon as your machinery list is received. I track this weekly and will update you on any movement.</span><span data-lang="zh">MIDA ICA 10豁免从提交到批准通常需要6至10周。一旦收到您的机械清单，我们将立即提交，并每周跟进进展。</span><span data-lang="ms">Pengecualian MIDA ICA 10 biasanya mengambil masa 6–10 minggu dari pemfailan hingga kelulusan. Kami akan memfailkan sebaik sahaja senarai jentera anda diterima.</span></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">Can I add more directors or shareholders after registration?</span><span data-lang="zh">注册后可以增加董事或股东吗？</span><span data-lang="ms">Bolehkah saya menambah pengarah atau pemegang saham selepas pendaftaran?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">Yes — changes to directors, shareholders, and share structure can be filed with SSM at any time. However, significant changes while MIDA is in processing may require supplementary submissions. Please inform your handler before making any changes.</span><span data-lang="zh">可以，董事、股东及股权结构的变更可随时向SSM提交。但在MIDA审批期间进行重大变更可能需要补充材料，请在变更前知会您的处理员。</span><span data-lang="ms">Ya — perubahan kepada pengarah, pemegang saham, dan struktur saham boleh difailkan dengan SSM pada bila-bila masa. Walau bagaimanapun, perubahan ketara semasa MIDA sedang diproses mungkin memerlukan pengiriman tambahan.</span></div></div>
+  </div>
+  <div style="background:var(--navy);border-radius:10px;padding:14px 16px;font-size:12px;color:rgba(255,255,255,.55);line-height:1.7;margin-top:4px">
+    <strong style="color:var(--gold);font-size:13px;display:block;margin-bottom:4px"><span data-lang="en" class="la">Your data is protected</span><span data-lang="zh">您的数据受到保护</span><span data-lang="ms">Data anda dilindungi</span></strong>
+    <span data-lang="en" class="la">Storage: AWS Asia Pacific (Singapore) · AES-256 encryption · 7-year audit trail · PDPA compliant</span><span data-lang="zh">存储：AWS亚太区（新加坡）· AES-256加密 · 7年审计记录 · 符合PDPA法规</span><span data-lang="ms">Penyimpanan: AWS Asia Pasifik (Singapura) · Penyulitan AES-256 · Jejak audit 7 tahun · Patuh PDPA</span>
+  </div>
+</div>
+
+  </div>
+</div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-wrap" id="toasts"></div>
+
+<!-- HIDDEN FILE INPUT -->
+<input type="file" id="file-input" style="display:none" multiple accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls" onchange="handleFileUpload(this)">
+
+<script>
+let user = null;
+let lang = localStorage.getItem('lb-lang') || 'en';
+
+const TASKS = [
+  {code:'SSM',name:'Company Registration',status:'approved',dot:'var(--g)',ref:'202600XXXXXX',filed:'3 Mar 2026',approved:'5 Mar 2026',notes:'Certificate received. Company No: 202600XXXXXX',locked:false},
+  {code:'LHDN',name:'Tax File + Employer Registration',status:'approved',dot:'var(--g)',ref:'C2026XXXXXX',filed:'6 Mar 2026',approved:'10 Mar 2026',notes:'Tax file opened. E-number issued.',locked:false},
+  {code:'Bomba',name:'Fire Certificate',status:'approved',dot:'var(--g)',ref:'BOMBA/2026/001234',filed:'7 Mar 2026',approved:'14 Mar 2026',notes:'Certificate valid until 14 Mar 2027.',locked:false},
+  {code:'PBT',name:'Premise Licence (MBSP)',status:'filed',dot:'var(--b)',ref:'MBSP/2026/P/00234',filed:'15 Mar 2026',approved:null,notes:'Application submitted. Inspection scheduled 2 Apr.',locked:false},
+  {code:'MIDA',name:'ICA 10 Exemption (Manufacturing)',status:'action',dot:'var(--a)',ref:null,filed:null,approved:null,notes:'Awaiting machinery list from client. Cannot file without HS codes.',locked:false},
+  {code:'JKDM',name:'JPC 1 Duty Exemption',status:'blocked',dot:'#C8C8CC',ref:null,filed:null,approved:null,notes:'Blocked: requires MIDA approval first.',locked:true},
+  {code:'ESD',name:'Employment Pass × 3',status:'blocked',dot:'#C8C8CC',ref:null,filed:null,approved:null,notes:'Blocked: requires MIDA approval first.',locked:true},
+  {code:'KDN',name:'Foreign Worker Quota',status:'blocked',dot:'#C8C8CC',ref:null,filed:null,approved:null,notes:'Blocked: requires Employment Pass first.',locked:true},
+  {code:'DOSH',name:'Safety & Health Registration',status:'blocked',dot:'#C8C8CC',ref:null,filed:null,approved:null,notes:'Blocked: requires premise licence first.',locked:true},
+  {code:'LHDN',name:'SST Registration',status:'blocked',dot:'#C8C8CC',ref:null,filed:null,approved:null,notes:'Blocked: assess after MIDA approval.',locked:true},
+  {code:'MITI',name:'Cost Analysis (CA)',status:'blocked',dot:'#C8C8CC',ref:null,filed:null,approved:null,notes:'Blocked: requires MIDA approval.',locked:true},
+];
+
+const DOCS = [
+  {name:'Machinery_List_with_HS_Codes.xlsx',meta:'Required for MIDA · Due 20 Mar',status:'action',type:'required'},
+  {name:'Audited_Accounts_2024.pdf',meta:'Re-upload with auditor signature page',status:'flagged',type:'flagged'},
+  {name:'Board_Resolution_JKDM.docx',meta:'Required for JKDM · Due 22 Mar',status:'action',type:'required'},
+  {name:'Passport_ChenMing.pdf',meta:'Account Owner · Uploaded 3 Mar · 3.2MB',status:'accepted',type:'yours'},
+  {name:'Passport_LiuWei.pdf',meta:'Finance Manager · Uploaded 4 Mar · 2.8MB',status:'accepted',type:'yours'},
+  {name:'Tenancy_Agreement_Penang_FIZ.pdf',meta:'Uploaded 5 Mar · Under review',status:'pending',type:'yours'},
+  {name:'SSM_Certificate_202600XXXXXX.pdf',meta:'Company Registration Certificate · 5 Mar 2026',status:'lev',type:'leverage'},
+  {name:'LHDN_Tax_File_C2026XXXXXX.pdf',meta:'Tax Registration Certificate · 10 Mar 2026',status:'lev',type:'leverage'},
+  {name:'Bomba_Certificate_2026.pdf',meta:'Fire Certificate · Valid until 14 Mar 2027',status:'lev',type:'leverage'},
+];
+
+const STATUS_MAP = {approved:{badge:'Approved',cls:'bg-g',dot:'var(--g)'},filed:{badge:'Filed',cls:'bg-b',dot:'var(--b)'},action:{badge:'Action needed',cls:'bg-a',dot:'var(--a)'},blocked:{badge:'Blocked',cls:'bg-s',dot:'#C8C8CC'}};
+const DOC_STATUS = {action:{badge:'Upload needed',cls:'bg-a'},flagged:{badge:'Flagged',cls:'bg-r'},accepted:{badge:'Accepted',cls:'bg-g'},pending:{badge:'Under review',cls:'bg-b'},lev:{badge:'From Leverage',cls:'bg-b'}};
+
+async function init() {
+  try {
+    const res = await fetch('/api/auth/me');
+    if (!res.ok) { location.href='/login'; return; }
+    const data = await res.json();
+    user = data.user;
+    if (user.role !== 'client') { location.href='/login'; return; }
+    applyUser(user);
+    setLang(lang, false);
+    renderTasks();
+    renderDocs();
+    document.getElementById('app').style.display = 'flex';
+  } catch { location.href='/login'; }
+}
+
+function applyUser(u) {
+  const init = u.name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('sb-av').textContent = init;
+  document.getElementById('sb-name').textContent = u.name;
+  document.getElementById('msg-av-init').textContent = init;
+  document.getElementById('sb-company').textContent = u.company || 'Your Company';
+  document.getElementById('sb-client-id').textContent = u.clientId || '—';
+  document.getElementById('ov-welcome').textContent = 'Welcome back, ' + u.name.split(' ')[0];
+  document.getElementById('ov-sub').textContent = (u.clientId||'') + ' · Standard Package · Manufacturing · Penang FIZ';
+}
+
+function renderTasks() {
+  const el = document.getElementById('tasks-list');
+  el.innerHTML = TASKS.map((t,i) => {
+    const s = STATUS_MAP[t.status] || STATUS_MAP.blocked;
+    return `<div class="card" style="margin-bottom:10px">
+      <div style="padding:14px 16px;display:flex;align-items:flex-start;gap:12px">
+        <div style="width:8px;height:8px;border-radius:50%;background:${s.dot};flex-shrink:0;margin-top:5px"></div>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:4px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-family:var(--fm);font-size:11px;font-weight:500;color:var(--text)">${t.code}</span>
+              <span style="font-size:13px;font-weight:500;color:var(--text)">${t.name}</span>
+              <span style="font-size:9px;font-weight:600;color:var(--text3)">#${String(i+1).padStart(2,'0')}</span>
+            </div>
+            <span class="a-status ${s.cls}">${s.badge}</span>
+          </div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.5;margin-bottom:${t.status==='action'?'8':'0'}px">${t.notes}</div>
+          ${t.ref ? `<div style="font-size:11px;color:var(--b);font-family:var(--fm);margin-top:3px">Ref: ${t.ref}${t.filed?' · Filed '+t.filed:''}${t.approved?' · Approved '+t.approved:''}</div>` : ''}
+          ${t.status==='action' ? `<div style="margin-top:8px;display:flex;gap:6px"><button class="btn btn-gold btn-sm" onclick="triggerUpload()">Upload document</button><button class="btn btn-sm" onclick="switchView(document.querySelector('[data-view=messages]'))">Ask handler</button></div>` : ''}
+          ${t.locked ? `<div style="margin-top:6px;font-size:11px;color:var(--text3);display:flex;align-items:center;gap:5px"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Dependency locked — cannot start until required approvals received</div>` : ''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderDocs() {
+  const required = DOCS.filter(d=>d.type==='required'||d.type==='flagged');
+  const yours = DOCS.filter(d=>d.type==='yours');
+  const lev = DOCS.filter(d=>d.type==='leverage');
+
+  const docRow = d => {
+    const s = DOC_STATUS[d.status];
+    const isLev = d.type==='leverage';
+    return `<div class="doc-row">
+      <div class="doc-icon ${isLev?'lev':''}"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div>
+      <div class="doc-info"><div class="doc-name">${d.name}</div><div class="doc-meta">${d.meta}</div></div>
+      <div class="doc-actions">
+        <span class="a-status ${s.cls}">${s.badge}</span>
+        ${d.type==='required'||d.type==='flagged' ? `<button class="btn btn-gold btn-sm" onclick="triggerUpload()">Upload</button>` : ''}
+        ${d.type==='leverage' ? `<button class="btn btn-sm">Download</button>` : ''}
+      </div>
+    </div>`;
+  };
+
+  document.getElementById('docs-list').innerHTML = `
+    ${required.length ? `<div class="section-divider">Needs your action (${required.length})</div>${required.map(docRow).join('')}` : ''}
+    ${yours.length ? `<div class="section-divider">Your uploads (${yours.length})</div>${yours.map(docRow).join('')}` : ''}
+    ${lev.length ? `<div class="section-divider">From Leverage Business (${lev.length})</div>${lev.map(docRow).join('')}` : ''}
+  `;
+}
+
+function switchView(el) {
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  const view = el.dataset.view;
+  el.classList.add('active');
+  document.getElementById('view-'+view).classList.add('active');
+  const titles = {overview:'Overview',applications:'Applications',documents:'Documents',messages:'Messages',cashflow:'Cashflow',support:'Support'};
+  document.getElementById('tb-title').innerHTML = `<span>${titles[view]||view}</span>`;
+  if(view==='messages') { document.getElementById('msg-badge').style.display='none'; }
+  if(view==='documents') { document.getElementById('doc-badge').style.display='none'; }
+}
+
+function setLang(l, save=true) {
+  lang = l;
+  if(save) localStorage.setItem('lb-lang',l);
+  document.querySelectorAll('[data-lang]').forEach(el=>el.classList.toggle('la',el.dataset.lang===l));
+  document.querySelectorAll('.lb').forEach(btn=>btn.classList.toggle('active',btn.textContent.trim()==={en:'EN',zh:'中文',ms:'BM'}[l]));
+  document.documentElement.lang = l==='zh'?'zh-CN':l==='ms'?'ms':'en';
+}
+
+function sendMsg() {
+  const inp = document.getElementById('msg-inp');
+  const txt = inp.value.trim();
+  if(!txt || !user) return;
+  const body = document.getElementById('msg-body');
+  const init = user.name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+  const now = new Date().toLocaleTimeString('en-MY',{hour:'2-digit',minute:'2-digit'});
+  body.innerHTML += `<div class="msg out"><div class="m-av av-c">${init}</div><div class="m-c"><div class="m-bub">${txt}</div><div class="m-time">You · ${now}</div></div></div>`;
+  body.scrollTop = body.scrollHeight;
+  inp.value = '';
+  setTimeout(() => {
+    body.innerHTML += `<div class="msg in"><div class="m-av av-h">ST</div><div class="m-c"><div class="m-bub">Thanks for your message. I'll review and respond within 1 business day.</div><div class="m-time">Sarah · ${now}</div></div></div>`;
+    body.scrollTop = body.scrollHeight;
+  }, 1200);
+}
+
+function triggerUpload() { document.getElementById('file-input').click(); }
+
+function handleFileUpload(input) {
+  const files = Array.from(input.files);
+  if(!files.length) return;
+  files.forEach(f => {
+    showToast(`Uploaded: ${f.name}`,'success');
+  });
+  document.getElementById('doc-badge').style.display='none';
+  input.value = '';
+}
+
+function exportStatus() {
+  showToast('Status report exported as PDF','success');
+}
+
+function toggleFaq(el) {
+  const ans = el.querySelector('.faq-a');
+  const isOpen = ans.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a=>a.classList.remove('open'));
+  if(!isOpen) ans.classList.add('open');
+}
+
+function showToast(msg, type='info') {
+  const wrap = document.getElementById('toasts');
+  const toast = document.createElement('div');
+  toast.className = `toast${type==='success'?' success':type==='warning'?' warning':''}`;
+  toast.innerHTML = `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:15px;height:15px"><path stroke-linecap="round" d="M${type==='success'?'5 13l4 4L19 7':'13 16h3.5M6 10h.01M11 10h.01M16 10h.01'}"/></svg>${msg}`;
+  wrap.appendChild(toast);
+  setTimeout(()=>toast.remove(), 3500);
+}
+
+async function doLogout() {
+  await fetch('/api/auth/logout',{method:'POST'});
+  location.href='/login';
+}
+
+init();
+</script>
+</body>
+</html>
