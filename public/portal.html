@@ -713,7 +713,7 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
     <div class="card" style="padding:16px"><div style="font-size:14px;font-weight:600;margin-bottom:4px">Larry — <span data-lang="en" class="la">Director</span><span data-lang="zh">总监</span><span data-lang="ms">Pengarah</span></div><div style="font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:12px"><span data-lang="en" class="la">Escalate concerns not resolved by your handler. Available Monday–Friday.</span><span data-lang="zh">处理员未能解决的问题可直接上报总监，周一至周五可联系。</span><span data-lang="ms">Eskalasi isu yang tidak diselesaikan oleh pengendali. Tersedia Isnin–Jumaat.</span></div><div style="font-size:12px;color:var(--text2);padding:7px 0;border-top:1px solid var(--border)">✉️ larry@leveragebusiness.my</div></div>
   </div>
   <div class="card">
-    <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la">Frequently asked questions</span><span data-lang="zh">常见问题</span><span data-lang="ms">Soalan Lazim</span></span></div>
+    <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la"><span data-lang="en" class="la">Frequently asked questions</span><span data-lang="zh">常见问题</span><span data-lang="ms">Soalan Lazim</span></span><span data-lang="zh">常见问题</span><span data-lang="ms">Soalan Lazim</span></span></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">Why is my JKDM application blocked?</span><span data-lang="zh">为什么我的JKDM申请被锁定？</span><span data-lang="ms">Mengapa permohonan JKDM saya disekat?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">JKDM (duty exemption) can only be filed after MIDA approval is received. This is a mandatory government sequence — the ministry requires the MIDA reference number before processing JPC 1 applications.</span><span data-lang="zh">JKDM关税豁免申请只能在获得MIDA批准后提交。这是政府强制规定的顺序——部门要求在处理JPC 1申请前提供MIDA参考编号。</span><span data-lang="ms">JKDM (pengecualian duti) hanya boleh difailkan selepas kelulusan MIDA diterima. Ini adalah urutan kerajaan yang wajib — kementerian memerlukan nombor rujukan MIDA sebelum memproses permohonan JPC 1.</span></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">How long does MIDA approval take?</span><span data-lang="zh">MIDA批准需要多长时间？</span><span data-lang="ms">Berapa lama kelulusan MIDA mengambil masa?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">MIDA ICA 10 Exemption typically takes 6–10 weeks from filing to approval. We will file as soon as your machinery list is received. I track this weekly and will update you on any movement.</span><span data-lang="zh">MIDA ICA 10豁免从提交到批准通常需要6至10周。一旦收到您的机械清单，我们将立即提交，并每周跟进进展。</span><span data-lang="ms">Pengecualian MIDA ICA 10 biasanya mengambil masa 6–10 minggu dari pemfailan hingga kelulusan. Kami akan memfailkan sebaik sahaja senarai jentera anda diterima.</span></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">Can I add more directors or shareholders after registration?</span><span data-lang="zh">注册后可以增加董事或股东吗？</span><span data-lang="ms">Bolehkah saya menambah pengarah atau pemegang saham selepas pendaftaran?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">Yes — changes to directors, shareholders, and share structure can be filed with SSM at any time. However, significant changes while MIDA is in processing may require supplementary submissions. Please inform your handler before making any changes.</span><span data-lang="zh">可以，董事、股东及股权结构的变更可随时向SSM提交。但在MIDA审批期间进行重大变更可能需要补充材料，请在变更前知会您的处理员。</span><span data-lang="ms">Ya — perubahan kepada pengarah, pemegang saham, dan struktur saham boleh difailkan dengan SSM pada bila-bila masa. Walau bagaimanapun, perubahan ketara semasa MIDA sedang diproses mungkin memerlukan pengiriman tambahan.</span></div></div>
@@ -1362,8 +1362,7 @@ function applyUser(u) {
   document.getElementById('msg-av-init').textContent = init;
   document.getElementById('sb-company').textContent = u.company || 'Your Company';
   document.getElementById('sb-client-id').textContent = u.clientId || '—';
-  const wbMap = {en:'Welcome back, ',zh:'欢迎回来，',ms:'Selamat kembali, '};
-  document.getElementById('ov-welcome').textContent = (wbMap[lang]||wbMap.en) + u.name.split(' ')[0];
+  document.getElementById('ov-welcome').textContent = t('welcomeBack') + u.name.split(' ')[0];
   document.getElementById('ov-sub').textContent = (u.clientId||'') + ' · Standard Package · Manufacturing · Penang FIZ';
 }
 
@@ -1371,6 +1370,9 @@ function applyUser(u) {
 // ── TRILINGUAL HELPERS ──
 const T = {
   en: {
+    /* Nav labels */
+    navOverview:'Overview', navApplications:'Applications', navDocuments:'Documents',
+    navMessages:'Messages', navCashflow:'Cashflow', navGuidance:'Guidance Centre', navSupport:'Support',
     /* Status badges */
     approved:'Approved', filed:'Filed', action:'Action needed', blocked:'Blocked',
     uploaded:'Uploaded', uploadNeeded:'Upload needed', reUpload:'Re-upload',
@@ -1379,16 +1381,15 @@ const T = {
     /* Action labels */
     urgent:'URGENT', upload:'Upload', download:'Download', uploadNow:'Upload Now',
     askHandler:'Message handler', viewDoc:'View',
-    /* Banners */
-    filedGov:'Filed — government processing',
-    blockedWait:'Blocked — waiting on:',
+    /* Status banners */
+    filedGov:'Filed — government processing', blockedWait:'Blocked — waiting on:',
     allDone:'All steps completed. Certificate/approval on file.',
     canPrepareDoc:'This application is blocked — but you can <strong>upload and prepare documents now</strong> while waiting for the upstream approval.',
     noDocs:'No documents required for this application.',
-    actionBanner:'Your action needed — ',
+    actionNeeded:'⚡ Your action needed',
     /* Tab labels */
     protocol:'Protocol', documents:'Documents', agencyInfo:'Agency info',
-    /* Section labels in Agency Info */
+    /* Agency info section labels */
     procTime:'Processing time', govFee:'Government fee',
     renewObl:'Renewal obligation', whoApply:'Who must apply',
     physPresence:'Physical presence', ref:'Reference:',
@@ -1397,35 +1398,34 @@ const T = {
     legalBasis:'Legal basis:', govPortalLabel:'Government portal',
     /* Who handles badges */
     whoLev:'Leverage', whoClient:'Client', whoGov:'Government',
-    /* Timeline */
-    tlDone:'Done', tlActive:'In progress', tlLocked:'Pending',
     /* Summary bar */
     approved_n:'approved', filed_n:'filed', action_n:'action needed', blocked_n:'blocked',
-    /* Doc preparation */
-    prepNow:'Prepare now', prepInfo:'Documents you can prepare while this application is locked:',
-    /* Overview */
-    actionNeeded:'⚡ Action needed',
-    /* Messages */
-    autoReply:"Thanks for your message. I'll review and respond within 1 business day.",
-    /* Docs view */
+    /* Doc prepare info */
+    prepInfo:'Documents you can prepare while this application is locked:',
+    /* Overview welcome */
+    welcomeBack:'Welcome back, ',
+    /* Documents view */
     needsAction:'Needs your action', yourUploads:'Your uploads', fromLevBiz:'From Leverage Business',
     downloadAll:'Download all',
+    /* Messages */
+    autoReply:"Thanks for your message. I'll review and respond within 1 business day.",
     /* App subtitle */
     appSubtitle:'11 government authorities · Click any to expand full SOP, document checklist & post-approval obligations',
   },
   zh: {
+    navOverview:'概览', navApplications:'申请进度', navDocuments:'文件',
+    navMessages:'消息', navCashflow:'资金状况', navGuidance:'指导中心', navSupport:'支持',
     approved:'已批准', filed:'已提交', action:'需要行动', blocked:'已锁定',
     uploaded:'已上传', uploadNeeded:'需要上传', reUpload:'需重新上传',
     fromLev:'Leverage提供', pendingUp:'等待上游批准', flagged:'已标记',
     pending:'待处理', accepted:'已接受', underReview:'审核中',
     urgent:'紧急', upload:'上传', download:'下载', uploadNow:'立即上传',
     askHandler:'联系处理员', viewDoc:'查看',
-    filedGov:'已提交——政府处理中',
-    blockedWait:'已锁定——等待：',
+    filedGov:'已提交——政府处理中', blockedWait:'已锁定——等待：',
     allDone:'所有步骤已完成，证书/批准已存档。',
     canPrepareDoc:'此申请已锁定——但您现在可以<strong>上传并准备文件</strong>，待上游批准后即可使用。',
     noDocs:'此申请不需要文件。',
-    actionBanner:'需要您的行动 — ',
+    actionNeeded:'⚡ 需要您的行动',
     protocol:'申请流程', documents:'所需文件', agencyInfo:'部门信息',
     procTime:'处理时间', govFee:'政府费用',
     renewObl:'续期义务', whoApply:'谁须申请',
@@ -1434,28 +1434,28 @@ const T = {
     rejReasons:'常见被拒原因', howToAvoid:'如何避免：',
     legalBasis:'法律依据：', govPortalLabel:'政府门户',
     whoLev:'Leverage负责', whoClient:'客户负责', whoGov:'政府部门',
-    tlDone:'已完成', tlActive:'进行中', tlLocked:'待处理',
     approved_n:'已批准', filed_n:'已提交', action_n:'需行动', blocked_n:'已锁定',
-    prepNow:'立即准备', prepInfo:'此申请已锁定，但您可以提前准备以下文件：',
-    actionNeeded:'⚡ 需要行动',
-    autoReply:'感谢您的留言，我将在1个工作日内回复。',
+    prepInfo:'此申请已锁定，但您可以提前准备以下文件：',
+    welcomeBack:'欢迎回来，',
     needsAction:'需要您操作', yourUploads:'您的上传', fromLevBiz:'Leverage Business提供',
     downloadAll:'全部下载',
+    autoReply:'感谢您的留言，我将在1个工作日内回复。',
     appSubtitle:'11个政府部门 · 点击任意申请查看完整SOP、文件清单及批准后义务',
   },
   ms: {
+    navOverview:'Gambaran', navApplications:'Permohonan', navDocuments:'Dokumen',
+    navMessages:'Mesej', navCashflow:'Aliran tunai', navGuidance:'Pusat Panduan', navSupport:'Sokongan',
     approved:'Diluluskan', filed:'Difailkan', action:'Tindakan diperlukan', blocked:'Disekat',
     uploaded:'Dimuat naik', uploadNeeded:'Muat naik diperlukan', reUpload:'Muat naik semula',
     fromLev:'Daripada Leverage', pendingUp:'Menunggu hulu', flagged:'Ditandakan',
     pending:'Tertunda', accepted:'Diterima', underReview:'Sedang disemak',
     urgent:'SEGERA', upload:'Muat naik', download:'Muat turun', uploadNow:'Muat Naik Sekarang',
     askHandler:'Mesej pengendali', viewDoc:'Lihat',
-    filedGov:'Difailkan — pemprosesan kerajaan',
-    blockedWait:'Disekat — menunggu:',
+    filedGov:'Difailkan — pemprosesan kerajaan', blockedWait:'Disekat — menunggu:',
     allDone:'Semua langkah selesai. Sijil/kelulusan dalam rekod.',
     canPrepareDoc:'Permohonan ini disekat — tetapi anda boleh <strong>muat naik dan sediakan dokumen sekarang</strong> semasa menunggu kelulusan hulu.',
     noDocs:'Tiada dokumen diperlukan untuk permohonan ini.',
-    actionBanner:'Tindakan anda diperlukan — ',
+    actionNeeded:'⚡ Tindakan anda diperlukan',
     protocol:'Protokol', documents:'Dokumen', agencyInfo:'Maklumat agensi',
     procTime:'Masa pemprosesan', govFee:'Yuran kerajaan',
     renewObl:'Obligasi pembaharuan', whoApply:'Siapa perlu memohon',
@@ -1464,16 +1464,16 @@ const T = {
     rejReasons:'Sebab penolakan biasa', howToAvoid:'Cara mengelak:',
     legalBasis:'Asas undang-undang:', govPortalLabel:'Portal kerajaan',
     whoLev:'Leverage', whoClient:'Klien', whoGov:'Kerajaan',
-    tlDone:'Selesai', tlActive:'Sedang berjalan', tlLocked:'Tertunda',
     approved_n:'diluluskan', filed_n:'difailkan', action_n:'tindakan diperlukan', blocked_n:'disekat',
-    prepNow:'Sedia sekarang', prepInfo:'Anda boleh sediakan dokumen ini semasa permohonan disekat:',
-    actionNeeded:'⚡ Tindakan diperlukan',
-    autoReply:"Terima kasih atas mesej anda. Saya akan meninjau dan membalas dalam 1 hari bekerja.",
+    prepInfo:'Anda boleh sediakan dokumen ini semasa permohonan disekat:',
+    welcomeBack:'Selamat kembali, ',
     needsAction:'Perlukan tindakan anda', yourUploads:'Muat naik anda', fromLevBiz:'Daripada Leverage Business',
     downloadAll:'Muat turun semua',
+    autoReply:'Terima kasih atas mesej anda. Saya akan meninjau dan membalas dalam 1 hari bekerja.',
     appSubtitle:'11 pihak berkuasa kerajaan · Klik mana-mana untuk kembangkan SOP penuh, senarai semak dokumen & obligasi pasca kelulusan',
   }
 };
+function t(key) { return (T[lang]||T.en)[key] || T.en[key] || key; }
 function t(key) { return (T[lang]||T.en)[key] || T.en[key] || key; }
 function t(key) { return (T[lang]||T.en)[key] || T.en[key] || key; }
 
@@ -1789,7 +1789,7 @@ function switchView(el) {
   el.classList.add('active');
   document.getElementById('view-'+view).classList.add('active');
   const titles = {overview:'Overview',applications:'Applications',documents:'Documents',messages:'Messages',cashflow:'Cashflow',guidance:'Guidance Centre',support:'Support'};
-  document.getElementById('tb-title').innerHTML = `<span>${titles[view]||view}</span>`;
+  document.getElementById('tb-title').innerHTML = `<span>${t('nav'+view.charAt(0).toUpperCase()+view.slice(1))||view}</span>`;
   if(view==='messages') { document.getElementById('msg-badge').style.display='none'; }
   if(view==='documents') { document.getElementById('doc-badge').style.display='none'; }
   if(view==='guidance') { renderGuidance(); }
