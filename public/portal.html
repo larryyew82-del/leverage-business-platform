@@ -1150,8 +1150,19 @@ const DOCS = [
   {name:'Bomba_Certificate_2026.pdf',meta:'Fire Certificate · Valid until 14 Mar 2027',status:'lev',type:'leverage'},
 ];
 
-const STATUS_MAP = {approved:{badge:'Approved',cls:'bg-g',dot:'var(--g)'},filed:{badge:'Filed',cls:'bg-b',dot:'var(--b)'},action:{badge:'Action needed',cls:'bg-a',dot:'var(--a)'},blocked:{badge:'Blocked',cls:'bg-s',dot:'#C8C8CC'}};
-const DOC_STATUS = {action:{badge:'Upload needed',cls:'bg-a'},flagged:{badge:'Flagged',cls:'bg-r'},accepted:{badge:'Accepted',cls:'bg-g'},pending:{badge:'Under review',cls:'bg-b'},lev:{badge:'From Leverage',cls:'bg-b'}};
+const STATUS_MAP = {
+  approved:{get badge(){return t('approved')},cls:'bg-g',dot:'var(--g)'},
+  filed:{get badge(){return t('filed')},cls:'bg-b',dot:'var(--b)'},
+  action:{get badge(){return t('action')},cls:'bg-a',dot:'var(--a)'},
+  blocked:{get badge(){return t('blocked')},cls:'bg-s',dot:'#C8C8CC'}
+};
+const DOC_STATUS = {
+  action:{get badge(){return t('uploadNeeded')},cls:'bg-a'},
+  flagged:{get badge(){return t('flagged')},cls:'bg-r'},
+  accepted:{get badge(){return t('uploaded')},cls:'bg-g'},
+  pending:{get badge(){return t('underReview')},cls:'bg-b'},
+  lev:{get badge(){return t('fromLev')},cls:'bg-b'}
+};
 
 async function init() {
   try {
