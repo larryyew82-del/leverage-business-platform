@@ -281,7 +281,7 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
 .app-prog-fill{height:100%;border-radius:2px;transition:width .3s}
 
 /* Body */
-.app-body{display:none;border-top:1px solid var(--border)}
+.app-body{display:none;border-top:1px solid var(--border)}.app-body.open{display:block;animation:slideDown .2s ease}
 .app-body.open{display:block}
 
 /* Status banner at top of body */
@@ -528,7 +528,53 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
 .empty-state-icon { font-size:32px;margin-bottom:8px;opacity:.4 }
 .empty-state-title { font-size:14px;font-weight:600;color:var(--text2);margin-bottom:4px }
 .empty-state-desc { font-size:12px;line-height:1.5 }
-</style>
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -228px;
+    top: 0;
+    height: 100vh;
+    z-index: 200;
+    transition: left .25s ease;
+    box-shadow: none;
+  }
+  .sidebar.mobile-open {
+    left: 0;
+    box-shadow: 4px 0 24px rgba(0,0,0,.35);
+  }
+  .main { margin-left: 0 !important; }
+  .topbar { padding: 0 14px; }
+  .tb-hamburger {
+    display: flex !important;
+    width: 36px; height: 36px;
+    align-items: center; justify-content: center;
+    background: transparent; border: none;
+    cursor: pointer; border-radius: 6px;
+    color: var(--text);
+  }
+  .mobile-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.4);
+    z-index: 199;
+  }
+  .mobile-overlay.visible { display: block; }
+  .content { padding: 14px 14px 60px; }
+  .cf-grid { grid-template-columns: 1fr 1fr !important; }
+  .support-grid { grid-template-columns: 1fr !important; }
+  .ind-selector-g { grid-template-columns: repeat(2, 1fr) !important; }
+  .info-grid { grid-template-columns: 1fr !important; }
+  .app-summary-bar { gap: 6px; }
+  .app-sum-pill { font-size: 10px; padding: 4px 8px; }
+  .page-hdr { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .page-hdr button { align-self: flex-start; }
+  .msg-thread { height: calc(100vh - 240px) !important; }
+}
+.tb-hamburger { display: none; }
+.mobile-overlay { display: none; }
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}</style>
 </head>
 <body>
 
@@ -607,6 +653,12 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
 <!-- MAIN -->
 <div class="main">
   <div class="topbar">
+    <button class="tb-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+    <div class="mobile-overlay" id="mobile-overlay" onclick="toggleMobileMenu()"></div>
     <div class="tb-left">
       <div class="tb-title" id="tb-title"><span data-lang="en" class="la">Overview</span><span data-lang="zh">概览</span><span data-lang="ms">Gambaran</span></div>
       <div class="live-badge"><div class="live-dot"></div><span data-lang="en" class="la">Live</span><span data-lang="zh">实时</span><span data-lang="ms">Langsung</span></div>
@@ -631,7 +683,8 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
   <div class="page-hdr">
     <div>
       <h1 class="page-title" id="ov-welcome">Welcome back</h1>
-      <p class="page-sub" id="ov-sub">Loading your engagement...</p>
+      <p class="page-sub" id="ov-sub"><span data-lang="en" class="la">Loading your engagement...</span><span data-lang="zh">加载您的项目...</span><span data-lang="ms">Memuatkan penglibatan anda...</span></p>
+      <p style="font-size:11px;color:var(--text3);margin-top:3px"><span data-lang="en" class="la">Last login: </span><span data-lang="zh">上次登录：</span><span data-lang="ms">Log masuk terakhir: </span><span id="ov-lastlogin" style="font-family:var(--fm)">—</span></p>
     </div>
     <button class="btn btn-sm" onclick="exportStatus()">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
@@ -698,6 +751,10 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
         <div class="h-av">ST</div>
         <div class="h-name">Sarah Tan</div>
         <div class="h-role"><span data-lang="en" class="la">Manufacturing &amp; EID Specialist</span><span data-lang="zh">制造业及EID专家</span><span data-lang="ms">Pakar Pembuatan &amp; EID</span></div>
+        <button onclick="switchView(document.querySelector('[data-view=\'messages\']'))" style="margin-top:8px;padding:6px 12px;background:var(--navy);color:var(--gold);border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--fb);display:flex;align-items:center;gap:5px;transition:.15s" onmouseover="this.style.background='#0d213a'" onmouseout="this.style.background='var(--navy)'">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+          <span data-lang="en" class="la">Message handler</span><span data-lang="zh">联系处理员</span><span data-lang="ms">Mesej pengendali</span>
+        </button>
         <div class="h-contact" onclick="switchView(document.querySelector('[data-view=messages]'))">
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
           <span data-lang="en" class="la">Message in portal</span><span data-lang="zh">平台内消息</span><span data-lang="ms">Mesej dalam portal</span>
@@ -831,6 +888,10 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
       </div>
       <div class="msg-foot">
         <textarea class="msg-inp" id="msg-inp" placeholder="Type a message..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg()}"></textarea>
+        <button class="msg-attach" onclick="document.getElementById('msg-file-input').click()" title="Attach file" style="width:36px;height:36px;border:none;background:transparent;cursor:pointer;color:var(--text3);display:flex;align-items:center;justify-content:center;border-radius:6px;flex-shrink:0;transition:all .15s" onmouseover="this.style.background='var(--off)';this.style.color='var(--navy)'" onmouseout="this.style.background='transparent';this.style.color='var(--text3)'">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
+        </button>
+        <input type="file" id="msg-file-input" style="display:none" multiple accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls,.doc,.docx" onchange="handleMsgFileAttach(this)">
         <button class="msg-send" onclick="sendMsg()">
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
         </button>
@@ -1009,6 +1070,10 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">Why is my JKDM application blocked?</span><span data-lang="zh">为什么我的JKDM申请被锁定？</span><span data-lang="ms">Mengapa permohonan JKDM saya disekat?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">JKDM (duty exemption) can only be filed after MIDA approval is received. This is a mandatory government sequence — the ministry requires the MIDA reference number before processing JPC 1 applications.</span><span data-lang="zh">JKDM关税豁免申请只能在获得MIDA批准后提交。这是政府强制规定的顺序——部门要求在处理JPC 1申请前提供MIDA参考编号。</span><span data-lang="ms">JKDM (pengecualian duti) hanya boleh difailkan selepas kelulusan MIDA diterima. Ini adalah urutan kerajaan yang wajib — kementerian memerlukan nombor rujukan MIDA sebelum memproses permohonan JPC 1.</span></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">How long does MIDA approval take?</span><span data-lang="zh">MIDA批准需要多长时间？</span><span data-lang="ms">Berapa lama kelulusan MIDA mengambil masa?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">MIDA ICA 10 Exemption typically takes 6–10 weeks from filing to approval. We will file as soon as your machinery list is received. I track this weekly and will update you on any movement.</span><span data-lang="zh">MIDA ICA 10豁免从提交到批准通常需要6至10周。一旦收到您的机械清单，我们将立即提交，并每周跟进进展。</span><span data-lang="ms">Pengecualian MIDA ICA 10 biasanya mengambil masa 6–10 minggu dari pemfailan hingga kelulusan. Kami akan memfailkan sebaik sahaja senarai jentera anda diterima.</span></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">Can I add more directors or shareholders after registration?</span><span data-lang="zh">注册后可以增加董事或股东吗？</span><span data-lang="ms">Bolehkah saya menambah pengarah atau pemegang saham selepas pendaftaran?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">Yes — changes to directors, shareholders, and share structure can be filed with SSM at any time. However, significant changes while MIDA is in processing may require supplementary submissions. Please inform your handler before making any changes.</span><span data-lang="zh">可以，董事、股东及股权结构的变更可随时向SSM提交。但在MIDA审批期间进行重大变更可能需要补充材料，请在变更前知会您的处理员。</span><span data-lang="ms">Ya — perubahan kepada pengarah, pemegang saham, dan struktur saham boleh difailkan dengan SSM pada bila-bila masa. Walau bagaimanapun, perubahan ketara semasa MIDA sedang diproses mungkin memerlukan pengiriman tambahan.</span></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">What documents should I upload first?</span><span data-lang="zh">我应该先上传哪些文件？</span><span data-lang="ms">Dokumen mana yang perlu saya muat naik dahulu?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">Start with the <strong>Machinery List with HS Codes</strong> — this is blocking your MIDA application right now. Then upload the <strong>3-year Business Plan</strong> and <strong>Factory Floor Plan</strong>. Your handler also flagged the Audited Accounts 2024 for re-upload (auditor signature page was missing).</span><span data-lang="zh">首先上传<strong>含HS编码的机械清单</strong>——这正是目前阻碍MIDA申请的关键文件。之后请上传<strong>3年商业计划</strong>和<strong>工厂平面图</strong>。处理员还标记了2024年审计账目需要重新上传（缺少审计师签名页）。</span><span data-lang="ms">Mulakan dengan <strong>Senarai Jentera dengan Kod HS</strong> — ini yang menghalang permohonan MIDA anda sekarang. Kemudian muat naik <strong>Pelan Perniagaan 3 tahun</strong> dan <strong>Pelan Lantai Kilang</strong>.</span></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">When will my Employment Pass be ready?</span><span data-lang="zh">就业准证什么时候能办好？</span><span data-lang="ms">Bilakah Pas Pekerjaan saya akan siap?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">Employment Pass cannot be filed until <strong>MIDA ICA 10 is approved</strong>. Once MIDA approves (6–10 weeks), your handler files ESD immediately. ESD processes in 4–8 weeks. Your staff can only begin work in Malaysia after passes are issued — plan travel accordingly.</span><span data-lang="zh">就业准证必须在<strong>MIDA ICA 10获批</strong>后方可提交。MIDA批准后（通常6–10周），处理员立即提交ESD，ESD处理约4–8周。您的员工只能在准证颁发后才能入境工作，请提前规划行程。</span><span data-lang="ms">Pas Pekerjaan tidak boleh difailkan sehingga <strong>MIDA ICA 10 diluluskan</strong>. Setelah diluluskan, pengendali memfailkan ESD dengan segera — ESD memproses dalam 4–8 minggu.</span></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">How do I switch the portal language?</span><span data-lang="zh">如何切换门户语言？</span><span data-lang="ms">Bagaimana menukar bahasa portal?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">Click the <strong>EN · 中文 · BM</strong> buttons in the top-right corner of the portal. Your preference is saved automatically and remembered every time you log in.</span><span data-lang="zh">点击右上角<strong>EN · 中文 · BM</strong>按钮即可切换，偏好设置自动保存，下次登录仍然有效。</span><span data-lang="ms">Klik butang <strong>EN · 中文 · BM</strong> di sudut kanan atas. Pilihan anda disimpan secara automatik.</span></div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">Is my data safe on this portal?</span><span data-lang="zh">我在此门户上的数据安全吗？</span><span data-lang="ms">Adakah data saya selamat di portal ini?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">Yes. All data is AES-256 encrypted, hosted on AWS Southeast Asia, and PDPA-compliant. Only your assigned handler and the Leverage director can access your files. A full 7-year audit trail is maintained — your documents are never shared with any third party without your written consent.</span><span data-lang="zh">是的。所有数据均采用AES-256加密，托管于AWS东南亚服务器，符合PDPA。只有您的处理员和总监可访问文件，系统维护7年完整审计追踪，未经书面同意绝不与第三方共享。</span><span data-lang="ms">Ya. Semua data disulitkan AES-256, dihoskan di AWS Asia Tenggara, dan mematuhi PDPA. Hanya pengendali dan pengarah boleh mengakses fail anda. Jejak audit 7 tahun dikekalkan.</span></div></div>
   </div>
   <div style="background:var(--navy);border-radius:10px;padding:14px 16px;font-size:12px;color:rgba(255,255,255,.55);line-height:1.7;margin-top:4px">
     <strong style="color:var(--gold);font-size:13px;display:block;margin-bottom:4px"><span data-lang="en" class="la">Your data is protected</span><span data-lang="zh">您的数据受到保护</span><span data-lang="ms">Data anda dilindungi</span></strong>
@@ -1666,6 +1731,14 @@ function applyUser(u) {
   document.getElementById('sb-company').textContent = u.company || 'Your Company';
   document.getElementById('sb-client-id').textContent = u.clientId || '—';
   document.getElementById('ov-welcome').textContent = t('welcomeBack') + u.name.split(' ')[0];
+  // Last login
+  const lastEl = document.getElementById('ov-lastlogin');
+  if (lastEl) {
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('en-MY', {hour:'2-digit',minute:'2-digit'});
+    const dateStr = now.toLocaleDateString('en-MY', {day:'numeric',month:'short',year:'numeric'});
+    lastEl.textContent = dateStr + ' · ' + timeStr;
+  }
   document.getElementById('ov-sub').textContent = (u.clientId||'') + ' · Standard Package · Manufacturing · Penang FIZ';
 }
 
@@ -2031,68 +2104,8 @@ function renderTasks() {
           ${infoHtml}
         </div>
       </div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q"><span data-lang="en" class="la">What documents should I upload first?</span><span data-lang="zh">我应该先上传哪些文件？</span><span data-lang="ms">Dokumen mana yang perlu saya muat naik dahulu?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
-      <div class="faq-a"><span data-lang="en" class="la">Start with the <strong>Machinery List with HS Codes</strong> — this is blocking your MIDA application right now. After that, upload the <strong>3-year Business Plan</strong> and the <strong>Factory Floor Plan</strong>. Your handler has also flagged the Audited Accounts 2024 for re-upload (auditor signature page was missing).</span><span data-lang="zh">首先上传<strong>含HS编码的机械清单</strong>——这正是目前阻碍MIDA申请的关键。之后请上传<strong>3年商业计划</strong>和<strong>工厂平面图</strong>。处理员还标记了2024年审计账目需要重新上传（缺少审计师签名页）。</span><span data-lang="ms">Mulakan dengan <strong>Senarai Jentera dengan Kod HS</strong> — ini yang menghalang permohonan MIDA anda sekarang. Selepas itu, muat naik <strong>Pelan Perniagaan 3 tahun</strong> dan <strong>Pelan Lantai Kilang</strong>.</span></div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q"><span data-lang="en" class="la">When will my Employment Pass be ready?</span><span data-lang="zh">就业准证什么时候能办好？</span><span data-lang="ms">Bilakah Pas Pekerjaan saya akan siap?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
-      <div class="faq-a"><span data-lang="en" class="la">Employment Pass cannot be filed until <strong>MIDA ICA 10 is approved</strong>. Once MIDA approves (typically 6–10 weeks), your handler files ESD immediately. ESD processes in 4–8 weeks. Your staff can only begin work in Malaysia after passes are issued — plan accordingly.</span><span data-lang="zh">就业准证必须在<strong>MIDA ICA 10获批</strong>后方可提交。MIDA批准后（通常6–10周），处理员将立即提交ESD申请，ESD处理周期为4–8周。您的员工只能在准证颁发后才能在马来西亚开始工作——请提前规划。</span><span data-lang="ms">Pas Pekerjaan tidak boleh difailkan sehingga <strong>MIDA ICA 10 diluluskan</strong>. Setelah MIDA meluluskan, pengendali akan memfailkan ESD dengan segera. ESD memproses dalam 4–8 minggu.</span></div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q"><span data-lang="en" class="la">How do I switch the portal language?</span><span data-lang="zh">如何切换门户语言？</span><span data-lang="ms">Bagaimana menukar bahasa portal?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
-      <div class="faq-a"><span data-lang="en" class="la">Click the <strong>EN · 中文 · BM</strong> buttons in the top-right corner. Your preference is saved automatically — it will be remembered every time you log in.</span><span data-lang="zh">点击右上角的<strong>EN · 中文 · BM</strong>按钮。您的偏好设置将自动保存，每次登录时均有效。</span><span data-lang="ms">Klik butang <strong>EN · 中文 · BM</strong> di sudut kanan atas. Pilihan anda disimpan secara automatik.</span></div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q"><span data-lang="en" class="la">Is my data safe and private?</span><span data-lang="zh">我的数据安全且私密吗？</span><span data-lang="ms">Adakah data saya selamat dan peribadi?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
-      <div class="faq-a"><span data-lang="en" class="la">Yes. All data is AES-256 encrypted, hosted on AWS Southeast Asia, and PDPA-compliant. Only your handler and the Leverage director can access your files. A 7-year audit trail is maintained. Your documents are never shared with any third party without your written consent.</span><span data-lang="zh">是的。所有数据均采用AES-256加密，托管于AWS东南亚服务器，符合个人数据保护法（PDPA）。只有您的处理员和Leverage总监可访问您的文件。系统维护7年审计追踪，未经书面同意绝不与第三方共享。</span><span data-lang="ms">Ya. Semua data disulitkan AES-256, dihoskan di AWS Asia Tenggara, dan mematuhi PDPA. Hanya pengendali dan pengarah Leverage boleh mengakses fail anda. Jejak audit 7 tahun dikekalkan.</span></div>
     </div>`;
   }).join('');
-}
-
-function toggleTask(i) {
-  const body = document.getElementById('task-body-' + i);
-  const chevron = document.getElementById('chevron-' + i);
-  if (!body || !chevron) return;
-  const isOpen = body.classList.contains('open');
-  body.classList.toggle('open', !isOpen);
-  chevron.classList.toggle('open', !isOpen);
-  // Auto-scroll into view if opening
-  if (!isOpen) {
-    setTimeout(() => document.getElementById('task-card-'+i)?.scrollIntoView({behavior:'smooth',block:'nearest'}), 50);
-  }
-}
-
-function switchTaskTab(taskIdx, tab, btn) {
-  ['protocol','docs','info'].forEach(t2 => {
-    const el = document.getElementById('task-' + t2 + '-' + taskIdx);
-    if(el) el.classList.toggle('active', t2===tab);
-  });
-  const tabBar = btn?.closest?.('.app-tabs');
-  if(tabBar) tabBar.querySelectorAll('.app-tab').forEach(b => b.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-}
-
-
-
-function filterDocs(searchTerm) {
-  const term = (searchTerm || '').toLowerCase();
-  const filter = document.getElementById('doc-filter')?.value || 'all';
-  let visible = 0;
-  document.querySelectorAll('.doc-row, [data-type]').forEach(row => {
-    const name = (row.dataset.name || row.querySelector('.doc-name, .tdr-name, .doc-item-name')?.textContent || '').toLowerCase();
-    const type = row.dataset.type || '';
-    const matchSearch = !term || name.includes(term);
-    const matchFilter = filter === 'all' || type === filter || 
-      (filter === 'required' && (type === 'required' || type === 'action' || type === 'flagged'));
-    const show = matchSearch && matchFilter;
-    row.style.display = show ? '' : 'none';
-    if (show) visible++;
-  });
-  // Show empty state if nothing visible
-  const emptyEl = document.getElementById('docs-empty-state');
-  if (emptyEl) emptyEl.style.display = visible === 0 ? 'block' : 'none';
 }
 
 function renderDocs() {
@@ -2103,23 +2116,45 @@ function renderDocs() {
   const docRow = d => {
     const s = DOC_STATUS[d.status];
     const isLev = d.type==='leverage';
-    return `<div class="doc-row">
-      <div class="doc-icon ${isLev?'lev':''}"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div>
-      <div class="doc-info"><div class="doc-name">${d.name}</div><div class="doc-meta">${d.meta}</div></div>
+    const docName = ld(d,'name') || d.name;
+    const docMeta = ld(d,'meta') || d.meta;
+    return `<div class="doc-row" data-type="${d.type}" data-name="${docName.toLowerCase()}">
+      <label style="display:flex;align-items:center;gap:3px;cursor:pointer;flex-shrink:0">
+        <input type="checkbox" class="doc-check" style="width:14px;height:14px;accent-color:var(--navy);cursor:pointer" onchange="updateBulkBar()">
+      </label>
+      <div class="doc-icon ${isLev?'lev':''}">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+      </div>
+      <div class="doc-info">
+        <div class="doc-name">${docName}</div>
+        <div class="doc-meta">${docMeta}</div>
+      </div>
       <div class="doc-actions">
         <span class="a-status ${s.cls}">${s.badge}</span>
         ${d.type==='required'||d.type==='flagged' ? `<button class="btn btn-gold btn-sm" onclick="triggerUpload()">${t('upload')}</button>` : ''}
-        ${d.type==='leverage' ? `<button class="btn btn-sm">${t('download')}</button>` : ''}
+        ${d.type==='leverage' ? `<button class="btn btn-sm" onclick="showToast('Downloading \${docName}...','info')">${t('download')}</button>` : ''}
       </div>
     </div>`;
   };
 
-  document.getElementById('docs-list').innerHTML = `
+  const container = document.getElementById('docs-list');
+  container.innerHTML = `
     ${required.length ? `<div class="section-divider">${t('needsAction')} (${required.length})</div>${required.map(docRow).join('')}` : ''}
     ${yours.length ? `<div class="section-divider">${t('yourUploads')} (${yours.length})</div>${yours.map(docRow).join('')}` : ''}
     ${lev.length ? `<div class="section-divider">${t('fromLevBiz')} (${lev.length})</div>${lev.map(docRow).join('')}` : ''}
   `;
+
+  // Bulk action bar
+  if (!document.getElementById('doc-bulk-bar')) {
+    const bar = document.createElement('div');
+    bar.id = 'doc-bulk-bar';
+    bar.style.cssText = 'display:none;align-items:center;gap:10px;padding:10px 14px;background:var(--navy);border-radius:8px;margin-bottom:10px;font-size:12px;color:#fff';
+    bar.innerHTML = `<span id="doc-bulk-count">0 selected</span><div style="flex:1"></div><button onclick="bulkDownload()" style="padding:5px 12px;background:var(--gold);color:var(--navy);border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">Download</button><button onclick="clearSelection()" style="padding:5px 12px;background:rgba(255,255,255,.1);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer">Clear</button>`;
+    container.parentNode.insertBefore(bar, container);
+  }
+  updateBulkBar();
 }
+
 
 function switchView(el) {
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
@@ -2149,6 +2184,27 @@ function setLang(l, save=true) {
     if (activeView === 'view-documents' && document.getElementById('docs-list')?.innerHTML) renderDocs();
     if (activeView === 'view-guidance' && document.getElementById('g-sop-list')?.innerHTML) renderGuidance();
   });
+}
+
+function handleMsgFileAttach(input) {
+  const files = Array.from(input.files);
+  if (!files.length) return;
+  const body = document.getElementById('msg-body');
+  files.forEach(file => {
+    const size = file.size > 1024*1024 ? (file.size/1024/1024).toFixed(1)+'MB' : (file.size/1024).toFixed(0)+'KB';
+    const ext = file.name.split('.').pop().toUpperCase();
+    body.innerHTML += `<div class="msg out" style="margin-bottom:8px">
+      <div class="m-c">
+        <div class="m-bub" style="display:flex;align-items:center;gap:8px;padding:9px 12px">
+          <div style="width:32px;height:32px;background:var(--off);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;font-weight:700;color:var(--navy)">${ext}</div>
+          <div><div style="font-size:12px;font-weight:500">${file.name}</div><div style="font-size:10px;color:var(--text3)">${size}</div></div>
+        </div>
+      </div>
+    </div>`;
+  });
+  body.scrollTop = body.scrollHeight;
+  input.value = '';
+  showToast('File attached — send your message to submit', 'info');
 }
 
 function sendMsg() {
@@ -2657,6 +2713,11 @@ function bulkDownload() {
 function clearSelection() {
   document.querySelectorAll('.doc-check:checked').forEach(c => c.checked = false);
   updateBulkBar();
+}
+
+function toggleMobileMenu() {
+  document.querySelector('.sidebar').classList.toggle('mobile-open');
+  document.getElementById('mobile-overlay').classList.toggle('visible');
 }
 </script>
 </body>
