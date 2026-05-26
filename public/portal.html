@@ -1816,7 +1816,13 @@ function renderGuidance() {
 
   // Docs
   const docEl = document.getElementById('g-doc-list');
-  const docStatusMap = {done:{get badge(){return t('uploaded')},cls:'di-g-done',svg:'<path stroke-linecap="round" d="M5 13l4 4L19 7"/>',badge:'Uploaded',bc:'bg-g'},need:{get badge(){return t('uploadNeeded')},cls:'di-g-need',svg:'<path stroke-linecap="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>',badge:'Upload needed',bc:'bg-a'},flagged:{get badge(){return t('uploadNeeded')},cls:'di-g-need',svg:'<path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>',badge:'Flagged',bc:'bg-a'},lev:{cls:'di-g-lev',svg:'<path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',badge:'From Leverage',bc:'bg-b'},waiting:{cls:'di-g-wait',svg:'<path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>',badge:'Pending',bc:'bg-s'}};
+  const docStatusMap = {
+    done:{get badge(){return t('uploaded')},cls:'di-g-done',svg:'<path stroke-linecap="round" d="M5 13l4 4L19 7"/>',bc:'bg-g'},
+    need:{get badge(){return t('uploadNeeded')},cls:'di-g-need',svg:'<path stroke-linecap="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>',bc:'bg-a'},
+    flagged:{get badge(){return t('flagged')},cls:'di-g-need',svg:'<path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>',bc:'bg-a'},
+    lev:{get badge(){return t('fromLev')},cls:'di-g-lev',svg:'<path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',bc:'bg-b'},
+    waiting:{get badge(){return t('pendingUp')},cls:'di-g-wait',svg:'<path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>',bc:'bg-s'}
+  };
   if (docEl) docEl.innerHTML = d.docs.map(doc => {
     const ic = docStatusMap[doc.status] || docStatusMap.waiting;
     const iconColor = doc.status==='done'?'var(--g)':doc.status==='lev'?'var(--gold)':doc.status==='waiting'?'var(--text3)':'var(--a)';
