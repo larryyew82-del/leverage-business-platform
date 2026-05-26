@@ -382,6 +382,152 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
 .app-summary-bar{display:flex;gap:8px;padding:0 0 14px;flex-wrap:wrap}
 .app-sum-pill{display:flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid var(--border);background:var(--white)}
 
+
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE LAYOUT — Mobile First
+═══════════════════════════════════════════ */
+@media (max-width:768px) {
+  .shell { flex-direction: column }
+  .sidebar { width:100%;height:auto;flex-direction:row;flex-wrap:wrap;padding:8px 12px;gap:4px }
+  .sb-logo { display:flex;align-items:center;gap:8px;flex:1 }
+  .sb-client { display:none }
+  .sb-nav { display:flex;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;gap:2px;width:100%;padding:4px 0 0 }
+  .sb-nav::-webkit-scrollbar { display:none }
+  .nav-section { display:none }
+  .nav-item { flex-direction:column;gap:2px;padding:6px 10px;min-width:56px;border-radius:8px;flex-shrink:0;font-size:9px;text-align:center }
+  .nav-item svg { flex-shrink:0 }
+  .nav-badge { position:absolute;top:3px;right:3px;font-size:8px }
+  .nav-item { position:relative }
+  .sb-bottom { display:none }
+  .main { height:calc(100vh - 120px);min-height:0 }
+  .topbar { padding:0 12px }
+  .content { padding:10px 12px }
+  .page-hdr { flex-direction:column;gap:8px;align-items:flex-start }
+  .info-grid { grid-template-columns:1fr }
+  .info-cell-full { grid-column:1 }
+  .app-hdr { gap:6px }
+  .app-code { width:36px;font-size:10px }
+  .app-title { font-size:12px }
+  .app-meta { gap:5px }
+  .app-time-badge { display:none }
+  .support-grid { grid-template-columns:1fr }
+  .cf-grid { grid-template-columns:1fr 1fr }
+  .proto-header { flex-wrap:wrap }
+  .proto-days { margin-left:0 }
+  .tl-label { font-size:8px }
+}
+@media (max-width:480px) {
+  .cf-grid { grid-template-columns:1fr }
+  .app-prog-wrap { display:none }
+  .app-tab { padding:7px 4px;font-size:10px }
+  .ind-selector-g { grid-template-columns:repeat(3,1fr) }
+}
+
+/* ═══════════════════════════════════════════
+   HAMBURGER TOGGLE — Mobile nav
+═══════════════════════════════════════════ */
+.mob-toggle { display:none;background:none;border:none;padding:6px;cursor:pointer;color:rgba(255,255,255,.7) }
+@media (max-width:768px) {
+  .mob-toggle { display:flex;align-items:center }
+  .sb-nav-wrap { display:none;width:100% }
+  .sb-nav-wrap.open { display:flex }
+  .sb-nav { width:100% }
+}
+
+/* ═══════════════════════════════════════════
+   OVERVIEW IMPROVEMENTS
+═══════════════════════════════════════════ */
+.ov-stats-row { display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px }
+.ov-stat-card { background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 14px }
+.ov-stat-val { font-size:22px;font-weight:700;font-family:var(--fd);color:var(--navy);line-height:1 }
+.ov-stat-lbl { font-size:10px;color:var(--text3);margin-top:3px }
+.ov-stat-sub { font-size:10px;color:var(--text2);margin-top:1px }
+@media (max-width:768px) { .ov-stats-row { grid-template-columns:repeat(2,1fr) } }
+
+/* Completion ring */
+.ov-ring-wrap { position:relative;width:64px;height:64px;flex-shrink:0 }
+.ov-ring-wrap svg { transform:rotate(-90deg) }
+.ov-ring-pct { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--navy) }
+
+/* Action banner */
+.action-banner { background:linear-gradient(135deg,rgba(198,93,0,.08),rgba(198,93,0,.04));border:1px solid rgba(198,93,0,.25);border-left:3px solid var(--a);border-radius:0 10px 10px 0;padding:12px 16px;display:flex;align-items:flex-start;gap:12px;margin-bottom:12px }
+.action-banner-icon { width:32px;height:32px;border-radius:7px;background:var(--a);display:flex;align-items:center;justify-content:center;flex-shrink:0 }
+.action-banner-body { flex:1 }
+.action-banner-title { font-size:13px;font-weight:600;color:var(--a);margin-bottom:3px }
+.action-banner-desc { font-size:12px;color:var(--text2);line-height:1.5 }
+.action-banner-btn { flex-shrink:0;font-size:11px;font-weight:600;padding:6px 12px;background:var(--a);color:#fff;border:none;border-radius:6px;cursor:pointer;font-family:var(--fb);white-space:nowrap;align-self:center }
+
+/* ═══════════════════════════════════════════
+   DOCUMENTS IMPROVEMENTS
+═══════════════════════════════════════════ */
+.doc-bulk-bar { display:none;align-items:center;gap:10px;padding:8px 12px;background:var(--bbg);border-radius:8px;margin-bottom:8px;font-size:12px;color:var(--b) }
+.doc-bulk-bar.visible { display:flex }
+.doc-check { width:16px;height:16px;cursor:pointer;accent-color:var(--navy);flex-shrink:0 }
+.doc-row-enhanced { display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);animation:fadeSlideIn .2s ease }
+.doc-row-enhanced:last-child { border-bottom:none }
+@keyframes fadeSlideIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+
+/* ═══════════════════════════════════════════
+   MESSAGES IMPROVEMENTS
+═══════════════════════════════════════════ */
+.msg-attach-bar { display:none;padding:8px 12px;background:var(--off);border-top:1px solid var(--border);gap:6px;flex-wrap:wrap }
+.msg-attach-bar.visible { display:flex }
+.msg-attach-chip { display:flex;align-items:center;gap:5px;padding:4px 10px;background:var(--white);border:1px solid var(--border);border-radius:20px;font-size:11px;color:var(--text2) }
+.msg-attach-chip button { background:none;border:none;cursor:pointer;color:var(--text3);padding:0;line-height:1;font-size:14px }
+.msg-toolbar { display:flex;align-items:center;gap:6px;padding:6px 14px;border-top:1px solid var(--border);background:var(--off) }
+.msg-tool-btn { width:30px;height:30px;display:flex;align-items:center;justify-content:center;border:none;background:none;border-radius:6px;cursor:pointer;color:var(--text3);transition:.15s }
+.msg-tool-btn:hover { background:var(--border);color:var(--navy) }
+.msg-typing { display:flex;align-items:center;gap:4px;padding:4px 0 }
+.msg-typing span { width:6px;height:6px;border-radius:50%;background:var(--text3);animation:typing .8s infinite }
+.msg-typing span:nth-child(2) { animation-delay:.15s }
+.msg-typing span:nth-child(3) { animation-delay:.3s }
+@keyframes typing { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
+
+/* ═══════════════════════════════════════════
+   SIDEBAR IMPROVEMENTS
+═══════════════════════════════════════════ */
+.nav-item { transition:background .15s, box-shadow .15s }
+.nav-item.active { box-shadow:inset 2px 0 0 var(--gold) }
+.sb-progress { margin:8px 12px;padding:10px 12px;background:rgba(255,255,255,.05);border-radius:8px }
+.sb-prog-label { font-size:10px;color:rgba(255,255,255,.4);margin-bottom:5px;display:flex;justify-content:space-between }
+.sb-prog-track { height:4px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden }
+.sb-prog-fill { height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));border-radius:3px;transition:width .5s ease }
+
+/* ═══════════════════════════════════════════
+   LOADING SKELETON
+═══════════════════════════════════════════ */
+.skeleton { background:linear-gradient(90deg,var(--border) 25%,var(--off2,#f0ede6) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite }
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+.skel-line { height:12px;border-radius:6px;margin-bottom:8px }
+.skel-card { height:80px;border-radius:10px;margin-bottom:10px }
+
+/* ═══════════════════════════════════════════
+   TOAST & NOTIFICATIONS UPGRADE
+═══════════════════════════════════════════ */
+#toast-container { position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px }
+.toast { display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:10px;font-size:13px;font-weight:500;color:#fff;min-width:220px;max-width:340px;box-shadow:0 4px 20px rgba(0,0,0,.15);animation:toastIn .25s ease }
+@keyframes toastIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+.toast-success { background:var(--g) }
+.toast-error { background:var(--r) }
+.toast-info { background:var(--b) }
+.toast-warning { background:var(--a) }
+.toast-dismiss { margin-left:auto;background:none;border:none;cursor:pointer;color:rgba(255,255,255,.7);font-size:16px;line-height:1;padding:0 }
+@media (max-width:480px) { #toast-container { bottom:12px;right:12px;left:12px } .toast { min-width:0;width:100% } }
+
+/* ═══════════════════════════════════════════
+   GENERAL POLISH
+═══════════════════════════════════════════ */
+.badge-pulse { animation:pulse 2s infinite }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+.card-hover:hover { box-shadow:0 2px 16px rgba(0,0,0,.07);transform:translateY(-1px);transition:.2s }
+.card-hover { transition:.2s }
+.clickable { cursor:pointer;user-select:none }
+.pill { display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500 }
+.empty-state { text-align:center;padding:32px 16px;color:var(--text3) }
+.empty-state-icon { font-size:32px;margin-bottom:8px;opacity:.4 }
+.empty-state-title { font-size:14px;font-weight:600;color:var(--text2);margin-bottom:4px }
+.empty-state-desc { font-size:12px;line-height:1.5 }
 </style>
 </head>
 <body>
@@ -393,13 +539,26 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
   <div class="sb-logo">
     <div class="sb-lm">L</div>
     <span class="sb-brand">Leverage Business</span>
+    <button class="mob-toggle" onclick="toggleMobileNav()" aria-label="Menu">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
   </div>
   <div class="sb-client">
     <div class="sb-client-lbl"><span data-lang="en" class="la">Your company</span><span data-lang="zh">您的公司</span><span data-lang="ms">Syarikat anda</span></div>
     <div class="sb-client-name" id="sb-company">Loading...</div>
     <div class="sb-client-id" id="sb-client-id">—</div>
   </div>
-  <nav class="sb-nav">
+  <!-- Engagement progress in sidebar -->
+  <div class="sb-progress">
+    <div class="sb-prog-label">
+      <span><span data-lang="en" class="la">Engagement</span><span data-lang="zh">项目进度</span><span data-lang="ms">Penglibatan</span></span>
+      <span style="color:var(--gold);font-weight:600">54%</span>
+    </div>
+    <div class="sb-prog-track">
+      <div class="sb-prog-fill" style="width:54%"></div>
+    </div>
+  </div>
+  <nav class="sb-nav" id="sb-nav-inner">
     <div class="nav-section"><span data-lang="en" class="la">Main</span><span data-lang="zh">主菜单</span><span data-lang="ms">Utama</span></div>
     <div class="nav-item active" data-view="overview" onclick="switchView(this)">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
@@ -460,7 +619,7 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
       </div>
       <button class="notif-btn" onclick="showToast('No new notifications','info')">
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-        <div class="notif-dot"></div>
+        <div class="notif-dot" id="notif-dot"></div>
       </button>
     </div>
   </div>
@@ -514,13 +673,13 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
           <button class="btn btn-sm" onclick="switchView(document.querySelector('[data-view=applications]'))"><span data-lang="en" class="la">View all</span><span data-lang="zh">查看全部</span><span data-lang="ms">Lihat semua</span></button>
         </div>
         <div class="auth-list">
-          <div class="auth-row"><div class="a-dot" style="background:var(--g)"></div><span class="a-code">SSM</span><span class="a-name"><span data-lang="en" class="la">Company Registration</span><span data-lang="zh">公司注册</span><span data-lang="ms">Pendaftaran Syarikat</span></span><span class="a-status bg-g"><span data-lang="en" class="la">Approved</span><span data-lang="zh">已批准</span><span data-lang="ms">Diluluskan</span></span></div>
-          <div class="auth-row"><div class="a-dot" style="background:var(--g)"></div><span class="a-code">LHDN</span><span class="a-name"><span data-lang="en" class="la">Tax File + Employer</span><span data-lang="zh">税务档案 + 雇主注册</span><span data-lang="ms">Fail Cukai + Majikan</span></span><span class="a-status bg-g"><span data-lang="en" class="la">Approved</span><span data-lang="zh">已批准</span><span data-lang="ms">Diluluskan</span></span></div>
-          <div class="auth-row"><div class="a-dot" style="background:var(--g)"></div><span class="a-code">Bomba</span><span class="a-name"><span data-lang="en" class="la">Fire Certificate</span><span data-lang="zh">消防证书</span><span data-lang="ms">Sijil Bomba</span></span><span class="a-status bg-g"><span data-lang="en" class="la">Approved</span><span data-lang="zh">已批准</span><span data-lang="ms">Diluluskan</span></span></div>
-          <div class="auth-row"><div class="a-dot" style="background:var(--b)"></div><span class="a-code">PBT</span><span class="a-name"><span data-lang="en" class="la">Premise Licence (MBSP)</span><span data-lang="zh">营业执照 (MBSP)</span><span data-lang="ms">Lesen Premis (MBSP)</span></span><span class="a-status bg-b"><span data-lang="en" class="la">Filed</span><span data-lang="zh">已提交</span><span data-lang="ms">Difailkan</span></span></div>
+          <div class="auth-row clickable" onclick="switchView(document.querySelector('[data-view=\"applications\"]'))" title="View in Applications"><div class="a-dot" style="background:var(--g)"></div><span class="a-code">SSM</span><span class="a-name"><span data-lang="en" class="la">Company Registration</span><span data-lang="zh">公司注册</span><span data-lang="ms">Pendaftaran Syarikat</span></span><span class="a-status bg-g"><span data-lang="en" class="la">Approved</span><span data-lang="zh">已批准</span><span data-lang="ms">Diluluskan</span></span></div>
+          <div class="auth-row clickable" onclick="switchView(document.querySelector('[data-view=\"applications\"]'))" title="View in Applications"><div class="a-dot" style="background:var(--g)"></div><span class="a-code">LHDN</span><span class="a-name"><span data-lang="en" class="la">Tax File + Employer</span><span data-lang="zh">税务档案 + 雇主注册</span><span data-lang="ms">Fail Cukai + Majikan</span></span><span class="a-status bg-g"><span data-lang="en" class="la">Approved</span><span data-lang="zh">已批准</span><span data-lang="ms">Diluluskan</span></span></div>
+          <div class="auth-row clickable" onclick="switchView(document.querySelector('[data-view=\"applications\"]'))" title="View in Applications"><div class="a-dot" style="background:var(--g)"></div><span class="a-code">Bomba</span><span class="a-name"><span data-lang="en" class="la">Fire Certificate</span><span data-lang="zh">消防证书</span><span data-lang="ms">Sijil Bomba</span></span><span class="a-status bg-g"><span data-lang="en" class="la">Approved</span><span data-lang="zh">已批准</span><span data-lang="ms">Diluluskan</span></span></div>
+          <div class="auth-row clickable" onclick="switchView(document.querySelector('[data-view=\"applications\"]'))" title="View in Applications"><div class="a-dot" style="background:var(--b)"></div><span class="a-code">PBT</span><span class="a-name"><span data-lang="en" class="la">Premise Licence (MBSP)</span><span data-lang="zh">营业执照 (MBSP)</span><span data-lang="ms">Lesen Premis (MBSP)</span></span><span class="a-status bg-b"><span data-lang="en" class="la">Filed</span><span data-lang="zh">已提交</span><span data-lang="ms">Difailkan</span></span></div>
           <div class="auth-row" style="background:rgba(198,93,0,.04)"><div class="a-dot" style="background:var(--a)"></div><span class="a-code" style="color:var(--a)">MIDA</span><span class="a-name" style="font-weight:500;color:var(--a)">ICA 10 Exemption</span><span class="a-status bg-a"><span data-lang="en" class="la">Action needed</span><span data-lang="zh">需要行动</span><span data-lang="ms">Tindakan diperlukan</span></span></div>
-          <div class="auth-row"><div class="a-dot" style="background:#C8C8CC"></div><span class="a-code">JKDM</span><span class="a-name"><span data-lang="en" class="la">JPC 1 Duty Exemption</span><span data-lang="zh">JPC 1关税豁免</span><span data-lang="ms">Pengecualian Duti JPC 1</span></span><span class="a-status bg-s"><span data-lang="en" class="la">Blocked</span><span data-lang="zh">已锁定</span><span data-lang="ms">Disekat</span></span></div>
-          <div class="auth-row"><div class="a-dot" style="background:#C8C8CC"></div><span class="a-code">ESD</span><span class="a-name"><span data-lang="en" class="la">Employment Pass × 3</span><span data-lang="zh">就业准证 × 3</span><span data-lang="ms">Pas Pekerjaan × 3</span></span><span class="a-status bg-s"><span data-lang="en" class="la">Blocked</span><span data-lang="zh">已锁定</span><span data-lang="ms">Disekat</span></span></div>
+          <div class="auth-row clickable" onclick="switchView(document.querySelector('[data-view=\"applications\"]'))" title="View in Applications"><div class="a-dot" style="background:#C8C8CC"></div><span class="a-code">JKDM</span><span class="a-name"><span data-lang="en" class="la">JPC 1 Duty Exemption</span><span data-lang="zh">JPC 1关税豁免</span><span data-lang="ms">Pengecualian Duti JPC 1</span></span><span class="a-status bg-s"><span data-lang="en" class="la">Blocked</span><span data-lang="zh">已锁定</span><span data-lang="ms">Disekat</span></span></div>
+          <div class="auth-row clickable" onclick="switchView(document.querySelector('[data-view=\"applications\"]'))" title="View in Applications"><div class="a-dot" style="background:#C8C8CC"></div><span class="a-code">ESD</span><span class="a-name"><span data-lang="en" class="la">Employment Pass × 3</span><span data-lang="zh">就业准证 × 3</span><span data-lang="ms">Pas Pekerjaan × 3</span></span><span class="a-status bg-s"><span data-lang="en" class="la">Blocked</span><span data-lang="zh">已锁定</span><span data-lang="ms">Disekat</span></span></div>
         </div>
       </div>
     </div>
@@ -550,6 +709,54 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
       </div>
     </div>
   </div>
+  <!-- ── Action Banner (MIDA Urgent) ── -->
+  <div class="action-banner" id="ov-action-banner">
+    <div class="action-banner-icon">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2"><path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+    </div>
+    <div class="action-banner-body">
+      <div class="action-banner-title"><span data-lang="en" class="la">⚡ Action needed — MIDA application blocked</span><span data-lang="zh">⚡ 需要行动——MIDA申请被阻止</span><span data-lang="ms">⚡ Tindakan diperlukan — permohonan MIDA disekat</span></div>
+      <div class="action-banner-desc"><span data-lang="en" class="la">Your machinery list with HS codes is missing. Upload it now to unblock JKDM, Employment Pass, and 4 other authorities.</span><span data-lang="zh">缺少含HS编码的机械清单。立即上传以解锁JKDM、就业准证及其他4个部门申请。</span><span data-lang="ms">Senarai jentera dengan kod HS anda tiada. Muat naik sekarang untuk membuka kunci JKDM, Pas Pekerjaan, dan 4 pihak berkuasa lain.</span></div>
+    </div>
+    <button class="action-banner-btn" onclick="switchView(document.querySelector('[data-view="applications"]'));setTimeout(()=>toggleTask(4),300)"><span data-lang="en" class="la">Upload now →</span><span data-lang="zh">立即上传 →</span><span data-lang="ms">Muat naik →</span></button>
+  </div>
+
+  <!-- ── Stats Row ── -->
+  <div class="ov-stats-row">
+    <div class="ov-stat-card">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="ov-ring-wrap">
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="26" fill="none" stroke="var(--border)" stroke-width="6"/>
+            <circle cx="32" cy="32" r="26" fill="none" stroke="var(--g)" stroke-width="6"
+              stroke-dasharray="163.36" stroke-dashoffset="75" stroke-linecap="round"/>
+          </svg>
+          <div class="ov-ring-pct">54%</div>
+        </div>
+        <div>
+          <div class="ov-stat-val">54%</div>
+          <div class="ov-stat-lbl"><span data-lang="en" class="la">Complete</span><span data-lang="zh">完成</span><span data-lang="ms">Selesai</span></div>
+          <div class="ov-stat-sub"><span data-lang="en" class="la">6 of 11 approved</span><span data-lang="zh">11项中6项已批</span><span data-lang="ms">6 daripada 11 diluluskan</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ov-stat-card">
+      <div class="ov-stat-val" style="color:var(--a)">1</div>
+      <div class="ov-stat-lbl"><span data-lang="en" class="la">Action needed</span><span data-lang="zh">需要行动</span><span data-lang="ms">Tindakan diperlukan</span></div>
+      <div class="ov-stat-sub" style="color:var(--a)"><span data-lang="en" class="la">MIDA — upload pending</span><span data-lang="zh">MIDA——待上传</span><span data-lang="ms">MIDA — muat naik tertunda</span></div>
+    </div>
+    <div class="ov-stat-card">
+      <div class="ov-stat-val" style="color:var(--text3)">6</div>
+      <div class="ov-stat-lbl"><span data-lang="en" class="la">Blocked</span><span data-lang="zh">已锁定</span><span data-lang="ms">Disekat</span></div>
+      <div class="ov-stat-sub"><span data-lang="en" class="la">Awaiting MIDA approval</span><span data-lang="zh">等待MIDA批准</span><span data-lang="ms">Menunggu kelulusan MIDA</span></div>
+    </div>
+    <div class="ov-stat-card">
+      <div class="ov-stat-val">Sep 2026</div>
+      <div class="ov-stat-lbl"><span data-lang="en" class="la">Est. completion</span><span data-lang="zh">预计完成</span><span data-lang="ms">Anggaran selesai</span></div>
+      <div class="ov-stat-sub"><span data-lang="en" class="la">On track</span><span data-lang="zh">按时进行</span><span data-lang="ms">Mengikut jadual</span></div>
+    </div>
+  </div>
+
 </div>
 
 <!-- ═══════════════ APPLICATIONS ═══════════════ -->
@@ -582,11 +789,26 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
       <option value="leverage">From Leverage</option>
     </select>
   </div>
-  <div class="upload-zone" onclick="triggerUpload()">
+  <div class="upload-zone" onclick="triggerUpload()" 
+    ondragover="event.preventDefault();this.style.borderColor='var(--gold)'" 
+    ondragleave="this.style.borderColor=''"
+    ondrop="event.preventDefault();this.style.borderColor='';handleDrop(event)">
     <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
     <p><strong><span data-lang="en" class="la">Drag & drop or click to upload</span><span data-lang="zh">拖放或点击上传</span><span data-lang="ms">Seret & lepas atau klik untuk muat naik</span></strong> · PDF, JPG, PNG, Excel · Max 10MB</p>
   </div>
+  <!-- Bulk action bar -->
+  <div class="doc-bulk-bar" id="doc-bulk-bar">
+    <span id="doc-bulk-count">0 <span data-lang="en" class="la">selected</span><span data-lang="zh">已选择</span><span data-lang="ms">dipilih</span></span>
+    <button class="btn btn-sm" onclick="bulkDownload()"><span data-lang="en" class="la">Download selected</span><span data-lang="zh">下载所选</span><span data-lang="ms">Muat turun yang dipilih</span></button>
+    <button class="btn btn-sm" style="margin-left:auto;color:var(--text3)" onclick="clearSelection()"><span data-lang="en" class="la">Clear</span><span data-lang="zh">清除</span><span data-lang="ms">Kosong</span></button>
+  </div>
   <div id="docs-list"></div>
+  <!-- Empty state -->
+  <div id="docs-empty-state" style="display:none" class="empty-state">
+    <div class="empty-state-icon">🔍</div>
+    <div class="empty-state-title"><span data-lang="en" class="la">No documents match</span><span data-lang="zh">没有匹配的文件</span><span data-lang="ms">Tiada dokumen yang sepadan</span></div>
+    <div class="empty-state-desc"><span data-lang="en" class="la">Try a different search term or filter</span><span data-lang="zh">尝试不同的搜索词或筛选条件</span><span data-lang="ms">Cuba istilah carian atau penapis yang berbeza</span></div>
+  </div>
 </div>
 
 <!-- ═══════════════ MESSAGES ═══════════════ -->
@@ -1857,14 +2079,20 @@ function switchTaskTab(taskIdx, tab, btn) {
 function filterDocs(searchTerm) {
   const term = (searchTerm || '').toLowerCase();
   const filter = document.getElementById('doc-filter')?.value || 'all';
-  document.querySelectorAll('.doc-row').forEach(row => {
-    const name = row.querySelector('.doc-name')?.textContent?.toLowerCase() || '';
+  let visible = 0;
+  document.querySelectorAll('.doc-row, [data-type]').forEach(row => {
+    const name = (row.dataset.name || row.querySelector('.doc-name, .tdr-name, .doc-item-name')?.textContent || '').toLowerCase();
     const type = row.dataset.type || '';
     const matchSearch = !term || name.includes(term);
     const matchFilter = filter === 'all' || type === filter || 
-      (filter === 'action' && (type === 'required' || type === 'flagged'));
-    row.style.display = (matchSearch && matchFilter) ? '' : 'none';
+      (filter === 'required' && (type === 'required' || type === 'action' || type === 'flagged'));
+    const show = matchSearch && matchFilter;
+    row.style.display = show ? '' : 'none';
+    if (show) visible++;
   });
+  // Show empty state if nothing visible
+  const emptyEl = document.getElementById('docs-empty-state');
+  if (emptyEl) emptyEl.style.display = visible === 0 ? 'block' : 'none';
 }
 
 function renderDocs() {
@@ -2341,6 +2569,95 @@ function toggleGSOP(i) {
   }
 }
 
+
+// ── File attachment in messages ──
+let msgAttachments = [];
+function handleMsgFile(input) {
+  const files = Array.from(input.files);
+  files.forEach(f => {
+    msgAttachments.push(f);
+    const bar = document.getElementById('msg-attach-bar');
+    if (bar) {
+      bar.classList.add('visible');
+      const chip = document.createElement('div');
+      chip.className = 'msg-attach-chip';
+      chip.dataset.name = f.name;
+      chip.innerHTML = '<svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>' + 
+        f.name + '<button onclick="removeAttachment(this,\''+f.name+'\')" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:16px;line-height:1;padding:0;margin-left:4px">×</button>';
+      bar.appendChild(chip);
+    }
+  });
+  input.value = '';
+}
+function removeAttachment(btn, fname) {
+  msgAttachments = msgAttachments.filter(f => f.name !== fname);
+  btn.closest('.msg-attach-chip').remove();
+  if (msgAttachments.length === 0) {
+    const bar = document.getElementById('msg-attach-bar');
+    if (bar) bar.classList.remove('visible');
+  }
+}
+
+// ── Emoji picker ──
+function toggleEmoji(btn) {
+  const picker = document.getElementById('emoji-picker');
+  if (!picker) return;
+  picker.style.display = picker.style.display === 'none' ? 'block' : 'none';
+}
+function insertEmoji(emoji) {
+  const inp = document.getElementById('msg-inp');
+  if (!inp) return;
+  const start = inp.selectionStart, end = inp.selectionEnd;
+  inp.value = inp.value.substring(0, start) + emoji + inp.value.substring(end);
+  inp.selectionStart = inp.selectionEnd = start + emoji.length;
+  inp.focus();
+  const picker = document.getElementById('emoji-picker');
+  if (picker) picker.style.display = 'none';
+}
+
+// ── Close emoji picker on outside click ──
+document.addEventListener('click', function(e) {
+  const picker = document.getElementById('emoji-picker');
+  if (picker && !picker.contains(e.target) && !e.target.closest('[onclick*="toggleEmoji"]')) {
+    picker.style.display = 'none';
+  }
+});
+
+// ── Mobile sidebar toggle ──
+function toggleMobileNav() {
+  const nav = document.getElementById('sb-nav-inner');
+  if (nav) nav.classList.toggle('open');
+}
+
+// ── Drag-drop file handler ──
+function handleDrop(event) {
+  const files = Array.from(event.dataTransfer.files);
+  if (!files.length) return;
+  const names = files.map(f => f.name).join(', ');
+  showToast(`Uploaded: ${names}`, 'success');
+  document.getElementById('doc-badge').style.display = 'none';
+}
+
+// ── Bulk document actions ──
+function updateBulkBar() {
+  const checked = document.querySelectorAll('.doc-check:checked');
+  const bar = document.getElementById('doc-bulk-bar');
+  const count = document.getElementById('doc-bulk-count');
+  if (bar) bar.classList.toggle('visible', checked.length > 0);
+  if (count) {
+    const n = checked.length;
+    count.textContent = n + ' selected';
+  }
+}
+function bulkDownload() {
+  const checked = document.querySelectorAll('.doc-check:checked');
+  showToast(`Downloading ${checked.length} document${checked.length>1?'s':''}...`, 'info');
+  clearSelection();
+}
+function clearSelection() {
+  document.querySelectorAll('.doc-check:checked').forEach(c => c.checked = false);
+  updateBulkBar();
+}
 </script>
 </body>
 </html>
