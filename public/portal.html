@@ -2138,6 +2138,29 @@ function switchTaskTab(i, tab, btnEl) {
 }
 
 
+function filterDocs(searchTerm) {
+  const term = (searchTerm || '').toLowerCase();
+  const filter = document.getElementById('doc-filter')?.value || 'all';
+  document.querySelectorAll('#docs-list .doc-row').forEach(row => {
+    const name = row.dataset.name || row.querySelector('.doc-name')?.textContent?.toLowerCase() || '';
+    const type = row.dataset.type || '';
+    const matchSearch = !term || name.includes(term);
+    const matchFilter = filter === 'all' || type === filter || 
+      (filter === 'required' && (type === 'required' || type === 'flagged'));
+    row.style.display = (matchSearch && matchFilter) ? '' : 'none';
+  });
+  // Hide empty section dividers
+  document.querySelectorAll('#docs-list .section-divider').forEach(div => {
+    let next = div.nextElementSibling;
+    let hasVisible = false;
+    while (next && !next.classList.contains('section-divider')) {
+      if (next.style.display !== 'none') hasVisible = true;
+      next = next.nextElementSibling;
+    }
+    div.style.display = hasVisible ? '' : 'none';
+  });
+}
+
 function renderDocs() {
   const required = DOCS.filter(d=>d.type==='required'||d.type==='flagged');
   const yours = DOCS.filter(d=>d.type==='yours');
