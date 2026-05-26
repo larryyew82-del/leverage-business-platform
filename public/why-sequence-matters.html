@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>What Happens When You Get It Wrong — Leverage Business</title>
+<meta name="description" content="Real scenarios of what happens when Malaysia market entry applications are filed in the wrong order — and how to avoid them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0A1929;--navy2:#0F2236;
+  --gold:#C9A961;--gold2:#B8954A;
+  --white:#fff;--off:#FAFAF8;--off2:#F4F2EE;
+  --text:#1C1C1E;--text2:#3A3A3C;--text3:#636366;
+  --border:#E8E4DC;
+  --g:#1A7A4A;--gbg:#E8F5EE;
+  --b:#1E5B8A;--bbg:#E8F0F8;
+  --a:#C65D00;--abg:#FFF3E8;
+  --r:#C0392B;--rbg:#FDECEA;
+  --fd:"Playfair Display",Georgia,serif;
+  --fb:"IBM Plex Sans",sans-serif;
+  --fm:"IBM Plex Mono",monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);color:var(--text);background:var(--white);line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{background:var(--navy);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{display:flex;align-items:center;gap:9px;font-family:var(--fd);font-size:15px;color:#fff;cursor:pointer}
+.logo-mark{width:28px;height:28px;background:var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--navy)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.lang-pill{display:flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:6px;overflow:hidden}
+.lb{font-size:10px;font-weight:600;padding:4px 9px;cursor:pointer;border:none;background:transparent;color:rgba(255,255,255,.5);font-family:var(--fb)}
+.lb.active{background:var(--gold);color:var(--navy)}
+.btn-back{font-size:12px;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.15);background:transparent;padding:6px 12px;border-radius:6px;cursor:pointer;font-family:var(--fb)}
+.btn-back:hover{color:#fff;border-color:rgba(255,255,255,.35)}
+.btn-cta{font-size:12px;font-weight:600;color:var(--navy);background:var(--gold);border:none;padding:7px 14px;border-radius:6px;cursor:pointer;font-family:var(--fb)}
+.btn-cta:hover{background:var(--gold2)}
+
+/* HERO */
+.page-hero{background:var(--navy);padding:64px 40px 48px;text-align:center;position:relative;overflow:hidden}
+.ph-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,97,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,97,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.ph-inner{max-width:680px;margin:0 auto;position:relative;z-index:2}
+.ph-tag{display:inline-flex;align-items:center;gap:7px;font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);padding:4px 12px;border:1px solid rgba(201,169,97,.2);border-radius:20px;background:rgba(201,169,97,.06);margin-bottom:20px}
+.ph-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--r);animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.ph-title{font-family:var(--fd);font-size:44px;font-weight:400;color:#fff;line-height:1.15;margin-bottom:14px}
+.ph-title em{font-style:italic;color:var(--gold)}
+.ph-sub{font-size:16px;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:28px}
+.ph-disclaimer{display:inline-flex;align-items:flex-start;gap:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 14px;font-size:11px;color:rgba(255,255,255,.4);text-align:left;line-height:1.55}
+.ph-disclaimer svg{width:13px;height:13px;flex-shrink:0;margin-top:1px;color:var(--gold)}
+
+/* COST COUNTER */
+.cost-strip{background:var(--r);padding:12px 40px;display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
+.cs-item{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.9)}
+.cs-num{font-family:var(--fd);font-size:20px;font-weight:400;color:#fff}
+.cs-divider{width:1px;height:20px;background:rgba(255,255,255,.2)}
+
+/* SECTION */
+.section{padding:72px 40px;max-width:900px;margin:0 auto}
+.section-alt{background:var(--off)}
+.section-alt .section{background:var(--off)}
+.full-alt{background:var(--off)}
+
+/* SCENARIO CARD */
+.scenario{margin-bottom:72px;padding-bottom:72px;border-bottom:1px solid var(--border)}
+.scenario:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+
+.sc-header{display:flex;align-items:flex-start;gap:18px;margin-bottom:24px}
+.sc-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;border:1px solid var(--border)}
+.sc-meta{flex:1}
+.sc-label{font-family:var(--fm);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:4px}
+.sc-title{font-family:var(--fd);font-size:26px;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:4px}
+.sc-title em{font-style:italic;color:var(--r)}
+.sc-industry{font-size:12px;color:var(--text3)}
+
+/* STORY TIMELINE */
+.story-block{background:var(--off);border-left:3px solid var(--border);border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:14px;font-size:15px;color:var(--text2);line-height:1.75;position:relative}
+.story-block.critical{border-left-color:var(--r);background:var(--rbg)}
+.story-block.warning{border-left-color:var(--a);background:var(--abg)}
+.story-block.resolved{border-left-color:var(--g);background:var(--gbg)}
+.story-block.neutral{border-left-color:var(--border);background:var(--off)}
+.sb-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.story-block.critical .sb-label{color:var(--r)}
+.story-block.warning .sb-label{color:var(--a)}
+.story-block.resolved .sb-label{color:var(--g)}
+.story-block.neutral .sb-label{color:var(--text3)}
+.sb-label svg{width:11px;height:11px}
+.story-block p{font-size:14px}
+.story-block strong{color:var(--text)}
+
+/* COST BOX */
+.cost-box{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.cb{padding:14px;border-radius:8px;text-align:center}
+.cb.red{background:var(--rbg);border:1px solid rgba(192,57,43,.15)}
+.cb.amber{background:var(--abg);border:1px solid rgba(198,93,0,.15)}
+.cb.gray{background:var(--off2);border:1px solid var(--border)}
+.cb-num{font-family:var(--fd);font-size:22px;font-weight:400;line-height:1;margin-bottom:3px}
+.cb.red .cb-num{color:var(--r)}
+.cb.amber .cb-num{color:var(--a)}
+.cb.gray .cb-num{color:var(--text3)}
+.cb-label{font-size:10px;font-weight:500;color:var(--text3);line-height:1.4}
+
+/* QUOTE */
+.quote-block{border-left:3px solid var(--navy);padding:14px 20px;margin:20px 0;font-family:var(--fd);font-size:18px;font-style:italic;color:var(--navy);line-height:1.6}
+.quote-attr{font-family:var(--fb);font-size:11px;font-style:normal;color:var(--text3);margin-top:6px}
+
+/* WHAT WENT WRONG */
+.wrong-box{background:var(--rbg);border:1px solid rgba(192,57,43,.15);border-radius:10px;padding:18px 20px;margin:20px 0}
+.wb-title{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--r);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.wb-title svg{width:13px;height:13px}
+.wb-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.wb-list li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text2);line-height:1.55}
+.wb-list li::before{content:'×';color:var(--r);font-weight:700;font-size:13px;flex-shrink:0;margin-top:0}
+
+/* WHAT RIGHT LOOKS LIKE */
+.right-box{background:var(--gbg);border:1px solid rgba(26,122,74,.15);border-radius:10px;padding:18px 20px;margin:20px 0}
+.rb-title{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--g);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.rb-title svg{width:13px;height:13px}
+.rb-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.rb-list li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text2);line-height:1.55}
+.rb-list li::before{content:'✓';color:var(--g);font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px}
+
+/* TIMELINE TRACK */
+.timeline{display:flex;flex-direction:column;gap:0;margin:20px 0;position:relative}
+.timeline::before{content:'';position:absolute;left:15px;top:0;bottom:0;width:1px;background:var(--border)}
+.tl-item{display:flex;gap:16px;align-items:flex-start;padding-bottom:18px;position:relative}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;font-size:11px;font-weight:600;border:2px solid var(--white)}
+.tl-dot.ok{background:var(--g);color:#fff}
+.tl-dot.warn{background:var(--a);color:#fff}
+.tl-dot.bad{background:var(--r);color:#fff}
+.tl-dot.gray{background:var(--border);color:var(--text3)}
+.tl-content{flex:1;padding-top:4px}
+.tl-time{font-family:var(--fm);font-size:10px;color:var(--text3);margin-bottom:2px;letter-spacing:.04em}
+.tl-event{font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px}
+.tl-detail{font-size:12px;color:var(--text3);line-height:1.55}
+
+/* DIVIDER */
+.rule-divider{display:flex;align-items:center;gap:14px;margin:36px 0}
+.rule-line{flex:1;height:1px;background:var(--border)}
+.rule-text{font-family:var(--fm);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);white-space:nowrap}
+
+/* SCENARIO TABS */
+.sc-tabs{display:flex;gap:8px;overflow-x:auto;padding:24px 40px 0;border-bottom:1px solid var(--border);background:var(--white);position:sticky;top:60px;z-index:50}
+.sc-tabs::-webkit-scrollbar{display:none}
+.sc-tab{padding:8px 14px;font-size:12px;font-weight:500;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:all .2s;border:none;background:none;font-family:var(--fb)}
+.sc-tab:hover{color:var(--navy)}
+.sc-tab.active{color:var(--navy);border-bottom-color:var(--navy);font-weight:600}
+
+/* FINALE CTA */
+.finale{background:var(--navy);padding:72px 40px;text-align:center}
+.fn-inner{max-width:620px;margin:0 auto}
+.fn-icon{font-size:36px;margin-bottom:16px;display:block}
+.fn-title{font-family:var(--fd);font-size:36px;font-weight:400;color:#fff;margin-bottom:12px;line-height:1.2}
+.fn-title em{font-style:italic;color:var(--gold)}
+.fn-sub{font-size:15px;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:28px}
+.fn-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn-lg{font-size:14px;font-weight:600;padding:12px 24px;border-radius:8px;cursor:pointer;font-family:var(--fb);transition:all .2s;display:inline-flex;align-items:center;gap:7px}
+.btn-lg svg{width:14px;height:14px}
+.btn-primary{background:var(--gold);color:var(--navy);border:none}
+.btn-primary:hover{background:var(--gold2)}
+.btn-outline{background:transparent;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2)}
+.btn-outline:hover{background:rgba(255,255,255,.06)}
+
+/* LANG */
+[data-lang]{display:none}[data-lang].la{display:block}
+span[data-lang]{display:none}span[data-lang].la{display:inline}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="location.href='/'">
+    <div class="logo-mark">L</div>
+    Leverage Business
+  </div>
+  <div class="nav-right">
+    <div class="lang-pill">
+      <button class="lb active" onclick="setLang('en')">EN</button>
+      <button class="lb" onclick="setLang('zh')">中文</button>
+      <button class="lb" onclick="setLang('ms')">BM</button>
+    </div>
+    <button class="btn-back" onclick="location.href='/'">← <span data-lang="en" class="la">Back to home</span><span data-lang="zh">返回首页</span><span data-lang="ms">Kembali</span></button>
+    <button class="btn-cta" onclick="location.href='mailto:larry@leveragebusiness.my'"><span data-lang="en" class="la">Talk to us first</span><span data-lang="zh">先联系我们</span><span data-lang="ms">Hubungi kami dahulu</span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="ph-bg"></div>
+  <div class="ph-inner">
+    <div class="ph-tag">
+      <div class="ph-tag-dot"></div>
+      <span data-lang="en" class="la">Real consequences · Composite scenarios</span>
+      <span data-lang="zh">真实后果 · 综合案例</span>
+      <span data-lang="ms">Akibat sebenar · Senario komposit</span>
+    </div>
+    <h1 class="ph-title">
+      <span data-lang="en" class="la">What happens when you get it <em>wrong.</em></span>
+      <span data-lang="zh">申请顺序错误，<em>会发生什么？</em></span>
+      <span data-lang="ms">Apa berlaku apabila anda <em>tersilap.</em></span>
+    </h1>
+    <p class="ph-sub">
+      <span data-lang="en" class="la">Malaysia's regulatory system punishes the wrong sequence severely — not with a warning, but with months of delay, wasted fees, and staff left idle while approvals restart from scratch.</span>
+      <span data-lang="zh">马来西亚的监管体系对错误顺序的惩罚是严厉的——不是警告，而是数月的延误、浪费的费用，以及批准需要重新开始时员工的无所事事。</span>
+      <span data-lang="ms">Sistem kawal selia Malaysia menghukum urutan yang salah dengan teruk — bukan dengan amaran, tetapi dengan kelewatan berbulan-bulan, yuran yang terbuang, dan kakitangan yang terbiar sementara kelulusan dimulakan semula dari awal.</span>
+    </p>
+    <div class="ph-disclaimer">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span>
+        <span data-lang="en" class="la"><strong style="color:rgba(255,255,255,.7)">These are composite scenarios</strong> — illustrative situations drawn from common patterns across the industry. No real client names, companies, or confidential data are included. Timelines and costs are representative, not actual.</span>
+        <span data-lang="zh"><strong style="color:rgba(255,255,255,.7)">以下为综合案例</strong>——基于行业内常见情况的说明性场景，不包含真实客户姓名、公司或机密数据。时间轴和费用仅供参考，并非实际数据。</span>
+        <span data-lang="ms"><strong style="color:rgba(255,255,255,.7)">Ini adalah senario komposit</strong> — situasi ilustratif yang diambil dari corak biasa dalam industri. Tiada nama klien sebenar, syarikat, atau data sulit yang disertakan. Garis masa dan kos adalah wakil, bukan sebenar.</span>
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- COST STRIP -->
+<div class="cost-strip">
+  <div class="cs-item"><span class="cs-num">4–9</span> <span><span data-lang="en" class="la">months of avoidable delay — typical when MIDA is filed after dependent authorities</span><span data-lang="zh">个月可避免的延误——当MIDA在依赖部门之后提交时</span><span data-lang="ms">bulan kelewatan yang boleh dielakkan — biasa apabila MIDA difailkan selepas pihak berkuasa bergantung</span></span></div>
+  <div class="cs-divider"></div>
+  <div class="cs-item"><span class="cs-num">RM 80k–200k</span> <span><span data-lang="en" class="la">wasted in staff costs, re-application fees and consultant errors — per engagement</span><span data-lang="zh">浪费在员工费用、重新申请费和顾问错误上——每个项目</span><span data-lang="ms">terbuang dalam kos kakitangan, yuran permohonan semula dan kesilapan perunding — setiap penglibatan</span></span></div>
+</div>
+
+<!-- SCENARIO TABS -->
+<div class="sc-tabs" id="sc-tabs">
+  <button class="sc-tab active" onclick="showScenario(0,this)">
+    <span data-lang="en" class="la">🏭 The Manufacturer Who Hired First</span>
+    <span data-lang="zh">🏭 先招聘后申请的制造商</span>
+    <span data-lang="ms">🏭 Pengilang Yang Mengambil Pekerja Dahulu</span>
+  </button>
+  <button class="sc-tab" onclick="showScenario(1,this)">
+    <span data-lang="en" class="la">📦 The Importer With the Wrong HS Codes</span>
+    <span data-lang="zh">📦 HS编码错误的进口商</span>
+    <span data-lang="ms">📦 Pengimport Dengan Kod HS Salah</span>
+  </button>
+  <button class="sc-tab" onclick="showScenario(2,this)">
+    <span data-lang="en" class="la">🏗️ The Contractor Who Skipped CIDB</span>
+    <span data-lang="zh">🏗️ 跳过CIDB的承包商</span>
+    <span data-lang="ms">🏗️ Kontraktor Yang Langkau CIDB</span>
+  </button>
+  <button class="sc-tab" onclick="showScenario(3,this)">
+    <span data-lang="en" class="la">🎓 The School That Opened Before MOE</span>
+    <span data-lang="zh">🎓 在MOE批准前开学的学校</span>
+    <span data-lang="ms">🎓 Sekolah Yang Dibuka Sebelum MOE</span>
+  </button>
+  <button class="sc-tab" onclick="showScenario(4,this)">
+    <span data-lang="en" class="la">🌿 The F&B Brand and the MAQIS Nightmare</span>
+    <span data-lang="zh">🌿 MAQIS噩梦中的餐饮品牌</span>
+    <span data-lang="ms">🌿 Jenama F&B dan Mimpi Ngeri MAQIS</span>
+  </button>
+</div>
+
+<!-- ════════════════ SCENARIOS ════════════════ -->
+<div id="scenarios">
+
+<!-- SCENARIO 1: THE MANUFACTURER -->
+<div class="section reveal" id="sc-0">
+<div class="scenario">
+  <div class="sc-header">
+    <div class="sc-icon" style="background:#FFF3E8">🏭</div>
+    <div class="sc-meta">
+      <div class="sc-label">
+        <span data-lang="en" class="la">Scenario 01 · Manufacturing · Penang</span>
+        <span data-lang="zh">案例 01 · 制造业 · 槟城</span>
+        <span data-lang="ms">Senario 01 · Pembuatan · Pulau Pinang</span>
+      </div>
+      <h2 class="sc-title">
+        <span data-lang="en" class="la">The factory was built. The staff were hired. <em>The MIDA approval had not arrived.</em></span>
+        <span data-lang="zh">工厂已建好，员工已招募。<em>MIDA批准还没来。</em></span>
+        <span data-lang="ms">Kilang telah dibina. Kakitangan telah diambil. <em>Kelulusan MIDA belum tiba.</em></span>
+      </h2>
+      <div class="sc-industry">
+        <span data-lang="en" class="la">Electronics manufacturing · Penang Free Industrial Zone · Investment: RM 8M</span>
+        <span data-lang="zh">电子制造 · 槟城工业自由区 · 投资额：800万令吉</span>
+        <span data-lang="ms">Pembuatan elektronik · Zon Perindustrian Bebas Pulau Pinang · Pelaburan: RM 8 juta</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-block neutral">
+    <div class="sb-label"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span data-lang="en" class="la">Month 1 — The plan looks solid</span><span data-lang="zh">第1个月——计划看起来很稳固</span><span data-lang="ms">Bulan 1 — Rancangan kelihatan kukuh</span></div>
+    <p><span data-lang="en" class="la">A manufacturer from southern China signs a lease on a 30,000 sq ft facility in Penang FIZ. The SSM company registration comes through in 5 days — fast, clean, no issues. Feeling confident, the founding director begins hiring their first 12 production staff. The factory fit-out begins simultaneously. They also engage a local consultant who assures them "MIDA is just paperwork, it rarely gets rejected."</span><span data-lang="zh">一家来自中国南方的制造商在槟城工业自由区签署了3万平方英尺厂房的租约。SSM公司注册5天内完成——快速、干净、没有问题。董事信心满满，开始招募前12名生产员工，同时展开厂房装修。他们还聘用了一位本地顾问，对方保证"MIDA只是文件工作，很少被拒绝。"</span><span data-lang="ms">Seorang pengilang dari selatan China menandatangani pajakan premis 30,000 kaki persegi di Penang FIZ. Pendaftaran syarikat SSM selesai dalam 5 hari — cepat, bersih, tiada masalah. Berasa yakin, pengarah pengasas mula mengambil 12 kakitangan pengeluaran pertama. Pemasangan kilang bermula serentak. Mereka juga melibatkan perunding tempatan yang memastikan "MIDA hanyalah kerja kertas, ia jarang ditolak."</span></p>
+  </div>
+
+  <div class="story-block warning">
+    <div class="sb-label"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg><span data-lang="en" class="la">Month 3 — The machinery arrives</span><span data-lang="zh">第3个月——机械设备到达</span><span data-lang="ms">Bulan 3 — Jentera tiba</span></div>
+    <p><span data-lang="en" class="la">RM 2.3M worth of precision machinery arrives at Port Klang. JKDM (Customs) holds the shipment. The machinery qualifies for duty exemption under MIDA's ICA 10 — but the ICA 10 application hasn't even been filed yet. The consultant files for duty exemption anyway, attaching the SSM certificate in lieu of the MIDA reference. <strong>JKDM rejects the application within 8 days.</strong> The machinery sits in a bonded warehouse at RM 4,200 per week in storage fees.</span><span data-lang="zh">价值230万令吉的精密机械抵达巴生港。JKDM（关税局）扣押了货物。该机械符合MIDA ICA 10关税豁免资格——但ICA 10申请甚至还没提交。顾问无论如何提交了关税豁免申请，附上SSM证书代替MIDA参考编号。<strong>JKDM在8天内拒绝了申请。</strong>机械在保税仓库中等待，每周存储费用为4,200令吉。</span><span data-lang="ms">Jentera bernilai RM 2.3 juta tiba di Pelabuhan Klang. JKDM (Kastam) menahan penghantaran. Jentera itu layak mendapat pengecualian duti di bawah ICA 10 MIDA — tetapi permohonan ICA 10 belum lagi difailkan. Perunding memfailkan permohonan pengecualian duti tetap, melampirkan sijil SSM sebagai ganti nombor rujukan MIDA. <strong>JKDM menolak permohonan dalam masa 8 hari.</strong> Jentera terpakam di gudang bertauliah pada RM 4,200 seminggu dalam yuran penyimpanan.</span></p>
+  </div>
+
+  <div class="story-block critical">
+    <div class="sb-label"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg><span data-lang="en" class="la">Month 4–7 — The cascade</span><span data-lang="zh">第4–7个月——连锁反应</span><span data-lang="ms">Bulan 4–7 — Lata masalah</span></div>
+    <p><span data-lang="en" class="la">MIDA's ICA 10 application is finally filed — but MIDA now queries the machinery list because several HS codes were incorrectly classified by the consultant. The application goes on hold for supplementary submissions. Meanwhile, <strong>12 production staff are on full salary with nothing to produce.</strong> The Employment Pass applications for 3 foreign technical specialists cannot be filed until MIDA is approved — so those specialists remain in China, unable to assist with the installation their expertise is needed for. The founding director flies back and forth between China and Malaysia five times in three months.</span><span data-lang="zh">MIDA的ICA 10申请终于提交了——但MIDA现在质疑机械清单，因为顾问对几个HS编码分类不正确。申请被暂停，等待补充材料。与此同时，<strong>12名生产员工领着全薪却无工可做。</strong>3名外籍技术专家的就业准证申请在MIDA批准之前无法提交——这些专家仍留在中国，无法协助需要他们专业的安装工作。创始董事在三个月内往返中马五次。</span><span data-lang="ms">Permohonan ICA 10 MIDA akhirnya difailkan — tetapi MIDA kini mempersoalkan senarai jentera kerana beberapa kod HS diklasifikasikan dengan salah oleh perunding. Permohonan ditangguhkan untuk pengiriman tambahan. Sementara itu, <strong>12 kakitangan pengeluaran menerima gaji penuh tanpa apa yang perlu dihasilkan.</strong> Permohonan Pas Pekerjaan untuk 3 pakar teknikal asing tidak boleh difailkan sehingga MIDA diluluskan — jadi pakar tersebut kekal di China, tidak dapat membantu pemasangan yang memerlukan kepakaran mereka. Pengarah pengasas berulang-alik antara China dan Malaysia lima kali dalam tiga bulan.</span></p>
+  </div>
+
+  <div class="quote-block">
+    "<span data-lang="en" class="la">I didn't know MIDA had to come before JKDM. Nobody told me. My consultant said the duty exemption was a separate application. It's not — they're completely dependent on each other.</span><span data-lang="zh">我不知道MIDA必须在JKDM之前申请。没有人告诉我。我的顾问说关税豁免是单独的申请。不是——它们完全相互依赖。</span><span data-lang="ms">Saya tidak tahu MIDA perlu datang sebelum JKDM. Tiada siapa memberitahu saya. Perunding saya berkata pengecualian duti adalah permohonan berasingan. Ia tidak — ia sepenuhnya bergantung antara satu sama lain.</span>"
+    <div class="quote-attr"><span data-lang="en" class="la">Composite — represents a pattern seen in multiple manufacturing engagements</span><span data-lang="zh">综合案例——代表多个制造业项目中出现的共同模式</span><span data-lang="ms">Komposit — mewakili corak yang dilihat dalam pelbagai penglibatan pembuatan</span></div>
+  </div>
+
+  <div class="cost-box">
+    <div class="cb red"><div class="cb-num">7 <span style="font-size:14px">mo</span></div><div class="cb-label"><span data-lang="en" class="la">Delay before first production</span><span data-lang="zh">首次生产前的延误</span><span data-lang="ms">Kelewatan sebelum pengeluaran pertama</span></div></div>
+    <div class="cb amber"><div class="cb-num">RM 142k</div><div class="cb-label"><span data-lang="en" class="la">Idle staff + storage fees + flights</span><span data-lang="zh">闲置员工 + 存储费 + 机票</span><span data-lang="ms">Kakitangan terbiar + yuran penyimpanan + penerbangan</span></div></div>
+    <div class="cb gray"><div class="cb-num">RM 38k</div><div class="cb-label"><span data-lang="en" class="la">Duty exemption re-application costs</span><span data-lang="zh">关税豁免重新申请费用</span><span data-lang="ms">Kos permohonan semula pengecualian duti</span></div></div>
+  </div>
+
+  <div class="wrong-box">
+    <div class="wb-title"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg><span data-lang="en" class="la">What went wrong</span><span data-lang="zh">哪里出了问题</span><span data-lang="ms">Apa yang silap</span></div>
+    <ul class="wb-list">
+      <li><span data-lang="en" class="la">JKDM duty exemption filed before MIDA ICA 10 was approved — JKDM legally cannot process it without a MIDA reference number</span><span data-lang="zh">在MIDA ICA 10批准之前提交JKDM关税豁免——JKDM在没有MIDA参考编号的情况下法律上无法处理</span><span data-lang="ms">Pengecualian duti JKDM difailkan sebelum MIDA ICA 10 diluluskan — JKDM secara sah tidak boleh memprosesnya tanpa nombor rujukan MIDA</span></li>
+      <li><span data-lang="en" class="la">HS codes on machinery list classified incorrectly — MIDA flagged and stalled the application for 6 weeks</span><span data-lang="zh">机械清单上的HS编码分类错误——MIDA标记并使申请停滞6周</span><span data-lang="ms">Kod HS pada senarai jentera diklasifikasikan dengan salah — MIDA menandakan dan melambatkan permohonan selama 6 minggu</span></li>
+      <li><span data-lang="en" class="la">Employment Passes filed before MIDA — rejected, forcing foreign technical staff to remain overseas</span><span data-lang="zh">在MIDA之前提交就业准证——被拒绝，迫使外籍技术人员留在海外</span><span data-lang="ms">Pas Pekerjaan difailkan sebelum MIDA — ditolak, memaksa kakitangan teknikal asing kekal di luar negara</span></li>
+      <li><span data-lang="en" class="la">Staff hired and factory fitted out before operational licences were in place</span><span data-lang="zh">在经营许可证到位之前招募员工并完成工厂装修</span><span data-lang="ms">Kakitangan diambil dan kilang dipasang sebelum lesen operasi tersedia</span></li>
+    </ul>
+  </div>
+
+  <div class="right-box">
+    <div class="rb-title"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M5 13l4 4L19 7"/></svg><span data-lang="en" class="la">The correct sequence</span><span data-lang="zh">正确顺序</span><span data-lang="ms">Urutan yang betul</span></div>
+    <ul class="rb-list">
+      <li>SSM → LHDN → Bomba → PBT (<span data-lang="en" class="la">all can run in parallel</span><span data-lang="zh">可同步进行</span><span data-lang="ms">semua boleh berjalan selari</span>)</li>
+      <li><span data-lang="en" class="la">File MIDA ICA 10 with verified HS codes — wait for approval (6–10 weeks)</span><span data-lang="zh">以核实的HS编码提交MIDA ICA 10——等待批准（6–10周）</span><span data-lang="ms">Failkan MIDA ICA 10 dengan kod HS yang disahkan — tunggu kelulusan (6–10 minggu)</span></li>
+      <li><span data-lang="en" class="la">Only after MIDA ref in hand: file JKDM JPC 1 duty exemption</span><span data-lang="zh">只有在获得MIDA参考编号后：提交JKDM JPC 1关税豁免</span><span data-lang="ms">Hanya selepas rujukan MIDA ada: failkan pengecualian duti JKDM JPC 1</span></li>
+      <li><span data-lang="en" class="la">Only after MIDA + JKDM: file Employment Pass for foreign technical staff</span><span data-lang="zh">只有在MIDA + JKDM之后：为外籍技术人员提交就业准证</span><span data-lang="ms">Hanya selepas MIDA + JKDM: failkan Pas Pekerjaan untuk kakitangan teknikal asing</span></li>
+      <li><span data-lang="en" class="la">Begin hiring production staff only when operational licences are confirmed</span><span data-lang="zh">只有在经营许可证确认后才开始招募生产员工</span><span data-lang="ms">Mula mengambil kakitangan pengeluaran hanya apabila lesen operasi disahkan</span></li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- SCENARIO 2: IMPORTER + HS CODES -->
+<div class="section reveal" id="sc-1" style="display:none">
+<div class="scenario">
+  <div class="sc-header">
+    <div class="sc-icon" style="background:#E8F0F8">📦</div>
+    <div class="sc-meta">
+      <div class="sc-label"><span data-lang="en" class="la">Scenario 02 · Import / Distribution · Selangor</span><span data-lang="zh">案例 02 · 进口/分销 · 雪兰莪</span><span data-lang="ms">Senario 02 · Import / Pengedaran · Selangor</span></div>
+      <h2 class="sc-title"><span data-lang="en" class="la">The goods cleared customs. Then MAQIS found the certificates were for <em>the wrong product category.</em></span><span data-lang="zh">货物已通过海关。然后MAQIS发现证书是<em>错误产品类别的。</em></span><span data-lang="ms">Barangan telah melepasi kastam. Kemudian MAQIS mendapati sijil adalah untuk <em>kategori produk yang salah.</em></span></h2>
+      <div class="sc-industry"><span data-lang="en" class="la">Consumer electronics accessories · Shah Alam distribution hub · First shipment: 2,400 units</span><span data-lang="zh">消费电子配件 · 莎阿南配送中心 · 首批货：2,400件</span><span data-lang="ms">Aksesori elektronik pengguna · Hab pengedaran Shah Alam · Penghantaran pertama: 2,400 unit</span></div>
+    </div>
+  </div>
+
+  <div class="story-block neutral">
+    <div class="sb-label"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span data-lang="en" class="la">The setup</span><span data-lang="zh">背景</span><span data-lang="ms">Persediaan</span></div>
+    <p><span data-lang="en" class="la">A Hong Kong electronics brand wants to distribute wireless charging pads across Malaysia through a major retail chain. They register an Sdn Bhd, open a distribution hub in Shah Alam, and engage a freight forwarder to handle customs. The freight forwarder is experienced with consumer electronics. The brand's product team classifies the chargers under HS code 8504.40 (static converters) — the same code used for their home market shipments to mainland China. <strong>It is the wrong code for Malaysia.</strong></span><span data-lang="zh">一家香港电子品牌希望通过主要零售连锁店在马来西亚分销无线充电板。他们注册了一家私人有限公司，在莎阿南开设配送中心，并聘请货运代理处理海关事务。货运代理在消费电子方面经验丰富。品牌产品团队将充电器归类在HS编码8504.40（静态变换器）——与他们发往中国大陆的同类商品使用的编码相同。<strong>这是马来西亚的错误编码。</strong></span><span data-lang="ms">Sebuah jenama elektronik Hong Kong ingin mengedarkan pad pengecas tanpa wayar di seluruh Malaysia melalui rangkaian runcit utama. Mereka mendaftarkan Sdn Bhd, membuka hab pengedaran di Shah Alam, dan melibatkan agen pengangkutan untuk menguruskan kastam. Agen pengangkutan berpengalaman dengan elektronik pengguna. Pasukan produk jenama mengklasifikasikan pengecas di bawah kod HS 8504.40 (penukar statik) — kod yang sama digunakan untuk penghantaran pasaran rumah mereka ke tanah besar China. <strong>Ia adalah kod yang salah untuk Malaysia.</strong></span></p>
+  </div>
+
+  <div class="story-block critical">
+    <div class="sb-label"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg><span data-lang="en" class="la">The MAQIS rejection</span><span data-lang="zh">MAQIS拒绝</span><span data-lang="ms">Penolakan MAQIS</span></div>
+    <p><span data-lang="en" class="la">The first shipment clears JKDM customs without issue. Six weeks later, during a routine MAQIS inspection of the distributor's warehouse, an officer flags that the wireless charging pads contain wireless transmission components that require a specific SIRIM approval and a separate MOH product notification — neither of which was obtained. The distributor was not told this by their freight forwarder. <strong>MAQIS issues an immediate stop-sale order.</strong> 2,400 units are frozen in the warehouse. The retail chain's launch campaign has already begun.</span><span data-lang="zh">第一批货物顺利通过JKDM海关。六周后，在MAQIS对分销商仓库的例行检查中，一名官员发现无线充电板含有无线传输组件，需要特定的SIRIM批准和单独的卫生部产品通知——两者均未获取。货运代理没有告知分销商这一点。<strong>MAQIS发出即时停售令。</strong>2,400件产品被冻结在仓库中。零售连锁店的启动营销活动已经开始。</span><span data-lang="ms">Penghantaran pertama melepasi kastam JKDM tanpa masalah. Enam minggu kemudian, semasa pemeriksaan rutin MAQIS ke gudang pengedar, seorang pegawai menandakan bahawa pad pengecas tanpa wayar mengandungi komponen penghantaran tanpa wayar yang memerlukan kelulusan SIRIM tertentu dan pemberitahuan produk KKM berasingan — keduanya tidak diperoleh. Pengedar tidak diberitahu perkara ini oleh agen pengangkutan mereka. <strong>MAQIS mengeluarkan perintah henti jual serta-merta.</strong> 2,400 unit dibekukan di gudang. Kempen pelancaran rantai runcit telah pun bermula.</span></p>
+  </div>
+
+  <div class="cost-box">
+    <div class="cb red"><div class="cb-num">11 <span style="font-size:14px">wk</span></div><div class="cb-label"><span data-lang="en" class="la">Frozen inventory while SIRIM approval processed</span><span data-lang="zh">SIRIM审批期间冻结的库存</span><span data-lang="ms">Inventori dibekukan semasa kelulusan SIRIM diproses</span></div></div>
+    <div class="cb amber"><div class="cb-num">RM 95k</div><div class="cb-label"><span data-lang="en" class="la">Lost retail launch window + warehousing</span><span data-lang="zh">失去的零售启动窗口 + 仓储</span><span data-lang="ms">Tetingkap pelancaran runcit yang hilang + penggudangan</span></div></div>
+    <div class="cb gray"><div class="cb-num">1</div><div class="cb-label"><span data-lang="en" class="la">Retail partner nearly cancelled the agreement</span><span data-lang="zh">零售合作伙伴差点取消协议</span><span data-lang="ms">Rakan runcit hampir membatalkan perjanjian</span></div></div>
+  </div>
+
+  <div class="wrong-box">
+    <div class="wb-title"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg><span data-lang="en" class="la">What went wrong</span><span data-lang="zh">哪里出了问题</span><span data-lang="ms">Apa yang silap</span></div>
+    <ul class="wb-list">
+      <li><span data-lang="en" class="la">SIRIM product certification not identified as a pre-import requirement for wireless devices</span><span data-lang="zh">未识别SIRIM产品认证是无线设备进口前的要求</span><span data-lang="ms">Pensijilan produk SIRIM tidak dikenal pasti sebagai keperluan pra-import untuk peranti tanpa wayar</span></li>
+      <li><span data-lang="en" class="la">MOH product notification (for devices with electronics) skipped entirely</span><span data-lang="zh">完全跳过卫生部产品通知（针对含有电子元件的设备）</span><span data-lang="ms">Pemberitahuan produk KKM (untuk peranti dengan elektronik) dilangkau sepenuhnya</span></li>
+      <li><span data-lang="en" class="la">Freight forwarder's scope was import logistics only — regulatory pre-clearance was nobody's job</span><span data-lang="zh">货运代理的范围仅为进口物流——监管预审批是无人负责的空白</span><span data-lang="ms">Skop agen pengangkutan adalah logistik import sahaja — pra-pelepasan kawal selia bukan tugas sesiapa</span></li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- SCENARIO 3: CONTRACTOR WHO SKIPPED CIDB -->
+<div class="section reveal" id="sc-2" style="display:none">
+<div class="scenario">
+  <div class="sc-header">
+    <div class="sc-icon" style="background:#E8F5EE">🏗️</div>
+    <div class="sc-meta">
+      <div class="sc-label"><span data-lang="en" class="la">Scenario 03 · Construction · Johor Bahru</span><span data-lang="zh">案例 03 · 建筑业 · 新山</span><span data-lang="ms">Senario 03 · Pembinaan · Johor Bahru</span></div>
+      <h2 class="sc-title"><span data-lang="en" class="la">They won the tender. They signed the contract. Then they found out <em>they were not allowed to build.</em></span><span data-lang="zh">他们中标了，签署了合同，然后发现<em>他们不被允许施工。</em></span><span data-lang="ms">Mereka memenangi tender. Mereka menandatangani kontrak. Kemudian mereka mendapati <em>mereka tidak dibenarkan membina.</em></span></h2>
+      <div class="sc-industry"><span data-lang="en" class="la">Construction & fit-out · Johor Bahru commercial district · Contract value: RM 4.2M</span><span data-lang="zh">建筑装修 · 新山商业区 · 合同价值：420万令吉</span><span data-lang="ms">Pembinaan & pemasangan · Daerah komersial Johor Bahru · Nilai kontrak: RM 4.2 juta</span></div>
+    </div>
+  </div>
+
+  <div class="story-block neutral">
+    <div class="sb-label"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span data-lang="en" class="la">The situation</span><span data-lang="zh">情况</span><span data-lang="ms">Situasi</span></div>
+    <p><span data-lang="en" class="la">A Taiwanese interior fit-out specialist sets up a Malaysian subsidiary specifically to bid on a commercial construction project in Johor Bahru. They win a RM 4.2M tender for a mixed-use development. Eager to start, they mobilise a 22-person crew and purchase RM 600,000 of materials. On Week 3 of on-site work, the client's project manager is contacted by CIDB — the Construction Industry Development Board. <strong>The foreign contractor does not hold a valid CIDB G7 registration.</strong> Work stops immediately under enforcement order.</span><span data-lang="zh">一家台湾室内装修专家在马来西亚设立子公司，专门竞标新山的一个商业建设项目。他们赢得了一份价值420万令吉的综合发展项目招标。急于开始，他们动员了22人的团队并购买了60万令吉的材料。在现场工作第3周，客户的项目经理接到CIDB——建设行业发展局的联系。<strong>该外国承包商没有有效的CIDB G7注册。</strong>施工在执法令下立即停止。</span><span data-lang="ms">Pakar pemasangan dalaman Taiwan menubuhkan subsidiari Malaysia khusus untuk membida projek pembinaan komersial di Johor Bahru. Mereka memenangi tender RM 4.2 juta untuk pembangunan pelbagai guna. Cepat untuk bermula, mereka menggerakkan kru 22 orang dan membeli RM 600,000 bahan. Pada Minggu 3 kerja di tapak, pengurus projek klien dihubungi oleh CIDB — Lembaga Pembangunan Industri Pembinaan. <strong>Kontraktor asing itu tidak memegang pendaftaran CIDB G7 yang sah.</strong> Kerja berhenti serta-merta di bawah perintah penguatkuasaan.</span></p>
+  </div>
+
+  <div class="story-block critical">
+    <div class="sb-label"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg><span data-lang="en" class="la">The enforcement and the cost</span><span data-lang="zh">执法与代价</span><span data-lang="ms">Penguatkuasaan dan kos</span></div>
+    <p><span data-lang="en" class="la">CIDB G7 registration requires proof of paid-up capital, audited accounts, and a track record — none of which can be submitted by a company that is less than 6 months old. The new subsidiary does not qualify. The contractor is forced to sub-contract to a registered Malaysian company as the prime contractor — forfeiting a significant margin on the RM 4.2M contract while paying a premium to the Malaysian firm for name-lending. The 22-person crew sits idle for 6 weeks while documents are processed. <strong>The client issues a delay penalty clause.</strong></span><span data-lang="zh">CIDB G7注册需要实缴资本证明、经审计账目和业绩记录——这些对于成立不到6个月的公司都无法提交。新子公司不符合资格。承包商被迫将工作分包给一家注册的马来西亚公司作为总承包商——在420万令吉合同上放弃了大量利润，同时向马来西亚公司支付高价的名义出借费用。22人团队在文件处理期间闲置6周。<strong>客户援引延误罚款条款。</strong></span><span data-lang="ms">Pendaftaran CIDB G7 memerlukan bukti modal berbayar, akaun diaudit, dan rekod prestasi — tiada yang boleh dikemukakan oleh syarikat yang berusia kurang dari 6 bulan. Subsidiari baru tidak layak. Kontraktor terpaksa memindahkan kontrak kepada syarikat Malaysia berdaftar sebagai kontraktor utama — melepaskan margin yang signifikan pada kontrak RM 4.2 juta sambil membayar premium kepada firma Malaysia untuk pinjaman nama. Kru 22 orang terbiar selama 6 minggu semasa dokumen diproses. <strong>Klien mengeluarkan klausa penalti kelewatan.</strong></span></p>
+  </div>
+
+  <div class="cost-box">
+    <div class="cb red"><div class="cb-num">6 <span style="font-size:14px">wk</span></div><div class="cb-label"><span data-lang="en" class="la">Crew idle + delay penalty clock running</span><span data-lang="zh">团队闲置 + 延误罚款计时</span><span data-lang="ms">Kru terbiar + jam penalti kelewatan berjalan</span></div></div>
+    <div class="cb amber"><div class="cb-num">~18%</div><div class="cb-label"><span data-lang="en" class="la">Margin lost to sub-contracting arrangement</span><span data-lang="zh">因分包安排损失的利润</span><span data-lang="ms">Margin yang hilang kepada perjanjian sub-kontrak</span></div></div>
+    <div class="cb gray"><div class="cb-num">RM 52k</div><div class="cb-label"><span data-lang="en" class="la">Penalty clause + legal advisory fees</span><span data-lang="zh">罚款条款 + 法律咨询费</span><span data-lang="ms">Klausa penalti + yuran nasihat undang-undang</span></div></div>
+  </div>
+
+  <div class="wrong-box">
+    <div class="wb-title"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg><span data-lang="en" class="la">What went wrong</span><span data-lang="zh">哪里出了问题</span><span data-lang="ms">Apa yang silap</span></div>
+    <ul class="wb-list">
+      <li><span data-lang="en" class="la">CIDB G7 registration not identified as mandatory for any construction work in Malaysia — foreign company assumed Singapore BCA registration was equivalent</span><span data-lang="zh">未识别CIDB G7注册对马来西亚任何建筑工程都是强制性的——外国公司以为新加坡BCA注册是等同的</span><span data-lang="ms">Pendaftaran CIDB G7 tidak dikenal pasti sebagai wajib untuk sebarang kerja pembinaan di Malaysia — syarikat asing menganggap pendaftaran BCA Singapura adalah setara</span></li>
+      <li><span data-lang="en" class="la">New subsidiary cannot qualify for G7 — track record and minimum paid-up capital requirements cannot be fast-tracked</span><span data-lang="zh">新子公司无法符合G7资格——业绩记录和最低实缴资本要求无法快速通道</span><span data-lang="ms">Subsidiari baru tidak boleh layak untuk G7 — rekod prestasi dan keperluan modal berbayar minimum tidak boleh dipercepat</span></li>
+      <li><span data-lang="en" class="la">Tender submitted and won before regulatory eligibility was confirmed</span><span data-lang="zh">在监管资格确认之前提交并赢得投标</span><span data-lang="ms">Tender dikemukakan dan dimenangi sebelum kelayakan kawal selia disahkan</span></li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- SCENARIO 4: SCHOOL BEFORE MOE -->
+<div class="section reveal" id="sc-3" style="display:none">
+<div class="scenario">
+  <div class="sc-header">
+    <div class="sc-icon" style="background:#F4F2EE">🎓</div>
+    <div class="sc-meta">
+      <div class="sc-label"><span data-lang="en" class="la">Scenario 04 · Private Education · Kuala Lumpur</span><span data-lang="zh">案例 04 · 私立教育 · 吉隆坡</span><span data-lang="ms">Senario 04 · Pendidikan Swasta · Kuala Lumpur</span></div>
+      <h2 class="sc-title"><span data-lang="en" class="la">Students enrolled. Fees collected. Teachers hired. <em>The school had no operating approval.</em></span><span data-lang="zh">学生入学，学费收取，教师雇用。<em>学校没有运营许可。</em></span><span data-lang="ms">Pelajar mendaftar. Yuran dikutip. Guru diambil. <em>Sekolah tidak mempunyai kelulusan operasi.</em></span></h2>
+      <div class="sc-industry"><span data-lang="en" class="la">Chinese-medium private school · KL suburbs · 120 enrolled students</span><span data-lang="zh">华文私立学校 · 吉隆坡郊区 · 已招收120名学生</span><span data-lang="ms">Sekolah swasta medium Cina · Pinggir bandar KL · 120 pelajar berdaftar</span></div>
+    </div>
+  </div>
+
+  <div class="story-block neutral">
+    <div class="sb-label"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span data-lang="en" class="la">The setup</span><span data-lang="zh">背景</span><span data-lang="ms">Persediaan</span></div>
+    <p><span data-lang="en" class="la">A Taiwanese education group with a well-regarded kindergarten and primary school brand wants to expand into Malaysia. They find a suitable building in KL, renovate classrooms, open enrolment, and collect deposits from 120 families for the upcoming academic year — September intake. Their legal team registers the company with SSM and registers the premises with DBKL (City Hall). They believe this is sufficient to commence operations.</span><span data-lang="zh">一家拥有知名幼儿园和小学品牌的台湾教育集团希望进入马来西亚市场。他们在吉隆坡找到合适的建筑，翻修教室，开放招生，并向120个家庭收取九月入学的押金。他们的法律团队通过SSM注册公司并向DBKL（市政厅）登记场所。他们认为这已足以开始运营。</span><span data-lang="ms">Kumpulan pendidikan Taiwan dengan jenama tadika dan sekolah rendah yang baik reputasinya ingin berkembang ke Malaysia. Mereka mencari bangunan yang sesuai di KL, mengubah suai bilik darjah, membuka pendaftaran, dan mengutip deposit dari 120 keluarga untuk tahun akademik yang akan datang — pengambilan September. Pasukan undang-undang mereka mendaftar syarikat dengan SSM dan mendaftar premis dengan DBKL (Dewan Bandaraya). Mereka percaya ini mencukupi untuk memulakan operasi.</span></p>
+  </div>
+
+  <div class="story-block critical">
+    <div class="sb-label"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg><span data-lang="en" class="la">Two weeks before opening day</span><span data-lang="zh">开学前两周</span><span data-lang="ms">Dua minggu sebelum hari pembukaan</span></div>
+    <p><span data-lang="en" class="la">The Ministry of Education (MOE) sends a formal notice: <strong>the school has not obtained a Private School Registration Certificate under the Education Act 1996, nor has it received MOE approval of its curriculum, teacher qualifications, and safety standards.</strong> Without these, the school cannot legally operate. The September intake cannot proceed. 120 families — many of whom have turned down other schools — must be contacted. The deposits must be refunded. The building sits empty. The teaching staff of 14 have already resigned from their previous schools.</span><span data-lang="zh">教育部（MOE）发出正式通知：<strong>该学校未依据1996年《教育法》获取私立学校注册证书，也未获得MOE对其课程、教师资质和安全标准的批准。</strong>没有这些，学校不能合法运营。九月入学无法进行。120个家庭——其中许多已拒绝其他学校——必须被联系告知。押金必须退还。建筑空置。14名教职人员已从其之前的学校辞职。</span><span data-lang="ms">Kementerian Pendidikan (KPM) menghantar notis rasmi: <strong>sekolah itu tidak mendapat Sijil Pendaftaran Sekolah Swasta di bawah Akta Pendidikan 1996, dan tidak menerima kelulusan KPM terhadap kurikulum, kelayakan guru, dan piawaian keselamatannya.</strong> Tanpa ini, sekolah tidak boleh beroperasi secara sah. Pengambilan September tidak boleh diteruskan. 120 keluarga — ramai yang telah menolak sekolah lain — perlu dihubungi. Deposit mesti dikembalikan. Bangunan terbiar kosong. Kakitangan pengajaran seramai 14 orang telah pun meletak jawatan dari sekolah sebelum mereka.</span></p>
+  </div>
+
+  <div class="quote-block">
+    "<span data-lang="en" class="la">We had parents calling us in tears. They had already told their children. We had to go back to every single family. That is not just a financial cost. That is something you cannot put a number on.</span><span data-lang="zh">家长们哭着打来电话。他们已经告诉了孩子们。我们不得不联系每一个家庭。这不仅仅是经济损失，这是无法用数字衡量的东西。</span><span data-lang="ms">Kami ada ibu bapa menelepon sambil menangis. Mereka telah memberitahu anak-anak mereka. Kami terpaksa kembali kepada setiap keluarga. Itu bukan sahaja kos kewangan. Itu adalah sesuatu yang tidak boleh anda beri nombor padanya.</span>"
+    <div class="quote-attr"><span data-lang="en" class="la">Composite — represents a pattern across private education market entry situations</span><span data-lang="zh">综合案例——代表私立教育市场准入情况的共同模式</span><span data-lang="ms">Komposit — mewakili corak merentasi situasi kemasukan pasaran pendidikan swasta</span></div>
+  </div>
+
+  <div class="cost-box">
+    <div class="cb red"><div class="cb-num">14 <span style="font-size:14px">mo</span></div><div class="cb-label"><span data-lang="en" class="la">Before MOE approval finally granted</span><span data-lang="zh">直到MOE最终批准</span><span data-lang="ms">Sebelum kelulusan KPM akhirnya diberikan</span></div></div>
+    <div class="cb amber"><div class="cb-num">120</div><div class="cb-label"><span data-lang="en" class="la">Families with refunded deposits — many did not return</span><span data-lang="zh">退款的家庭——许多没有回来</span><span data-lang="ms">Keluarga dengan deposit dikembalikan — ramai tidak kembali</span></div></div>
+    <div class="cb gray"><div class="cb-num">14</div><div class="cb-label"><span data-lang="en" class="la">Teachers paid for 14 months with no students</span><span data-lang="zh">14名教师领薪14个月却无学生可教</span><span data-lang="ms">Guru dibayar selama 14 bulan tanpa pelajar</span></div></div>
+  </div>
+
+  <div class="right-box">
+    <div class="rb-title"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M5 13l4 4L19 7"/></svg><span data-lang="en" class="la">What should have happened first</span><span data-lang="zh">应该先做的事</span><span data-lang="ms">Apa yang sepatutnya berlaku dahulu</span></div>
+    <ul class="rb-list">
+      <li><span data-lang="en" class="la">Submit curriculum, teacher qualifications and building plan to MOE for pre-approval before any marketing or enrolment</span><span data-lang="zh">在任何营销或招生之前，向MOE提交课程、教师资质和建筑计划以供预审批</span><span data-lang="ms">Kemukakan kurikulum, kelayakan guru dan pelan bangunan kepada KPM untuk pra-kelulusan sebelum sebarang pemasaran atau pendaftaran</span></li>
+      <li><span data-lang="en" class="la">Obtain Private School Registration Certificate (PSRC) before opening enrolment</span><span data-lang="zh">在开放招生之前获取私立学校注册证书（PSRC）</span><span data-lang="ms">Dapatkan Sijil Pendaftaran Sekolah Swasta (PSRC) sebelum membuka pendaftaran</span></li>
+      <li><span data-lang="en" class="la">MOE process typically takes 9–12 months — plan the building lease and staff hiring accordingly</span><span data-lang="zh">MOE审批通常需要9–12个月——相应计划建筑租约和员工招聘</span><span data-lang="ms">Proses KPM biasanya mengambil masa 9–12 bulan — rancang pajakan bangunan dan pengambilan kakitangan dengan sewajarnya</span></li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- SCENARIO 5: F&B + MAQIS -->
+<div class="section reveal" id="sc-4" style="display:none">
+<div class="scenario">
+  <div class="sc-header">
+    <div class="sc-icon" style="background:#E8F5EE">🌿</div>
+    <div class="sc-meta">
+      <div class="sc-label"><span data-lang="en" class="la">Scenario 05 · Food & Beverage · Klang Valley</span><span data-lang="zh">案例 05 · 餐饮业 · 巴生河流域</span><span data-lang="ms">Senario 05 · Makanan & Minuman · Lembah Klang</span></div>
+      <h2 class="sc-title"><span data-lang="en" class="la">Six months of inventory. One MAQIS inspection. <em>Everything held at the border.</em></span><span data-lang="zh">六个月的库存，一次MAQIS检查。<em>所有货物被扣在边境。</em></span><span data-lang="ms">Enam bulan inventori. Satu pemeriksaan MAQIS. <em>Semua ditahan di sempadan.</em></span></h2>
+      <div class="sc-industry"><span data-lang="en" class="la">Specialty food brand · Health drinks + supplements · 14 SKUs · Ship from China</span><span data-lang="zh">特色食品品牌 · 健康饮料 + 保健品 · 14个SKU · 从中国发货</span><span data-lang="ms">Jenama makanan khusus · Minuman kesihatan + suplemen · 14 SKU · Kapal dari China</span></div>
+    </div>
+  </div>
+
+  <div class="story-block neutral">
+    <div class="sb-label"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span data-lang="en" class="la">The situation</span><span data-lang="zh">情况</span><span data-lang="ms">Situasi</span></div>
+    <p><span data-lang="en" class="la">A Singapore-based F&B brand with strong online sales across Southeast Asia decides to bring its 14-product health drink and supplement range to Malaysia. They engage a local distributor who has handled similar brands before. The distributor advises that "the products are food — MOH registration is optional for imports under a certain value." The first shipment — a 6-month supply of stock — departs from Guangzhou. <strong>The advice was wrong.</strong> Malaysia's health supplement import rules under MAQIS require mandatory MOH registration for any product making a health benefit claim, regardless of shipment value.</span><span data-lang="zh">一家在东南亚拥有强大线上销售的新加坡餐饮品牌决定将其14款健康饮料和保健品系列引入马来西亚。他们委托一家曾处理过类似品牌的本地分销商。分销商建议"这些产品是食品——低于特定价值的进口不需要卫生部注册。"首批货——6个月的库存——从广州出发。<strong>这个建议是错误的。</strong>MAQIS下的马来西亚健康保健品进口规定要求所有声称有健康益处的产品强制进行卫生部注册，无论货物价值。</span><span data-lang="ms">Jenama F&B berpangkalan di Singapura dengan jualan dalam talian yang kuat di seluruh Asia Tenggara memutuskan untuk membawa rangkaian minuman kesihatan dan suplemen 14 produk ke Malaysia. Mereka melibatkan pengedar tempatan yang pernah mengendalikan jenama serupa sebelum ini. Pengedar menasihati bahawa "produk adalah makanan — pendaftaran KKM adalah pilihan untuk import di bawah nilai tertentu." Penghantaran pertama — bekalan stok 6 bulan — berlepas dari Guangzhou. <strong>Nasihat itu salah.</strong> Peraturan import suplemen kesihatan Malaysia di bawah MAQIS memerlukan pendaftaran KKM yang wajib untuk mana-mana produk yang membuat tuntutan manfaat kesihatan, tanpa mengira nilai penghantaran.</span></p>
+  </div>
+
+  <div class="story-block critical">
+    <div class="sb-label"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg><span data-lang="en" class="la">The MAQIS hold at Port Klang</span><span data-lang="zh">MAQIS在巴生港的扣押</span><span data-lang="ms">Penahanan MAQIS di Pelabuhan Klang</span></div>
+    <p><span data-lang="en" class="la">The shipment arrives at Port Klang and is flagged during MAQIS inspection. All 14 SKUs are held. MAQIS requires a product notification number from MOH for each health supplement. The brand has none. <strong>The goods cannot be released.</strong> MOH product registration for health supplements takes a minimum of 3 months per product — longer for new applicants without a track record in Malaysia. The 6-month stock sits at the port while storage fees accumulate. Some products approach their expiry window. The Malaysia launch is pushed back by 9 months. The distributor terminates their agreement, citing inability to fulfil the launch timeline.</span><span data-lang="zh">货物抵达巴生港，在MAQIS检查中被标记。所有14个SKU被扣押。MAQIS要求每种健康保健品提供卫生部的产品通知编号。该品牌一个都没有。<strong>货物无法放行。</strong>健康保健品的卫生部产品注册每个产品至少需要3个月——对在马来西亚没有记录的新申请者来说更长。6个月的库存在港口等待，同时存储费用不断增加。部分产品临近保质期。马来西亚上市被推迟了9个月。分销商以无法履行上市时间表为由终止了合作协议。</span><span data-lang="ms">Penghantaran tiba di Pelabuhan Klang dan ditandakan semasa pemeriksaan MAQIS. Semua 14 SKU ditahan. MAQIS memerlukan nombor pemberitahuan produk dari KKM untuk setiap suplemen kesihatan. Jenama tidak mempunyai satu pun. <strong>Barangan tidak boleh dilepaskan.</strong> Pendaftaran produk KKM untuk suplemen kesihatan mengambil masa minimum 3 bulan setiap produk — lebih lama untuk pemohon baru tanpa rekod di Malaysia. Stok 6 bulan duduk di pelabuhan sementara yuran penyimpanan terkumpul. Sesetengah produk mendekati tetingkap luput tempoh mereka. Pelancaran Malaysia ditangguhkan selama 9 bulan. Pengedar menamatkan perjanjian mereka, dengan alasan ketidakupayaan untuk memenuhi garis masa pelancaran.</span></p>
+  </div>
+
+  <div class="cost-box">
+    <div class="cb red"><div class="cb-num">9 <span style="font-size:14px">mo</span></div><div class="cb-label"><span data-lang="en" class="la">Launch delayed · Stock nearly expired</span><span data-lang="zh">上市推迟 · 库存接近过期</span><span data-lang="ms">Pelancaran ditangguhkan · Stok hampir luput</span></div></div>
+    <div class="cb amber"><div class="cb-num">14</div><div class="cb-label"><span data-lang="en" class="la">Separate MOH registrations needed — one per SKU</span><span data-lang="zh">需要14个单独的卫生部注册——每个SKU一个</span><span data-lang="ms">14 pendaftaran KKM berasingan diperlukan — satu per SKU</span></div></div>
+    <div class="cb gray"><div class="cb-num">1</div><div class="cb-label"><span data-lang="en" class="la">Distributor lost · Had to find a new one</span><span data-lang="zh">失去分销商 · 必须重新寻找</span><span data-lang="ms">Pengedar hilang · Terpaksa mencari yang baru</span></div></div>
+  </div>
+
+  <div class="wrong-box">
+    <div class="wb-title"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg><span data-lang="en" class="la">What went wrong</span><span data-lang="zh">哪里出了问题</span><span data-lang="ms">Apa yang silap</span></div>
+    <ul class="wb-list">
+      <li><span data-lang="en" class="la">MOH product notification mandatory for ALL health claims — "food" classification does not exempt supplements from notification requirements</span><span data-lang="zh">所有健康声称产品强制需要卫生部产品通知——"食品"分类不能豁免保健品的通知要求</span><span data-lang="ms">Pemberitahuan produk KKM wajib untuk SEMUA tuntutan kesihatan — klasifikasi "makanan" tidak mengecualikan suplemen daripada keperluan pemberitahuan</span></li>
+      <li><span data-lang="en" class="la">MOH registration not started before production began — should have been filed 6+ months before first shipment</span><span data-lang="zh">在生产开始之前未启动卫生部注册——应该在首批货物前6个月以上提交</span><span data-lang="ms">Pendaftaran KKM tidak dimulakan sebelum pengeluaran bermula — sepatutnya difailkan 6+ bulan sebelum penghantaran pertama</span></li>
+      <li><span data-lang="en" class="la">Distributor's advice relied upon without independent regulatory verification</span><span data-lang="zh">在没有独立监管核实的情况下依赖分销商的建议</span><span data-lang="ms">Nasihat pengedar bergantung tanpa pengesahan kawal selia bebas</span></li>
+      <li><span data-lang="en" class="la">6-month stock ordered before any regulatory clearance confirmed — enormous risk if held at port</span><span data-lang="zh">在任何监管批准确认之前订购6个月库存——如果被港口扣押风险巨大</span><span data-lang="ms">Stok 6 bulan dipesan sebelum sebarang pelepasan kawal selia disahkan — risiko besar jika ditahan di pelabuhan</span></li>
+    </ul>
+  </div>
+</div>
+</div>
+
+</div><!-- end #scenarios -->
+
+<!-- THE PATTERN -->
+<div class="full-alt">
+<div class="section reveal">
+  <div class="rule-divider"><div class="rule-line"></div><span class="rule-text"><span data-lang="en" class="la">The pattern across every scenario</span><span data-lang="zh">所有案例的共同规律</span><span data-lang="ms">Corak merentas setiap senario</span></span><div class="rule-line"></div></div>
+  <h2 style="margin-bottom:16px"><span data-lang="en" class="la">The same five mistakes. Every time.</span><span data-lang="zh">同样的五个错误，每一次。</span><span data-lang="ms">Lima kesilapan yang sama. Setiap kali.</span></h2>
+  <p style="font-size:15px;color:var(--text2);line-height:1.75;margin-bottom:28px"><span data-lang="en" class="la">These scenarios look different on the surface — different industries, different authorities, different locations. But beneath each one is the same failure pattern. Every one of them was preventable.</span><span data-lang="zh">这些案例表面上看起来不同——不同行业、不同部门、不同地点。但每一个背后都是相同的失败模式。每一个都是可以预防的。</span><span data-lang="ms">Senario-senario ini kelihatan berbeza di permukaan — industri berbeza, pihak berkuasa berbeza, lokasi berbeza. Tetapi di sebalik setiap satu adalah corak kegagalan yang sama. Setiap satu daripadanya boleh dicegah.</span></p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div style="padding:16px 18px;background:var(--rbg);border-radius:10px;border:1px solid rgba(192,57,43,.12)">
+      <div style="font-size:12px;font-weight:700;color:var(--r);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">01</div>
+      <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px"><span data-lang="en" class="la">Operations before approvals</span><span data-lang="zh">批准前运营</span><span data-lang="ms">Operasi sebelum kelulusan</span></div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.6"><span data-lang="en" class="la">Hiring staff, ordering stock, signing leases, or beginning construction before the required licences are in place. The cost of idle resources then forces the company to cut corners.</span><span data-lang="zh">在所需许可证到位之前招募员工、订购库存、签署租约或开始施工。闲置资源的成本随后迫使公司走捷径。</span><span data-lang="ms">Mengambil kakitangan, memesan stok, menandatangani pajakan, atau memulakan pembinaan sebelum lesen yang diperlukan tersedia. Kos sumber yang terbiar kemudian memaksa syarikat memotong penjuru.</span></div>
+    </div>
+    <div style="padding:16px 18px;background:var(--rbg);border-radius:10px;border:1px solid rgba(192,57,43,.12)">
+      <div style="font-size:12px;font-weight:700;color:var(--r);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">02</div>
+      <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px"><span data-lang="en" class="la">Treating each authority as independent</span><span data-lang="zh">将每个部门视为独立的</span><span data-lang="ms">Merawat setiap pihak berkuasa secara bebas</span></div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.6"><span data-lang="en" class="la">Filing applications without understanding which ones are prerequisites for others. JKDM needs MIDA. Employment Pass needs MIDA. MOH needs prior product notification. These dependencies are not published in plain language anywhere.</span><span data-lang="zh">在不了解哪些申请是其他申请先决条件的情况下提交。JKDM需要MIDA，就业准证需要MIDA，卫生部需要事先产品通知。这些依赖关系没有以简单语言发布在任何地方。</span><span data-lang="ms">Memfailkan permohonan tanpa memahami mana yang menjadi prasyarat untuk yang lain. JKDM memerlukan MIDA. Pas Pekerjaan memerlukan MIDA. KKM memerlukan pemberitahuan produk terdahulu. Kebergantungan ini tidak diterbitkan dalam bahasa mudah di mana-mana.</span></div>
+    </div>
+    <div style="padding:16px 18px;background:var(--rbg);border-radius:10px;border:1px solid rgba(192,57,43,.12)">
+      <div style="font-size:12px;font-weight:700;color:var(--r);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">03</div>
+      <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px"><span data-lang="en" class="la">Relying on a single advisor</span><span data-lang="zh">依赖单一顾问</span><span data-lang="ms">Bergantung pada penasihat tunggal</span></div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.6"><span data-lang="en" class="la">Company secretaries handle SSM. Freight forwarders handle customs. Neither has sight of the full regulatory picture. Gaps fall between them — nobody owns the dependency chain.</span><span data-lang="zh">公司秘书处理SSM，货运代理处理海关，两者都没有看到完整的监管图景。缺口在两者之间产生——没有人负责依赖链。</span><span data-lang="ms">Setiausaha syarikat menguruskan SSM. Agen pengangkutan menguruskan kastam. Tiada yang melihat gambar kawal selia penuh. Jurang berlaku di antara mereka — tiada siapa yang memiliki rantaian kebergantungan.</span></div>
+    </div>
+    <div style="padding:16px 18px;background:var(--rbg);border-radius:10px;border:1px solid rgba(192,57,43,.12)">
+      <div style="font-size:12px;font-weight:700;color:var(--r);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">04</div>
+      <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px"><span data-lang="en" class="la">Applying home-market logic to Malaysia</span><span data-lang="zh">将本国市场逻辑套用到马来西亚</span><span data-lang="ms">Menerapkan logik pasaran rumah kepada Malaysia</span></div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.6"><span data-lang="en" class="la">HS codes that work in China may not map to Malaysia's tariff schedule. Construction registration in Singapore or Taiwan is not recognised here. Product classifications follow different rules. What worked at home creates a false sense of security.</span><span data-lang="zh">在中国有效的HS编码可能无法映射到马来西亚的关税表。新加坡或台湾的建筑注册在这里不被认可。产品分类遵循不同规则。在本国有效的方法会产生错误的安全感。</span><span data-lang="ms">Kod HS yang berfungsi di China mungkin tidak memetakan ke jadual tarif Malaysia. Pendaftaran pembinaan di Singapura atau Taiwan tidak diiktiraf di sini. Klasifikasi produk mengikut peraturan berbeza. Apa yang berfungsi di rumah mencipta rasa selamat palsu.</span></div>
+    </div>
+    <div style="padding:16px 18px;background:var(--rbg);border-radius:10px;border:1px solid rgba(192,57,43,.12);grid-column:1/-1">
+      <div style="font-size:12px;font-weight:700;color:var(--r);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">05</div>
+      <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px"><span data-lang="en" class="la">No visibility means no warning</span><span data-lang="zh">没有可视性意味着没有警告</span><span data-lang="ms">Tiada keterlihatan bermakna tiada amaran</span></div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.6"><span data-lang="en" class="la">Without a single system tracking every authority application in real time, problems only become visible when an officer turns up — or when a shipment is held at port. There is no early warning. By then, the clock is already running.</span><span data-lang="zh">如果没有实时追踪每项部门申请的单一系统，问题只有在官员到来时——或货物在港口被扣押时——才会变得可见。没有早期预警。到那时，时间已经开始流逝。</span><span data-lang="ms">Tanpa sistem tunggal yang menjejak setiap permohonan pihak berkuasa dalam masa nyata, masalah hanya menjadi kelihatan apabila pegawai hadir — atau apabila penghantaran ditahan di pelabuhan. Tiada amaran awal. Menjelang itu, jam sudah berjalan.</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FINALE CTA -->
+<div class="finale">
+  <div class="fn-inner">
+    <span class="fn-icon">🛡️</span>
+    <h2 class="fn-title"><span data-lang="en" class="la">None of these scenarios happen when the sequence is right <em>from day one.</em></span><span data-lang="zh">当序列从第一天就做对了，这些情况都不会发生。</span><span data-lang="ms">Tiada satu pun senario ini berlaku apabila urutan betul <em>dari hari pertama.</em></span></h2>
+    <p class="fn-sub"><span data-lang="en" class="la">Before you engage a freight forwarder, sign a lease, or post a job listing — speak to us. We will map every authority your industry requires and build the correct sequence before a single application is filed.</span><span data-lang="zh">在您聘用货运代理、签署租约或发布招聘信息之前——先与我们联系。我们将梳理您行业所需的每个部门，并在提交任何申请之前建立正确的顺序。</span><span data-lang="ms">Sebelum anda melibatkan agen pengangkutan, menandatangani pajakan, atau menyiarkan iklan kerja — bercakap dengan kami. Kami akan memetakan setiap pihak berkuasa yang diperlukan industri anda dan membina urutan yang betul sebelum satu permohonan pun difailkan.</span></p>
+    <div class="fn-btns">
+      <button class="btn-lg btn-primary" onclick="location.href='mailto:larry@leveragebusiness.my?subject=Scoping Call — Sequence Check&body=Industry:%0D%0ACountry of origin:%0D%0ATimeline:%0D%0AAnything specific you want us to check:'">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        <span data-lang="en" class="la">Book a scoping call</span><span data-lang="zh">预约咨询电话</span><span data-lang="ms">Tempah panggilan skop</span>
+      </button>
+      <button class="btn-lg btn-outline" onclick="location.href='/'">
+        <span data-lang="en" class="la">Back to home</span><span data-lang="zh">返回首页</span><span data-lang="ms">Kembali ke halaman utama</span>
+      </button>
+    </div>
+    <p style="margin-top:20px;font-size:11px;color:rgba(255,255,255,.3)"><span data-lang="en" class="la">No obligation. Responds within 24 hours. Consultation available in EN / 中文 / BM.</span><span data-lang="zh">无需承诺，24小时内回复，提供中英文咨询。</span><span data-lang="ms">Tiada obligasi. Memberi respons dalam 24 jam. Perundingan tersedia dalam EN / 中文 / BM.</span></p>
+  </div>
+</div>
+
+<script>
+let lang = localStorage.getItem('lb-lang')||'en';
+setLang(lang, false);
+
+function setLang(l, save=true) {
+  lang = l;
+  if(save) localStorage.setItem('lb-lang', l);
+  document.querySelectorAll('[data-lang]').forEach(el => el.classList.toggle('la', el.dataset.lang===l));
+  document.querySelectorAll('.lb').forEach(b => b.classList.toggle('active', b.textContent.trim()==={en:'EN',zh:'中文',ms:'BM'}[l]));
+  document.documentElement.lang = l==='zh'?'zh-CN':l==='ms'?'ms':'en';
+}
+
+function showScenario(idx, btn) {
+  for(let i=0;i<5;i++) {
+    const el = document.getElementById('sc-'+i);
+    if(el) el.style.display = i===idx ? 'block' : 'none';
+  }
+  document.querySelectorAll('.sc-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, {threshold:0.05, rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
