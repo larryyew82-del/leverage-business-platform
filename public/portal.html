@@ -684,7 +684,7 @@ let lang = localStorage.getItem('lb-lang') || 'en';
 
 const TASKS = [
   {
-    seq:1, code:'SSM', name:'Company Registration',
+    seq:1, code:'SSM', name:'Company Registration', name_zh:'公司注册', name_ms:'Pendaftaran Syarikat',
     fullName:'Suruhanjaya Syarikat Malaysia — Company Incorporation',
     legalBasis:'Companies Act 2016 (Act 777)',
     status:'approved', dot:'var(--g)',
@@ -725,7 +725,7 @@ const TASKS = [
     ]
   },
   {
-    seq:2, code:'LHDN', name:'Tax File + Employer Registration',
+    seq:2, code:'LHDN', name:'Tax File + Employer Registration', name_zh:'税务档案 + 雇主注册', name_ms:'Fail Cukai + Pendaftaran Majikan',
     fullName:'Lembaga Hasil Dalam Negeri — Income Tax + Employer Number',
     legalBasis:'Income Tax Act 1967 · Employment Act 1955',
     status:'approved', dot:'var(--g)',
@@ -764,7 +764,7 @@ const TASKS = [
     ]
   },
   {
-    seq:3, code:'Bomba', name:'Fire Safety Certificate',
+    seq:3, code:'Bomba', name:'Fire Safety Certificate', name_zh:'消防安全证书', name_ms:'Sijil Keselamatan Bomba',
     fullName:'Jabatan Bomba dan Penyelamat Malaysia — Fire Certificate',
     legalBasis:'Fire Services Act 1988 (Act 341) · Uniform Building By-Laws 1984',
     status:'approved', dot:'var(--g)',
@@ -804,7 +804,7 @@ const TASKS = [
     ]
   },
   {
-    seq:4, code:'PBT', name:'Premise Licence (MBSP)',
+    seq:4, code:'PBT', name:'Premise Licence (MBSP)', name_zh:'营业执照 (MBSP)', name_ms:'Lesen Premis (MBSP)',
     fullName:'Majlis Bandaraya Seberang Perai — Business Premise Licence',
     legalBasis:'Local Government Act 1976 (Act 171) · Uniform Building By-Laws 1984',
     status:'filed', dot:'var(--b)',
@@ -845,7 +845,7 @@ const TASKS = [
     ]
   },
   {
-    seq:5, code:'MIDA', name:'ICA 10 Exemption (Manufacturing)',
+    seq:5, code:'MIDA', name:'ICA 10 Exemption (Manufacturing)', name_zh:'ICA 10豁免（制造业）', name_ms:'Pengecualian ICA 10 (Pembuatan)',
     fullName:'Malaysian Investment Development Authority — Industrial Coordination Act 1975 Exemption',
     legalBasis:'Industrial Coordination Act 1975 (Act 156) · MIDA Guidelines on Manufacturing Incentives',
     status:'action', dot:'var(--a)',
@@ -891,7 +891,7 @@ const TASKS = [
     ]
   },
   {
-    seq:6, code:'JKDM', name:'JPC 1 — Machinery Duty Exemption',
+    seq:6, code:'JKDM', name:'JPC 1 — Machinery Duty Exemption', name_zh:'JPC 1 — 机械关税豁免', name_ms:'JPC 1 — Pengecualian Duti Jentera',
     fullName:'Jabatan Kastam Diraja Malaysia — Customs Duty Exemption on Machinery (JPC 1)',
     legalBasis:'Customs Act 1967 (Act 235) · Customs Duties Order 2017 · MIDA-JKDM Circular',
     status:'blocked', dot:'#C8C8CC',
@@ -933,7 +933,7 @@ const TASKS = [
     ]
   },
   {
-    seq:7, code:'ESD/JIM', name:'Employment Pass × 3 (Foreign Professionals)',
+    seq:7, code:'ESD/JIM', name:'Employment Pass × 3 (Foreign Professionals)', name_zh:'就业准证 × 3（外籍专业人员）', name_ms:'Pas Pekerjaan × 3 (Profesional Asing)',
     fullName:'Expatriate Services Division / Jabatan Imigresen — Employment Pass (EP) Category I',
     legalBasis:'Immigration Act 1959/63 (Act 155) · EP Guidelines by ESD',
     status:'blocked', dot:'#C8C8CC',
@@ -977,7 +977,7 @@ const TASKS = [
     ]
   },
   {
-    seq:8, code:'KDN', name:'Foreign Worker Quota',
+    seq:8, code:'KDN', name:'Foreign Worker Quota', name_zh:'外籍员工配额', name_ms:'Kuota Pekerja Asing',
     fullName:'Kementerian Dalam Negeri — Foreign Worker Quota for Semi-Skilled / Low-Skilled Workers',
     legalBasis:'Immigration Act 1959/63 · Employment Agencies Act 1981 · KDN Circular on Foreign Workers',
     status:'blocked', dot:'#C8C8CC',
@@ -1020,7 +1020,7 @@ const TASKS = [
     ]
   },
   {
-    seq:9, code:'DOSH', name:'Safety & Health Registration + Machinery Clearance',
+    seq:9, code:'DOSH', name:'Safety & Health Registration + Machinery Clearance', name_zh:'安全与健康注册 + 机械许可', name_ms:'Pendaftaran K&K + Pelepasan Jentera',
     fullName:'Jabatan Keselamatan dan Kesihatan Pekerjaan — OSH Registration + PMA Certification',
     legalBasis:'Occupational Safety and Health Act 1994 (Act 514) · Factories and Machinery Act 1967 (Act 139)',
     status:'blocked', dot:'#C8C8CC',
@@ -1060,7 +1060,7 @@ const TASKS = [
     ]
   },
   {
-    seq:10, code:'LHDN', name:'SST Registration (Sales & Service Tax)',
+    seq:10, code:'LHDN', name:'SST Registration (Sales & Service Tax)', name_zh:'SST注册（销售与服务税）', name_ms:'Pendaftaran SST (Cukai Jualan & Perkhidmatan)',
     fullName:'Lembaga Hasil Dalam Negeri — Sales and Service Tax Registration',
     legalBasis:'Sales Tax Act 2018 (Act 806) · Service Tax Act 2018 (Act 807)',
     status:'blocked', dot:'#C8C8CC',
@@ -1098,7 +1098,7 @@ const TASKS = [
     ]
   },
   {
-    seq:11, code:'MITI', name:'Cost of Production Analysis (Annual)',
+    seq:11, code:'MITI', name:'Cost of Production Analysis (Annual)', name_zh:'年度生产成本分析', name_ms:'Analisis Kos Pengeluaran (Tahunan)',
     fullName:'Kementerian Perdagangan Antarabangsa dan Industri — Manufacturing Performance Report / Cost Analysis',
     legalBasis:'Industrial Coordination Act 1975 (Act 156) · MIDA Conditions attached to ICA 10 Approval',
     status:'blocked', dot:'#C8C8CC',
@@ -1394,7 +1394,7 @@ function renderTasks() {
         <span class="app-num">${String(t.seq).padStart(2,'0')}</span>
         <div class="app-dot" style="background:${s.dot}"></div>
         <span class="app-code">${t.code}</span>
-        <span class="app-title">${t.name}</span>
+        <span class="app-title">${lang==='zh'&&t.name_zh?t.name_zh:lang==='ms'&&t.name_ms?t.name_ms:t.name}</span>
         ${progressPct>0?`<div class="app-prog-mini"><div class="app-prog-fill" style="width:${progressPct}%"></div></div>`:''}
         <span class="a-status ${s.cls}" style="font-size:10px">${s.badge}</span>
         ${t.govPortal?`<span style="font-size:9px;color:var(--text3);white-space:nowrap">${t.processingTime}</span>`:''}
