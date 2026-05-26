@@ -426,7 +426,7 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
     <div class="nav-item" data-view="guidance" onclick="switchView(this)">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
       <span data-lang="en" class="la">Guidance Centre</span><span data-lang="zh">指导中心</span><span data-lang="ms">Pusat Panduan</span>
-      <span class="nav-badge" style="background:var(--g);font-size:8px">NEW</span>
+      
     </div>
     <div class="nav-item" data-view="support" onclick="switchView(this)">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
@@ -525,7 +525,20 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
       </div>
     </div>
     <div>
-      <div class="card" style="margin-bottom:12px">
+      <!-- Progress bar: 13500/45000 = 30% -->
+  <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:12px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:12px;font-weight:600;color:var(--text)"><span data-lang="en" class="la">Engagement progress</span><span data-lang="zh">项目进度</span><span data-lang="ms">Kemajuan penglibatan</span></div>
+      <div style="font-size:12px;font-weight:700;color:var(--g)">30% <span data-lang="en" class="la">paid</span><span data-lang="zh">已付</span><span data-lang="ms">dibayar</span></div>
+    </div>
+    <div style="height:8px;background:var(--border);border-radius:6px;overflow:hidden;margin-bottom:6px">
+      <div style="height:100%;width:30%;background:linear-gradient(90deg,var(--g),#2ea862);border-radius:6px;transition:width .5s ease"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3)">
+      <span>RM 0</span><span style="color:var(--g);font-weight:600">RM 13,500 paid</span><span>RM 45,000</span>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:12px">
         <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la">Upcoming Deadlines</span><span data-lang="zh">即将到期</span><span data-lang="ms">Tarikh Akhir</span></span></div>
         <div style="padding:6px 14px">
           <div class="dl-row dl-urg"><span class="dl-date">20 Mar</span><div class="dl-info"><div style="font-size:12px;font-weight:500;color:var(--a)"><span data-lang="en" class="la">Machinery list → MIDA</span><span data-lang="zh">机械清单 → MIDA</span><span data-lang="ms">Senarai jentera → MIDA</span></div><div style="font-size:10px;color:var(--text3)">Upload required · 5 days</div></div><span class="dl-tag bg-a"><span data-lang="en" class="la">Urgent</span><span data-lang="zh">紧急</span><span data-lang="ms">Mendesak</span></span></div>
@@ -599,6 +612,21 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
       </div>
     </div>
   </div>
+  <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+    <input type="text" id="doc-search" 
+      placeholder="Search documents..." 
+      oninput="filterDocs(this.value)"
+      style="flex:1;min-width:180px;padding:8px 12px;border:1px solid var(--border);border-radius:7px;font-size:12px;font-family:var(--fb);color:var(--text);background:var(--white);outline:none"
+      onfocus="this.style.borderColor='var(--gold)'" 
+      onblur="this.style.borderColor='var(--border)'">
+    <select id="doc-filter" onchange="filterDocs(document.getElementById('doc-search').value)"
+      style="padding:8px 12px;border:1px solid var(--border);border-radius:7px;font-size:12px;font-family:var(--fb);color:var(--text);background:var(--white);outline:none;cursor:pointer">
+      <option value="all">All documents</option>
+      <option value="required">Needs action</option>
+      <option value="yours">My uploads</option>
+      <option value="leverage">From Leverage</option>
+    </select>
+  </div>
 </div>
 
 <!-- ═══════════════ CASHFLOW ═══════════════ -->
@@ -609,6 +637,27 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
       <div class="cf-card"><div class="cf-label"><span data-lang="en" class="la">Total engagement fee</span><span data-lang="zh">服务总费用</span><span data-lang="ms">Jumlah yuran</span></div><div class="cf-val">RM 45,000</div></div>
       <div class="cf-card"><div class="cf-label"><span data-lang="en" class="la">Paid to date</span><span data-lang="zh">已付金额</span><span data-lang="ms">Telah dibayar</span></div><div class="cf-val" style="color:var(--g)">RM 13,500</div><div class="cf-sub">Milestone 1 (30%)</div></div>
       <div class="cf-card"><div class="cf-label"><span data-lang="en" class="la">Remaining</span><span data-lang="zh">待付金额</span><span data-lang="ms">Baki</span></div><div class="cf-val" style="color:var(--a)">RM 31,500</div><div class="cf-sub">Milestones 2 + 3</div></div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la">Fee breakdown</span><span data-lang="zh">费用明细</span><span data-lang="ms">Pecahan yuran</span></span></div>
+    <div style="padding:0 4px">
+      <div style="display:flex;justify-content:space-between;padding:9px 12px;font-size:12px;border-bottom:1px solid var(--border)">
+        <span style="color:var(--text2)"><span data-lang="en" class="la">Professional service fee</span><span data-lang="zh">专业服务费</span><span data-lang="ms">Yuran perkhidmatan profesional</span></span>
+        <span style="font-weight:500">RM 35,000</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:9px 12px;font-size:12px;border-bottom:1px solid var(--border)">
+        <span style="color:var(--text2)"><span data-lang="en" class="la">Government disbursements (est.)</span><span data-lang="zh">政府费用（预估）</span><span data-lang="ms">Perbelanjaan kerajaan (anggaran)</span></span>
+        <span style="font-weight:500">RM 8,500</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:9px 12px;font-size:12px;border-bottom:1px solid var(--border)">
+        <span style="color:var(--text2)"><span data-lang="en" class="la">SST (where applicable)</span><span data-lang="zh">SST（如适用）</span><span data-lang="ms">SST (jika berkenaan)</span></span>
+        <span style="font-weight:500">RM 1,500</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:9px 12px;font-size:13px;font-weight:600;background:var(--off);border-radius:0 0 8px 8px">
+        <span><span data-lang="en" class="la">Total</span><span data-lang="zh">合计</span><span data-lang="ms">Jumlah</span></span>
+        <span style="color:var(--navy)">RM 45,000</span>
+      </div>
     </div>
   </div>
   <div class="card">
@@ -715,7 +764,7 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
     <div class="card" style="padding:16px"><div style="font-size:14px;font-weight:600;margin-bottom:4px">Larry — <span data-lang="en" class="la">Director</span><span data-lang="zh">总监</span><span data-lang="ms">Pengarah</span></div><div style="font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:12px"><span data-lang="en" class="la">Escalate concerns not resolved by your handler. Available Monday–Friday.</span><span data-lang="zh">处理员未能解决的问题可直接上报总监，周一至周五可联系。</span><span data-lang="ms">Eskalasi isu yang tidak diselesaikan oleh pengendali. Tersedia Isnin–Jumaat.</span></div><div style="font-size:12px;color:var(--text2);padding:7px 0;border-top:1px solid var(--border)">✉️ larry@leveragebusiness.my</div></div>
   </div>
   <div class="card">
-    <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la"><span data-lang="en" class="la">Frequently asked questions</span><span data-lang="zh">常见问题</span><span data-lang="ms">Soalan Lazim</span></span><span data-lang="zh">常见问题</span><span data-lang="ms">Soalan Lazim</span></span></div>
+    <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la">Frequently asked questions</span><span data-lang="zh">常见问题</span><span data-lang="ms">Soalan Lazim</span></span></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">Why is my JKDM application blocked?</span><span data-lang="zh">为什么我的JKDM申请被锁定？</span><span data-lang="ms">Mengapa permohonan JKDM saya disekat?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">JKDM (duty exemption) can only be filed after MIDA approval is received. This is a mandatory government sequence — the ministry requires the MIDA reference number before processing JPC 1 applications.</span><span data-lang="zh">JKDM关税豁免申请只能在获得MIDA批准后提交。这是政府强制规定的顺序——部门要求在处理JPC 1申请前提供MIDA参考编号。</span><span data-lang="ms">JKDM (pengecualian duti) hanya boleh difailkan selepas kelulusan MIDA diterima. Ini adalah urutan kerajaan yang wajib — kementerian memerlukan nombor rujukan MIDA sebelum memproses permohonan JPC 1.</span></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">How long does MIDA approval take?</span><span data-lang="zh">MIDA批准需要多长时间？</span><span data-lang="ms">Berapa lama kelulusan MIDA mengambil masa?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">MIDA ICA 10 Exemption typically takes 6–10 weeks from filing to approval. We will file as soon as your machinery list is received. I track this weekly and will update you on any movement.</span><span data-lang="zh">MIDA ICA 10豁免从提交到批准通常需要6至10周。一旦收到您的机械清单，我们将立即提交，并每周跟进进展。</span><span data-lang="ms">Pengecualian MIDA ICA 10 biasanya mengambil masa 6–10 minggu dari pemfailan hingga kelulusan. Kami akan memfailkan sebaik sahaja senarai jentera anda diterima.</span></div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span data-lang="en" class="la">Can I add more directors or shareholders after registration?</span><span data-lang="zh">注册后可以增加董事或股东吗？</span><span data-lang="ms">Bolehkah saya menambah pengarah atau pemegang saham selepas pendaftaran?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a"><span data-lang="en" class="la">Yes — changes to directors, shareholders, and share structure can be filed with SSM at any time. However, significant changes while MIDA is in processing may require supplementary submissions. Please inform your handler before making any changes.</span><span data-lang="zh">可以，董事、股东及股权结构的变更可随时向SSM提交。但在MIDA审批期间进行重大变更可能需要补充材料，请在变更前知会您的处理员。</span><span data-lang="ms">Ya — perubahan kepada pengarah, pemegang saham, dan struktur saham boleh difailkan dengan SSM pada bila-bila masa. Walau bagaimanapun, perubahan ketara semasa MIDA sedang diproses mungkin memerlukan pengiriman tambahan.</span></div></div>
@@ -1741,6 +1790,22 @@ function renderTasks() {
           ${infoHtml}
         </div>
       </div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><span data-lang="en" class="la">What documents should I upload first?</span><span data-lang="zh">我应该先上传哪些文件？</span><span data-lang="ms">Dokumen mana yang perlu saya muat naik dahulu?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
+      <div class="faq-a"><span data-lang="en" class="la">Start with the <strong>Machinery List with HS Codes</strong> — this is blocking your MIDA application right now. After that, upload the <strong>3-year Business Plan</strong> and the <strong>Factory Floor Plan</strong>. Your handler has also flagged the Audited Accounts 2024 for re-upload (auditor signature page was missing).</span><span data-lang="zh">首先上传<strong>含HS编码的机械清单</strong>——这正是目前阻碍MIDA申请的关键。之后请上传<strong>3年商业计划</strong>和<strong>工厂平面图</strong>。处理员还标记了2024年审计账目需要重新上传（缺少审计师签名页）。</span><span data-lang="ms">Mulakan dengan <strong>Senarai Jentera dengan Kod HS</strong> — ini yang menghalang permohonan MIDA anda sekarang. Selepas itu, muat naik <strong>Pelan Perniagaan 3 tahun</strong> dan <strong>Pelan Lantai Kilang</strong>.</span></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><span data-lang="en" class="la">When will my Employment Pass be ready?</span><span data-lang="zh">就业准证什么时候能办好？</span><span data-lang="ms">Bilakah Pas Pekerjaan saya akan siap?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
+      <div class="faq-a"><span data-lang="en" class="la">Employment Pass cannot be filed until <strong>MIDA ICA 10 is approved</strong>. Once MIDA approves (typically 6–10 weeks), your handler files ESD immediately. ESD processes in 4–8 weeks. Your staff can only begin work in Malaysia after passes are issued — plan accordingly.</span><span data-lang="zh">就业准证必须在<strong>MIDA ICA 10获批</strong>后方可提交。MIDA批准后（通常6–10周），处理员将立即提交ESD申请，ESD处理周期为4–8周。您的员工只能在准证颁发后才能在马来西亚开始工作——请提前规划。</span><span data-lang="ms">Pas Pekerjaan tidak boleh difailkan sehingga <strong>MIDA ICA 10 diluluskan</strong>. Setelah MIDA meluluskan, pengendali akan memfailkan ESD dengan segera. ESD memproses dalam 4–8 minggu.</span></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><span data-lang="en" class="la">How do I switch the portal language?</span><span data-lang="zh">如何切换门户语言？</span><span data-lang="ms">Bagaimana menukar bahasa portal?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
+      <div class="faq-a"><span data-lang="en" class="la">Click the <strong>EN · 中文 · BM</strong> buttons in the top-right corner. Your preference is saved automatically — it will be remembered every time you log in.</span><span data-lang="zh">点击右上角的<strong>EN · 中文 · BM</strong>按钮。您的偏好设置将自动保存，每次登录时均有效。</span><span data-lang="ms">Klik butang <strong>EN · 中文 · BM</strong> di sudut kanan atas. Pilihan anda disimpan secara automatik.</span></div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><span data-lang="en" class="la">Is my data safe and private?</span><span data-lang="zh">我的数据安全且私密吗？</span><span data-lang="ms">Adakah data saya selamat dan peribadi?</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
+      <div class="faq-a"><span data-lang="en" class="la">Yes. All data is AES-256 encrypted, hosted on AWS Southeast Asia, and PDPA-compliant. Only your handler and the Leverage director can access your files. A 7-year audit trail is maintained. Your documents are never shared with any third party without your written consent.</span><span data-lang="zh">是的。所有数据均采用AES-256加密，托管于AWS东南亚服务器，符合个人数据保护法（PDPA）。只有您的处理员和Leverage总监可访问您的文件。系统维护7年审计追踪，未经书面同意绝不与第三方共享。</span><span data-lang="ms">Ya. Semua data disulitkan AES-256, dihoskan di AWS Asia Tenggara, dan mematuhi PDPA. Hanya pengendali dan pengarah Leverage boleh mengakses fail anda. Jejak audit 7 tahun dikekalkan.</span></div>
     </div>`;
   }).join('');
 }
@@ -1768,6 +1833,20 @@ function switchTaskTab(taskIdx, tab, btn) {
   if(btn) btn.classList.add('active');
 }
 
+
+
+function filterDocs(searchTerm) {
+  const term = (searchTerm || '').toLowerCase();
+  const filter = document.getElementById('doc-filter')?.value || 'all';
+  document.querySelectorAll('.doc-row').forEach(row => {
+    const name = row.querySelector('.doc-name')?.textContent?.toLowerCase() || '';
+    const type = row.dataset.type || '';
+    const matchSearch = !term || name.includes(term);
+    const matchFilter = filter === 'all' || type === filter || 
+      (filter === 'action' && (type === 'required' || type === 'flagged'));
+    row.style.display = (matchSearch && matchFilter) ? '' : 'none';
+  });
+}
 
 function renderDocs() {
   const required = DOCS.filter(d=>d.type==='required'||d.type==='flagged');
