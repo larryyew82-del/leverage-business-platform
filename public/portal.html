@@ -255,75 +255,131 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
 .g-warn-banner{padding:10px 12px;background:var(--abg);border-left:3px solid var(--a);border-radius:0 7px 7px 0;margin-bottom:10px;font-size:12px;color:var(--a);display:flex;gap:8px;align-items:flex-start}
 .g-info-banner{padding:10px 12px;background:var(--bbg);border-left:3px solid var(--b);border-radius:0 7px 7px 0;margin-bottom:10px;font-size:12px;color:var(--b);display:flex;gap:8px;align-items:flex-start}
 
-/* ── APPLICATION WORKSPACE ── */
-.app-card{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:10px}
-.app-card.action-needed{border-color:rgba(198,93,0,.35);box-shadow:0 0 0 1px rgba(198,93,0,.1)}
-.app-hdr{display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;transition:background .15s;user-select:none}
+
+/* ── IMPROVED APPLICATION WORKSPACE v2 ── */
+.app-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:10px;transition:box-shadow .2s}
+.app-card:hover{box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.app-card.action-needed{border-color:rgba(198,93,0,.4);box-shadow:0 0 0 2px rgba(198,93,0,.08)}
+.app-card.approved-card{border-color:rgba(26,122,74,.25)}
+
+.app-hdr{display:flex;align-items:center;gap:10px;padding:13px 16px;cursor:pointer;user-select:none;transition:background .15s}
 .app-hdr:hover{background:var(--off)}
-.app-num{font-family:var(--fm);font-size:10px;font-weight:600;color:var(--text3);width:22px;flex-shrink:0}
+.app-num{font-family:var(--fm);font-size:10px;font-weight:600;color:var(--text3);width:22px;flex-shrink:0;text-align:center}
 .app-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.app-code{font-family:var(--fm);font-size:11px;font-weight:600;color:var(--text);width:48px;flex-shrink:0}
-.app-title{flex:1;font-size:13px;font-weight:500;color:var(--text)}
-.app-chevron{width:14px;height:14px;color:var(--text3);flex-shrink:0;transition:transform .2s}
+.app-code{font-family:var(--fm);font-size:11px;font-weight:700;color:var(--text);width:52px;flex-shrink:0}
+.app-title{flex:1;font-size:13px;font-weight:500;color:var(--text);min-width:0}
+.app-meta{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.app-time-badge{font-size:10px;color:var(--text3);white-space:nowrap;font-family:var(--fm)}
+.app-chevron{width:14px;height:14px;color:var(--text3);flex-shrink:0;transition:transform .25s}
 .app-chevron.open{transform:rotate(180deg)}
+
+/* Progress mini bar in header */
+.app-prog-wrap{width:44px;flex-shrink:0}
+.app-prog-track{height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.app-prog-fill{height:100%;border-radius:2px;transition:width .3s}
+
+/* Body */
 .app-body{display:none;border-top:1px solid var(--border)}
 .app-body.open{display:block}
-/* Status timeline */
-.app-timeline{display:flex;gap:0;padding:10px 16px;border-bottom:1px solid var(--border);overflow-x:auto}
+
+/* Status banner at top of body */
+.app-status-banner{padding:11px 16px;display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.55}
+.asb-icon{width:16px;height:16px;flex-shrink:0;margin-top:1px}
+.asb-approved{background:var(--gbg);color:var(--g)}
+.asb-filed{background:var(--bbg);color:var(--b)}
+.asb-action{background:var(--abg);border-left:3px solid var(--a);color:var(--a)}
+.asb-blocked{background:var(--off);color:var(--text3)}
+
+/* Timeline strip */
+.app-timeline{display:flex;padding:10px 16px;border-bottom:1px solid var(--border);gap:0;overflow-x:auto;scrollbar-width:none}
 .app-timeline::-webkit-scrollbar{display:none}
-.tl-step{display:flex;flex-direction:column;align-items:center;flex:1;min-width:60px;position:relative}
-.tl-step::after{content:'';position:absolute;top:9px;left:50%;right:-50%;height:2px;background:var(--border);z-index:0}
-.tl-step:last-child::after{display:none}
-.tl-dot-wrap{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1;margin-bottom:4px;flex-shrink:0}
-.tl-dot-done{background:var(--g)}
-.tl-dot-active{background:var(--a)}
-.tl-dot-filed{background:var(--b)}
-.tl-dot-locked{background:var(--border)}
-.tl-dot-wrap svg{width:10px;height:10px}
-.tl-label{font-size:9px;text-align:center;line-height:1.3;color:var(--text3);max-width:56px}
-.tl-label.active{color:var(--a);font-weight:600}
-.tl-label.done{color:var(--g);font-weight:600}
-.tl-label.filed{color:var(--b);font-weight:600}
-/* Tabs inside app */
+.tl-step{flex:1;min-width:64px;display:flex;flex-direction:column;align-items:center;position:relative}
+.tl-step:not(:last-child)::after{content:'';position:absolute;top:9px;left:calc(50% + 10px);right:calc(-50% + 10px);height:2px;background:var(--border);z-index:0}
+.tl-step:not(:last-child).tl-done::after{background:var(--g)}
+.tl-node{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1;margin-bottom:4px;flex-shrink:0;border:2px solid var(--border)}
+.tl-node.tl-done{background:var(--g);border-color:var(--g)}
+.tl-node.tl-active{background:var(--a);border-color:var(--a)}
+.tl-node.tl-filed{background:var(--b);border-color:var(--b)}
+.tl-node.tl-locked{background:var(--white);border-color:var(--border)}
+.tl-label{font-size:9px;text-align:center;color:var(--text3);line-height:1.3;max-width:60px}
+.tl-label.tl-done{color:var(--g);font-weight:600}
+.tl-label.tl-active{color:var(--a);font-weight:600}
+.tl-label.tl-filed{color:var(--b);font-weight:600}
+
+/* Tab bar */
 .app-tabs{display:flex;border-bottom:1px solid var(--border);background:var(--off)}
-.app-tab{padding:8px 14px;font-size:11px;font-weight:500;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--fb);transition:all .2s}
+.app-tab{flex:1;padding:9px 8px;font-size:11px;font-weight:500;color:var(--text3);cursor:pointer;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;background:transparent;font-family:var(--fb);transition:all .2s;text-align:center}
 .app-tab:hover{color:var(--navy)}
-.app-tab.active{color:var(--navy);border-bottom-color:var(--navy)}
+.app-tab.active{color:var(--navy);border-bottom-color:var(--navy);background:var(--white)}
+.app-tab-badge{display:inline-flex;align-items:center;justify-content:center;background:var(--a);color:#fff;font-size:8px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:4px;vertical-align:middle}
+
+/* Tab content panels */
 .app-tab-content{display:none;padding:14px 16px}
 .app-tab-content.active{display:block}
-/* Protocol steps */
+
+/* ── PROTOCOL TAB ── */
 .protocol-list{display:flex;flex-direction:column;gap:0}
-.proto-step{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
+.proto-step{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
 .proto-step:last-child{border-bottom:none}
-.proto-num{width:22px;height:22px;border-radius:50%;background:var(--off2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--text3);flex-shrink:0;margin-top:1px}
-.proto-content{flex:1}
-.proto-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px}
-.proto-detail{font-size:11px;color:var(--text3);line-height:1.55}
-/* Document checklist per application */
-.task-doc-row{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid var(--border);font-size:12px}
-.task-doc-row:last-child{border-bottom:none}
-.tdr-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.tdr-done{background:var(--gbg)}
-.tdr-need{background:var(--abg)}
-.tdr-lev{background:var(--navy)}
-.tdr-wait{background:var(--off2)}
-.tdr-info{flex:1;min-width:0}
-.tdr-name{font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tdr-note{font-size:10px;color:var(--text3);margin-top:1px}
-.tdr-actions{display:flex;gap:5px;align-items:center;flex-shrink:0}
-/* Blocked banner */
-.blocked-banner{padding:12px 16px;background:var(--off);border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:10px}
-.blocked-banner svg{width:14px;height:14px;flex-shrink:0;margin-top:2px;color:var(--text3)}
-/* Info / warning banners in tasks */
-.task-info{padding:10px 12px;background:var(--bbg);border-radius:7px;font-size:12px;color:var(--b);line-height:1.6;margin-bottom:10px;display:flex;gap:8px}
-.task-warn{padding:10px 12px;background:var(--abg);border-left:3px solid var(--a);border-radius:0 7px 7px 0;font-size:12px;color:var(--a);line-height:1.6;margin-bottom:10px}
-.task-success{padding:10px 12px;background:var(--gbg);border-radius:7px;font-size:12px;color:var(--g);line-height:1.6;margin-bottom:10px;display:flex;gap:8px}
-/* Upload drop zone mini */
-.mini-upload{border:1.5px dashed var(--border);border-radius:7px;padding:12px;text-align:center;cursor:pointer;transition:all .15s;background:var(--white)}
-.mini-upload:hover{border-color:var(--gold);background:rgba(201,169,97,.03)}
-/* Progress bar in hdr */
-.app-prog-mini{height:3px;background:var(--border);border-radius:2px;overflow:hidden;width:50px;flex-shrink:0}
-.app-prog-fill{height:100%;background:var(--gold);border-radius:2px}
+.proto-num{width:22px;height:22px;border-radius:50%;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px}
+.proto-body{flex:1}
+.proto-header{display:flex;align-items:flex-start;gap:6px;margin-bottom:5px;flex-wrap:wrap}
+.proto-title{font-size:12px;font-weight:600;color:var(--text);flex:1;min-width:120px}
+.proto-who{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;white-space:nowrap;flex-shrink:0}
+.proto-who-lev{background:var(--navy);color:var(--gold)}
+.proto-who-client{background:var(--abg);color:var(--a);border:1px solid rgba(198,93,0,.2)}
+.proto-who-gov{background:var(--bbg);color:var(--b)}
+.proto-form{font-size:9px;color:var(--text3);font-family:var(--fm);white-space:nowrap;flex-shrink:0}
+.proto-days{font-size:9px;color:var(--text3);margin-left:auto;flex-shrink:0;white-space:nowrap}
+.proto-detail{font-size:11px;color:var(--text2);line-height:1.6;white-space:pre-line}
+
+/* ── DOCUMENTS TAB ── */
+.doc-prep-banner{padding:10px 12px;background:var(--bbg);border-left:3px solid var(--b);font-size:12px;color:var(--b);margin-bottom:12px;line-height:1.6;border-radius:0 7px 7px 0}
+.doc-checklist{display:flex;flex-direction:column;gap:0}
+.doc-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.doc-item:last-child{border-bottom:none}
+.doc-status-icon{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.dsi-done{background:var(--gbg)}
+.dsi-need{background:var(--abg)}
+.dsi-flagged{background:var(--rbg)}
+.dsi-lev{background:var(--navy)}
+.dsi-wait{background:var(--off2)}
+.doc-item-body{flex:1;min-width:0}
+.doc-item-name{font-size:12px;font-weight:500;color:var(--text);margin-bottom:2px}
+.doc-item-note{font-size:10px;color:var(--text3);line-height:1.5}
+.doc-urgent-tag{font-size:9px;font-weight:700;background:var(--rbg);color:var(--r);padding:1px 6px;border-radius:6px;margin-left:5px;vertical-align:middle}
+.doc-item-actions{display:flex;gap:5px;align-items:center;flex-shrink:0;margin-top:2px}
+
+/* Upload drop zone */
+.doc-upload-zone{border:1.5px dashed var(--border);border-radius:8px;padding:14px 16px;text-align:center;cursor:pointer;transition:all .2s;margin-top:12px}
+.doc-upload-zone:hover{border-color:var(--gold);background:rgba(201,169,97,.03)}
+.doc-upload-zone-text{font-size:11px;color:var(--text3)}
+
+/* ── AGENCY INFO TAB ── */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.info-cell{padding:10px 12px;background:var(--off);border-radius:8px;border:1px solid var(--border)}
+.info-cell-full{grid-column:1/-1}
+.info-cell-label{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:3px}
+.info-cell-value{font-size:12px;color:var(--text);line-height:1.5}
+.info-ref-box{padding:10px 12px;background:var(--gbg);border-radius:8px;margin-bottom:8px;font-size:12px;color:var(--g);border:1px solid rgba(26,122,74,.15)}
+.info-unlocks-box{padding:10px 12px;background:var(--bbg);border-radius:8px;margin-bottom:8px;font-size:12px;color:var(--b);border:1px solid rgba(30,91,138,.12)}
+.info-post-section{margin-bottom:10px}
+.info-post-item{display:flex;gap:7px;font-size:11px;color:var(--text2);padding:5px 0;border-bottom:1px solid var(--border);line-height:1.5}
+.info-post-item:last-child{border-bottom:none}
+.info-post-dot{width:5px;height:5px;border-radius:50%;background:var(--b);flex-shrink:0;margin-top:5px}
+.info-reject-item{padding:8px 11px;background:var(--rbg);border-radius:7px;margin-bottom:6px;border:1px solid rgba(192,57,43,.1)}
+.info-reject-item:last-child{margin-bottom:0}
+.info-reject-reason{font-size:12px;font-weight:600;color:var(--r);margin-bottom:3px}
+.info-reject-avoid{font-size:11px;color:var(--text2);line-height:1.5}
+.info-portal-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--b);padding:7px 11px;background:var(--bbg);border-radius:7px;border:1px solid rgba(30,91,138,.15);text-decoration:none;margin-top:4px}
+
+/* Blocked overlay on doc items */
+.doc-item.doc-blocked{opacity:.55}
+
+/* Summary row at top of applications view */
+.app-summary-bar{display:flex;gap:8px;padding:0 0 14px;flex-wrap:wrap}
+.app-sum-pill{display:flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid var(--border);background:var(--white)}
+
 </style>
 </head>
 <body>
@@ -497,7 +553,7 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
 <!-- ═══════════════ APPLICATIONS ═══════════════ -->
 <div class="view" id="view-applications">
   <div class="page-hdr">
-    <div><h1 class="page-title"><span data-lang="en" class="la">Applications</span><span data-lang="zh">申请进度</span><span data-lang="ms">Permohonan</span></h1><p class="page-sub"><span data-lang="en" class="la">11 government authorities · Each has full SOP, document checklist, and post-approval obligations · Click any application to expand</span><span data-lang="zh">11个政府部门 · 每项均含完整SOP、文件清单及批准后义务 · 点击任意申请查看详情</span><span data-lang="ms">11 pihak berkuasa kerajaan · Setiap satu mempunyai SOP penuh, senarai semak dokumen, dan obligasi pasca kelulusan · Klik mana-mana permohonan untuk kembangkan</span></p></div>
+    <div><h1 class="page-title"><span data-lang="en" class="la">Applications</span><span data-lang="zh">申请进度</span><span data-lang="ms">Permohonan</span></h1><p class="page-sub"><span data-lang="en" class="la">11 government authorities · Click any to expand: full SOP, document checklist & post-approval obligations</span><span data-lang="zh">11个政府部门 · 每项均含完整SOP、文件清单及批准后义务 · 点击任意申请查看详情</span><span data-lang="ms">11 pihak berkuasa kerajaan · Setiap satu mempunyai SOP penuh, senarai semak dokumen, dan obligasi pasca kelulusan · Klik mana-mana permohonan untuk kembangkan</span></p></div>
   </div>
   <div id="tasks-list"></div>
 </div>
@@ -1194,259 +1250,349 @@ function applyUser(u) {
 // ── TRILINGUAL HELPERS ──
 const T = {
   en: {
+    /* Status badges */
     approved:'Approved', filed:'Filed', action:'Action needed', blocked:'Blocked',
-    uploaded:'Uploaded', uploadNeeded:'Upload needed', reUpload:'Re-upload needed',
-    fromLev:'From Leverage', pendingUp:'Pending upstream', flagged:'Flagged', pending:'Pending',
-    urgent:'URGENT', upload:'Upload', download:'Download', accepted:'Accepted',
-    underReview:'Under review',
-    filedGov:'Filed — government processing', blockedWait:'Blocked — waiting on:',
+    uploaded:'Uploaded', uploadNeeded:'Upload needed', reUpload:'Re-upload',
+    fromLev:'From Leverage', pendingUp:'Pending upstream', flagged:'Flagged',
+    pending:'Pending', accepted:'Accepted', underReview:'Under review',
+    /* Action labels */
+    urgent:'URGENT', upload:'Upload', download:'Download', uploadNow:'Upload Now',
+    askHandler:'Message handler', viewDoc:'View',
+    /* Banners */
+    filedGov:'Filed — government processing',
+    blockedWait:'Blocked — waiting on:',
     allDone:'All steps completed. Certificate/approval on file.',
-    canPrepareDoc:'This application is blocked — but you can <strong>upload and prepare your documents now</strong> so they are ready the moment the upstream approval arrives.',
+    canPrepareDoc:'This application is blocked — but you can <strong>upload and prepare documents now</strong> while waiting for the upstream approval.',
     noDocs:'No documents required for this application.',
-    procTime:t('procTime'), govFee:t('govFee'), renewObl:'Renewal obligation',
-    whoApply:'Who must apply', ref:'Reference:', unlocks:'Unlocks:',
-    postApproval:t('postApproval'), rejReasons:t('rejReasons'),
-    howToAvoid:'How to avoid:', actionNeeded:'⚡ Your action needed',
-    uploadNow:'Upload Now', askHandler:'Ask handler',
-    legalBasis:'Legal basis:', protocol:'Protocol', documents:'Documents',
-    agencyInfo:'Agency info',
-    // Overview
-    yourHandler:'Your Handler', upcomingDeadlines:'Upcoming Deadlines',
-    authorityStatus:'Authority Status', viewAll:'View all',
-    phase1:'Phase 1: Setup', phase2:'Phase 2: Licensing', phase3:'Phase 3: Operations',
-    // Deadlines
-    urgent2:'Urgent', upcoming:'Upcoming', scheduled:'Scheduled',
-    // Cashflow
-    paid:'Paid', pendingC:'Pending', future:'Future',
-    onSigning:'Milestone 1 — On signing (30%)',
-    midaApproved:'Milestone 2 — MIDA approved (40%)',
-    completion:'Milestone 3 — Completion (30%)',
-    paymentSchedule:'Payment schedule',
-    // Support
-    faq:'Frequently asked questions',
-    // Messages
+    actionBanner:'Your action needed — ',
+    /* Tab labels */
+    protocol:'Protocol', documents:'Documents', agencyInfo:'Agency info',
+    /* Section labels in Agency Info */
+    procTime:'Processing time', govFee:'Government fee',
+    renewObl:'Renewal obligation', whoApply:'Who must apply',
+    physPresence:'Physical presence', ref:'Reference:',
+    unlocks:'Unlocks:', postApproval:'Post-approval obligations',
+    rejReasons:'Common rejection reasons', howToAvoid:'How to avoid:',
+    legalBasis:'Legal basis:', govPortalLabel:'Government portal',
+    /* Who handles badges */
+    whoLev:'Leverage', whoClient:'Client', whoGov:'Government',
+    /* Timeline */
+    tlDone:'Done', tlActive:'In progress', tlLocked:'Pending',
+    /* Summary bar */
+    approved_n:'approved', filed_n:'filed', action_n:'action needed', blocked_n:'blocked',
+    /* Doc preparation */
+    prepNow:'Prepare now', prepInfo:'Documents you can prepare while this application is locked:',
+    /* Overview */
+    actionNeeded:'⚡ Action needed',
+    /* Messages */
     autoReply:"Thanks for your message. I'll review and respond within 1 business day.",
-    // Documents
+    /* Docs view */
     needsAction:'Needs your action', yourUploads:'Your uploads', fromLevBiz:'From Leverage Business',
-    dragDrop:'Drag & drop or click to upload',
     downloadAll:'Download all',
-    // Applications page subtitle
-    appSubtitle:'11 government authorities · Click any application to expand and view full SOP, document checklist, and post-approval obligations',
-    // Section labels in agency info
-    postApprovalObl:t('postApproval'),
+    /* App subtitle */
+    appSubtitle:'11 government authorities · Click any to expand full SOP, document checklist & post-approval obligations',
   },
   zh: {
     approved:'已批准', filed:'已提交', action:'需要行动', blocked:'已锁定',
-    uploaded:'已上传', uploadNeeded:'需要上传', reUpload:'需要重新上传',
-    fromLev:'Leverage提供', pendingUp:'等待上游批准', flagged:'已被标记', pending:'待处理',
-    urgent:'紧急', upload:'上传', download:'下载', accepted:'已接受',
-    underReview:'审核中',
-    filedGov:'已提交——政府处理中', blockedWait:'已锁定——等待：',
+    uploaded:'已上传', uploadNeeded:'需要上传', reUpload:'需重新上传',
+    fromLev:'Leverage提供', pendingUp:'等待上游批准', flagged:'已标记',
+    pending:'待处理', accepted:'已接受', underReview:'审核中',
+    urgent:'紧急', upload:'上传', download:'下载', uploadNow:'立即上传',
+    askHandler:'联系处理员', viewDoc:'查看',
+    filedGov:'已提交——政府处理中',
+    blockedWait:'已锁定——等待：',
     allDone:'所有步骤已完成，证书/批准已存档。',
-    canPrepareDoc:'此申请已锁定——但您现在可以<strong>上传并准备好文件</strong>，上游批准到来后即可直接使用。',
+    canPrepareDoc:'此申请已锁定——但您现在可以<strong>上传并准备文件</strong>，待上游批准后即可使用。',
     noDocs:'此申请不需要文件。',
-    procTime:'处理时间', govFee:'政府费用', renewObl:'续期义务',
-    whoApply:'谁须申请', ref:'参考编号：', unlocks:'解锁：',
-    postApproval:'批准后义务', rejReasons:'常见被拒原因',
-    howToAvoid:'如何避免：', actionNeeded:'⚡ 需要您的行动',
-    uploadNow:'立即上传', askHandler:'询问处理员',
-    legalBasis:'法律依据：', protocol:'申请流程', documents:'所需文件',
-    agencyInfo:'部门信息',
-    yourHandler:'您的处理员', upcomingDeadlines:'即将到期',
-    authorityStatus:'部门申请状态', viewAll:'查看全部',
-    phase1:'阶段1：设立', phase2:'阶段2：申请', phase3:'阶段3：运营',
-    urgent2:'紧急', upcoming:'即将', scheduled:'已排期',
-    paid:'已付', pendingC:'待付', future:'待定',
-    onSigning:'里程碑1——签约时（30%）',
-    midaApproved:'里程碑2——MIDA批准后（40%）',
-    completion:'里程碑3——完成时（30%）',
-    paymentSchedule:'付款计划',
-    faq:'常见问题',
+    actionBanner:'需要您的行动 — ',
+    protocol:'申请流程', documents:'所需文件', agencyInfo:'部门信息',
+    procTime:'处理时间', govFee:'政府费用',
+    renewObl:'续期义务', whoApply:'谁须申请',
+    physPresence:'是否须到场', ref:'参考编号：',
+    unlocks:'解锁：', postApproval:'批准后义务',
+    rejReasons:'常见被拒原因', howToAvoid:'如何避免：',
+    legalBasis:'法律依据：', govPortalLabel:'政府门户',
+    whoLev:'Leverage负责', whoClient:'客户负责', whoGov:'政府部门',
+    tlDone:'已完成', tlActive:'进行中', tlLocked:'待处理',
+    approved_n:'已批准', filed_n:'已提交', action_n:'需行动', blocked_n:'已锁定',
+    prepNow:'立即准备', prepInfo:'此申请已锁定，但您可以提前准备以下文件：',
+    actionNeeded:'⚡ 需要行动',
     autoReply:'感谢您的留言，我将在1个工作日内回复。',
     needsAction:'需要您操作', yourUploads:'您的上传', fromLevBiz:'Leverage Business提供',
-    dragDrop:'拖放或点击上传',
     downloadAll:'全部下载',
     appSubtitle:'11个政府部门 · 点击任意申请查看完整SOP、文件清单及批准后义务',
-    postApprovalObl:'批准后义务',
   },
   ms: {
     approved:'Diluluskan', filed:'Difailkan', action:'Tindakan diperlukan', blocked:'Disekat',
-    uploaded:'Dimuat naik', uploadNeeded:'Muat naik diperlukan', reUpload:'Muat naik semula diperlukan',
-    fromLev:'Daripada Leverage', pendingUp:'Menunggu hulu', flagged:'Ditandakan', pending:'Tertunda',
-    urgent:'SEGERA', upload:'Muat naik', download:'Muat turun', accepted:'Diterima',
-    underReview:'Sedang disemak',
-    filedGov:'Difailkan — pemprosesan kerajaan', blockedWait:'Disekat — menunggu:',
+    uploaded:'Dimuat naik', uploadNeeded:'Muat naik diperlukan', reUpload:'Muat naik semula',
+    fromLev:'Daripada Leverage', pendingUp:'Menunggu hulu', flagged:'Ditandakan',
+    pending:'Tertunda', accepted:'Diterima', underReview:'Sedang disemak',
+    urgent:'SEGERA', upload:'Muat naik', download:'Muat turun', uploadNow:'Muat Naik Sekarang',
+    askHandler:'Mesej pengendali', viewDoc:'Lihat',
+    filedGov:'Difailkan — pemprosesan kerajaan',
+    blockedWait:'Disekat — menunggu:',
     allDone:'Semua langkah selesai. Sijil/kelulusan dalam rekod.',
-    canPrepareDoc:'Permohonan ini disekat — tetapi anda boleh <strong>muat naik dan sediakan dokumen anda sekarang</strong> supaya ia sedia apabila kelulusan hulu tiba.',
+    canPrepareDoc:'Permohonan ini disekat — tetapi anda boleh <strong>muat naik dan sediakan dokumen sekarang</strong> semasa menunggu kelulusan hulu.',
     noDocs:'Tiada dokumen diperlukan untuk permohonan ini.',
-    procTime:'Masa pemprosesan', govFee:'Yuran kerajaan', renewObl:'Obligasi pembaharuan',
-    whoApply:'Siapa perlu memohon', ref:'Rujukan:', unlocks:'Membuka kunci:',
-    postApproval:'Obligasi pasca kelulusan', rejReasons:'Sebab penolakan biasa',
-    howToAvoid:'Cara mengelak:', actionNeeded:'⚡ Tindakan anda diperlukan',
-    uploadNow:'Muat Naik Sekarang', askHandler:'Tanya pengendali',
-    legalBasis:'Asas undang-undang:', protocol:'Protokol', documents:'Dokumen',
-    agencyInfo:'Maklumat agensi',
-    yourHandler:'Pengendali Anda', upcomingDeadlines:'Tarikh Akhir',
-    authorityStatus:'Status Pihak Berkuasa', viewAll:'Lihat semua',
-    phase1:'Fasa 1: Persediaan', phase2:'Fasa 2: Pelesenan', phase3:'Fasa 3: Operasi',
-    urgent2:'Mendesak', upcoming:'Akan datang', scheduled:'Dijadualkan',
-    paid:'Dibayar', pendingC:'Tertunda', future:'Akan datang',
-    onSigning:'Pencapaian 1 — Semasa tandatangan (30%)',
-    midaApproved:'Pencapaian 2 — Selepas MIDA diluluskan (40%)',
-    completion:'Pencapaian 3 — Siap sepenuhnya (30%)',
-    paymentSchedule:'Jadual pembayaran',
-    faq:'Soalan Lazim',
+    actionBanner:'Tindakan anda diperlukan — ',
+    protocol:'Protokol', documents:'Dokumen', agencyInfo:'Maklumat agensi',
+    procTime:'Masa pemprosesan', govFee:'Yuran kerajaan',
+    renewObl:'Obligasi pembaharuan', whoApply:'Siapa perlu memohon',
+    physPresence:'Kehadiran fizikal', ref:'Rujukan:',
+    unlocks:'Membuka kunci:', postApproval:'Obligasi pasca kelulusan',
+    rejReasons:'Sebab penolakan biasa', howToAvoid:'Cara mengelak:',
+    legalBasis:'Asas undang-undang:', govPortalLabel:'Portal kerajaan',
+    whoLev:'Leverage', whoClient:'Klien', whoGov:'Kerajaan',
+    tlDone:'Selesai', tlActive:'Sedang berjalan', tlLocked:'Tertunda',
+    approved_n:'diluluskan', filed_n:'difailkan', action_n:'tindakan diperlukan', blocked_n:'disekat',
+    prepNow:'Sedia sekarang', prepInfo:'Anda boleh sediakan dokumen ini semasa permohonan disekat:',
+    actionNeeded:'⚡ Tindakan diperlukan',
     autoReply:"Terima kasih atas mesej anda. Saya akan meninjau dan membalas dalam 1 hari bekerja.",
     needsAction:'Perlukan tindakan anda', yourUploads:'Muat naik anda', fromLevBiz:'Daripada Leverage Business',
-    dragDrop:'Seret & lepas atau klik untuk muat naik',
     downloadAll:'Muat turun semua',
-    appSubtitle:'11 pihak berkuasa kerajaan · Klik mana-mana permohonan untuk kembangkan dan lihat SOP penuh, senarai semak dokumen, dan obligasi pasca kelulusan',
-    postApprovalObl:'Obligasi pasca kelulusan',
+    appSubtitle:'11 pihak berkuasa kerajaan · Klik mana-mana untuk kembangkan SOP penuh, senarai semak dokumen & obligasi pasca kelulusan',
   }
 };
+function t(key) { return (T[lang]||T.en)[key] || T.en[key] || key; }
 function t(key) { return (T[lang]||T.en)[key] || T.en[key] || key; }
 
 function renderTasks() {
   const el = document.getElementById('tasks-list');
-  const statusMap = {
-    approved:{get badge(){return t('approved')},cls:'bg-g',dot:'var(--g)',color:'var(--g)'},
-    filed:{get badge(){return t('filed')},cls:'bg-b',dot:'var(--b)',color:'var(--b)'},
-    action:{get badge(){return t('action')},cls:'bg-a',dot:'var(--a)',color:'var(--a)'},
-    blocked:{get badge(){return t('blocked')},cls:'bg-s',dot:'#C8C8CC',color:'#C8C8CC'}
+  if (!el) return;
+
+  // Status config using t() getters
+  const SM = {
+    approved:{get badge(){return t('approved')},cls:'bg-g',dot:'var(--g)',pct:100},
+    filed:   {get badge(){return t('filed')},   cls:'bg-b',dot:'var(--b)',pct:65},
+    action:  {get badge(){return t('action')},  cls:'bg-a',dot:'var(--a)',pct:30},
+    blocked: {get badge(){return t('blocked')}, cls:'bg-s',dot:'#C8C8CC',pct:0},
   };
-  const tlIconDone = `<svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="3"><path stroke-linecap="round" d="M5 13l4 4L19 7"/></svg>`;
-  const tlIconLock = `<svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#aaa" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>`;
-  const tlIconActive = `<svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="3"><circle cx="12" cy="12" r="4" fill="#fff"/></svg>`;
-  const tlIconFiled = `<svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.5"><path stroke-linecap="round" d="M9 12l2 2 4-4"/></svg>`;
 
-  el.innerHTML = TASKS.map((t, i) => {
-    const s = statusMap[t.status] || statusMap.blocked;
-    const isAction = t.status === 'action';
-    const isBlocked = t.status === 'blocked';
-    const isApproved = t.status === 'approved';
-    const isFiled = t.status === 'filed';
+  // Doc icon config
+  const DI = {
+    done:   {bg:'dsi-done', color:'var(--g)',   svg:'M5 13l4 4L19 7',    get badge(){return t('uploaded')}},
+    need:   {bg:'dsi-need', color:'var(--a)',   svg:'M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12', get badge(){return t('uploadNeeded')}},
+    flagged:{bg:'dsi-flagged',color:'var(--r)', svg:'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z', get badge(){return t('reUpload')}},
+    lev:    {bg:'dsi-lev',  color:'var(--gold)',svg:'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', get badge(){return t('fromLev')}},
+    wait:   {bg:'dsi-wait', color:'var(--text3)',svg:'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', get badge(){return t('pendingUp')}},
+  };
 
-    // Timeline
-    const tlIcons = {done:tlIconDone,active:tlIconActive,filed:tlIconFiled,locked:tlIconLock};
-    const tlBg = {done:'var(--g)',active:'var(--a)',filed:'var(--b)',locked:'var(--border)'};
-    const tlTimeline = (t.timeline||[]).map((label,j) => {
-      const st = (t.timelineStatus||[])[j] || 'locked';
-      return `<div class="tl-step">
-        <div class="tl-dot-wrap" style="background:${tlBg[st]||'var(--border)'}">${tlIcons[st]||tlIconLock}</div>
-        <div class="tl-label ${st}">${label}</div>
+  // Timeline node icons
+  const TL_SVG = {
+    done:   `<svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="3"><path stroke-linecap="round" d="M5 13l4 4L19 7"/></svg>`,
+    active: `<svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#fff"/></svg>`,
+    filed:  `<svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.5"><path stroke-linecap="round" d="M9 12l2 2 4-4"/></svg>`,
+    locked: `<svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#aaa" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>`,
+  };
+  const TL_CLASS = {done:'tl-done',active:'tl-active',filed:'tl-filed',locked:'tl-locked'};
+
+  // Summary counts
+  const counts = {approved:0, filed:0, action:0, blocked:0};
+  TASKS.forEach(task => { if(counts[task.status]!==undefined) counts[task.status]++; });
+
+  // Summary bar
+  const summaryBar = `<div class="app-summary-bar">
+    ${counts.approved?`<div class="app-sum-pill" style="border-color:rgba(26,122,74,.3);color:var(--g)">
+      <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M5 13l4 4L19 7"/></svg>
+      ${counts.approved} ${t('approved_n')}</div>`:''}
+    ${counts.filed?`<div class="app-sum-pill" style="border-color:rgba(30,91,138,.3);color:var(--b)">
+      <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      ${counts.filed} ${t('filed_n')}</div>`:''}
+    ${counts.action?`<div class="app-sum-pill" style="border-color:rgba(198,93,0,.4);color:var(--a)">
+      <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+      ${counts.action} ${t('action_n')}</div>`:''}
+    ${counts.blocked?`<div class="app-sum-pill" style="color:var(--text3)">
+      <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      ${counts.blocked} ${t('blocked_n')}</div>`:''}
+  </div>`;
+
+  el.innerHTML = summaryBar + TASKS.map((task, i) => {
+    const s = SM[task.status] || SM.blocked;
+    const isApproved = task.status === 'approved';
+    const isFiled    = task.status === 'filed';
+    const isAction   = task.status === 'action';
+    const isBlocked  = task.status === 'blocked';
+    const taskName   = lang==='zh'&&task.name_zh ? task.name_zh : lang==='ms'&&task.name_ms ? task.name_ms : task.name;
+    const pendingDocs = (task.docs||[]).filter(d=>d.status==='need'||d.status==='flagged').length;
+    const canPrepare  = isBlocked && pendingDocs > 0;
+
+    // ── Timeline ──
+    const tlHtml = (task.timeline||[]).map((label, j) => {
+      const st = (task.timelineStatus||[])[j] || 'locked';
+      const cls = TL_CLASS[st] || 'tl-locked';
+      const prevDone = j > 0 && (task.timelineStatus||[])[j-1] === 'done';
+      return `<div class="tl-step ${prevDone?'tl-done':''}">
+        <div class="tl-node ${cls}">${TL_SVG[st]||TL_SVG.locked}</div>
+        <div class="tl-label ${cls}">${label}</div>
       </div>`;
     }).join('');
 
-    // Docs checklist
-    const docIconMap = {
-      done:{bg:'tdr-done',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--g)" stroke-width="2.5"><path stroke-linecap="round" d="M5 13l4 4L19 7"/></svg>`,get badge(){return t('uploaded')},bc:'bg-g'},
-      need:{bg:'tdr-need',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--a)" stroke-width="2"><path stroke-linecap="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>`,get badge(){return t('uploadNeeded')},bc:'bg-a'},
-      flagged:{bg:'tdr-need',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--r)" stroke-width="2"><path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`,get badge(){return t('reUpload')},bc:'bg-r'},
-      lev:{bg:'tdr-lev',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--gold)" stroke-width="1.5"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>`,get badge(){return t('fromLev')},bc:'bg-b'},
-      wait:{bg:'tdr-wait',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--text3)" stroke-width="2"><path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,get badge(){return t('pendingUp')},bc:'bg-s'},
-    };
-
-    const docRows = (t.docs||[]).map(doc => {
-      const ic = docIconMap[doc.status] || docIconMap.wait;
-      const canUpload = doc.status==='need'||doc.status==='flagged';
-      const isBlocked = doc.status==='wait';
-      return `<div class="task-doc-row">
-        <div class="tdr-icon ${ic.bg}">${ic.svg}</div>
-        <div class="tdr-info">
-          <div class="tdr-name">${doc.name}${doc.urgent?` <span style="font-size:9px;font-weight:700;color:var(--r);background:var(--rbg);padding:1px 5px;border-radius:5px;margin-left:4px">${t('urgent')}</span>`:''}</div>
-          <div class="tdr-note">${doc.note}</div>
+    // ── Status Banner ──
+    let banner = '';
+    if (isApproved) {
+      banner = `<div class="app-status-banner asb-approved">
+        <svg class="asb-icon" fill="none" viewBox="0 0 24 24" stroke="var(--g)" stroke-width="2"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div><strong>${t('approved')}</strong>${task.ref?' · '+task.ref:''}${task.approved?' · '+task.approved:''}<br><span style="color:var(--text2)">${task.notes}</span></div>
+      </div>`;
+    } else if (isFiled) {
+      banner = `<div class="app-status-banner asb-filed">
+        <svg class="asb-icon" fill="none" viewBox="0 0 24 24" stroke="var(--b)" stroke-width="2"><path stroke-linecap="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <div><strong>${t('filedGov')}</strong> · ${t('ref')} <span style="font-family:var(--fm)">${task.ref||'—'}</span>${task.filed?' · '+task.filed:''}<br><span style="color:var(--text2)">${task.notes}</span></div>
+      </div>`;
+    } else if (isAction) {
+      banner = `<div class="app-status-banner asb-action">
+        <svg class="asb-icon" fill="none" viewBox="0 0 24 24" stroke="var(--a)" stroke-width="2"><path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <div><strong>${t('actionNeeded')}</strong><br><span style="color:var(--text)">${task.notes}</span></div>
+      </div>`;
+    } else if (isBlocked) {
+      banner = `<div class="app-status-banner asb-blocked">
+        <svg class="asb-icon" fill="none" viewBox="0 0 24 24" stroke="var(--text3)" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        <div style="flex:1">
+          <span style="font-weight:600;color:var(--text2)">${t('blockedWait')}</span> <span style="color:var(--r);font-weight:600">${task.blockedBy||'—'}</span>
+          ${canPrepare?`<br><span style="color:var(--b);font-size:11px;margin-top:3px;display:block">${t('prepInfo')}</span>`:''}
         </div>
-        <div class="tdr-actions">
-          <span class="a-status ${ic.bc}" style="font-size:10px">${ic.badge}</span>
-          ${canUpload ? `<button class="btn btn-gold btn-sm" onclick="event.stopPropagation();triggerUpload()">${t('upload')}</button>` : ''}
-          ${doc.status==='lev' ? `<button class="btn btn-sm" onclick="event.stopPropagation()">${t('download')}</button>` : ''}
+      </div>`;
+    }
+
+    // ── Protocol Steps ──
+    const protoHtml = (task.protocol||[]).map((p,j) => {
+      const whoMap = {
+        'Leverage':{cls:'proto-who-lev', get label(){return t('whoLev')}},
+        'Handler (Sarah Tan)':{cls:'proto-who-lev', get label(){return 'Sarah Tan'}},
+        'CLIENT — action required now':{cls:'proto-who-client', get label(){return t('whoClient')+'  ⚡'}},
+        'CLIENT — action required':{cls:'proto-who-client', get label(){return t('whoClient')+'  ⚡'}},
+        'Client (supplier provides)':{cls:'proto-who-client', get label(){return t('whoClient')}},
+        'Company / Leverage':{cls:'proto-who-lev', get label(){return t('whoLev')}},
+        'Company':{cls:'proto-who-client', get label(){return t('whoClient')}},
+      };
+      const isClientStep = p.who && (p.who.includes('CLIENT') || p.who === 'Company');
+      const whoEntry = p.who ? (whoMap[p.who] || {cls:'proto-who-gov', get label(){return p.who}}) : null;
+      return `<div class="proto-step${isClientStep?' style="background:rgba(198,93,0,.025)"':''}">
+        <div class="proto-num">${j+1}</div>
+        <div class="proto-body">
+          <div class="proto-header">
+            <div class="proto-title">${p.title}</div>
+            ${whoEntry?`<span class="proto-who ${whoEntry.cls}">${whoEntry.label}</span>`:''}
+            ${p.form&&p.form!=='N/A'?`<span class="proto-form">${p.form}</span>`:''}
+            ${p.days?`<span class="proto-days">⏱ ${p.days}</span>`:''}
+          </div>
+          <div class="proto-detail">${p.detail}</div>
         </div>
       </div>`;
     }).join('');
 
-    // Protocol steps
-    const protoSteps = (t.protocol||[]).map((p,j) => `<div class="proto-step">
-      <div class="proto-num">${j+1}</div>
-      <div class="proto-content">
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;flex-wrap:wrap">
-          <div class="proto-title" style="margin-bottom:0">${p.title}</div>
-          ${p.who?`<span style="font-size:9px;font-weight:700;padding:1px 6px;border-radius:7px;background:var(--navy);color:var(--gold)">${p.who}</span>`:''}
-          ${p.form&&p.form!=='N/A'?`<span style="font-size:9px;color:var(--text3);font-family:var(--fm)">${p.form}</span>`:''}
-          ${p.days?`<span style="font-size:9px;color:var(--text3);margin-left:auto">⏱ ${p.days}</span>`:''}
+    // ── Documents Checklist ──
+    const uploadableCount = (task.docs||[]).filter(d=>d.status==='need'||d.status==='flagged').length;
+    const docsHtml = (() => {
+      if (!(task.docs||[]).length) return `<div style="padding:12px;font-size:12px;color:var(--text3);text-align:center">${t('noDocs')}</div>`;
+      const prepBanner = (isBlocked && uploadableCount > 0) ?
+        `<div class="doc-prep-banner"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="float:left;margin:1px 7px 0 0;flex-shrink:0;color:var(--b)"><path stroke-linecap="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>${t('canPrepareDoc')}</div>` : '';
+      const rows = (task.docs||[]).map(doc => {
+        const ic = DI[doc.status] || DI.wait;
+        const canUpload = doc.status==='need'||doc.status==='flagged';
+        const isLev = doc.status==='lev';
+        const isWait = doc.status==='wait';
+        return `<div class="doc-item${isBlocked&&isWait?' doc-blocked':''}">
+          <div class="doc-status-icon ${ic.bg}">
+            <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="${ic.color}" stroke-width="2">
+              <path stroke-linecap="round" d="${ic.svg}"/>
+            </svg>
+          </div>
+          <div class="doc-item-body">
+            <div class="doc-item-name">${doc.name}${doc.urgent?`<span class="doc-urgent-tag">${t('urgent')}</span>`:''}</div>
+            <div class="doc-item-note">${doc.note}</div>
+          </div>
+          <div class="doc-item-actions">
+            <span class="a-status ${ic.cls}" style="font-size:10px">${ic.badge}</span>
+            ${canUpload?`<button class="btn btn-gold btn-sm" onclick="event.stopPropagation();triggerUpload()">${t('upload')}</button>`:''}
+            ${isLev?`<button class="btn btn-sm" onclick="event.stopPropagation()">${t('download')}</button>`:''}
+          </div>
+        </div>`;
+      }).join('');
+      return prepBanner + `<div class="doc-checklist">${rows}</div>
+        ${uploadableCount>0?`<div class="doc-upload-zone" onclick="triggerUpload()">
+          <div class="doc-upload-zone-text">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--text3)" stroke-width="1.5" style="vertical-align:-3px;margin-right:5px"><path stroke-linecap="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+            ${t('uploadNow')} — PDF, JPG, PNG, Excel · Max 10MB
+          </div>
+        </div>`:''}`;
+    })();
+
+    // ── Agency Info ──
+    const infoHtml = `
+      ${task.fullName?`<div style="font-size:11px;color:var(--text3);margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid var(--border);line-height:1.5">${task.fullName}</div>`:''}
+      ${task.legalBasis?`<div style="font-size:10px;color:var(--text3);font-family:var(--fm);margin-bottom:10px">${t('legalBasis')} ${task.legalBasis}</div>`:''}
+      <div class="info-grid">
+        <div class="info-cell">
+          <div class="info-cell-label">${t('procTime')}</div>
+          <div class="info-cell-value">${task.processingTime||'—'}</div>
         </div>
-        <div class="proto-detail" style="white-space:pre-line">${p.detail}</div>
+        <div class="info-cell">
+          <div class="info-cell-label">${t('govFee')}</div>
+          <div class="info-cell-value">${task.fee||'—'}</div>
+        </div>
+        ${task.renewalObligation?`<div class="info-cell info-cell-full">
+          <div class="info-cell-label">${t('renewObl')}</div>
+          <div class="info-cell-value">${task.renewalObligation}</div>
+        </div>`:''}
+        ${task.whoMustApply?`<div class="info-cell info-cell-full">
+          <div class="info-cell-label">${t('whoApply')}</div>
+          <div class="info-cell-value">${task.whoMustApply}</div>
+        </div>`:''}
+        ${task.physicalPresence?`<div class="info-cell info-cell-full">
+          <div class="info-cell-label">${t('physPresence')}</div>
+          <div class="info-cell-value">${task.physicalPresence}</div>
+        </div>`:''}
       </div>
-    </div>`).join('');
+      ${task.ref?`<div class="info-ref-box"><strong>${t('ref')}</strong> <span style="font-family:var(--fm)">${task.ref}</span>${task.filed?' · '+task.filed:''}${task.approved?' · '+task.approved:''}</div>`:''}
+      ${task.unlocksNext&&task.unlocksNext.length?`<div class="info-unlocks-box"><strong>${t('unlocks')}</strong> ${task.unlocksNext.join(' · ')}</div>`:''}
+      ${task.postApproval&&task.postApproval.length?`<div class="info-post-section">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:6px">${t('postApproval')}</div>
+        ${task.postApproval.map(p=>`<div class="info-post-item"><div class="info-post-dot"></div><div>${p}</div></div>`).join('')}
+      </div>`:''}
+      ${task.rejectionReasons&&task.rejectionReasons.length?`<div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:6px">${t('rejReasons')}</div>
+        ${task.rejectionReasons.map(r=>`<div class="info-reject-item">
+          <div class="info-reject-reason">✕ ${r.reason}</div>
+          <div class="info-reject-avoid">${t('howToAvoid')} ${r.avoid}</div>
+        </div>`).join('')}
+      </div>`:''}
+      ${task.govPortal?`<a href="${task.govPortal}" target="_blank" class="info-portal-link">
+        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        ${t('govPortalLabel')}: ${task.code}
+      </a>`:''}`;
 
-    // Status banners
-    let statusBanner = '';
-    if (isApproved) statusBanner = `<div class="task-success" style="margin:0;border-radius:0">
-      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="var(--g)" stroke-width="2" style="flex-shrink:0;margin-top:1px"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <span><strong>${t('approved')}</strong>${t.ref?' · Ref: '+t.ref:''}${t.approved?' · '+t.approved:''}. ${t.notes}</span>
-    </div>`;
-    else if (isFiled) statusBanner = `<div style="padding:10px 16px;background:var(--bbg);border-bottom:1px solid var(--border);font-size:12px;color:var(--b);display:flex;gap:8px;align-items:flex-start">
-      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="var(--b)" stroke-width="2" style="flex-shrink:0;margin-top:1px"><path stroke-linecap="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-      <span><strong>${t('filedGov')}</strong> · Ref: ${t.ref}${t.filed?' · Filed '+t.filed:''}<br><span style="color:var(--text2)">${t.notes}</span></span>
-    </div>`;
-    else if (isAction) statusBanner = `<div style="padding:10px 16px;background:var(--abg);border-left:3px solid var(--a);border-bottom:1px solid rgba(198,93,0,.15);font-size:12px;color:var(--a)">
-      <strong>⚡ Your action needed</strong> — ${t.notes}
-    </div>`;
-    else if (isBlocked) statusBanner = `<div class="blocked-banner">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-      <div><div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:2px">Blocked — waiting on: <span style="color:var(--r)">${t.blockedBy}</span></div>
-      <div style="font-size:11px;color:var(--text3)">${t.notes}</div>
-      ${t.docs&&t.docs.some(d=>d.status==='need') ? `<div style="font-size:11px;color:var(--b);margin-top:4px;font-weight:500">✦ You can prepare and upload documents now while waiting for the upstream approval.</div>` : ''}</div>
-    </div>`;
-
-    const progressPct = isApproved?100:isFiled?65:isAction?30:0;
-
-    return `<div class="app-card${isAction?' action-needed':''}" id="task-card-${i}">
+    return `<div class="app-card${isAction?' action-needed':''}${isApproved?' approved-card':''}" id="task-card-${i}">
       <div class="app-hdr" onclick="toggleTask(${i})">
-        <span class="app-num">${String(t.seq).padStart(2,'0')}</span>
+        <span class="app-num">${String(task.seq).padStart(2,'0')}</span>
         <div class="app-dot" style="background:${s.dot}"></div>
-        <span class="app-code">${t.code}</span>
-        <span class="app-title">${lang==='zh'&&t.name_zh?t.name_zh:lang==='ms'&&t.name_ms?t.name_ms:t.name}</span>
-        ${progressPct>0?`<div class="app-prog-mini"><div class="app-prog-fill" style="width:${progressPct}%"></div></div>`:''}
-        <span class="a-status ${s.cls}" style="font-size:10px">${s.badge}</span>
-        ${t.govPortal?`<span style="font-size:9px;color:var(--text3);white-space:nowrap">${t.processingTime}</span>`:''}
-        <svg class="app-chevron" id="chevron-${i}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+        <span class="app-code">${task.code}</span>
+        <span class="app-title">${taskName}</span>
+        <div class="app-meta">
+          ${s.pct>0?`<div class="app-prog-wrap" title="${s.pct}%"><div class="app-prog-track"><div class="app-prog-fill" style="width:${s.pct}%;background:${isApproved?'var(--g)':isFiled?'var(--b)':'var(--a)'}"></div></div></div>`:''}
+          <span class="a-status ${s.cls}" style="font-size:10px">${s.badge}</span>
+          ${canPrepare?`<span style="font-size:10px;font-weight:600;color:var(--b);white-space:nowrap">${pendingDocs} ${t('upload')}</span>`:''}
+          <span class="app-time-badge">${task.processingTime?.split(' ')[0]||''}</span>
+          <svg class="app-chevron" id="chevron-${i}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+        </div>
       </div>
       <div class="app-body" id="task-body-${i}">
-        ${statusBanner}
-        <div class="app-timeline">${tlTimeline}</div>
+        ${banner}
+        <div class="app-timeline">${tlHtml}</div>
         <div class="app-tabs">
-          <button class="app-tab active" onclick="switchTaskTab(${i},'protocol',this)">${t('protocol')}</button>
-          <button class="app-tab" onclick="switchTaskTab(${i},'docs',this)">${t('documents')}${(t.docs||[]).filter(d=>d.status==='need'||d.status==='flagged').length>0?` <span style="background:var(--a);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:7px">${(t.docs||[]).filter(d=>d.status==='need'||d.status==='flagged').length}</span>`:''}</button>
-          <button class="app-tab" onclick="switchTaskTab(${i},'info',this)">${t('agencyInfo')}</button>
+          <button class="app-tab active" id="tab-btn-protocol-${i}" onclick="switchTaskTab(${i},'protocol',this)">${t('protocol')}</button>
+          <button class="app-tab" id="tab-btn-docs-${i}" onclick="switchTaskTab(${i},'docs',this)">${t('documents')}${pendingDocs>0?`<span class="app-tab-badge">${pendingDocs}</span>`:''}</button>
+          <button class="app-tab" id="tab-btn-info-${i}" onclick="switchTaskTab(${i},'info',this)">${t('agencyInfo')}</button>
         </div>
         <div class="app-tab-content active" id="task-protocol-${i}">
-          ${isApproved?`<div class="task-success" style="margin-bottom:10px"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="var(--g)" stroke-width="2" style="flex-shrink:0"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>${t('allDone')}</span></div>`:''}
-          <div class="protocol-list">${protoSteps}</div>
+          ${isApproved?`<div style="padding:10px 0 6px;font-size:12px;color:var(--g);display:flex;gap:7px"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="var(--g)" stroke-width="2" style="margin-top:1px;flex-shrink:0"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>${t('allDone')}</div>`:''}
+          <div class="protocol-list">${protoHtml}</div>
         </div>
         <div class="app-tab-content" id="task-docs-${i}">
-          ${isBlocked&&t.docs&&t.docs.some(d=>d.status==='need')?`<div class="task-info" style="margin-bottom:10px"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="var(--b)" stroke-width="2" style="flex-shrink:0;margin-top:1px"><path stroke-linecap="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>This application is blocked — but you can <strong>upload and prepare your documents now</strong> so they are ready the moment the upstream approval arrives.</span></div>`:''}
-          ${docRows||`<div style="padding:12px;font-size:12px;color:var(--text3)">${t('noDocs')}</div>`}
+          ${docsHtml}
         </div>
         <div class="app-tab-content" id="task-info-${i}">
-          ${t.fullName?`<div style="font-size:11px;color:var(--text3);margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid var(--border)">${t.fullName}</div>`:''}
-          ${t.legalBasis?`<div style="font-size:10px;color:var(--text3);font-family:var(--fm);margin-bottom:10px">Legal basis: ${t.legalBasis}</div>`:''}
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
-            <div style="padding:10px 12px;background:var(--off);border-radius:7px;border:1px solid var(--border)">
-              <div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Processing time</div>
-              <div style="font-size:12px;font-weight:500;color:var(--text)">${t.processingTime||'—'}</div>
-            </div>
-            <div style="padding:10px 12px;background:var(--off);border-radius:7px;border:1px solid var(--border)">
-              <div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Government fee</div>
-              <div style="font-size:12px;font-weight:500;color:var(--text)">${t.fee||'—'}</div>
-            </div>
-            ${t.renewalObligation?`<div style="padding:10px 12px;background:var(--off);border-radius:7px;border:1px solid var(--border);grid-column:1/-1"><div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Renewal obligation</div><div style="font-size:12px;color:var(--text2)">${t.renewalObligation}</div></div>`:''}
-            ${t.whoMustApply?`<div style="padding:10px 12px;background:var(--off);border-radius:7px;border:1px solid var(--border);grid-column:1/-1"><div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Who must apply</div><div style="font-size:12px;color:var(--text2)">${t.whoMustApply}</div></div>`:''}
-          </div>
-          ${t.ref?`<div style="padding:10px 12px;background:var(--gbg);border-radius:7px;margin-bottom:8px;font-size:12px;color:var(--g)"><strong>Reference:</strong> <span style="font-family:var(--fm)">${t.ref}</span>${t.filed?' &nbsp;·&nbsp; Filed: '+t.filed:''}${t.approved?' &nbsp;·&nbsp; Approved: '+t.approved:''}</div>`:''}
-          ${t.unlocksNext&&t.unlocksNext.length?`<div style="padding:10px 12px;background:var(--bbg);border-radius:7px;margin-bottom:8px;font-size:12px;color:var(--b);border:1px solid rgba(30,91,138,.12)"><strong>Unlocks:</strong> ${t.unlocksNext.join(' · ')}</div>`:''}
-          ${t.postApproval&&t.postApproval.length?`<div style="margin-bottom:8px"><div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">Post-approval obligations</div>${t.postApproval.map(p=>`<div style="display:flex;gap:7px;font-size:12px;color:var(--text2);padding:4px 0;border-bottom:1px solid var(--border)"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="flex-shrink:0;margin-top:2px;color:var(--b)"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>${p}</span></div>`).join('')}</div>`:''}
-          ${t.rejectionReasons&&t.rejectionReasons.length?`<div style="margin-bottom:8px"><div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">Common rejection reasons</div>${t.rejectionReasons.map(r=>`<div style="padding:7px 10px;background:var(--rbg);border-radius:7px;margin-bottom:5px;border:1px solid rgba(192,57,43,.12)"><div style="font-size:12px;font-weight:600;color:var(--r);margin-bottom:2px">✕ ${r.reason}</div><div style="font-size:11px;color:var(--text2)">${t('howToAvoid')} ${r.avoid}</div></div>`).join('')}</div>`:''}
-          ${t.govPortal?`<a href="${t.govPortal}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--b);text-decoration:none;padding:7px 11px;background:var(--bbg);border-radius:6px;border:1px solid rgba(30,91,138,.15)"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>Open ${t.code} government portal</a>`:''}
+          ${infoHtml}
         </div>
       </div>
     </div>`;
@@ -1460,15 +1606,20 @@ function toggleTask(i) {
   const isOpen = body.classList.contains('open');
   body.classList.toggle('open', !isOpen);
   chevron.classList.toggle('open', !isOpen);
+  // Auto-scroll into view if opening
+  if (!isOpen) {
+    setTimeout(() => document.getElementById('task-card-'+i)?.scrollIntoView({behavior:'smooth',block:'nearest'}), 50);
+  }
 }
 
 function switchTaskTab(taskIdx, tab, btn) {
-  ['protocol','docs','info'].forEach(t => {
-    const el = document.getElementById('task-' + t + '-' + taskIdx);
-    if(el) el.classList.toggle('active', t===tab);
+  ['protocol','docs','info'].forEach(t2 => {
+    const el = document.getElementById('task-' + t2 + '-' + taskIdx);
+    if(el) el.classList.toggle('active', t2===tab);
   });
-  btn.closest('.app-tabs').querySelectorAll('.app-tab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  const tabBar = btn?.closest?.('.app-tabs');
+  if(tabBar) tabBar.querySelectorAll('.app-tab').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
 }
 
 
