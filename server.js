@@ -76,13 +76,33 @@ app.get('/partner', requireAuth, requireRole('partner', 'larry'), (req, res) => 
   res.sendFile(path.join(__dirname, 'public', 'partner.html'));
 });
 
-seedDefaultUsers().then(() => {
-  app.listen(PORT, () => {
-    console.log('\n  Leverage Business Platform');
-    console.log('  Running at http://localhost:' + PORT);
-    console.log('\n  larry@leveragebusiness.my   / Larry@Admin2026   → /admin');
-    console.log('  sarah@leveragebusiness.my   / Handler@2026      → /handler');
-    console.log('  chen@yifengoptical.com      / Client@2026       → /portal');
-    console.log('  admin@jbcompliance.com.my   / Partner@2026      → /partner\n');
+function startServer(port) {
+  const server = app.listen(port);
+
+  server.on('listening', () => {
+    console.log('\n  ╔══════════════════════════════════════════╗');
+    console.log('  ║   Leverage Business Platform              ║');
+    console.log('  ║   http://localhost:' + port + '                   ║');
+    console.log('  ╚══════════════════════════════════════════╝');
+    console.log('');
+    console.log('  larry@leveragebusiness.my   / Larry@Admin2026');
+    console.log('  sarah@leveragebusiness.my   / Handler@2026');
+    console.log('  chen@yifengoptical.com      / Client@2026');
+    console.log('  admin@jbcompliance.com.my   / Partner@2026');
+    console.log('');
+    console.log('  Press Ctrl+C to stop.\n');
   });
-});
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.log('  ⚠  Port ' + port + ' is in use — trying port ' + (port + 1) + '...');
+      server.close();
+      startServer(port + 1);
+    } else {
+      console.error('  ✗ Server error:', err.message);
+      process.exit(1);
+    }
+  });
+}
+
+seedDefaultUsers().then(() => startServer(PORT));
