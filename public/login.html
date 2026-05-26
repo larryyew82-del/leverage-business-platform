@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign In — Leverage Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0A1929;--navy2:#0F2236;--gold:#C9A961;--gold2:#B8954A;--white:#fff;--off:#FAFAF8;--text:#1C1C1E;--text-mid:#3A3A3C;--text-soft:#636366;--border:#E8E4DC;--red:#C0392B;--red-bg:#FDECEA;--fd:"Playfair Display",Georgia,serif;--fb:"IBM Plex Sans",sans-serif;--fm:"IBM Plex Mono",monospace}
@@ -230,6 +232,29 @@ span[data-lang].la{display:inline}
 </div>
 
 <script>
+// Session check - show active session banner or auto-redirect
+(async () => {
+  try {
+    const me = await fetch('/api/auth/me', {credentials:'include'});
+    if (me.ok) {
+      const data = await me.json();
+      if (data.user) {
+        const map = {larry:'/admin',handler:'/handler',client:'/portal',partner:'/partner'};
+        const dest = map[data.user.role]||'/portal';
+        // If came here via direct URL (not logout), show banner
+        const banner = document.getElementById('session-banner');
+        if (banner) {
+          banner.innerHTML = '<span>Already signed in as <strong>' + data.user.email + '</strong></span>' +
+            '<div style="display:flex;gap:10px"><a href="' + dest + '" class="banner-btn primary">Continue →</a>' +
+            '<a href="/logout" class="banner-btn">Switch account</a></div>';
+          banner.style.display = 'flex';
+          document.getElementById('login-section').style.opacity = '0.5';
+        }
+      }
+    }
+  } catch(e) {}
+})();
+
 let lang = localStorage.getItem('lb-lang') || 'en';
 setLang(lang, false);
 
@@ -258,6 +283,8 @@ function fillDemo(email, pw) {
   clearError();
   document.getElementById('email').classList.remove('has-error');
   document.getElementById('password').classList.remove('has-error');
+  // Brief visual pause then auto-login
+  setTimeout(() => handleLogin(), 250);
 }
 
 function showError(msg) {
@@ -306,10 +333,7 @@ async function handleLogin() {
 
     if (data.success) {
       // Show success state then redirect
-      document.getElementById('login-section').style.display = 'none';
-      document.getElementById('success-section').classList.add('show');
-      // Redirect after animation completes
-      setTimeout(() => { window.location.href = data.redirect; }, 1600);
+      window.location.href = data.redirect;
     } else {
       const msg = data.error || t.invalid;
       if (msg.toLowerCase().includes('not active')) showError(t.inactive);
