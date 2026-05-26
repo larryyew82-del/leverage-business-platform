@@ -188,6 +188,72 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
 .loading-text{font-size:13px;color:var(--text3)}
 .spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--navy);border-radius:50%;animation:spin .7s linear infinite;margin:10px auto 0}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* GUIDANCE CENTRE */
+.ind-selector-g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.ind-btn-g{padding:11px 8px;border:1px solid var(--border);border-radius:8px;cursor:pointer;background:var(--white);text-align:center;transition:all .15s;font-family:var(--fb)}
+.ind-btn-g:hover{border-color:var(--navy)}
+.ind-btn-g.active{border:2px solid var(--navy);background:var(--navy)}
+.ind-btn-g.active .ind-icon-g{color:var(--gold)}
+.ind-btn-g.active .ind-name-g{color:#fff}
+.ind-icon-g{font-size:20px;display:block;margin-bottom:5px;color:var(--text3)}
+.ind-name-g{font-size:11px;font-weight:500;color:var(--text)}
+.g-tabs{display:flex;gap:1px;border-bottom:1px solid var(--border);background:var(--off);padding:0 0}
+.g-tab{padding:9px 14px;font-size:12px;font-weight:500;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--fb);transition:all .2s}
+.g-tab:hover{color:var(--navy)}
+.g-tab.active{color:var(--navy);border-bottom-color:var(--navy)}
+.g-tab-content{display:none;padding:14px}
+.g-tab-content.active{display:block}
+.sop-item-g{padding:10px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}
+.sop-item-g:last-child{border-bottom:none}
+.sop-item-g:hover{background:var(--off)}
+.sop-row-g{display:flex;align-items:center;gap:10px}
+.sop-code-g{font-family:var(--fm);font-size:10px;font-weight:500;width:44px;flex-shrink:0;color:var(--text3)}
+.sop-name-g{flex:1;font-size:13px;font-weight:500;color:var(--text)}
+.sop-time-g{font-size:11px;color:var(--text3);white-space:nowrap}
+.sop-arr-g{font-size:13px;color:var(--text3);margin-left:5px;transition:transform .2s;flex-shrink:0}
+.sop-exp-g{display:none;padding:10px 0 4px 54px;border-top:1px solid var(--border);margin-top:8px}
+.sop-exp-g.open{display:block}
+.sop-steps-g{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.sop-step-g{display:flex;gap:8px;align-items:flex-start}
+.sop-step-num-g{width:18px;height:18px;border-radius:50%;background:var(--off2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:var(--text3);flex-shrink:0;margin-top:1px}
+.sop-step-text-g{font-size:12px;color:var(--text2);line-height:1.55}
+.sop-docs-g{padding:9px 11px;background:var(--off);border-radius:7px;border:1px solid var(--border)}
+.sop-docs-title-g{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
+.sop-doc-item-g{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2);padding:2px 0}
+.seq-step-label{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);padding:8px 14px 4px}
+.seq-row-g{display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);font-size:12px}
+.seq-row-g:last-child{border-bottom:none}
+.seq-num-g{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.seq-info-g{flex:1}
+.seq-name-g{font-weight:500;color:var(--text);margin-bottom:1px}
+.seq-note-g{font-size:11px;color:var(--text3)}
+.tip-item-g{padding:10px 12px;border-radius:8px;margin-bottom:8px;display:flex;gap:9px;align-items:flex-start}
+.tip-item-g:last-child{margin-bottom:0}
+.tip-item-g.warn{background:var(--abg);border:1px solid rgba(198,93,0,.15)}
+.tip-item-g.danger{background:var(--rbg);border:1px solid rgba(192,57,43,.15)}
+.tip-item-g.info{background:var(--bbg);border:1px solid rgba(30,91,138,.15)}
+.tip-icon-g{font-size:15px;flex-shrink:0;margin-top:1px}
+.tip-item-g.warn .tip-icon-g{color:var(--a)}
+.tip-item-g.danger .tip-icon-g{color:var(--r)}
+.tip-item-g.info .tip-icon-g{color:var(--b)}
+.tip-title-g{font-size:13px;font-weight:600;margin-bottom:3px}
+.tip-item-g.warn .tip-title-g{color:var(--a)}
+.tip-item-g.danger .tip-title-g{color:var(--r)}
+.tip-item-g.info .tip-title-g{color:var(--b)}
+.tip-body-g{font-size:12px;color:var(--text2);line-height:1.6}
+.doc-row-g{display:flex;align-items:center;gap:9px;padding:9px 14px;border-bottom:1px solid var(--border);font-size:12px}
+.doc-row-g:last-child{border-bottom:none}
+.doc-icon-g{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.di-g-done{background:var(--gbg)}
+.di-g-need{background:var(--abg)}
+.di-g-lev{background:var(--navy)}
+.di-g-wait{background:var(--off2)}
+.doc-info-g{flex:1;min-width:0}
+.doc-name-g{font-weight:500;color:var(--text);margin-bottom:1px}
+.doc-note-g{font-size:10px;color:var(--text3)}
+.g-warn-banner{padding:10px 12px;background:var(--abg);border-left:3px solid var(--a);border-radius:0 7px 7px 0;margin-bottom:10px;font-size:12px;color:var(--a);display:flex;gap:8px;align-items:flex-start}
+.g-info-banner{padding:10px 12px;background:var(--bbg);border-left:3px solid var(--b);border-radius:0 7px 7px 0;margin-bottom:10px;font-size:12px;color:var(--b);display:flex;gap:8px;align-items:flex-start}
 </style>
 </head>
 <body>
@@ -228,6 +294,11 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
     <div class="nav-item" data-view="cashflow" onclick="switchView(this)">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
       <span data-lang="en" class="la">Cashflow</span><span data-lang="zh">资金安排</span><span data-lang="ms">Aliran Tunai</span>
+    </div>
+    <div class="nav-item" data-view="guidance" onclick="switchView(this)">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+      <span data-lang="en" class="la">Guidance Centre</span><span data-lang="zh">指导中心</span><span data-lang="ms">Pusat Panduan</span>
+      <span class="nav-badge" style="background:var(--g);font-size:8px">NEW</span>
     </div>
     <div class="nav-item" data-view="support" onclick="switchView(this)">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
@@ -434,6 +505,80 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
   </div>
 </div>
 
+
+<!-- ═══════════════ GUIDANCE CENTRE ═══════════════ -->
+<div class="view" id="view-guidance">
+  <div class="page-hdr">
+    <div>
+      <h1 class="page-title"><span data-lang="en" class="la">Guidance Centre</span><span data-lang="zh">指导中心</span><span data-lang="ms">Pusat Panduan</span></h1>
+      <p class="page-sub"><span data-lang="en" class="la">Step-by-step SOPs, document checklists, and filing sequence for your industry</span><span data-lang="zh">您行业的逐步SOP、文件清单及申请顺序</span><span data-lang="ms">SOP langkah demi langkah, senarai semak dokumen, dan urutan pemfailan untuk industri anda</span></p>
+    </div>
+  </div>
+
+  <!-- INDUSTRY SELECTOR -->
+  <div style="font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text3);margin-bottom:8px"><span data-lang="en" class="la">Select your industry</span><span data-lang="zh">选择您的行业</span><span data-lang="ms">Pilih industri anda</span></div>
+  <div class="ind-selector-g">
+    <div class="ind-btn-g active" onclick="selectGInd('mfg',this)">
+      <span class="ind-icon-g">⚙️</span>
+      <div class="ind-name-g"><span data-lang="en" class="la">Manufacturing</span><span data-lang="zh">制造业</span><span data-lang="ms">Pembuatan</span></div>
+    </div>
+    <div class="ind-btn-g" onclick="selectGInd('imp',this)">
+      <span class="ind-icon-g">📦</span>
+      <div class="ind-name-g"><span data-lang="en" class="la">Import / Export</span><span data-lang="zh">进出口</span><span data-lang="ms">Import / Eksport</span></div>
+    </div>
+    <div class="ind-btn-g" onclick="selectGInd('con',this)">
+      <span class="ind-icon-g">🏗️</span>
+      <div class="ind-name-g"><span data-lang="en" class="la">Construction</span><span data-lang="zh">建筑</span><span data-lang="ms">Pembinaan</span></div>
+    </div>
+    <div class="ind-btn-g" onclick="selectGInd('hlt',this)">
+      <span class="ind-icon-g">🏥</span>
+      <div class="ind-name-g"><span data-lang="en" class="la">Healthcare</span><span data-lang="zh">医疗</span><span data-lang="ms">Kesihatan</span></div>
+    </div>
+    <div class="ind-btn-g" onclick="selectGInd('edu',this)">
+      <span class="ind-icon-g">🎓</span>
+      <div class="ind-name-g"><span data-lang="en" class="la">Education</span><span data-lang="zh">教育</span><span data-lang="ms">Pendidikan</span></div>
+    </div>
+    <div class="ind-btn-g" onclick="selectGInd('re',this)">
+      <span class="ind-icon-g">⚡</span>
+      <div class="ind-name-g"><span data-lang="en" class="la">Renewable Energy</span><span data-lang="zh">可再生能源</span><span data-lang="ms">Tenaga Boleh Baharu</span></div>
+    </div>
+  </div>
+
+  <!-- TABS + CONTENT -->
+  <div class="card">
+    <div class="g-tabs">
+      <button class="g-tab active" onclick="switchGTab('sop',this)"><span data-lang="en" class="la">Agency SOPs</span><span data-lang="zh">部门流程</span><span data-lang="ms">SOP Agensi</span></button>
+      <button class="g-tab" onclick="switchGTab('docs',this)"><span data-lang="en" class="la">Document checklist</span><span data-lang="zh">文件清单</span><span data-lang="ms">Senarai semak dokumen</span></button>
+      <button class="g-tab" onclick="switchGTab('seq',this)"><span data-lang="en" class="la">Filing sequence</span><span data-lang="zh">申请顺序</span><span data-lang="ms">Urutan pemfailan</span></button>
+      <button class="g-tab" onclick="switchGTab('tips',this)"><span data-lang="en" class="la">Common mistakes</span><span data-lang="zh">常见错误</span><span data-lang="ms">Kesilapan biasa</span></button>
+    </div>
+
+    <div class="g-tab-content active" id="g-tab-sop">
+      <div class="g-warn-banner">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="flex-shrink:0;margin-top:1px"><path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <span id="g-dep-warning"><span data-lang="en" class="la">JKDM and Employment Pass cannot start until MIDA ICA 10 is approved. Filing out of sequence results in immediate rejection.</span><span data-lang="zh">JKDM和就业准证必须在MIDA ICA 10批准后才能开始。乱序提交会立即被拒绝。</span><span data-lang="ms">JKDM dan Pas Pekerjaan tidak boleh bermula sehingga MIDA ICA 10 diluluskan. Pemfailan luar urutan mengakibatkan penolakan serta-merta.</span></span>
+      </div>
+      <div id="g-sop-list"></div>
+    </div>
+
+    <div class="g-tab-content" id="g-tab-docs">
+      <div class="g-info-banner">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="flex-shrink:0;margin-top:1px"><path stroke-linecap="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span><span data-lang="en" class="la">Your handler reviews every document before submitting to any government authority. Upload in the Documents tab.</span><span data-lang="zh">您的处理员在提交给任何政府部门之前审核每份文件。请在文件标签中上传。</span><span data-lang="ms">Pengendali anda menyemak setiap dokumen sebelum menyerahkan kepada mana-mana pihak berkuasa kerajaan. Muat naik dalam tab Dokumen.</span></span>
+      </div>
+      <div id="g-doc-list"></div>
+    </div>
+
+    <div class="g-tab-content" id="g-tab-seq">
+      <div id="g-seq-list"></div>
+    </div>
+
+    <div class="g-tab-content" id="g-tab-tips">
+      <div id="g-tips-list"></div>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════════ SUPPORT ═══════════════ -->
 <div class="view" id="view-support">
   <div class="page-hdr"><div><h1 class="page-title"><span data-lang="en" class="la">Support</span><span data-lang="zh">支持</span><span data-lang="ms">Sokongan</span></h1><p class="page-sub"><span data-lang="en" class="la">Contact your handler or escalate to the director</span><span data-lang="zh">联系处理员或上报至总监</span><span data-lang="ms">Hubungi pengendali atau eskalasi kepada pengarah</span></p></div></div>
@@ -580,9 +725,11 @@ function switchView(el) {
   const view = el.dataset.view;
   el.classList.add('active');
   document.getElementById('view-'+view).classList.add('active');
-  const titles = {overview:'Overview',applications:'Applications',documents:'Documents',messages:'Messages',cashflow:'Cashflow',support:'Support'};
+  const titles = {overview:'Overview',applications:'Applications',documents:'Documents',messages:'Messages',cashflow:'Cashflow',guidance:'Guidance Centre',support:'Support'};
   document.getElementById('tb-title').innerHTML = `<span>${titles[view]||view}</span>`;
   if(view==='messages') { document.getElementById('msg-badge').style.display='none'; }
+  if(view==='documents') { document.getElementById('doc-badge').style.display='none'; }
+  if(view==='guidance') { renderGuidance(); }
   if(view==='documents') { document.getElementById('doc-badge').style.display='none'; }
 }
 
@@ -648,6 +795,304 @@ async function doLogout() {
 }
 
 init();
+
+
+// ═══════════════ GUIDANCE CENTRE DATA ═══════════════
+const GDATA = {
+  mfg:{
+    depWarning:{en:'JKDM and Employment Pass cannot start until MIDA ICA 10 is approved. Filing out of sequence results in immediate rejection.',zh:'JKDM和就业准证必须在MIDA ICA 10批准后才能开始。乱序提交会立即被拒绝。',ms:'JKDM dan Pas Pekerjaan tidak boleh bermula sehingga MIDA ICA 10 diluluskan.'},
+    sops:[
+      {code:'SSM',name:'Company Registration',time:'3–5 days',steps:['Prepare Memorandum & Articles of Association with correct business code','Submit Form 49 (Directors) and Form 24 (Share allotment) online','Pay registration fee — company name confirmed','Certificate of Incorporation issued digitally'],docs:['Director passports (certified true copy)','Shareholder passports (certified true copy)','Proof of registered address','Approved company name search']},
+      {code:'LHDN',name:'Tax File + Employer Registration',time:'5–10 days',steps:['Apply via MyTax portal using SSM certificate','Register for Employer E-number at same time','Receive C-number (income tax file) and E-number (employer)','Set up PCB (monthly tax deduction) schedule for staff'],docs:['SSM Certificate of Incorporation','Director IC or passport','Business address proof']},
+      {code:'Bomba',name:'Fire Safety Certificate',time:'7–14 days',steps:['Engage a BOMBA-registered fire safety consultant','Submit building plan + fire suppression system layout for review','BOMBA inspector visits premises — physical walkthrough','Certificate issued annually — renewal mandatory each year'],docs:['Building floor plan with fire exit markings','Fire system schematic','Occupancy load calculation']},
+      {code:'PBT',name:'Premise / Business Licence',time:'14–30 days',steps:['Submit Form PBT-1 to local authority (MBSP / MPPP / MPPJ)','Council schedules building inspection — structure, hygiene, safety','Pay annual licence fee (varies by activity and area)','Licence must be displayed visibly at business premises'],docs:['SSM Certificate','Tenancy agreement / title deed','Bomba Certificate','Building plan approval','Signboard design (if applicable)']},
+      {code:'MIDA',name:'ICA 10 Manufacturing Exemption',time:'6–10 weeks',steps:['Apply via MIDA InvestMalaysia portal — create company account first','Upload business plan, machinery list with verified 8-digit HS codes + CIF values (USD)','MIDA officer reviews — may request supplementary documents or schedule factory visit','Approval letter issued with reference number — this unlocks JKDM and Employment Pass'],docs:['Business plan with 3-year financial projection','Machinery list — HS code (8-digit) + CIF value (USD) per item','Audited accounts (if company >1 year old)','Factory floor plan showing production layout','Director passports','SSM Certificate']},
+      {code:'JKDM',name:'JPC 1 Duty Exemption on Machinery',time:'4–8 weeks',steps:['ONLY file after MIDA ICA 10 approval letter is in hand','Submit JPC 1 form via MyCustoms portal with MIDA reference number','JKDM may inspect machinery on arrival at Port Klang','Approval allows import of approved machinery without import duty'],docs:['MIDA ICA 10 Approval Letter (mandatory)','Machinery list — identical to MIDA submission','Commercial invoice + packing list','Bill of lading from shipping company']},
+      {code:'ESD/JIM',name:'Employment Pass for Foreign Staff',time:'4–8 weeks',steps:['ONLY file after MIDA approval — portal blocks this otherwise','Create company account on ESD MyExpats portal','Submit application per employee with offer letter, passport, qualifications','Pass is employer-specific — employee cannot transfer to another company'],docs:['MIDA ICA 10 Approval Letter (mandatory)','Employee passport with min 18 months validity','Signed offer letter on company letterhead','Academic certificates (degree / diploma)','Company bank statements (3 months)','SSM Certificate']},
+    ],
+    docs:[
+      {name:'Director passports (certified true copy)',note:'All directors — must be certified true copy, not scan',status:'done'},
+      {name:'Shareholder passports (certified true copy)',note:'All shareholders with ≥25% equity stake',status:'done'},
+      {name:'Tenancy / ownership agreement',note:'Factory address — must match registered business address',status:'done'},
+      {name:'Business plan (3-year projection)',note:'Required for MIDA — include revenue, headcount, production volume',status:'need'},
+      {name:'Machinery list with HS codes + CIF value',note:'8-digit HS codes required. CIF value must be in USD per item.',status:'need'},
+      {name:'Factory floor plan',note:'Show production zones, emergency exits, storage, office area',status:'need'},
+      {name:'Audited accounts 2024',note:'Re-upload with auditor signature page — flagged version rejected',status:'flagged'},
+      {name:'SSM Certificate of Incorporation',note:'Issued by Leverage Business on registration',status:'lev'},
+      {name:'MIDA Approval Letter',note:'Issued after MIDA approves — unlocks JKDM and Employment Pass',status:'waiting'},
+    ],
+    seq:[
+      {step:1,codes:'SSM',name:'Company Registration',note:'Must be completed before anything else',par:false,unlocks:'All subsequent applications'},
+      {step:2,codes:'LHDN',name:'Tax File + Employer No.',note:'Run in parallel with Bomba and PBT',par:true,unlocks:''},
+      {step:2,codes:'Bomba',name:'Fire Safety Certificate',note:'Run in parallel with LHDN and PBT',par:true,unlocks:''},
+      {step:2,codes:'PBT',name:'Premise Licence',note:'Run in parallel with LHDN and Bomba',par:true,unlocks:''},
+      {step:3,codes:'MIDA',name:'ICA 10 Exemption (CRITICAL GATE)',note:'Cannot start until SSM done. Approval unlocks 3 downstream applications.',par:false,unlocks:'JKDM, ESD/JIM Employment Pass, KDN Quota'},
+      {step:4,codes:'JKDM',name:'JPC 1 Duty Exemption',note:'Requires MIDA reference — file parallel with ESD',par:true,unlocks:''},
+      {step:4,codes:'ESD/JIM',name:'Employment Pass × 3',note:'Requires MIDA reference — file parallel with JKDM',par:true,unlocks:''},
+    ],
+    tips:[
+      {type:'danger',icon:'✕',title:'Never hire production staff before MIDA approval',body:'Employment Pass applications are blocked until MIDA approves. Hiring staff early means months of full salaries with no production possible. Wait for MIDA approval before advertising positions.'},
+      {type:'danger',icon:'✕',title:'Never file JKDM without MIDA reference number',body:'JKDM will reject any JPC 1 application without a valid MIDA reference number. No exceptions, no workarounds. Filing early wastes time and the application fee.'},
+      {type:'warn',icon:'!',title:'Order machinery only after JKDM approved',body:'Your duty exemption is not confirmed until JKDM JPC 1 is approved. Importing machinery before this risks port hold — at RM 4,000–6,000 per week in bonded warehouse storage fees.'},
+      {type:'info',icon:'i',title:'HS code accuracy determines MIDA speed',body:'MIDA verifies every HS code on your machinery list. Wrong codes trigger supplementary submissions — adding 4–8 weeks of delay. Your handler verifies all codes before submission.'},
+      {type:'info',icon:'i',title:'Business plan needs proper financial projections',body:"MIDA's ICA 10 requires a 3-year business plan with projected revenue, employment headcount, and local vendor spending. A brief summary is not sufficient — ask your handler for the MIDA-accepted template."},
+    ]
+  },
+  imp:{
+    depWarning:{en:'MOH product registration can take 3–12 months per SKU. Begin registration before you order stock — not after.',zh:'卫生部产品注册每个SKU需要3–12个月。在订货前开始注册——而非之后。',ms:'Pendaftaran produk KKM boleh mengambil masa 3–12 bulan setiap SKU. Mulakan pendaftaran sebelum anda memesan stok.'},
+    sops:[
+      {code:'SSM',name:'Company Registration',time:'3–5 days',steps:['Register with correct business codes for import/export activities','M&A must explicitly state import, export, and distribution activities'],docs:['Director passports (CTC)','Shareholder passports (CTC)','Registered address proof']},
+      {code:'JKDM',name:'Importer / Exporter Registration',time:'1–3 days',steps:['Register as licensed importer via MyKilas (Customs) portal','All imported goods require HS code classification before clearance','Engage a licensed Customs Agent (forwarding agent) for each shipment'],docs:['SSM Certificate','Director IC or passport','Company bank account details']},
+      {code:'MOH',name:'Food / Health Product Registration',time:'3–12 months',steps:['Register via MOH FoSIM portal for food products','Health supplements require NPRA notification number — mandatory for any health claim','Label must comply with Food Regulations 1985 (English + Bahasa Malaysia)','REGISTER BEFORE ORDERING STOCK — allow 3–6 months minimum'],docs:['Full ingredient list / product formulation','Certificate of Analysis (COA) from manufacturer','Product label in draft (English + BM)','GMP or HACCP certificate from manufacturer','Country of origin / free sale certificate']},
+      {code:'SIRIM',name:'Electronics Product Certification',time:'4–12 weeks',steps:['ALL electronic products require SIRIM QAS certification before sale','Wireless products (BT/WiFi/NFC/wireless charging) have additional radio type approval requirements','Apply via SIRIM Berhad portal with technical documentation','Testing at SIRIM lab or accepted overseas lab','Certificate required on packaging and in product listing'],docs:['Technical file / product specification sheet','Test reports from accredited lab','Product photos (all angles)','Safety data sheet','Block diagram of circuitry']},
+      {code:'MAQIS',name:'Quarantine Inspection (per shipment)',time:'Per shipment (3–10 days)',steps:['All food, plant-based, and animal products must pass MAQIS inspection on arrival','Apply for import permit before shipment departs origin country','Inspector may hold consignment for lab testing','Your handler manages MAQIS coordination for each shipment'],docs:['Phytosanitary certificate (plant/food products)','Health certificate (animal/meat products)','Import permit (pre-obtained)','Commercial invoice + packing list','Bill of lading']},
+    ],
+    docs:[
+      {name:'Director passports (CTC)',note:'All directors',status:'done'},
+      {name:'SSM Certificate',note:'From Leverage Business on registration',status:'lev'},
+      {name:'Product formulation (per SKU)',note:'Full ingredient list — needed for MOH registration',status:'need'},
+      {name:'Certificate of Analysis (COA)',note:'From manufacturer — required per product per batch',status:'need'},
+      {name:'GMP or HACCP certificate (manufacturer)',note:'Must be current year — from manufacturing facility',status:'need'},
+      {name:'Product labels — all SKUs',note:'Must include English + Bahasa Malaysia. Nutrition info required for food.',status:'need'},
+      {name:'SIRIM test report (electronics)',note:'From SIRIM-accredited lab — required before any sale',status:'need'},
+      {name:'Import permit (per shipment)',note:'Managed by your handler — required before each shipment departs',status:'waiting'},
+    ],
+    seq:[
+      {step:1,codes:'SSM',name:'Company Registration',note:'Must be first',par:false,unlocks:'All subsequent applications'},
+      {step:2,codes:'JKDM',name:'Importer Registration',note:'Can start immediately after SSM — takes 1–3 days',par:false,unlocks:'Import permits for all shipments'},
+      {step:2,codes:'MOH',name:'Product Registration',note:'START THIS EARLY — 3–12 months per SKU. Begin before ordering stock.',par:true,unlocks:'Legal sale of food and health products'},
+      {step:2,codes:'SIRIM',name:'Electronics Certification',note:'Parallel with MOH if applicable — 4–12 weeks',par:true,unlocks:'Legal sale of electronics in Malaysia'},
+      {step:3,codes:'MAQIS',name:'Quarantine (per shipment)',note:'Managed per-shipment by your handler — ongoing',par:false,unlocks:''},
+    ],
+    tips:[
+      {type:'danger',icon:'✕',title:'Never order 6-month stock before MOH approval',body:'Health product registrations take 3–12 months per SKU. Ordering large stock before approval means goods held at port with storage fees accumulating — and products approaching expiry while waiting.'},
+      {type:'danger',icon:'✕',title:'"Food" label does not exempt from MOH notification',body:'Any product making a health benefit claim requires MOH product notification — even if sold as "food". Importers are regularly caught by this. Check with your handler before relying on any exemption advice.'},
+      {type:'warn',icon:'!',title:'SIRIM applies to all wireless electronics',body:'Any product with Bluetooth, WiFi, NFC, or wireless charging requires SIRIM QAS certification and radio type approval before sale in Malaysia. This applies even to simple accessories.'},
+      {type:'info',icon:'i',title:'Product labels must be in Bahasa Malaysia',body:'All food and health product labels must include Bahasa Malaysia text. English-only labels from your home market cannot be used. Your handler can advise on compliant label design.'},
+    ]
+  },
+  con:{
+    depWarning:{en:'CIDB G7 registration takes 3–6 months and cannot be fast-tracked for new companies. Check eligibility before bidding on any contract.',zh:'CIDB G7注册需要3–6个月，新公司无法加急处理。在投标任何合同前检查资格。',ms:'Pendaftaran CIDB G7 mengambil masa 3–6 bulan dan tidak boleh dipercepat untuk syarikat baru. Periksa kelayakan sebelum membida sebarang kontrak.'},
+    sops:[
+      {code:'CIDB',name:'G7 Contractor Registration',time:'3–6 months',steps:['Meet minimum paid-up capital for target grade (G7 = highest)','Provide audited accounts showing financial standing for 2 years','Submit project track record with client references','Professional staff (PE/Architect) must be registered with BEM/LAM','New companies typically cannot qualify — need 12+ months trading history'],docs:['Audited financial statements (2 years)','Company bank statements (12 months)','Project track record list with client contacts','Director and key staff professional qualifications','SSM Certificate','Workman Compensation insurance certificate']},
+      {code:'MOF',name:'MoF Registration (for Govt Work)',time:'2–4 months',steps:['Required for any work under government contract','Submit via Sistem Maklumat Kontraktor (SMK) portal','Bumiputera equity requirement for certain procurement categories','Annual renewal required'],docs:['SSM Certificate','CIDB Certificate','Director passports and ICs','Equity structure documentation','Company bank statements']},
+      {code:'BEM',name:'Board of Engineers Registration',time:'2–3 months',steps:['Required for any engineering design or site supervision','Foreign engineers must register as Graduate Engineers or via temporary exemption','Supervising Engineer (PE) must be BEM-registered and on-site','Annual Practising Certificate (APC) renewal required'],docs:['Engineering degree certificate','CPD log (continuing professional development record)','Letter of employment from company','Professional indemnity insurance']},
+      {code:'PAM',name:'Architect Registration (if applicable)',time:'2–3 months',steps:['Required if providing architectural design services','Foreign architects may apply for temporary registration','Must hold valid Annual Practising Certificate from Lembaga Arkitek Malaysia'],docs:['Architecture degree certificate','Portfolio of completed projects','Professional indemnity insurance']},
+    ],
+    docs:[
+      {name:'Director passports (CTC)',note:'All directors',status:'need'},
+      {name:'Audited accounts (2 years)',note:'Required for CIDB G7 financial standing assessment',status:'need'},
+      {name:'Project track record list',note:'Completed projects with value, client, and contact reference',status:'need'},
+      {name:'Professional qualifications (PE/Arch)',note:'BEM or LAM registration certificate for key technical staff',status:'need'},
+      {name:'Bank statements (12 months)',note:'Shows financial capacity for CIDB grading',status:'need'},
+      {name:'Workman Compensation insurance',note:'Required for CIDB registration and all site work',status:'need'},
+      {name:'SSM Certificate',note:'From Leverage Business on registration',status:'lev'},
+    ],
+    seq:[
+      {step:1,codes:'SSM',name:'Company Registration',note:'Must be first',par:false,unlocks:'Everything'},
+      {step:2,codes:'CIDB',name:'G7 Contractor Registration',note:'START EARLY — 3–6 months. Cannot fast-track. Verify eligibility first.',par:false,unlocks:'All construction work in Malaysia'},
+      {step:3,codes:'MOF',name:'Ministry of Finance Registration',note:'After CIDB — required for government contracts',par:false,unlocks:'Government tender eligibility'},
+      {step:3,codes:'BEM',name:'Engineers Board Registration',note:'Parallel with MOF — for engineering design/supervision',par:true,unlocks:'Engineering design and supervision'},
+      {step:3,codes:'PAM',name:'Architects Board (if applicable)',note:'Parallel with MOF/BEM — for architectural services',par:true,unlocks:'Architectural design services'},
+    ],
+    tips:[
+      {type:'danger',icon:'✕',title:'New companies cannot qualify for CIDB G7',body:"CIDB G7 requires a track record and minimum paid-up capital that a brand-new subsidiary cannot have. Foreign contractors who win tenders without checking this lose significant margin to sub-contracting arrangements. Verify CIDB eligibility BEFORE bidding any contract."},
+      {type:'danger',icon:'✕',title:'Singapore or Taiwan contractor registration is not recognised',body:"CIDB registration is mandatory for all construction work in Malaysia. Prior regional certifications (BCA Singapore, Taiwan equivalents) do not substitute. Do not assume equivalence — it is never granted automatically."},
+      {type:'warn',icon:'!',title:'Never mobilise crew before CIDB is confirmed',body:'Deploying workers to a construction site without a valid CIDB registration exposes the company to enforcement action and stop-work orders. CIDB inspectors conduct site checks.'},
+    ]
+  },
+  hlt:{
+    depWarning:{en:'NPRA product registration takes 6–18 months per product. Begin before you finalise manufacturing, not after.',zh:'NPRA产品注册每个产品需要6–18个月。在最终确定生产之前开始，而非之后。',ms:'Pendaftaran produk NPRA mengambil masa 6–18 bulan setiap produk. Mulakan sebelum anda memuktamadkan pembuatan.'},
+    sops:[
+      {code:'MOH',name:'Private Healthcare Facility Licence',time:'6–12 months',steps:['Submit application to MOH — BPSH (Private Medical Practice Control)','Building inspection and medical equipment audit conducted by MOH officers','Medical Director with active MMC Annual Practising Certificate is mandatory','All clinical staff credentials reviewed — nursing board APC required','FACILITY LICENCE must be in hand before any patient is seen'],docs:['Building floor plan (clinical areas, sterilisation room, waste disposal)','Equipment list with calibration records','Medical Director MMC APC (current year)','All nursing/clinical staff credentials with APC','Written SOPs for all procedures offered','Building Bomba certificate']},
+      {code:'NPRA',name:'Drug / Medical Device Registration',time:'6–18 months per product',steps:['Drugs: submit via MeDC@St portal (new drug application)','Medical devices: register via QUEST3+ portal (Class A/B/C/D by risk)','Each product registered individually — no group or family registration','GMP certification from manufacturer is mandatory — no exceptions','Product cannot be marketed or sold in Malaysia before registration number issued'],docs:['Product dossier (CTD format for drugs)','GMP certificate from manufacturing facility (must be current)','Clinical trial data (if new molecule or high-risk device)','Product labelling — draft in English and Bahasa Malaysia','Certificate of Pharmaceutical Product (CPP) from country of origin','Certificate of Free Sale']},
+    ],
+    docs:[
+      {name:'Medical Director MMC APC (current year)',note:'Must be current Annual Practising Certificate — not expired',status:'need'},
+      {name:'Building floor plan (clinical layout)',note:'Must show consultation rooms, sterilisation, medical waste disposal',status:'need'},
+      {name:'Medical equipment list with calibration records',note:'All diagnostic/treatment equipment — calibration current',status:'need'},
+      {name:'Written SOPs for all clinical procedures',note:'MOH reviews SOPs for every service offered — must be procedure-specific',status:'need'},
+      {name:'All clinical staff credentials + APC',note:'Nurses, doctors, allied health — all must have valid APC',status:'need'},
+      {name:'Product dossier (per product)',note:'CTD format for drugs / technical file for devices',status:'need'},
+      {name:'GMP certificate from manufacturer',note:'Must be current year — NPRA will not accept expired certificates',status:'need'},
+    ],
+    seq:[
+      {step:1,codes:'SSM',name:'Company Registration',note:'Must be first',par:false,unlocks:'All subsequent applications'},
+      {step:2,codes:'NPRA',name:'Product Registration',note:'START VERY EARLY — 6–18 months per product. Cannot rush.',par:false,unlocks:'Legal sale and use of medical products in Malaysia'},
+      {step:2,codes:'MOH',name:'Healthcare Facility Licence',note:'Parallel with NPRA — also 6–12 months',par:true,unlocks:'Patient-facing clinical operations'},
+      {step:3,codes:'LHDN',name:'Tax File + Employer No.',note:'After SSM — can run in parallel with NPRA/MOH',par:true,unlocks:''},
+    ],
+    tips:[
+      {type:'danger',icon:'✕',title:'Cannot see patients before facility licence issued',body:'Operating a clinical facility before the MOH Private Healthcare Facility Licence is issued is a criminal offence under the Private Healthcare Facilities and Services Act 1998. MOH enforcement officers conduct unannounced inspections.'},
+      {type:'danger',icon:'✕',title:'NPRA: one registration number per product',body:'There is no batch, family, or range registration. Each SKU, formulation, strength, or pack size requires its own individual registration number. Plan at least 6 months per product minimum.'},
+      {type:'warn',icon:'!',title:'GMP certificate must be from the manufacturing site',body:'NPRA requires GMP certification specific to the manufacturing facility producing the product, not the brand owner. Contract-manufactured products must provide GMP for the contract manufacturer.'},
+    ]
+  },
+  edu:{
+    depWarning:{en:'Never open enrolment before the Private School Registration Certificate (PSRC) is issued by MOE. This is illegal under the Education Act 1996.',zh:'在MOE颁发私立学校注册证书（PSRC）之前，切勿开放招生。这在1996年《教育法》下是违法的。',ms:'Jangan sekali-kali membuka pendaftaran sebelum Sijil Pendaftaran Sekolah Swasta (PSRC) dikeluarkan oleh KPM. Ini adalah menyalahi undang-undang di bawah Akta Pendidikan 1996.'},
+    sops:[
+      {code:'MOE',name:'Private School Registration (PSRC)',time:'9–14 months',steps:['Submit school registration application to BPSH under Ministry of Education','Curriculum submitted for approval — must align with Malaysian or recognised international syllabus','Building undergoes JKR structural and BOMBA fire safety inspection','Teacher qualifications reviewed individually — foreign teachers need Teaching Permit Clearance (TPC)','PSRC issued ONLY after all above are approved','Do NOT open enrolment, collect fees, or hire teachers until PSRC is physically received'],docs:['Building tenancy or ownership agreement (must cover full operation period)','School floor plan (classroom dimensions, toilet ratios, library, canteen)','Full curriculum with syllabus, timetable, and subject list','All teacher qualifications and experience records','Bomba fire safety certificate','Financial projection (3-year with enrolment targets and fee income)','Company SSM Certificate']},
+      {code:'MOHE',name:'Private Higher Education Institution',time:'12–24 months',steps:['For colleges and universities only — separate process from school registration','Apply to Ministry of Higher Education (MOHE) for provisional registration','Each programme must be separately accredited by MQA after provisional approval','Minimum physical, staffing, and financial requirements enforced','Academic staff must hold PhD for degree-level programmes'],docs:['Institutional development plan','Programme proposals with full module outlines','Academic staff credentials (all teaching staff)','Physical facilities plan (library, labs, ICT, student spaces)','Financial feasibility study']},
+    ],
+    docs:[
+      {name:'Building tenancy / ownership agreement',note:'Must cover full operating period. Lease shorter than your PSRC period not accepted.',status:'need'},
+      {name:'School floor plan (detailed)',note:'Each classroom min 1.2m² per student. Toilets: 1 per 30 students. Staff room required.',status:'need'},
+      {name:'Full curriculum documentation',note:'All subjects, hours per week, syllabus, textbooks listed by year/form',status:'need'},
+      {name:'Teacher qualifications (all staff)',note:'Academic degree + STPM/equivalent for all subject teachers. Include teaching experience.',status:'need'},
+      {name:'Bomba fire safety certificate',note:'Required before MOE building inspection can be scheduled',status:'done'},
+      {name:'Financial projection (3-year)',note:'Enrolment targets, fee income, operating costs, staffing plan',status:'need'},
+      {name:'SSM Certificate',note:'From Leverage Business on registration',status:'lev'},
+    ],
+    seq:[
+      {step:1,codes:'SSM',name:'Company Registration',note:'Must be first',par:false,unlocks:'All subsequent applications'},
+      {step:2,codes:'Bomba',name:'Fire Safety Certificate',note:'Required before MOE inspection can be scheduled',par:false,unlocks:'MOE building inspection scheduling'},
+      {step:3,codes:'MOE',name:'PSRC Registration',note:'9–14 months minimum. Do NOT open enrolment before PSRC received.',par:false,unlocks:'Legal student enrolment'},
+      {step:4,codes:'LHDN',name:'Tax File + Employer No.',note:'After SSM — run in parallel from early stage',par:true,unlocks:''},
+    ],
+    tips:[
+      {type:'danger',icon:'✕',title:'Never collect fees or enrol students before PSRC',body:'Collecting fees or enrolling students before the PSRC is issued is illegal. MOE can order immediate closure. The PSRC must be physically in hand before any public announcement of enrolment or collection of deposits.'},
+      {type:'danger',icon:'✕',title:'Never hire teachers before PSRC — TPC required first',body:'Foreign teachers require a Teaching Permit Clearance (TPC) from MOE before they can legally teach. This must be processed as part of the PSRC application — not separately. Teachers who resign from previous jobs prematurely create a legal problem.'},
+      {type:'warn',icon:'!',title:'Building lease must cover the full PSRC period',body:'MOE will reject a school application if the tenancy agreement does not cover the entire period of the PSRC being applied for. A 1-year lease for a 5-year school registration will not be accepted.'},
+    ]
+  },
+  re:{
+    depWarning:{en:'SEDA quota application windows open without much notice — typically 2–4 weeks. Have all documents ready at all times.',zh:'SEDA配额申请窗口通常提前2–4周通知开放。随时准备好所有文件。',ms:'Tetingkap permohonan kuota SEDA dibuka tanpa banyak notis — biasanya 2–4 minggu. Sediakan semua dokumen pada bila-bila masa.'},
+    sops:[
+      {code:'SEDA',name:'Feed-In Tariff / Large Scale Solar',time:'Quota window — periodic',steps:['SEDA opens quota application windows on irregular schedule — watch SEDA website','Prepare all technical documents before window opens — you cannot compile after','Site assessment and solar system specification must be ready at submission','Approval does not include grid connection — TNB/SESB application is separate and parallel'],docs:['Land ownership or long-term lease agreement (minimum 21 years for solar)','Solar system technical specification (panel brand, capacity, inverter specs)','Single-line electrical diagram (stamped by registered PE)','Site survey / layout plan','Proposed generation output projection']},
+      {code:'ST',name:'Electricity Supply Licence',time:'3–6 months',steps:['Required for any electricity generation above 1MW intended for sale','Apply to Suruhanjaya Tenaga (Energy Commission)','Technical audit of generation equipment and safety systems conducted','Licence renewable every 3 years'],docs:['SEDA approval letter (if FiT scheme)','Generation equipment specifications and safety standards','Single-line electrical diagram','Safety management plan','Director passports and SSM Certificate']},
+      {code:'TNB',name:'Grid Connection Application',time:'6–18 months',steps:['Apply to Tenaga Nasional Berhad (or SESB in Sabah/Sarawak)','Separate from SEDA — can submit in parallel','TNB conducts grid capacity study before approval','Connection works carried out by TNB at cost to applicant'],docs:['Single-line diagram (same as SEDA/ST)','Technical specifications of inverters and protection systems','SEDA or ST approval letter','Land/site ownership proof']},
+      {code:'MGTC',name:'Green Technology Certification',time:'2–4 months',steps:['Optional but unlocks Green Investment Tax Allowance (GITA) — significant tax benefit','Apply via MyGreenTech portal','Product or project assessed against green criteria','Certificate valid 2 years — renewable'],docs:['Product or project technical specifications','Energy performance / efficiency data','Environmental impact assessment (if applicable)','Third-party testing or certification reports']},
+    ],
+    docs:[
+      {name:'Land / site ownership or long-term lease',note:'Minimum 21 years for solar — shorter lease not accepted by SEDA',status:'need'},
+      {name:'Solar system technical specification',note:'Panel brand, model, capacity (kWp), inverter specs, mounting system',status:'need'},
+      {name:'Single-line electrical diagram',note:'Must be stamped by BEM-registered PE. Used for SEDA, ST, and TNB.',status:'need'},
+      {name:'TNB grid connection application',note:'Separate from SEDA — file in parallel from early stage',status:'need'},
+      {name:'Director passports (CTC)',note:'All directors — certified true copy',status:'done'},
+      {name:'SSM Certificate',note:'From Leverage Business on registration',status:'lev'},
+    ],
+    seq:[
+      {step:1,codes:'SSM',name:'Company Registration',note:'Must be first',par:false,unlocks:'All subsequent applications'},
+      {step:2,codes:'SEDA',name:'Feed-In Tariff Application',note:'Time-sensitive — apply during open window. Have documents ready.',par:false,unlocks:'Electricity sale to national grid'},
+      {step:2,codes:'TNB',name:'Grid Connection Application',note:'File in parallel with SEDA — takes 6–18 months independently',par:true,unlocks:'Physical grid connection'},
+      {step:2,codes:'ST',name:'Electricity Supply Licence',note:'Parallel — for installations above 1MW',par:true,unlocks:'Generation and sale above 1MW'},
+      {step:3,codes:'MGTC',name:'Green Tech Certification',note:'After project approved — unlocks tax incentives',par:false,unlocks:'Green Investment Tax Allowance (GITA)'},
+    ],
+    tips:[
+      {type:'warn',icon:'!',title:'SEDA windows open with 2–4 weeks notice only',body:'SEDA typically announces feed-in tariff quota windows just 2–4 weeks in advance. If your documents are not ready at that moment, you miss the window entirely and must wait for the next round — often 6–12 months later.'},
+      {type:'danger',icon:'✕',title:'TNB grid connection is completely separate from SEDA',body:'Getting SEDA approval does not mean your system can connect to the grid. TNB grid connection is a separate application with its own inspection process and timeline (6–18 months). Both must run in parallel from an early stage.'},
+      {type:'info',icon:'i',title:'GITA tax allowance can be substantial',body:'The Green Investment Tax Allowance (GITA) allows 100% investment allowance on qualifying capital expenditure for green technology projects. MGTC certification is required to claim GITA. Get your handler to assess eligibility early.'},
+    ]
+  }
+};
+
+let _gInd = 'mfg';
+
+function selectGInd(ind, el) {
+  _gInd = ind;
+  document.querySelectorAll('.ind-btn-g').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderGuidance();
+}
+
+function switchGTab(tab, btn) {
+  document.querySelectorAll('.g-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.g-tab-content').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('g-tab-' + tab).classList.add('active');
+}
+
+function renderGuidance() {
+  const d = GDATA[_gInd];
+  if (!d) return;
+  const curLang = _lang || 'en';
+
+  // Update dependency warning
+  const dw = document.getElementById('g-dep-warning');
+  if (dw && d.depWarning) dw.textContent = d.depWarning[curLang] || d.depWarning.en;
+
+  // SOPs
+  const sopEl = document.getElementById('g-sop-list');
+  if (sopEl) sopEl.innerHTML = d.sops.map((s, i) => `
+    <div class="sop-item-g" onclick="toggleGSOP(${i})">
+      <div class="sop-row-g">
+        <span class="sop-code-g">${s.code}</span>
+        <span class="sop-name-g">${s.name}</span>
+        <span class="sop-time-g">${s.time}</span>
+        <svg class="sop-arr-g" id="garr-${i}" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+      </div>
+      <div class="sop-exp-g" id="gexp-${i}">
+        <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px">How this works:</div>
+        <div class="sop-steps-g">${s.steps.map((st,j) => `<div class="sop-step-g"><div class="sop-step-num-g">${j+1}</div><div class="sop-step-text-g">${st}</div></div>`).join('')}</div>
+        <div class="sop-docs-g">
+          <div class="sop-docs-title-g">Documents required for this application:</div>
+          ${s.docs.map(doc => `<div class="sop-doc-item-g"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="flex-shrink:0;color:var(--text3)"><path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>${doc}</div>`).join('')}
+        </div>
+      </div>
+    </div>`).join('');
+
+  // Docs
+  const docEl = document.getElementById('g-doc-list');
+  const docStatusMap = {done:{cls:'di-g-done',svg:'<path stroke-linecap="round" d="M5 13l4 4L19 7"/>',badge:'Uploaded',bc:'bg-g'},need:{cls:'di-g-need',svg:'<path stroke-linecap="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>',badge:'Upload needed',bc:'bg-a'},flagged:{cls:'di-g-need',svg:'<path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>',badge:'Flagged',bc:'bg-a'},lev:{cls:'di-g-lev',svg:'<path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',badge:'From Leverage',bc:'bg-b'},waiting:{cls:'di-g-wait',svg:'<path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>',badge:'Pending',bc:'bg-s'}};
+  if (docEl) docEl.innerHTML = d.docs.map(doc => {
+    const ic = docStatusMap[doc.status] || docStatusMap.waiting;
+    const iconColor = doc.status==='done'?'var(--g)':doc.status==='lev'?'var(--gold)':doc.status==='waiting'?'var(--text3)':'var(--a)';
+    return `<div class="doc-row-g">
+      <div class="doc-icon-g ${ic.cls}"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="${iconColor}" stroke-width="2">${ic.svg}</svg></div>
+      <div class="doc-info-g"><div class="doc-name-g">${doc.name}</div><div class="doc-note-g">${doc.note}</div></div>
+      <span class="a-status ${ic.bc}" style="flex-shrink:0;font-size:10px">${ic.badge}</span>
+    </div>`;
+  }).join('');
+
+  // Sequence
+  const seqEl = document.getElementById('g-seq-list');
+  const stepColors = {1:'var(--g)',2:'var(--b)',3:'var(--a)',4:'#636366'};
+  const bgColors = {1:'var(--gbg)',2:'var(--bbg)',3:'var(--abg)',4:'var(--off)'};
+  if (seqEl) {
+    let lastStep = 0;
+    seqEl.innerHTML = d.seq.map((s) => {
+      const isNew = s.step !== lastStep;
+      lastStep = s.step;
+      const color = stepColors[s.step] || '#636366';
+      const bgColor = bgColors[s.step] || 'var(--off)';
+      return `${isNew ? `<div class="seq-step-label">Step ${s.step}${s.par ? ' — can run in parallel' : ''}</div>` : ''}
+        <div class="seq-row-g">
+          <div class="seq-num-g" style="background:${bgColor};color:${color}">${s.step}</div>
+          <div class="seq-info-g">
+            <div class="seq-name-g"><span style="font-family:var(--fm);font-size:10px;color:var(--text3);margin-right:4px">${s.codes}</span>${s.name}</div>
+            <div class="seq-note-g">${s.note}</div>
+          </div>
+          ${s.unlocks ? `<div style="font-size:10px;color:var(--text3);text-align:right;flex-shrink:0;max-width:100px;line-height:1.4">Unlocks:<br><span style="color:var(--b);font-weight:500">${s.unlocks}</span></div>` : ''}
+        </div>`;
+    }).join('');
+  }
+
+  // Tips
+  const tipsEl = document.getElementById('g-tips-list');
+  const tipClasses = {danger:'danger',warn:'warn',info:'info'};
+  const tipIconColor = {danger:'var(--r)',warn:'var(--a)',info:'var(--b)'};
+  if (tipsEl) tipsEl.innerHTML = d.tips.map(t => `
+    <div class="tip-item-g ${tipClasses[t.type] || 'info'}">
+      <div class="tip-icon-g" aria-hidden="true" style="font-size:16px;font-weight:700;color:${tipIconColor[t.type]||'var(--b)'}">${t.icon}</div>
+      <div>
+        <div class="tip-title-g">${t.title}</div>
+        <div class="tip-body-g">${t.body}</div>
+      </div>
+    </div>`).join('');
+}
+
+function toggleGSOP(i) {
+  const exp = document.getElementById('gexp-' + i);
+  const arr = document.getElementById('garr-' + i);
+  const isOpen = exp.classList.contains('open');
+  document.querySelectorAll('.sop-exp-g').forEach(e => e.classList.remove('open'));
+  document.querySelectorAll('.sop-arr-g').forEach(a => { a.style.transform = ''; });
+  if (!isOpen) {
+    exp.classList.add('open');
+    arr.style.transform = 'rotate(180deg)';
+  }
+}
+
 </script>
 </body>
 </html>
