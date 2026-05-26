@@ -254,6 +254,76 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
 .doc-note-g{font-size:10px;color:var(--text3)}
 .g-warn-banner{padding:10px 12px;background:var(--abg);border-left:3px solid var(--a);border-radius:0 7px 7px 0;margin-bottom:10px;font-size:12px;color:var(--a);display:flex;gap:8px;align-items:flex-start}
 .g-info-banner{padding:10px 12px;background:var(--bbg);border-left:3px solid var(--b);border-radius:0 7px 7px 0;margin-bottom:10px;font-size:12px;color:var(--b);display:flex;gap:8px;align-items:flex-start}
+
+/* ── APPLICATION WORKSPACE ── */
+.app-card{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:10px}
+.app-card.action-needed{border-color:rgba(198,93,0,.35);box-shadow:0 0 0 1px rgba(198,93,0,.1)}
+.app-hdr{display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;transition:background .15s;user-select:none}
+.app-hdr:hover{background:var(--off)}
+.app-num{font-family:var(--fm);font-size:10px;font-weight:600;color:var(--text3);width:22px;flex-shrink:0}
+.app-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.app-code{font-family:var(--fm);font-size:11px;font-weight:600;color:var(--text);width:48px;flex-shrink:0}
+.app-title{flex:1;font-size:13px;font-weight:500;color:var(--text)}
+.app-chevron{width:14px;height:14px;color:var(--text3);flex-shrink:0;transition:transform .2s}
+.app-chevron.open{transform:rotate(180deg)}
+.app-body{display:none;border-top:1px solid var(--border)}
+.app-body.open{display:block}
+/* Status timeline */
+.app-timeline{display:flex;gap:0;padding:10px 16px;border-bottom:1px solid var(--border);overflow-x:auto}
+.app-timeline::-webkit-scrollbar{display:none}
+.tl-step{display:flex;flex-direction:column;align-items:center;flex:1;min-width:60px;position:relative}
+.tl-step::after{content:'';position:absolute;top:9px;left:50%;right:-50%;height:2px;background:var(--border);z-index:0}
+.tl-step:last-child::after{display:none}
+.tl-dot-wrap{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1;margin-bottom:4px;flex-shrink:0}
+.tl-dot-done{background:var(--g)}
+.tl-dot-active{background:var(--a)}
+.tl-dot-filed{background:var(--b)}
+.tl-dot-locked{background:var(--border)}
+.tl-dot-wrap svg{width:10px;height:10px}
+.tl-label{font-size:9px;text-align:center;line-height:1.3;color:var(--text3);max-width:56px}
+.tl-label.active{color:var(--a);font-weight:600}
+.tl-label.done{color:var(--g);font-weight:600}
+.tl-label.filed{color:var(--b);font-weight:600}
+/* Tabs inside app */
+.app-tabs{display:flex;border-bottom:1px solid var(--border);background:var(--off)}
+.app-tab{padding:8px 14px;font-size:11px;font-weight:500;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--fb);transition:all .2s}
+.app-tab:hover{color:var(--navy)}
+.app-tab.active{color:var(--navy);border-bottom-color:var(--navy)}
+.app-tab-content{display:none;padding:14px 16px}
+.app-tab-content.active{display:block}
+/* Protocol steps */
+.protocol-list{display:flex;flex-direction:column;gap:0}
+.proto-step{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
+.proto-step:last-child{border-bottom:none}
+.proto-num{width:22px;height:22px;border-radius:50%;background:var(--off2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--text3);flex-shrink:0;margin-top:1px}
+.proto-content{flex:1}
+.proto-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px}
+.proto-detail{font-size:11px;color:var(--text3);line-height:1.55}
+/* Document checklist per application */
+.task-doc-row{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid var(--border);font-size:12px}
+.task-doc-row:last-child{border-bottom:none}
+.tdr-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tdr-done{background:var(--gbg)}
+.tdr-need{background:var(--abg)}
+.tdr-lev{background:var(--navy)}
+.tdr-wait{background:var(--off2)}
+.tdr-info{flex:1;min-width:0}
+.tdr-name{font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tdr-note{font-size:10px;color:var(--text3);margin-top:1px}
+.tdr-actions{display:flex;gap:5px;align-items:center;flex-shrink:0}
+/* Blocked banner */
+.blocked-banner{padding:12px 16px;background:var(--off);border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:10px}
+.blocked-banner svg{width:14px;height:14px;flex-shrink:0;margin-top:2px;color:var(--text3)}
+/* Info / warning banners in tasks */
+.task-info{padding:10px 12px;background:var(--bbg);border-radius:7px;font-size:12px;color:var(--b);line-height:1.6;margin-bottom:10px;display:flex;gap:8px}
+.task-warn{padding:10px 12px;background:var(--abg);border-left:3px solid var(--a);border-radius:0 7px 7px 0;font-size:12px;color:var(--a);line-height:1.6;margin-bottom:10px}
+.task-success{padding:10px 12px;background:var(--gbg);border-radius:7px;font-size:12px;color:var(--g);line-height:1.6;margin-bottom:10px;display:flex;gap:8px}
+/* Upload drop zone mini */
+.mini-upload{border:1.5px dashed var(--border);border-radius:7px;padding:12px;text-align:center;cursor:pointer;transition:all .15s;background:var(--white)}
+.mini-upload:hover{border-color:var(--gold);background:rgba(201,169,97,.03)}
+/* Progress bar in hdr */
+.app-prog-mini{height:3px;background:var(--border);border-radius:2px;overflow:hidden;width:50px;flex-shrink:0}
+.app-prog-fill{height:100%;background:var(--gold);border-radius:2px}
 </style>
 </head>
 <body>
@@ -613,18 +683,261 @@ let user = null;
 let lang = localStorage.getItem('lb-lang') || 'en';
 
 const TASKS = [
-  {code:'SSM',name:'Company Registration',status:'approved',dot:'var(--g)',ref:'202600XXXXXX',filed:'3 Mar 2026',approved:'5 Mar 2026',notes:'Certificate received. Company No: 202600XXXXXX',locked:false},
-  {code:'LHDN',name:'Tax File + Employer Registration',status:'approved',dot:'var(--g)',ref:'C2026XXXXXX',filed:'6 Mar 2026',approved:'10 Mar 2026',notes:'Tax file opened. E-number issued.',locked:false},
-  {code:'Bomba',name:'Fire Certificate',status:'approved',dot:'var(--g)',ref:'BOMBA/2026/001234',filed:'7 Mar 2026',approved:'14 Mar 2026',notes:'Certificate valid until 14 Mar 2027.',locked:false},
-  {code:'PBT',name:'Premise Licence (MBSP)',status:'filed',dot:'var(--b)',ref:'MBSP/2026/P/00234',filed:'15 Mar 2026',approved:null,notes:'Application submitted. Inspection scheduled 2 Apr.',locked:false},
-  {code:'MIDA',name:'ICA 10 Exemption (Manufacturing)',status:'action',dot:'var(--a)',ref:null,filed:null,approved:null,notes:'Awaiting machinery list from client. Cannot file without HS codes.',locked:false},
-  {code:'JKDM',name:'JPC 1 Duty Exemption',status:'blocked',dot:'#C8C8CC',ref:null,filed:null,approved:null,notes:'Blocked: requires MIDA approval first.',locked:true},
-  {code:'ESD',name:'Employment Pass × 3',status:'blocked',dot:'#C8C8CC',ref:null,filed:null,approved:null,notes:'Blocked: requires MIDA approval first.',locked:true},
-  {code:'KDN',name:'Foreign Worker Quota',status:'blocked',dot:'#C8C8CC',ref:null,filed:null,approved:null,notes:'Blocked: requires Employment Pass first.',locked:true},
-  {code:'DOSH',name:'Safety & Health Registration',status:'blocked',dot:'#C8C8CC',ref:null,filed:null,approved:null,notes:'Blocked: requires premise licence first.',locked:true},
-  {code:'LHDN',name:'SST Registration',status:'blocked',dot:'#C8C8CC',ref:null,filed:null,approved:null,notes:'Blocked: assess after MIDA approval.',locked:true},
-  {code:'MITI',name:'Cost Analysis (CA)',status:'blocked',dot:'#C8C8CC',ref:null,filed:null,approved:null,notes:'Blocked: requires MIDA approval.',locked:true},
+  {
+    seq:1, code:'SSM', name:'Company Registration',
+    status:'approved', dot:'var(--g)',
+    ref:'202600XXXXXX', filed:'3 Mar 2026', approved:'5 Mar 2026',
+    notes:'Certificate of Incorporation received. Company No: 202600XXXXXX',
+    locked:false, blockedBy:null,
+    timeline:['Company name search','Form submission','Payment','Certificate issued'],
+    timelineStatus:['done','done','done','done'],
+    govPortal:'https://www.ssm.com.my',
+    processingTime:'3–5 working days',
+    fee:'RM 1,000–2,000 (paid by Leverage Business)',
+    protocol:[
+      {title:'Company name search and reservation',detail:'Check name availability on SSM portal. Name must not conflict with existing registered names. Approval takes 1–2 days.'},
+      {title:'Prepare Memorandum & Articles of Association',detail:'Documents define the company structure, shareholder rights, and business activities. Must explicitly include manufacturing / relevant activity codes.'},
+      {title:'Submit Form 49 (Directors) + Form 24 (Share allotment)',detail:'Lists all directors, their identification, and share allocations. Submit online via SSM MyCoID portal.'},
+      {title:'Pay registration fee',detail:'Fee varies by share capital. Standard company: RM 1,000. Higher share capital incurs additional fee.'},
+      {title:'Receive Certificate of Incorporation',detail:'Digital certificate issued within 3–5 working days. This unlocks all downstream applications.'}
+    ],
+    docs:[
+      {name:'Director passports (certified true copy)',note:'All directors — must be CTC, not a plain scan',status:'done'},
+      {name:'Shareholder passports (CTC)',note:'All shareholders with ≥25% equity',status:'done'},
+      {name:'Proof of registered address',note:'Utility bill or tenancy agreement for registered address',status:'done'},
+    ]
+  },
+  {
+    seq:2, code:'LHDN', name:'Tax File + Employer Registration',
+    status:'approved', dot:'var(--g)',
+    ref:'C2026XXXXXX / E2026XXXXXX', filed:'6 Mar 2026', approved:'10 Mar 2026',
+    notes:'Income tax file (C-number) and Employer E-number both issued. PCB monthly deduction schedule active.',
+    locked:false, blockedBy:null,
+    timeline:['MyTax portal submission','C-number issued','E-number issued','PCB setup'],
+    timelineStatus:['done','done','done','done'],
+    govPortal:'https://mytax.hasil.gov.my',
+    processingTime:'5–10 working days',
+    fee:'No fee',
+    protocol:[
+      {title:'Register via MyTax portal',detail:'Create company tax account at mytax.hasil.gov.my using SSM Certificate. Both tax file and employer registration submitted simultaneously.'},
+      {title:'Income tax file (C-number) issued',detail:'Your company income tax reference number. Used for filing annual tax returns and corporate tax payments.'},
+      {title:'Employer number (E-number) issued',detail:'Required to deduct and remit PCB (monthly tax deduction) from employee salaries.'},
+      {title:'Set up PCB payment schedule',detail:'Register on e-PCB system. Monthly deduction from salaries must be remitted to LHDN by 15th of following month.'}
+    ],
+    docs:[
+      {name:'SSM Certificate of Incorporation',note:'From Leverage Business — already on file',status:'lev'},
+      {name:'Director IC or passport',note:'Registered director identification',status:'done'},
+    ]
+  },
+  {
+    seq:3, code:'Bomba', name:'Fire Safety Certificate',
+    status:'approved', dot:'var(--g)',
+    ref:'BOMBA/2026/001234', filed:'7 Mar 2026', approved:'14 Mar 2026',
+    notes:'Fire Safety Certificate valid until 14 Mar 2027. Renewal due Mar 2027 — will be tracked.',
+    locked:false, blockedBy:null,
+    timeline:['Engage fire consultant','Submit plans','Inspector visit','Certificate issued'],
+    timelineStatus:['done','done','done','done'],
+    govPortal:'https://www.bomba.gov.my',
+    processingTime:'7–14 working days',
+    fee:'RM 200–600 (based on floor area)',
+    protocol:[
+      {title:'Engage a BOMBA-registered fire safety company',detail:'The consultant prepares fire safety layout, sprinkler system design, and emergency exit plan. Must be a company on BOMBA's approved list.'},
+      {title:'Submit building plan and fire system layout',detail:'Plans show fire extinguisher positions, hose reel locations, emergency exits, and assembly points. Submitted to local BOMBA office.'},
+      {title:'BOMBA inspector conducts premises visit',detail:'Inspector physically checks the installed fire systems, emergency lighting, and exit signage. Any deficiencies must be rectified before certificate issued.'},
+      {title:'Certificate issued — valid 1 year',detail:'Displayed at premises. Annual renewal required. Your handler will track renewal date and initiate process 6 weeks before expiry.'}
+    ],
+    docs:[
+      {name:'Building floor plan with fire exit markings',note:'Engineer-stamped plan showing fire safety layout',status:'done'},
+      {name:'Fire suppression system schematic',note:'Sprinkler / hose reel / extinguisher positions',status:'done'},
+    ]
+  },
+  {
+    seq:4, code:'PBT', name:'Premise Licence (MBSP)',
+    status:'filed', dot:'var(--b)',
+    ref:'MBSP/2026/P/00234', filed:'15 Mar 2026', approved:null,
+    notes:'Application filed. Building inspection scheduled 2 April 2026. MBSP typically takes 14–30 days from inspection.',
+    locked:false, blockedBy:null,
+    timeline:['Form submitted','Fee paid','Inspection scheduled','Licence issued'],
+    timelineStatus:['done','done','active','locked'],
+    govPortal:'https://www.mbsp.gov.my',
+    processingTime:'14–30 days after inspection',
+    fee:'RM 180–1,200/year (based on activity and floor area)',
+    protocol:[
+      {title:'Submit Form PBT-1 to local authority (MBSP)',detail:'Form available at MBSP counter or online. State exact business activity — this determines the licence category and annual fee.'},
+      {title:'Pay licence fee',detail:'Fee is based on business activity and floor area. Manufacturing activity typically RM 400–1,200/year.'},
+      {title:'MBSP building inspection',detail:'Inspector checks structure safety, ventilation, sanitation, and compliance with local by-laws. Any issues must be rectified before licence issued. Inspection date: 2 April 2026.'},
+      {title:'Licence issued and displayed',detail:'Annual business licence must be displayed visibly at premises. Your handler will initiate renewal 6 weeks before expiry each year.'}
+    ],
+    docs:[
+      {name:'SSM Certificate of Incorporation',note:'From Leverage Business',status:'lev'},
+      {name:'Tenancy agreement / title deed',note:'Proof of right to occupy the premises',status:'done'},
+      {name:'Bomba Fire Safety Certificate',note:'Required at time of submission',status:'done'},
+    ]
+  },
+  {
+    seq:5, code:'MIDA', name:'ICA 10 Exemption (Manufacturing)',
+    status:'action', dot:'var(--a)',
+    ref:null, filed:null, approved:null,
+    notes:'CRITICAL — handler is ready to file. Waiting for machinery list with HS codes from client. This application unlocks JKDM, Employment Pass, and KDN.',
+    locked:false, blockedBy:null,
+    timeline:['Prepare documents','Handler review','File online','MIDA processing','Approval'],
+    timelineStatus:['active','locked','locked','locked','locked'],
+    govPortal:'https://investmalaysia.mida.gov.my',
+    processingTime:'6–10 weeks from filing',
+    fee:'No fee',
+    protocol:[
+      {title:'Prepare machinery list with HS codes and CIF values',detail:'CRITICAL — your responsibility. List every machine by name, model, manufacturer, quantity, CIF value (USD), and 8-digit HS code. Incorrect HS codes cause MIDA to put the application on hold.'},
+      {title:'Prepare 3-year business plan',detail:'Required by MIDA. Must include: projected revenue per year, number of employees (local and foreign), planned production volume, and local vendor spending commitment.'},
+      {title:'Handler reviews all documents',detail:'Your handler verifies every HS code against the JKDM tariff schedule before submission. This step prevents rejection. Do not skip.'},
+      {title:'Submit via MIDA InvestMalaysia portal',detail:'Handler files the complete application online. MIDA may request supplementary documents or schedule a factory visit during processing.'},
+      {title:'MIDA processing (6–10 weeks)',detail:'MIDA reviews and issues Approval Letter with reference number. This reference number is mandatory for JKDM JPC 1 and Employment Pass applications — both are blocked until this arrives.'}
+    ],
+    docs:[
+      {name:'Machinery list with HS codes + CIF value (USD)',note:'8-digit HS code required per item. CIF value in USD. UPLOAD THIS NOW — it is blocking MIDA filing.',status:'need',urgent:true},
+      {name:'Business plan (3-year projection)',note:'Revenue, headcount, production volume, local vendor spending',status:'need'},
+      {name:'Audited accounts 2024',note:'Re-upload — flagged version was missing auditor signature page',status:'flagged'},
+      {name:'Factory floor plan',note:'Production layout, emergency exits, storage zones',status:'need'},
+      {name:'Director passports (CTC)',note:'Already uploaded — on file',status:'done'},
+      {name:'SSM Certificate',note:'From Leverage Business — on file',status:'lev'},
+    ]
+  },
+  {
+    seq:6, code:'JKDM', name:'JPC 1 — Machinery Duty Exemption',
+    status:'blocked', dot:'#C8C8CC',
+    ref:null, filed:null, approved:null,
+    notes:'Locked — cannot file until MIDA ICA 10 approval is received. JKDM requires a valid MIDA reference number. No exceptions.',
+    locked:true, blockedBy:'MIDA ICA 10 Approval',
+    timeline:['Wait for MIDA','Submit JPC 1','JKDM review','Approval'],
+    timelineStatus:['active','locked','locked','locked'],
+    govPortal:'https://www.customs.gov.my',
+    processingTime:'4–8 weeks after MIDA approval',
+    fee:'No fee (but saves significant import duty on machinery)',
+    protocol:[
+      {title:'Receive MIDA ICA 10 Approval Letter',detail:'LOCKED until this arrives. The MIDA reference number must appear on the JPC 1 form. Filing without it results in immediate rejection.'},
+      {title:'Submit JPC 1 form via MyCustoms portal',detail:'Attach MIDA Approval Letter, machinery list (identical to MIDA submission), commercial invoice, and bill of lading.'},
+      {title:'JKDM may inspect machinery at port',detail:'For large shipments, JKDM may physically verify machinery against the approved list at Port Klang before releasing duty exemption.'},
+      {title:'Exemption approval issued',detail:'Allows import of approved machinery without import duty. Significant cost saving — applicable per shipment.'}
+    ],
+    docs:[
+      {name:'MIDA ICA 10 Approval Letter',note:'MANDATORY — not yet received. Waiting on MIDA approval.',status:'wait'},
+      {name:'Machinery list (identical to MIDA submission)',note:'Prepare this now — will use same document as MIDA',status:'need'},
+      {name:'Commercial invoice + packing list',note:'From machinery supplier — obtain when placing order',status:'wait'},
+      {name:'Bill of lading',note:'From shipping company — obtained at time of shipment',status:'wait'},
+    ]
+  },
+  {
+    seq:7, code:'ESD/JIM', name:'Employment Pass × 3',
+    status:'blocked', dot:'#C8C8CC',
+    ref:null, filed:null, approved:null,
+    notes:'Locked — cannot file until MIDA ICA 10 approval received. Applies to 3 foreign technical specialists.',
+    locked:true, blockedBy:'MIDA ICA 10 Approval',
+    timeline:['Wait for MIDA','File via ESD','Processing','Pass issued'],
+    timelineStatus:['active','locked','locked','locked'],
+    govPortal:'https://www.esd.gov.my',
+    processingTime:'4–8 weeks after MIDA approval',
+    fee:'RM 120 per application',
+    protocol:[
+      {title:'Receive MIDA ICA 10 Approval Letter',detail:'LOCKED until this arrives. ESD system will block submission if MIDA reference is missing or unverified.'},
+      {title:'Create company account on ESD MyExpats portal',detail:'Register company with ESD. Requires SSM Certificate and MIDA Approval Letter. Your handler sets this up.'},
+      {title:'Submit individual application per employee',detail:'Each Employment Pass application is separate. Required per applicant: offer letter, passport (min 18 months validity), academic certificates.'},
+      {title:'Processing and pass issuance',detail:'Pass is employer-specific — employee cannot transfer to another company. Valid 1–5 years depending on designation and salary band. Renewal managed by your handler.'}
+    ],
+    docs:[
+      {name:'MIDA ICA 10 Approval Letter',note:'MANDATORY — not yet received. Waiting on MIDA.',status:'wait'},
+      {name:'Employee passport × 3 (min 18 months validity)',note:'Can prepare now — collect from each future employee',status:'need'},
+      {name:'Signed offer letters × 3',note:'On company letterhead — can draft now before MIDA arrives',status:'need'},
+      {name:'Academic certificates × 3',note:'Degree / diploma for each employee',status:'need'},
+      {name:'Company bank statements (3 months)',note:'Shows company can pay the salaries stated in offer letters',status:'need'},
+    ]
+  },
+  {
+    seq:8, code:'KDN', name:'Foreign Worker Quota',
+    status:'blocked', dot:'#C8C8CC',
+    ref:null, filed:null, approved:null,
+    notes:'Locked — requires Employment Pass to be issued first. Quota application for non-skilled foreign workers.',
+    locked:true, blockedBy:'Employment Pass (ESD/JIM)',
+    timeline:['Wait for ESD','Quota application','KDN approval','Workers arrival'],
+    timelineStatus:['locked','locked','locked','locked'],
+    govPortal:'https://www.imi.gov.my',
+    processingTime:'2–4 months',
+    fee:'RM 410 per worker (levy) + administrative fee',
+    protocol:[
+      {title:'Apply only after Employment Pass issued',detail:'KDN foreign worker quota requires proof that skilled positions are already filled by permit holders. Employment Pass must be active.'},
+      {title:'Submit quota application to Jabatan Imigresen Malaysia',detail:'State number of workers, job category (based on CIDB or industry classification), and manufacturing activity.'},
+      {title:'Approval and worker visa issuance',detail:'Quota approval allows recruitment of foreign workers from approved source countries (Bangladesh, Nepal, Indonesia, Myanmar). Levy must be paid per worker per year.'}
+    ],
+    docs:[
+      {name:'Employment Pass (active) for technical staff',note:'Proof that skilled roles are filled before unskilled quota is granted',status:'wait'},
+      {name:'Manufacturing licence / MIDA Approval',note:'Proves operating manufacturing activity',status:'wait'},
+      {name:'Worker job descriptions',note:'For each position in the quota application',status:'need'},
+    ]
+  },
+  {
+    seq:9, code:'DOSH', name:'Safety & Health Registration',
+    status:'blocked', dot:'#C8C8CC',
+    ref:null, filed:null, approved:null,
+    notes:'Locked — requires Premise Licence (PBT) to be issued first. OSH Act registration for manufacturing premises.',
+    locked:true, blockedBy:'Premise Licence (PBT)',
+    timeline:['Wait for PBT','Register DOSH','Safety officer appt','Compliance'],
+    timelineStatus:['active','locked','locked','locked'],
+    govPortal:'https://www.dosh.gov.my',
+    processingTime:'2–4 weeks',
+    fee:'RM 50–200',
+    protocol:[
+      {title:'Register premises with DOSH after PBT licence',detail:'Occupational Safety and Health Act (OSHA) 1994 requires registration of all manufacturing premises with 5+ workers.'},
+      {title:'Appoint a Safety & Health Officer (SHO)',detail:'Manufacturing premises with 40+ workers must appoint a registered SHO. For smaller operations, employer can act as SHO after completing a 40-hour course.'},
+      {title:'Submit Safety & Health Programme',detail:'Annual programme covering risk assessment, emergency response, first aid, and PPE provision. Must be filed with DOSH each year.'}
+    ],
+    docs:[
+      {name:'PBT Premise Licence',note:'Required before DOSH registration',status:'wait'},
+      {name:'Employee headcount declaration',note:'Number of workers in the premises',status:'need'},
+      {name:'Safety Officer appointment letter',note:'If headcount ≥40 — appoint registered SHO',status:'need'},
+    ]
+  },
+  {
+    seq:10, code:'LHDN', name:'SST Registration',
+    status:'blocked', dot:'#C8C8CC',
+    ref:null, filed:null, approved:null,
+    notes:'Locked — assess whether SST applies after MIDA approval. Manufacturers with annual revenue ≥RM 500k must register for Sales & Service Tax.',
+    locked:true, blockedBy:'MIDA ICA 10 Approval',
+    timeline:['Assess threshold','Register online','Returns schedule','Compliance'],
+    timelineStatus:['locked','locked','locked','locked'],
+    govPortal:'https://mysst.customs.gov.my',
+    processingTime:'1–3 days',
+    fee:'No fee',
+    protocol:[
+      {title:'Assess SST registration threshold',detail:'Manufacturers must register for SST if annual taxable turnover exceeds RM 500,000. Service providers: RM 500,000. Your handler will assess when you are closer to operational.'},
+      {title:'Register via MySST portal',detail:'Online registration at mysst.customs.gov.my. Immediate confirmation on approval.'},
+      {title:'File bi-monthly SST returns',detail:'Sales Tax returns must be submitted every 2 months. Your handler will manage this as part of compliance calendar.'}
+    ],
+    docs:[
+      {name:'SSM Certificate',note:'Already on file',status:'lev'},
+      {name:'Revenue projection',note:'Needed to confirm if SST threshold is met',status:'need'},
+    ]
+  },
+  {
+    seq:11, code:'MITI', name:'Cost of Production Analysis (CA)',
+    status:'blocked', dot:'#C8C8CC',
+    ref:null, filed:null, approved:null,
+    notes:'Locked — required after first year of operation. Annual submission to Ministry of International Trade & Industry verifying manufacturing activity.',
+    locked:true, blockedBy:'MIDA ICA 10 Approval + 1 year operation',
+    timeline:['Wait for operations','Prepare CA report','Submit to MITI','Compliance'],
+    timelineStatus:['locked','locked','locked','locked'],
+    govPortal:'https://www.miti.gov.my',
+    processingTime:'Processed within 4 weeks',
+    fee:'No fee',
+    protocol:[
+      {title:'Complete first year of manufacturing operations',detail:'MITI Cost Analysis is an annual reporting obligation. Cannot be completed until you have 12 months of production data.'},
+      {title:'Prepare Cost of Production Analysis report',detail:'Detailed breakdown of production costs — raw materials, labour, overheads — showing the manufacturing value-add justifying your MIDA incentives.'},
+      {title:'Submit to MITI annually',detail:'Required each year to maintain MIDA Pioneer Status or ICA exemption. Failure to submit can result in incentive revocation.'}
+    ],
+    docs:[
+      {name:'Audited accounts (operational year)',note:'After first year of production',status:'wait'},
+      {name:'Production cost breakdown',note:'Raw material, labour, overhead per unit',status:'wait'},
+    ]
+  },
 ];
+
 
 const DOCS = [
   {name:'Machinery_List_with_HS_Codes.xlsx',meta:'Required for MIDA · Due 20 Mar',status:'action',type:'required'},
@@ -669,29 +982,163 @@ function applyUser(u) {
 
 function renderTasks() {
   const el = document.getElementById('tasks-list');
-  el.innerHTML = TASKS.map((t,i) => {
-    const s = STATUS_MAP[t.status] || STATUS_MAP.blocked;
-    return `<div class="card" style="margin-bottom:10px">
-      <div style="padding:14px 16px;display:flex;align-items:flex-start;gap:12px">
-        <div style="width:8px;height:8px;border-radius:50%;background:${s.dot};flex-shrink:0;margin-top:5px"></div>
-        <div style="flex:1;min-width:0">
-          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:4px">
-            <div style="display:flex;align-items:center;gap:8px">
-              <span style="font-family:var(--fm);font-size:11px;font-weight:500;color:var(--text)">${t.code}</span>
-              <span style="font-size:13px;font-weight:500;color:var(--text)">${t.name}</span>
-              <span style="font-size:9px;font-weight:600;color:var(--text3)">#${String(i+1).padStart(2,'0')}</span>
+  const statusMap = {
+    approved:{badge:'Approved',cls:'bg-g',dot:'var(--g)',color:'var(--g)'},
+    filed:{badge:'Filed',cls:'bg-b',dot:'var(--b)',color:'var(--b)'},
+    action:{badge:'Action needed',cls:'bg-a',dot:'var(--a)',color:'var(--a)'},
+    blocked:{badge:'Blocked',cls:'bg-s',dot:'#C8C8CC',color:'#C8C8CC'}
+  };
+  const tlIconDone = `<svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="3"><path stroke-linecap="round" d="M5 13l4 4L19 7"/></svg>`;
+  const tlIconLock = `<svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#aaa" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>`;
+  const tlIconActive = `<svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="3"><circle cx="12" cy="12" r="4" fill="#fff"/></svg>`;
+  const tlIconFiled = `<svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.5"><path stroke-linecap="round" d="M9 12l2 2 4-4"/></svg>`;
+
+  el.innerHTML = TASKS.map((t, i) => {
+    const s = statusMap[t.status] || statusMap.blocked;
+    const isAction = t.status === 'action';
+    const isBlocked = t.status === 'blocked';
+    const isApproved = t.status === 'approved';
+    const isFiled = t.status === 'filed';
+
+    // Timeline
+    const tlIcons = {done:tlIconDone,active:tlIconActive,filed:tlIconFiled,locked:tlIconLock};
+    const tlBg = {done:'var(--g)',active:'var(--a)',filed:'var(--b)',locked:'var(--border)'};
+    const tlTimeline = (t.timeline||[]).map((label,j) => {
+      const st = (t.timelineStatus||[])[j] || 'locked';
+      return `<div class="tl-step">
+        <div class="tl-dot-wrap" style="background:${tlBg[st]||'var(--border)'}">${tlIcons[st]||tlIconLock}</div>
+        <div class="tl-label ${st}">${label}</div>
+      </div>`;
+    }).join('');
+
+    // Docs checklist
+    const docIconMap = {
+      done:{bg:'tdr-done',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--g)" stroke-width="2.5"><path stroke-linecap="round" d="M5 13l4 4L19 7"/></svg>`,badge:'Uploaded',bc:'bg-g'},
+      need:{bg:'tdr-need',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--a)" stroke-width="2"><path stroke-linecap="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>`,badge:'Upload needed',bc:'bg-a'},
+      flagged:{bg:'tdr-need',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--r)" stroke-width="2"><path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`,badge:'Re-upload needed',bc:'bg-r'},
+      lev:{bg:'tdr-lev',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--gold)" stroke-width="1.5"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>`,badge:'From Leverage',bc:'bg-b'},
+      wait:{bg:'tdr-wait',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--text3)" stroke-width="2"><path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,badge:'Pending upstream',bc:'bg-s'},
+    };
+
+    const docRows = (t.docs||[]).map(doc => {
+      const ic = docIconMap[doc.status] || docIconMap.wait;
+      const canUpload = doc.status==='need'||doc.status==='flagged';
+      const isBlocked = doc.status==='wait';
+      return `<div class="task-doc-row">
+        <div class="tdr-icon ${ic.bg}">${ic.svg}</div>
+        <div class="tdr-info">
+          <div class="tdr-name">${doc.name}${doc.urgent?` <span style="font-size:9px;font-weight:700;color:var(--r);background:var(--rbg);padding:1px 5px;border-radius:5px;margin-left:4px">URGENT</span>`:''}</div>
+          <div class="tdr-note">${doc.note}</div>
+        </div>
+        <div class="tdr-actions">
+          <span class="a-status ${ic.bc}" style="font-size:10px">${ic.badge}</span>
+          ${canUpload ? `<button class="btn btn-gold btn-sm" onclick="event.stopPropagation();triggerUpload()">Upload</button>` : ''}
+          ${doc.status==='lev' ? `<button class="btn btn-sm" onclick="event.stopPropagation()">Download</button>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+
+    // Protocol steps
+    const protoSteps = (t.protocol||[]).map((p,j) => `<div class="proto-step">
+      <div class="proto-num">${j+1}</div>
+      <div class="proto-content">
+        <div class="proto-title">${p.title}</div>
+        <div class="proto-detail">${p.detail}</div>
+      </div>
+    </div>`).join('');
+
+    // Status banners
+    let statusBanner = '';
+    if (isApproved) statusBanner = `<div class="task-success" style="margin:0;border-radius:0">
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="var(--g)" stroke-width="2" style="flex-shrink:0;margin-top:1px"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><strong>Approved</strong>${t.ref?' · Ref: '+t.ref:''}${t.approved?' · '+t.approved:''}. ${t.notes}</span>
+    </div>`;
+    else if (isFiled) statusBanner = `<div style="padding:10px 16px;background:var(--bbg);border-bottom:1px solid var(--border);font-size:12px;color:var(--b);display:flex;gap:8px;align-items:flex-start">
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="var(--b)" stroke-width="2" style="flex-shrink:0;margin-top:1px"><path stroke-linecap="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      <span><strong>Filed — government processing</strong> · Ref: ${t.ref}${t.filed?' · Filed '+t.filed:''}<br><span style="color:var(--text2)">${t.notes}</span></span>
+    </div>`;
+    else if (isAction) statusBanner = `<div style="padding:10px 16px;background:var(--abg);border-left:3px solid var(--a);border-bottom:1px solid rgba(198,93,0,.15);font-size:12px;color:var(--a)">
+      <strong>⚡ Your action needed</strong> — ${t.notes}
+    </div>`;
+    else if (isBlocked) statusBanner = `<div class="blocked-banner">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      <div><div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:2px">Blocked — waiting on: <span style="color:var(--r)">${t.blockedBy}</span></div>
+      <div style="font-size:11px;color:var(--text3)">${t.notes}</div>
+      ${t.docs&&t.docs.some(d=>d.status==='need') ? `<div style="font-size:11px;color:var(--b);margin-top:4px;font-weight:500">✦ You can prepare and upload documents now while waiting for the upstream approval.</div>` : ''}</div>
+    </div>`;
+
+    const progressPct = isApproved?100:isFiled?65:isAction?30:0;
+
+    return `<div class="app-card${isAction?' action-needed':''}" id="task-card-${i}">
+      <div class="app-hdr" onclick="toggleTask(${i})">
+        <span class="app-num">${String(t.seq).padStart(2,'0')}</span>
+        <div class="app-dot" style="background:${s.dot}"></div>
+        <span class="app-code">${t.code}</span>
+        <span class="app-title">${t.name}</span>
+        ${progressPct>0?`<div class="app-prog-mini"><div class="app-prog-fill" style="width:${progressPct}%"></div></div>`:''}
+        <span class="a-status ${s.cls}" style="font-size:10px">${s.badge}</span>
+        ${t.govPortal?`<span style="font-size:9px;color:var(--text3);white-space:nowrap">${t.processingTime}</span>`:''}
+        <svg class="app-chevron" id="chevron-${i}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+      </div>
+      <div class="app-body" id="task-body-${i}">
+        ${statusBanner}
+        <div class="app-timeline">${tlTimeline}</div>
+        <div class="app-tabs">
+          <button class="app-tab active" onclick="switchTaskTab(${i},'protocol',this)">
+            <span data-lang="en" class="la">Protocol</span><span data-lang="zh">申请流程</span><span data-lang="ms">Protokol</span>
+          </button>
+          <button class="app-tab" onclick="switchTaskTab(${i},'docs',this)">
+            <span data-lang="en" class="la">Documents</span><span data-lang="zh">所需文件</span><span data-lang="ms">Dokumen</span>
+            ${(t.docs||[]).filter(d=>d.status==='need'||d.status==='flagged').length>0?`<span style="background:var(--a);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:7px;margin-left:4px">${(t.docs||[]).filter(d=>d.status==='need'||d.status==='flagged').length}</span>`:''}
+          </button>
+          <button class="app-tab" onclick="switchTaskTab(${i},'info',this)">
+            <span data-lang="en" class="la">Agency info</span><span data-lang="zh">部门信息</span><span data-lang="ms">Maklumat agensi</span>
+          </button>
+        </div>
+        <div class="app-tab-content active" id="task-protocol-${i}">
+          ${isApproved?'<div class="task-success" style="margin-bottom:10px"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="var(--g)" stroke-width="2" style="flex-shrink:0"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>All steps completed. Certificate/approval on file.</span></div>':''}
+          <div class="protocol-list">${protoSteps}</div>
+        </div>
+        <div class="app-tab-content" id="task-docs-${i}">
+          ${isBlocked&&t.docs&&t.docs.some(d=>d.status==='need')?`<div class="task-info" style="margin-bottom:10px"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="var(--b)" stroke-width="2" style="flex-shrink:0;margin-top:1px"><path stroke-linecap="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>This application is blocked — but you can <strong>upload and prepare your documents now</strong> so they are ready the moment the upstream approval arrives.</span></div>`:''}
+          ${docRows||'<div style="padding:12px;font-size:12px;color:var(--text3)">No documents required for this application.</div>'}
+        </div>
+        <div class="app-tab-content" id="task-info-${i}">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+            <div style="padding:10px 12px;background:var(--off);border-radius:7px;border:1px solid var(--border)">
+              <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Processing time</div>
+              <div style="font-size:13px;font-weight:500;color:var(--text)">${t.processingTime||'—'}</div>
             </div>
-            <span class="a-status ${s.cls}">${s.badge}</span>
+            <div style="padding:10px 12px;background:var(--off);border-radius:7px;border:1px solid var(--border)">
+              <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Government fee</div>
+              <div style="font-size:13px;font-weight:500;color:var(--text)">${t.fee||'—'}</div>
+            </div>
           </div>
-          <div style="font-size:12px;color:var(--text3);line-height:1.5;margin-bottom:${t.status==='action'?'8':'0'}px">${t.notes}</div>
-          ${t.ref ? `<div style="font-size:11px;color:var(--b);font-family:var(--fm);margin-top:3px">Ref: ${t.ref}${t.filed?' · Filed '+t.filed:''}${t.approved?' · Approved '+t.approved:''}</div>` : ''}
-          ${t.status==='action' ? `<div style="margin-top:8px;display:flex;gap:6px"><button class="btn btn-gold btn-sm" onclick="triggerUpload()">Upload document</button><button class="btn btn-sm" onclick="switchView(document.querySelector('[data-view=messages]'))">Ask handler</button></div>` : ''}
-          ${t.locked ? `<div style="margin-top:6px;font-size:11px;color:var(--text3);display:flex;align-items:center;gap:5px"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Dependency locked — cannot start until required approvals received</div>` : ''}
+          ${t.ref?`<div style="padding:10px 12px;background:var(--gbg);border-radius:7px;margin-bottom:10px;font-size:12px;color:var(--g)"><strong>Reference number:</strong> <span style="font-family:var(--fm)">${t.ref}</span>${t.filed?' &nbsp;·&nbsp; Filed: '+t.filed:''}${t.approved?' &nbsp;·&nbsp; Approved: '+t.approved:''}</div>`:''}
+          ${t.govPortal?`<a href="${t.govPortal}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--b);text-decoration:none;padding:7px 11px;background:var(--bbg);border-radius:6px;border:1px solid rgba(30,91,138,.15)"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>Open ${t.code} government portal</a>`:''}
         </div>
       </div>
     </div>`;
   }).join('');
 }
+
+function toggleTask(i) {
+  const body = document.getElementById('task-body-' + i);
+  const chevron = document.getElementById('chevron-' + i);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  chevron.classList.toggle('open', !isOpen);
+}
+
+function switchTaskTab(taskIdx, tab, btn) {
+  ['protocol','docs','info'].forEach(t => {
+    const el = document.getElementById('task-' + t + '-' + taskIdx);
+    if(el) el.classList.toggle('active', t===tab);
+  });
+  btn.closest('.app-tabs').querySelectorAll('.app-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
 
 function renderDocs() {
   const required = DOCS.filter(d=>d.type==='required'||d.type==='flagged');
