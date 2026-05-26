@@ -2108,6 +2108,36 @@ function renderTasks() {
   }).join('');
 }
 
+function toggleTask(i) {
+  const body = document.getElementById('task-body-' + i);
+  const chevron = document.getElementById('chevron-' + i);
+  const card = document.getElementById('task-card-' + i);
+  if (!body) return;
+  const isOpen = body.classList.contains('open');
+  if (isOpen) {
+    body.classList.remove('open');
+    body.style.display = 'none';
+    if (chevron) chevron.style.transform = 'rotate(0deg)';
+    if (card) card.classList.remove('expanded');
+  } else {
+    body.classList.add('open');
+    body.style.display = 'block';
+    if (chevron) chevron.style.transform = 'rotate(180deg)';
+    if (card) card.classList.add('expanded');
+  }
+}
+
+function switchTaskTab(i, tab, btnEl) {
+  // Update button active state
+  ['protocol','docs','info'].forEach(t => {
+    const btn = document.getElementById('tab-btn-' + t + '-' + i);
+    const content = document.getElementById('task-' + t + '-' + i);
+    if (btn) btn.classList.toggle('active', t === tab);
+    if (content) content.classList.toggle('active', t === tab);
+  });
+}
+
+
 function renderDocs() {
   const required = DOCS.filter(d=>d.type==='required'||d.type==='flagged');
   const yours = DOCS.filter(d=>d.type==='yours');
