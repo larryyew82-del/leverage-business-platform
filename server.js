@@ -50,6 +50,12 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
+
+// Why sequence matters subpage
+app.get('/why-sequence-matters', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'why-sequence-matters.html'));
+});
+
 // Logout
 app.get('/logout', (req, res) => {
   res.clearCookie('token');
