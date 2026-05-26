@@ -525,20 +525,7 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
       </div>
     </div>
     <div>
-      <!-- Progress bar: 13500/45000 = 30% -->
-  <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:12px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <div style="font-size:12px;font-weight:600;color:var(--text)"><span data-lang="en" class="la">Engagement progress</span><span data-lang="zh">项目进度</span><span data-lang="ms">Kemajuan penglibatan</span></div>
-      <div style="font-size:12px;font-weight:700;color:var(--g)">30% <span data-lang="en" class="la">paid</span><span data-lang="zh">已付</span><span data-lang="ms">dibayar</span></div>
-    </div>
-    <div style="height:8px;background:var(--border);border-radius:6px;overflow:hidden;margin-bottom:6px">
-      <div style="height:100%;width:30%;background:linear-gradient(90deg,var(--g),#2ea862);border-radius:6px;transition:width .5s ease"></div>
-    </div>
-    <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3)">
-      <span>RM 0</span><span style="color:var(--g);font-weight:600">RM 13,500 paid</span><span>RM 45,000</span>
-    </div>
-  </div>
-  <div class="card" style="margin-bottom:12px">
+      <div class="card" style="margin-bottom:12px">
         <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la">Upcoming Deadlines</span><span data-lang="zh">即将到期</span><span data-lang="ms">Tarikh Akhir</span></span></div>
         <div style="padding:6px 14px">
           <div class="dl-row dl-urg"><span class="dl-date">20 Mar</span><div class="dl-info"><div style="font-size:12px;font-weight:500;color:var(--a)"><span data-lang="en" class="la">Machinery list → MIDA</span><span data-lang="zh">机械清单 → MIDA</span><span data-lang="ms">Senarai jentera → MIDA</span></div><div style="font-size:10px;color:var(--text3)">Upload required · 5 days</div></div><span class="dl-tag bg-a"><span data-lang="en" class="la">Urgent</span><span data-lang="zh">紧急</span><span data-lang="ms">Mendesak</span></span></div>
@@ -579,6 +566,22 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
     <div><h1 class="page-title"><span data-lang="en" class="la">Documents</span><span data-lang="zh">文件管理</span><span data-lang="ms">Dokumen</span></h1><p class="page-sub" id="doc-count-sub">18 uploaded · 3 pending action · 8 from Leverage Business</p></div>
     <button class="btn btn-sm"><span data-lang="en" class="la">Download all</span><span data-lang="zh">全部下载</span><span data-lang="ms">Muat turun semua</span></button>
   </div>
+  <div style="display:flex;gap:8px;margin-bottom:10px;align-items:center;flex-wrap:wrap">
+    <div style="position:relative;flex:1;min-width:180px">
+      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="var(--text3)" stroke-width="2" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);pointer-events:none"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="doc-search" placeholder="Search documents..."
+        oninput="filterDocs(this.value)"
+        style="width:100%;padding:8px 12px 8px 30px;border:1px solid var(--border);border-radius:7px;font-size:12px;font-family:var(--fb);color:var(--text);background:var(--white);outline:none;box-sizing:border-box"
+        onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
+    </div>
+    <select id="doc-filter" onchange="filterDocs(document.getElementById('doc-search').value)"
+      style="padding:8px 12px;border:1px solid var(--border);border-radius:7px;font-size:12px;font-family:var(--fb);color:var(--text);background:var(--white);outline:none;cursor:pointer;flex-shrink:0">
+      <option value="all">All documents</option>
+      <option value="required">Needs action</option>
+      <option value="yours">My uploads</option>
+      <option value="leverage">From Leverage</option>
+    </select>
+  </div>
   <div class="upload-zone" onclick="triggerUpload()">
     <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
     <p><strong><span data-lang="en" class="la">Drag & drop or click to upload</span><span data-lang="zh">拖放或点击上传</span><span data-lang="ms">Seret & lepas atau klik untuk muat naik</span></strong> · PDF, JPG, PNG, Excel · Max 10MB</p>
@@ -612,15 +615,16 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
       </div>
     </div>
   </div>
-  <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-    <input type="text" id="doc-search" 
-      placeholder="Search documents..." 
-      oninput="filterDocs(this.value)"
-      style="flex:1;min-width:180px;padding:8px 12px;border:1px solid var(--border);border-radius:7px;font-size:12px;font-family:var(--fb);color:var(--text);background:var(--white);outline:none"
-      onfocus="this.style.borderColor='var(--gold)'" 
-      onblur="this.style.borderColor='var(--border)'">
+  <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center">
+    <div style="position:relative;flex:1;min-width:180px">
+      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="var(--text3)" stroke-width="2" style="position:absolute;left:10px;top:50%;transform:translateY(-50%)"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="doc-search" placeholder="Search documents..." 
+        oninput="filterDocs(this.value)"
+        style="width:100%;padding:8px 12px 8px 30px;border:1px solid var(--border);border-radius:7px;font-size:12px;font-family:var(--fb);color:var(--text);background:var(--white);outline:none;box-sizing:border-box"
+        onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
+    </div>
     <select id="doc-filter" onchange="filterDocs(document.getElementById('doc-search').value)"
-      style="padding:8px 12px;border:1px solid var(--border);border-radius:7px;font-size:12px;font-family:var(--fb);color:var(--text);background:var(--white);outline:none;cursor:pointer">
+      style="padding:8px 12px;border:1px solid var(--border);border-radius:7px;font-size:12px;font-family:var(--fb);color:var(--text);background:var(--white);outline:none;cursor:pointer;flex-shrink:0">
       <option value="all">All documents</option>
       <option value="required">Needs action</option>
       <option value="yours">My uploads</option>
@@ -637,6 +641,21 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
       <div class="cf-card"><div class="cf-label"><span data-lang="en" class="la">Total engagement fee</span><span data-lang="zh">服务总费用</span><span data-lang="ms">Jumlah yuran</span></div><div class="cf-val">RM 45,000</div></div>
       <div class="cf-card"><div class="cf-label"><span data-lang="en" class="la">Paid to date</span><span data-lang="zh">已付金额</span><span data-lang="ms">Telah dibayar</span></div><div class="cf-val" style="color:var(--g)">RM 13,500</div><div class="cf-sub">Milestone 1 (30%)</div></div>
       <div class="cf-card"><div class="cf-label"><span data-lang="en" class="la">Remaining</span><span data-lang="zh">待付金额</span><span data-lang="ms">Baki</span></div><div class="cf-val" style="color:var(--a)">RM 31,500</div><div class="cf-sub">Milestones 2 + 3</div></div>
+    </div>
+  </div>
+  <!-- Payment progress -->
+  <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:12px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="font-size:12px;font-weight:600;color:var(--text)"><span data-lang="en" class="la">Payment progress</span><span data-lang="zh">付款进度</span><span data-lang="ms">Kemajuan pembayaran</span></div>
+      <div style="font-size:13px;font-weight:700;color:var(--g)">30% <span data-lang="en" class="la">paid</span><span data-lang="zh">已付</span><span data-lang="ms">dibayar</span></div>
+    </div>
+    <div style="height:10px;background:var(--border);border-radius:6px;overflow:hidden;margin-bottom:6px">
+      <div style="height:100%;width:30%;background:linear-gradient(90deg,#1A7A4A,#2ea862);border-radius:6px"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3)">
+      <span>RM 0</span>
+      <span style="color:var(--g);font-weight:600">RM 13,500 <span data-lang="en" class="la">paid</span><span data-lang="zh">已付</span><span data-lang="ms">dibayar</span></span>
+      <span>RM 45,000</span>
     </div>
   </div>
   <div class="card" style="margin-bottom:12px">
