@@ -741,7 +741,7 @@ const TASKS = [
     processingTime:'7–14 working days',
     fee:'RM 200–600 (based on floor area)',
     protocol:[
-      {title:'Engage a BOMBA-registered fire safety company',detail:'The consultant prepares fire safety layout, sprinkler system design, and emergency exit plan. Must be a company on BOMBA's approved list.'},
+      {title:'Engage a BOMBA-registered fire safety company',detail:'The consultant prepares fire safety layout, sprinkler system design, and emergency exit plan. Must be a company on BOMBA\'s approved list.'},
       {title:'Submit building plan and fire system layout',detail:'Plans show fire extinguisher positions, hose reel locations, emergency exits, and assembly points. Submitted to local BOMBA office.'},
       {title:'BOMBA inspector conducts premises visit',detail:'Inspector physically checks the installed fire systems, emergency lighting, and exit signage. Any deficiencies must be rectified before certificate issued.'},
       {title:'Certificate issued — valid 1 year',detail:'Displayed at premises. Annual renewal required. Your handler will track renewal date and initiate process 6 weeks before expiry.'}
@@ -1125,6 +1125,7 @@ function renderTasks() {
 function toggleTask(i) {
   const body = document.getElementById('task-body-' + i);
   const chevron = document.getElementById('chevron-' + i);
+  if (!body || !chevron) return;
   const isOpen = body.classList.contains('open');
   body.classList.toggle('open', !isOpen);
   chevron.classList.toggle('open', !isOpen);
@@ -1282,7 +1283,7 @@ const GDATA = {
       {type:'danger',icon:'✕',title:'Never file JKDM without MIDA reference number',body:'JKDM will reject any JPC 1 application without a valid MIDA reference number. No exceptions, no workarounds. Filing early wastes time and the application fee.'},
       {type:'warn',icon:'!',title:'Order machinery only after JKDM approved',body:'Your duty exemption is not confirmed until JKDM JPC 1 is approved. Importing machinery before this risks port hold — at RM 4,000–6,000 per week in bonded warehouse storage fees.'},
       {type:'info',icon:'i',title:'HS code accuracy determines MIDA speed',body:'MIDA verifies every HS code on your machinery list. Wrong codes trigger supplementary submissions — adding 4–8 weeks of delay. Your handler verifies all codes before submission.'},
-      {type:'info',icon:'i',title:'Business plan needs proper financial projections',body:"MIDA's ICA 10 requires a 3-year business plan with projected revenue, employment headcount, and local vendor spending. A brief summary is not sufficient — ask your handler for the MIDA-accepted template."},
+      {type:'info',icon:'i',title:'Business plan needs proper financial projections',body:"MIDA\'s ICA 10 requires a 3-year business plan with projected revenue, employment headcount, and local vendor spending. A brief summary is not sufficient — ask your handler for the MIDA-accepted template."},
     ]
   },
   imp:{
@@ -1452,7 +1453,7 @@ function switchGTab(tab, btn) {
 function renderGuidance() {
   const d = GDATA[_gInd];
   if (!d) return;
-  const curLang = _lang || 'en';
+  const curLang = lang || 'en';
 
   // Update dependency warning
   const dw = document.getElementById('g-dep-warning');
@@ -1531,6 +1532,7 @@ function renderGuidance() {
 function toggleGSOP(i) {
   const exp = document.getElementById('gexp-' + i);
   const arr = document.getElementById('garr-' + i);
+  if (!exp || !arr) return;
   const isOpen = exp.classList.contains('open');
   document.querySelectorAll('.sop-exp-g').forEach(e => e.classList.remove('open'));
   document.querySelectorAll('.sop-arr-g').forEach(a => { a.style.transform = ''; });
