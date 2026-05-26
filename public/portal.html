@@ -456,13 +456,13 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
           <button class="btn btn-sm" onclick="switchView(document.querySelector('[data-view=applications]'))"><span data-lang="en" class="la">View all</span><span data-lang="zh">查看全部</span><span data-lang="ms">Lihat semua</span></button>
         </div>
         <div class="auth-list">
-          <div class="auth-row"><div class="a-dot" style="background:var(--g)"></div><span class="a-code">SSM</span><span class="a-name">Company Registration</span><span class="a-status bg-g">Approved</span></div>
-          <div class="auth-row"><div class="a-dot" style="background:var(--g)"></div><span class="a-code">LHDN</span><span class="a-name">Tax File + Employer</span><span class="a-status bg-g">Approved</span></div>
-          <div class="auth-row"><div class="a-dot" style="background:var(--g)"></div><span class="a-code">Bomba</span><span class="a-name">Fire Certificate</span><span class="a-status bg-g">Approved</span></div>
-          <div class="auth-row"><div class="a-dot" style="background:var(--b)"></div><span class="a-code">PBT</span><span class="a-name">Premise Licence (MBSP)</span><span class="a-status bg-b">Filed</span></div>
-          <div class="auth-row" style="background:rgba(198,93,0,.04)"><div class="a-dot" style="background:var(--a)"></div><span class="a-code" style="color:var(--a)">MIDA</span><span class="a-name" style="font-weight:500;color:var(--a)">ICA 10 Exemption</span><span class="a-status bg-a">Action needed</span></div>
-          <div class="auth-row"><div class="a-dot" style="background:#C8C8CC"></div><span class="a-code">JKDM</span><span class="a-name">JPC 1 Duty Exemption</span><span class="a-status bg-s">Blocked</span></div>
-          <div class="auth-row"><div class="a-dot" style="background:#C8C8CC"></div><span class="a-code">ESD</span><span class="a-name">Employment Pass × 3</span><span class="a-status bg-s">Blocked</span></div>
+          <div class="auth-row"><div class="a-dot" style="background:var(--g)"></div><span class="a-code">SSM</span><span class="a-name"><span data-lang="en" class="la">Company Registration</span><span data-lang="zh">公司注册</span><span data-lang="ms">Pendaftaran Syarikat</span></span><span class="a-status bg-g">${t('approved')}</span></div>
+          <div class="auth-row"><div class="a-dot" style="background:var(--g)"></div><span class="a-code">LHDN</span><span class="a-name"><span data-lang="en" class="la">Tax File + Employer</span><span data-lang="zh">税务档案 + 雇主注册</span><span data-lang="ms">Fail Cukai + Majikan</span></span><span class="a-status bg-g">${t('approved')}</span></div>
+          <div class="auth-row"><div class="a-dot" style="background:var(--g)"></div><span class="a-code">Bomba</span><span class="a-name"><span data-lang="en" class="la">Fire Certificate</span><span data-lang="zh">消防证书</span><span data-lang="ms">Sijil Bomba</span></span><span class="a-status bg-g">${t('approved')}</span></div>
+          <div class="auth-row"><div class="a-dot" style="background:var(--b)"></div><span class="a-code">PBT</span><span class="a-name"><span data-lang="en" class="la">Premise Licence (MBSP)</span><span data-lang="zh">营业执照 (MBSP)</span><span data-lang="ms">Lesen Premis (MBSP)</span></span><span class="a-status bg-b"><span data-lang="en" class="la">Filed</span><span data-lang="zh">已提交</span><span data-lang="ms">Difailkan</span></span></div>
+          <div class="auth-row" style="background:rgba(198,93,0,.04)"><div class="a-dot" style="background:var(--a)"></div><span class="a-code" style="color:var(--a)">MIDA</span><span class="a-name" style="font-weight:500;color:var(--a)">ICA 10 Exemption</span><span class="a-status bg-a"><span data-lang="en" class="la">Action needed</span><span data-lang="zh">需要行动</span><span data-lang="ms">Tindakan diperlukan</span></span></div>
+          <div class="auth-row"><div class="a-dot" style="background:#C8C8CC"></div><span class="a-code">JKDM</span><span class="a-name"><span data-lang="en" class="la">JPC 1 Duty Exemption</span><span data-lang="zh">JPC 1关税豁免</span><span data-lang="ms">Pengecualian Duti JPC 1</span></span><span class="a-status bg-s"><span data-lang="en" class="la">Blocked</span><span data-lang="zh">已锁定</span><span data-lang="ms">Disekat</span></span></div>
+          <div class="auth-row"><div class="a-dot" style="background:#C8C8CC"></div><span class="a-code">ESD</span><span class="a-name"><span data-lang="en" class="la">Employment Pass × 3</span><span data-lang="zh">就业准证 × 3</span><span data-lang="ms">Pas Pekerjaan × 3</span></span><span class="a-status bg-s"><span data-lang="en" class="la">Blocked</span><span data-lang="zh">已锁定</span><span data-lang="ms">Disekat</span></span></div>
         </div>
       </div>
     </div>
@@ -470,17 +470,17 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
       <div class="card" style="margin-bottom:12px">
         <div class="card-hdr"><span class="card-title"><span data-lang="en" class="la">Upcoming Deadlines</span><span data-lang="zh">即将到期</span><span data-lang="ms">Tarikh Akhir</span></span></div>
         <div style="padding:6px 14px">
-          <div class="dl-row dl-urg"><span class="dl-date">20 Mar</span><div class="dl-info"><div style="font-size:12px;font-weight:500;color:var(--a)">Machinery list → MIDA</div><div style="font-size:10px;color:var(--text3)">Upload required · 5 days</div></div><span class="dl-tag bg-a">Urgent</span></div>
-          <div class="dl-row dl-urg"><span class="dl-date">22 Mar</span><div class="dl-info"><div style="font-size:12px;font-weight:500;color:var(--a)">Board resolution → JKDM</div><div style="font-size:10px;color:var(--text3)">Upload required · 7 days</div></div><span class="dl-tag bg-a">Urgent</span></div>
-          <div class="dl-row"><span class="dl-date">2 Apr</span><div class="dl-info"><div style="font-size:12px;font-weight:500">PBT premise inspection</div><div style="font-size:10px;color:var(--text3)">Handler attends · 18 days</div></div><span class="dl-tag bg-b">Upcoming</span></div>
-          <div class="dl-row"><span class="dl-date">15 Jun</span><div class="dl-info"><div style="font-size:12px;font-weight:500">MIDA Annual Report</div><div style="font-size:10px;color:var(--text3)">Post-approval obligation</div></div><span class="dl-tag bg-s">Scheduled</span></div>
+          <div class="dl-row dl-urg"><span class="dl-date">20 Mar</span><div class="dl-info"><div style="font-size:12px;font-weight:500;color:var(--a)">Machinery list → MIDA</div><div style="font-size:10px;color:var(--text3)">Upload required · 5 days</div></div><span class="dl-tag bg-a"><span data-lang="en" class="la">Urgent</span><span data-lang="zh">紧急</span><span data-lang="ms">Mendesak</span></span></div>
+          <div class="dl-row dl-urg"><span class="dl-date">22 Mar</span><div class="dl-info"><div style="font-size:12px;font-weight:500;color:var(--a)">Board resolution → JKDM</div><div style="font-size:10px;color:var(--text3)">Upload required · 7 days</div></div><span class="dl-tag bg-a"><span data-lang="en" class="la">Urgent</span><span data-lang="zh">紧急</span><span data-lang="ms">Mendesak</span></span></div>
+          <div class="dl-row"><span class="dl-date">2 Apr</span><div class="dl-info"><div style="font-size:12px;font-weight:500"><span data-lang="en" class="la">PBT premise inspection</span><span data-lang="zh">PBT厂房检查</span><span data-lang="ms">Pemeriksaan premis PBT</span></div><div style="font-size:10px;color:var(--text3)">Handler attends · 18 days</div></div><span class="dl-tag bg-b"><span data-lang="en" class="la">Upcoming</span><span data-lang="zh">即将</span><span data-lang="ms">Akan datang</span></span></div>
+          <div class="dl-row"><span class="dl-date">15 Jun</span><div class="dl-info"><div style="font-size:12px;font-weight:500"><span data-lang="en" class="la">MIDA Annual Report</span><span data-lang="zh">MIDA年度报告</span><span data-lang="ms">Laporan Tahunan MIDA</span></div><div style="font-size:10px;color:var(--text3)">Post-approval obligation</div></div><span class="dl-tag bg-s"><span data-lang="en" class="la">Scheduled</span><span data-lang="zh">已排期</span><span data-lang="ms">Dijadualkan</span></span></div>
         </div>
       </div>
       <div class="h-card">
         <div class="h-lbl"><span data-lang="en" class="la">Your Handler</span><span data-lang="zh">您的处理员</span><span data-lang="ms">Pengendali Anda</span></div>
         <div class="h-av">ST</div>
         <div class="h-name">Sarah Tan</div>
-        <div class="h-role">Manufacturing & EID Specialist</div>
+        <div class="h-role"><span data-lang="en" class="la">Manufacturing &amp; EID Specialist</span><span data-lang="zh">制造业及EID专家</span><span data-lang="ms">Pakar Pembuatan &amp; EID</span></div>
         <div class="h-contact" onclick="switchView(document.querySelector('[data-view=messages]'))">
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
           <span data-lang="en" class="la">Message in portal</span><span data-lang="zh">平台内消息</span><span data-lang="ms">Mesej dalam portal</span>
@@ -559,17 +559,17 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
       <div style="display:flex;align-items:center;gap:14px;padding:12px;background:var(--gbg);border-radius:8px;margin-bottom:8px">
         <div style="width:36px;height:36px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:600;flex-shrink:0">1</div>
         <div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--g)">Milestone 1 — On signing (30%)</div><div style="font-size:11px;color:var(--text3)">Paid 3 Mar 2026</div></div>
-        <div style="text-align:right"><div style="font-size:15px;font-weight:600;color:var(--g)">RM 13,500</div><div style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;background:var(--g);color:#fff;display:inline-block;margin-top:2px">Paid</div></div>
+        <div style="text-align:right"><div style="font-size:15px;font-weight:600;color:var(--g)">RM 13,500</div><div style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;background:var(--g);color:#fff;display:inline-block;margin-top:2px"><span data-lang="en" class="la">Paid</span><span data-lang="zh">已付</span><span data-lang="ms">Dibayar</span></div></div>
       </div>
       <div style="display:flex;align-items:center;gap:14px;padding:12px;background:var(--abg);border-radius:8px;margin-bottom:8px;border:1px solid rgba(198,93,0,.15)">
         <div style="width:36px;height:36px;border-radius:50%;background:var(--a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:600;flex-shrink:0">2</div>
         <div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--a)">Milestone 2 — MIDA approved (40%)</div><div style="font-size:11px;color:var(--text3)">Due: upon MIDA approval (est. Aug 2026)</div></div>
-        <div style="text-align:right"><div style="font-size:15px;font-weight:600;color:var(--a)">RM 18,000</div><div style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;background:var(--a);color:#fff;display:inline-block;margin-top:2px">Pending</div></div>
+        <div style="text-align:right"><div style="font-size:15px;font-weight:600;color:var(--a)">RM 18,000</div><div style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;background:var(--a);color:#fff;display:inline-block;margin-top:2px"><span data-lang="en" class="la">Pending</span><span data-lang="zh">待付</span><span data-lang="ms">Tertunda</span></div></div>
       </div>
       <div style="display:flex;align-items:center;gap:14px;padding:12px;background:var(--off);border-radius:8px;border:1px solid var(--border)">
         <div style="width:36px;height:36px;border-radius:50%;background:var(--text3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:600;flex-shrink:0">3</div>
         <div style="flex:1"><div style="font-size:13px;font-weight:500">Milestone 3 — Completion (30%)</div><div style="font-size:11px;color:var(--text3)">Due: upon full operational status (est. Sep 2026)</div></div>
-        <div style="text-align:right"><div style="font-size:15px;font-weight:600">RM 13,500</div><div style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;background:var(--off);color:var(--text3);border:1px solid var(--border);display:inline-block;margin-top:2px">Future</div></div>
+        <div style="text-align:right"><div style="font-size:15px;font-weight:600">RM 13,500</div><div style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;background:var(--off);color:var(--text3);border:1px solid var(--border);display:inline-block;margin-top:2px"><span data-lang="en" class="la">Future</span><span data-lang="zh">待定</span><span data-lang="ms">Akan datang</span></div></div>
       </div>
     </div>
   </div>
@@ -1179,13 +1179,129 @@ function applyUser(u) {
   document.getElementById('ov-sub').textContent = (u.clientId||'') + ' · Standard Package · Manufacturing · Penang FIZ';
 }
 
+
+// ── TRILINGUAL HELPERS ──
+const T = {
+  en: {
+    approved:'Approved', filed:'Filed', action:'Action needed', blocked:'Blocked',
+    uploaded:'Uploaded', uploadNeeded:'Upload needed', reUpload:'Re-upload needed',
+    fromLev:'From Leverage', pendingUp:'Pending upstream', flagged:'Flagged', pending:'Pending',
+    urgent:'URGENT', upload:'Upload', download:'Download', accepted:'Accepted',
+    underReview:'Under review',
+    filedGov:'Filed — government processing', blockedWait:'Blocked — waiting on:',
+    allDone:'All steps completed. Certificate/approval on file.',
+    canPrepareDoc:'This application is blocked — but you can <strong>upload and prepare your documents now</strong> so they are ready the moment the upstream approval arrives.',
+    noDocs:'No documents required for this application.',
+    procTime:t('procTime'), govFee:t('govFee'), renewObl:'Renewal obligation',
+    whoApply:'Who must apply', ref:'Reference:', unlocks:'Unlocks:',
+    postApproval:t('postApproval'), rejReasons:t('rejReasons'),
+    howToAvoid:'How to avoid:', actionNeeded:'⚡ Your action needed',
+    uploadNow:'Upload Now', askHandler:'Ask handler',
+    legalBasis:'Legal basis:', protocol:'Protocol', documents:'Documents',
+    agencyInfo:'Agency info',
+    // Overview
+    yourHandler:'Your Handler', upcomingDeadlines:'Upcoming Deadlines',
+    authorityStatus:'Authority Status', viewAll:'View all',
+    phase1:'Phase 1: Setup', phase2:'Phase 2: Licensing', phase3:'Phase 3: Operations',
+    // Deadlines
+    urgent2:'Urgent', upcoming:'Upcoming', scheduled:'Scheduled',
+    // Cashflow
+    paid:'Paid', pendingC:'Pending', future:'Future',
+    onSigning:'Milestone 1 — On signing (30%)',
+    midaApproved:'Milestone 2 — MIDA approved (40%)',
+    completion:'Milestone 3 — Completion (30%)',
+    paymentSchedule:'Payment schedule',
+    // Support
+    faq:'Frequently asked questions',
+    // Messages
+    autoReply:"Thanks for your message. I'll review and respond within 1 business day.",
+    // Documents
+    needsAction:'Needs your action', yourUploads:'Your uploads', fromLevBiz:'From Leverage Business',
+    dragDrop:'Drag & drop or click to upload',
+    downloadAll:'Download all',
+    // Applications page subtitle
+    appSubtitle:'11 government authorities · Click any application to expand and view full SOP, document checklist, and post-approval obligations',
+    // Section labels in agency info
+    postApprovalObl:t('postApproval'),
+  },
+  zh: {
+    approved:'已批准', filed:'已提交', action:'需要行动', blocked:'已锁定',
+    uploaded:'已上传', uploadNeeded:'需要上传', reUpload:'需要重新上传',
+    fromLev:'Leverage提供', pendingUp:'等待上游批准', flagged:'已被标记', pending:'待处理',
+    urgent:'紧急', upload:'上传', download:'下载', accepted:'已接受',
+    underReview:'审核中',
+    filedGov:'已提交——政府处理中', blockedWait:'已锁定——等待：',
+    allDone:'所有步骤已完成，证书/批准已存档。',
+    canPrepareDoc:'此申请已锁定——但您现在可以<strong>上传并准备好文件</strong>，上游批准到来后即可直接使用。',
+    noDocs:'此申请不需要文件。',
+    procTime:'处理时间', govFee:'政府费用', renewObl:'续期义务',
+    whoApply:'谁须申请', ref:'参考编号：', unlocks:'解锁：',
+    postApproval:'批准后义务', rejReasons:'常见被拒原因',
+    howToAvoid:'如何避免：', actionNeeded:'⚡ 需要您的行动',
+    uploadNow:'立即上传', askHandler:'询问处理员',
+    legalBasis:'法律依据：', protocol:'申请流程', documents:'所需文件',
+    agencyInfo:'部门信息',
+    yourHandler:'您的处理员', upcomingDeadlines:'即将到期',
+    authorityStatus:'部门申请状态', viewAll:'查看全部',
+    phase1:'阶段1：设立', phase2:'阶段2：申请', phase3:'阶段3：运营',
+    urgent2:'紧急', upcoming:'即将', scheduled:'已排期',
+    paid:'已付', pendingC:'待付', future:'待定',
+    onSigning:'里程碑1——签约时（30%）',
+    midaApproved:'里程碑2——MIDA批准后（40%）',
+    completion:'里程碑3——完成时（30%）',
+    paymentSchedule:'付款计划',
+    faq:'常见问题',
+    autoReply:'感谢您的留言，我将在1个工作日内回复。',
+    needsAction:'需要您操作', yourUploads:'您的上传', fromLevBiz:'Leverage Business提供',
+    dragDrop:'拖放或点击上传',
+    downloadAll:'全部下载',
+    appSubtitle:'11个政府部门 · 点击任意申请查看完整SOP、文件清单及批准后义务',
+    postApprovalObl:'批准后义务',
+  },
+  ms: {
+    approved:'Diluluskan', filed:'Difailkan', action:'Tindakan diperlukan', blocked:'Disekat',
+    uploaded:'Dimuat naik', uploadNeeded:'Muat naik diperlukan', reUpload:'Muat naik semula diperlukan',
+    fromLev:'Daripada Leverage', pendingUp:'Menunggu hulu', flagged:'Ditandakan', pending:'Tertunda',
+    urgent:'SEGERA', upload:'Muat naik', download:'Muat turun', accepted:'Diterima',
+    underReview:'Sedang disemak',
+    filedGov:'Difailkan — pemprosesan kerajaan', blockedWait:'Disekat — menunggu:',
+    allDone:'Semua langkah selesai. Sijil/kelulusan dalam rekod.',
+    canPrepareDoc:'Permohonan ini disekat — tetapi anda boleh <strong>muat naik dan sediakan dokumen anda sekarang</strong> supaya ia sedia apabila kelulusan hulu tiba.',
+    noDocs:'Tiada dokumen diperlukan untuk permohonan ini.',
+    procTime:'Masa pemprosesan', govFee:'Yuran kerajaan', renewObl:'Obligasi pembaharuan',
+    whoApply:'Siapa perlu memohon', ref:'Rujukan:', unlocks:'Membuka kunci:',
+    postApproval:'Obligasi pasca kelulusan', rejReasons:'Sebab penolakan biasa',
+    howToAvoid:'Cara mengelak:', actionNeeded:'⚡ Tindakan anda diperlukan',
+    uploadNow:'Muat Naik Sekarang', askHandler:'Tanya pengendali',
+    legalBasis:'Asas undang-undang:', protocol:'Protokol', documents:'Dokumen',
+    agencyInfo:'Maklumat agensi',
+    yourHandler:'Pengendali Anda', upcomingDeadlines:'Tarikh Akhir',
+    authorityStatus:'Status Pihak Berkuasa', viewAll:'Lihat semua',
+    phase1:'Fasa 1: Persediaan', phase2:'Fasa 2: Pelesenan', phase3:'Fasa 3: Operasi',
+    urgent2:'Mendesak', upcoming:'Akan datang', scheduled:'Dijadualkan',
+    paid:'Dibayar', pendingC:'Tertunda', future:'Akan datang',
+    onSigning:'Pencapaian 1 — Semasa tandatangan (30%)',
+    midaApproved:'Pencapaian 2 — Selepas MIDA diluluskan (40%)',
+    completion:'Pencapaian 3 — Siap sepenuhnya (30%)',
+    paymentSchedule:'Jadual pembayaran',
+    faq:'Soalan Lazim',
+    autoReply:"Terima kasih atas mesej anda. Saya akan meninjau dan membalas dalam 1 hari bekerja.",
+    needsAction:'Perlukan tindakan anda', yourUploads:'Muat naik anda', fromLevBiz:'Daripada Leverage Business',
+    dragDrop:'Seret & lepas atau klik untuk muat naik',
+    downloadAll:'Muat turun semua',
+    appSubtitle:'11 pihak berkuasa kerajaan · Klik mana-mana permohonan untuk kembangkan dan lihat SOP penuh, senarai semak dokumen, dan obligasi pasca kelulusan',
+    postApprovalObl:'Obligasi pasca kelulusan',
+  }
+};
+function t(key) { return (T[lang]||T.en)[key] || T.en[key] || key; }
+
 function renderTasks() {
   const el = document.getElementById('tasks-list');
   const statusMap = {
-    approved:{badge:'Approved',cls:'bg-g',dot:'var(--g)',color:'var(--g)'},
-    filed:{badge:'Filed',cls:'bg-b',dot:'var(--b)',color:'var(--b)'},
-    action:{badge:'Action needed',cls:'bg-a',dot:'var(--a)',color:'var(--a)'},
-    blocked:{badge:'Blocked',cls:'bg-s',dot:'#C8C8CC',color:'#C8C8CC'}
+    approved:{get badge(){return t('approved')},cls:'bg-g',dot:'var(--g)',color:'var(--g)'},
+    filed:{get badge(){return t('filed')},cls:'bg-b',dot:'var(--b)',color:'var(--b)'},
+    action:{get badge(){return t('action')},cls:'bg-a',dot:'var(--a)',color:'var(--a)'},
+    blocked:{get badge(){return t('blocked')},cls:'bg-s',dot:'#C8C8CC',color:'#C8C8CC'}
   };
   const tlIconDone = `<svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="3"><path stroke-linecap="round" d="M5 13l4 4L19 7"/></svg>`;
   const tlIconLock = `<svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#aaa" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>`;
@@ -1212,11 +1328,11 @@ function renderTasks() {
 
     // Docs checklist
     const docIconMap = {
-      done:{bg:'tdr-done',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--g)" stroke-width="2.5"><path stroke-linecap="round" d="M5 13l4 4L19 7"/></svg>`,badge:'Uploaded',bc:'bg-g'},
-      need:{bg:'tdr-need',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--a)" stroke-width="2"><path stroke-linecap="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>`,badge:'Upload needed',bc:'bg-a'},
-      flagged:{bg:'tdr-need',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--r)" stroke-width="2"><path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`,badge:'Re-upload needed',bc:'bg-r'},
-      lev:{bg:'tdr-lev',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--gold)" stroke-width="1.5"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>`,badge:'From Leverage',bc:'bg-b'},
-      wait:{bg:'tdr-wait',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--text3)" stroke-width="2"><path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,badge:'Pending upstream',bc:'bg-s'},
+      done:{bg:'tdr-done',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--g)" stroke-width="2.5"><path stroke-linecap="round" d="M5 13l4 4L19 7"/></svg>`,get badge(){return t('uploaded')},bc:'bg-g'},
+      need:{bg:'tdr-need',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--a)" stroke-width="2"><path stroke-linecap="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>`,get badge(){return t('uploadNeeded')},bc:'bg-a'},
+      flagged:{bg:'tdr-need',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--r)" stroke-width="2"><path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`,get badge(){return t('reUpload')},bc:'bg-r'},
+      lev:{bg:'tdr-lev',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--gold)" stroke-width="1.5"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>`,get badge(){return t('fromLev')},bc:'bg-b'},
+      wait:{bg:'tdr-wait',svg:`<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="var(--text3)" stroke-width="2"><path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,get badge(){return t('pendingUp')},bc:'bg-s'},
     };
 
     const docRows = (t.docs||[]).map(doc => {
@@ -1226,13 +1342,13 @@ function renderTasks() {
       return `<div class="task-doc-row">
         <div class="tdr-icon ${ic.bg}">${ic.svg}</div>
         <div class="tdr-info">
-          <div class="tdr-name">${doc.name}${doc.urgent?` <span style="font-size:9px;font-weight:700;color:var(--r);background:var(--rbg);padding:1px 5px;border-radius:5px;margin-left:4px">URGENT</span>`:''}</div>
+          <div class="tdr-name">${doc.name}${doc.urgent?` <span style="font-size:9px;font-weight:700;color:var(--r);background:var(--rbg);padding:1px 5px;border-radius:5px;margin-left:4px">${t('urgent')}</span>`:''}</div>
           <div class="tdr-note">${doc.note}</div>
         </div>
         <div class="tdr-actions">
           <span class="a-status ${ic.bc}" style="font-size:10px">${ic.badge}</span>
-          ${canUpload ? `<button class="btn btn-gold btn-sm" onclick="event.stopPropagation();triggerUpload()">Upload</button>` : ''}
-          ${doc.status==='lev' ? `<button class="btn btn-sm" onclick="event.stopPropagation()">Download</button>` : ''}
+          ${canUpload ? `<button class="btn btn-gold btn-sm" onclick="event.stopPropagation();triggerUpload()">${t('upload')}</button>` : ''}
+          ${doc.status==='lev' ? `<button class="btn btn-sm" onclick="event.stopPropagation()">${t('download')}</button>` : ''}
         </div>
       </div>`;
     }).join('');
@@ -1255,11 +1371,11 @@ function renderTasks() {
     let statusBanner = '';
     if (isApproved) statusBanner = `<div class="task-success" style="margin:0;border-radius:0">
       <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="var(--g)" stroke-width="2" style="flex-shrink:0;margin-top:1px"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <span><strong>Approved</strong>${t.ref?' · Ref: '+t.ref:''}${t.approved?' · '+t.approved:''}. ${t.notes}</span>
+      <span><strong>${t('approved')}</strong>${t.ref?' · Ref: '+t.ref:''}${t.approved?' · '+t.approved:''}. ${t.notes}</span>
     </div>`;
     else if (isFiled) statusBanner = `<div style="padding:10px 16px;background:var(--bbg);border-bottom:1px solid var(--border);font-size:12px;color:var(--b);display:flex;gap:8px;align-items:flex-start">
       <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="var(--b)" stroke-width="2" style="flex-shrink:0;margin-top:1px"><path stroke-linecap="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-      <span><strong>Filed — government processing</strong> · Ref: ${t.ref}${t.filed?' · Filed '+t.filed:''}<br><span style="color:var(--text2)">${t.notes}</span></span>
+      <span><strong>${t('filedGov')}</strong> · Ref: ${t.ref}${t.filed?' · Filed '+t.filed:''}<br><span style="color:var(--text2)">${t.notes}</span></span>
     </div>`;
     else if (isAction) statusBanner = `<div style="padding:10px 16px;background:var(--abg);border-left:3px solid var(--a);border-bottom:1px solid rgba(198,93,0,.15);font-size:12px;color:var(--a)">
       <strong>⚡ Your action needed</strong> — ${t.notes}
@@ -1288,24 +1404,17 @@ function renderTasks() {
         ${statusBanner}
         <div class="app-timeline">${tlTimeline}</div>
         <div class="app-tabs">
-          <button class="app-tab active" onclick="switchTaskTab(${i},'protocol',this)">
-            <span data-lang="en" class="la">Protocol</span><span data-lang="zh">申请流程</span><span data-lang="ms">Protokol</span>
-          </button>
-          <button class="app-tab" onclick="switchTaskTab(${i},'docs',this)">
-            <span data-lang="en" class="la">Documents</span><span data-lang="zh">所需文件</span><span data-lang="ms">Dokumen</span>
-            ${(t.docs||[]).filter(d=>d.status==='need'||d.status==='flagged').length>0?`<span style="background:var(--a);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:7px;margin-left:4px">${(t.docs||[]).filter(d=>d.status==='need'||d.status==='flagged').length}</span>`:''}
-          </button>
-          <button class="app-tab" onclick="switchTaskTab(${i},'info',this)">
-            <span data-lang="en" class="la">Agency info</span><span data-lang="zh">部门信息</span><span data-lang="ms">Maklumat agensi</span>
-          </button>
+          <button class="app-tab active" onclick="switchTaskTab(${i},'protocol',this)">${t('protocol')}</button>
+          <button class="app-tab" onclick="switchTaskTab(${i},'docs',this)">${t('documents')}${(t.docs||[]).filter(d=>d.status==='need'||d.status==='flagged').length>0?` <span style="background:var(--a);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:7px">${(t.docs||[]).filter(d=>d.status==='need'||d.status==='flagged').length}</span>`:''}</button>
+          <button class="app-tab" onclick="switchTaskTab(${i},'info',this)">${t('agencyInfo')}</button>
         </div>
         <div class="app-tab-content active" id="task-protocol-${i}">
-          ${isApproved?'<div class="task-success" style="margin-bottom:10px"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="var(--g)" stroke-width="2" style="flex-shrink:0"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>All steps completed. Certificate/approval on file.</span></div>':''}
+          ${isApproved?`<div class="task-success" style="margin-bottom:10px"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="var(--g)" stroke-width="2" style="flex-shrink:0"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>${t('allDone')}</span></div>`:''}
           <div class="protocol-list">${protoSteps}</div>
         </div>
         <div class="app-tab-content" id="task-docs-${i}">
           ${isBlocked&&t.docs&&t.docs.some(d=>d.status==='need')?`<div class="task-info" style="margin-bottom:10px"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="var(--b)" stroke-width="2" style="flex-shrink:0;margin-top:1px"><path stroke-linecap="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>This application is blocked — but you can <strong>upload and prepare your documents now</strong> so they are ready the moment the upstream approval arrives.</span></div>`:''}
-          ${docRows||'<div style="padding:12px;font-size:12px;color:var(--text3)">No documents required for this application.</div>'}
+          ${docRows||`<div style="padding:12px;font-size:12px;color:var(--text3)">${t('noDocs')}</div>`}
         </div>
         <div class="app-tab-content" id="task-info-${i}">
           ${t.fullName?`<div style="font-size:11px;color:var(--text3);margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid var(--border)">${t.fullName}</div>`:''}
@@ -1325,7 +1434,7 @@ function renderTasks() {
           ${t.ref?`<div style="padding:10px 12px;background:var(--gbg);border-radius:7px;margin-bottom:8px;font-size:12px;color:var(--g)"><strong>Reference:</strong> <span style="font-family:var(--fm)">${t.ref}</span>${t.filed?' &nbsp;·&nbsp; Filed: '+t.filed:''}${t.approved?' &nbsp;·&nbsp; Approved: '+t.approved:''}</div>`:''}
           ${t.unlocksNext&&t.unlocksNext.length?`<div style="padding:10px 12px;background:var(--bbg);border-radius:7px;margin-bottom:8px;font-size:12px;color:var(--b);border:1px solid rgba(30,91,138,.12)"><strong>Unlocks:</strong> ${t.unlocksNext.join(' · ')}</div>`:''}
           ${t.postApproval&&t.postApproval.length?`<div style="margin-bottom:8px"><div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">Post-approval obligations</div>${t.postApproval.map(p=>`<div style="display:flex;gap:7px;font-size:12px;color:var(--text2);padding:4px 0;border-bottom:1px solid var(--border)"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="flex-shrink:0;margin-top:2px;color:var(--b)"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>${p}</span></div>`).join('')}</div>`:''}
-          ${t.rejectionReasons&&t.rejectionReasons.length?`<div style="margin-bottom:8px"><div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">Common rejection reasons</div>${t.rejectionReasons.map(r=>`<div style="padding:7px 10px;background:var(--rbg);border-radius:7px;margin-bottom:5px;border:1px solid rgba(192,57,43,.12)"><div style="font-size:12px;font-weight:600;color:var(--r);margin-bottom:2px">✕ ${r.reason}</div><div style="font-size:11px;color:var(--text2)">How to avoid: ${r.avoid}</div></div>`).join('')}</div>`:''}
+          ${t.rejectionReasons&&t.rejectionReasons.length?`<div style="margin-bottom:8px"><div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">Common rejection reasons</div>${t.rejectionReasons.map(r=>`<div style="padding:7px 10px;background:var(--rbg);border-radius:7px;margin-bottom:5px;border:1px solid rgba(192,57,43,.12)"><div style="font-size:12px;font-weight:600;color:var(--r);margin-bottom:2px">✕ ${r.reason}</div><div style="font-size:11px;color:var(--text2)">${t('howToAvoid')} ${r.avoid}</div></div>`).join('')}</div>`:''}
           ${t.govPortal?`<a href="${t.govPortal}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--b);text-decoration:none;padding:7px 11px;background:var(--bbg);border-radius:6px;border:1px solid rgba(30,91,138,.15)"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>Open ${t.code} government portal</a>`:''}
         </div>
       </div>
@@ -1365,16 +1474,16 @@ function renderDocs() {
       <div class="doc-info"><div class="doc-name">${d.name}</div><div class="doc-meta">${d.meta}</div></div>
       <div class="doc-actions">
         <span class="a-status ${s.cls}">${s.badge}</span>
-        ${d.type==='required'||d.type==='flagged' ? `<button class="btn btn-gold btn-sm" onclick="triggerUpload()">Upload</button>` : ''}
-        ${d.type==='leverage' ? `<button class="btn btn-sm">Download</button>` : ''}
+        ${d.type==='required'||d.type==='flagged' ? `<button class="btn btn-gold btn-sm" onclick="triggerUpload()">${t('upload')}</button>` : ''}
+        ${d.type==='leverage' ? `<button class="btn btn-sm">${t('download')}</button>` : ''}
       </div>
     </div>`;
   };
 
   document.getElementById('docs-list').innerHTML = `
-    ${required.length ? `<div class="section-divider">Needs your action (${required.length})</div>${required.map(docRow).join('')}` : ''}
-    ${yours.length ? `<div class="section-divider">Your uploads (${yours.length})</div>${yours.map(docRow).join('')}` : ''}
-    ${lev.length ? `<div class="section-divider">From Leverage Business (${lev.length})</div>${lev.map(docRow).join('')}` : ''}
+    ${required.length ? `<div class="section-divider">${t('needsAction')} (${required.length})</div>${required.map(docRow).join('')}` : ''}
+    ${yours.length ? `<div class="section-divider">${t('yourUploads')} (${yours.length})</div>${yours.map(docRow).join('')}` : ''}
+    ${lev.length ? `<div class="section-divider">${t('fromLevBiz')} (${lev.length})</div>${lev.map(docRow).join('')}` : ''}
   `;
 }
 
@@ -1395,9 +1504,13 @@ function switchView(el) {
 function setLang(l, save=true) {
   lang = l;
   if(save) localStorage.setItem('lb-lang',l);
-  document.querySelectorAll('[data-lang]').forEach(el=>el.classList.toggle('la',el.dataset.lang===l));
-  document.querySelectorAll('.lb').forEach(btn=>btn.classList.toggle('active',btn.textContent.trim()==={en:'EN',zh:'中文',ms:'BM'}[l]));
+  document.querySelectorAll('[data-lang]').forEach(el => el.classList.toggle('la', el.dataset.lang === l));
+  document.querySelectorAll('.lb').forEach(btn => btn.classList.toggle('active', btn.textContent.trim() === {en:'EN',zh:'中文',ms:'BM'}[l]));
   document.documentElement.lang = l==='zh'?'zh-CN':l==='ms'?'ms':'en';
+  // Re-render JS content so t() calls update
+  if(document.getElementById('tasks-list')?.innerHTML) renderTasks();
+  if(document.getElementById('docs-list')?.innerHTML) renderDocs();
+  if(document.getElementById('g-sop-list')?.innerHTML) renderGuidance();
 }
 
 function sendMsg() {
@@ -1692,7 +1805,7 @@ function renderGuidance() {
 
   // Docs
   const docEl = document.getElementById('g-doc-list');
-  const docStatusMap = {done:{cls:'di-g-done',svg:'<path stroke-linecap="round" d="M5 13l4 4L19 7"/>',badge:'Uploaded',bc:'bg-g'},need:{cls:'di-g-need',svg:'<path stroke-linecap="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>',badge:'Upload needed',bc:'bg-a'},flagged:{cls:'di-g-need',svg:'<path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>',badge:'Flagged',bc:'bg-a'},lev:{cls:'di-g-lev',svg:'<path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',badge:'From Leverage',bc:'bg-b'},waiting:{cls:'di-g-wait',svg:'<path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>',badge:'Pending',bc:'bg-s'}};
+  const docStatusMap = {done:{get badge(){return t('uploaded')},cls:'di-g-done',svg:'<path stroke-linecap="round" d="M5 13l4 4L19 7"/>',badge:'Uploaded',bc:'bg-g'},need:{get badge(){return t('uploadNeeded')},cls:'di-g-need',svg:'<path stroke-linecap="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>',badge:'Upload needed',bc:'bg-a'},flagged:{get badge(){return t('uploadNeeded')},cls:'di-g-need',svg:'<path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>',badge:'Flagged',bc:'bg-a'},lev:{cls:'di-g-lev',svg:'<path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',badge:'From Leverage',bc:'bg-b'},waiting:{cls:'di-g-wait',svg:'<path stroke-linecap="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>',badge:'Pending',bc:'bg-s'}};
   if (docEl) docEl.innerHTML = d.docs.map(doc => {
     const ic = docStatusMap[doc.status] || docStatusMap.waiting;
     const iconColor = doc.status==='done'?'var(--g)':doc.status==='lev'?'var(--gold)':doc.status==='waiting'?'var(--text3)':'var(--a)';
