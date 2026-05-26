@@ -497,7 +497,7 @@ span[data-lang]{display:none}span[data-lang].la{display:inline}
 <!-- ═══════════════ APPLICATIONS ═══════════════ -->
 <div class="view" id="view-applications">
   <div class="page-hdr">
-    <div><h1 class="page-title"><span data-lang="en" class="la">Applications</span><span data-lang="zh">申请进度</span><span data-lang="ms">Permohonan</span></h1><p class="page-sub"><span data-lang="en" class="la">11 authorities · 3 approved · 1 filed · 1 action needed · 6 blocked</span><span data-lang="zh">11个部门 · 3已批准 · 1已提交 · 1需行动 · 6待解锁</span><span data-lang="ms">11 pihak berkuasa · 3 diluluskan · 1 difailkan · 1 tindakan diperlukan · 6 disekat</span></p></div>
+    <div><h1 class="page-title"><span data-lang="en" class="la">Applications</span><span data-lang="zh">申请进度</span><span data-lang="ms">Permohonan</span></h1><p class="page-sub"><span data-lang="en" class="la">11 government authorities · Each has full SOP, document checklist, and post-approval obligations · Click any application to expand</span><span data-lang="zh">11个政府部门 · 每项均含完整SOP、文件清单及批准后义务 · 点击任意申请查看详情</span><span data-lang="ms">11 pihak berkuasa kerajaan · Setiap satu mempunyai SOP penuh, senarai semak dokumen, dan obligasi pasca kelulusan · Klik mana-mana permohonan untuk kembangkan</span></p></div>
   </div>
   <div id="tasks-list"></div>
 </div>
@@ -685,259 +685,458 @@ let lang = localStorage.getItem('lb-lang') || 'en';
 const TASKS = [
   {
     seq:1, code:'SSM', name:'Company Registration',
+    fullName:'Suruhanjaya Syarikat Malaysia — Company Incorporation',
+    legalBasis:'Companies Act 2016 (Act 777)',
     status:'approved', dot:'var(--g)',
-    ref:'202600XXXXXX', filed:'3 Mar 2026', approved:'5 Mar 2026',
-    notes:'Certificate of Incorporation received. Company No: 202600XXXXXX',
+    ref:'202600482731', filed:'3 Mar 2026', approved:'5 Mar 2026',
+    notes:'Certificate of Incorporation issued. Company No: 202600482731. Section 14 Certificate received.',
     locked:false, blockedBy:null,
-    timeline:['Company name search','Form submission','Payment','Certificate issued'],
-    timelineStatus:['done','done','done','done'],
+    unlocksNext:['LHDN','Bomba','PBT','MIDA'],
+    timeline:['Name search','Documents prepared','Online submission','Payment','Certificate issued'],
+    timelineStatus:['done','done','done','done','done'],
     govPortal:'https://www.ssm.com.my',
     processingTime:'3–5 working days',
-    fee:'RM 1,000–2,000 (paid by Leverage Business)',
+    fee:'RM 1,000–2,000 (by share capital)',
+    renewalObligation:'Annual return filing by anniversary date · Annual fee RM 200',
+    whoMustApply:'All foreign-owned Malaysian entities before any business activity',
+    physicalPresence:'Not required — fully remote via Leverage',
     protocol:[
-      {title:'Company name search and reservation',detail:'Check name availability on SSM portal. Name must not conflict with existing registered names. Approval takes 1–2 days.'},
-      {title:'Prepare Memorandum & Articles of Association',detail:'Documents define the company structure, shareholder rights, and business activities. Must explicitly include manufacturing / relevant activity codes.'},
-      {title:'Submit Form 49 (Directors) + Form 24 (Share allotment)',detail:'Lists all directors, their identification, and share allocations. Submit online via SSM MyCoID portal.'},
-      {title:'Pay registration fee',detail:'Fee varies by share capital. Standard company: RM 1,000. Higher share capital incurs additional fee.'},
-      {title:'Receive Certificate of Incorporation',detail:'Digital certificate issued within 3–5 working days. This unlocks all downstream applications.'}
+      {title:'Company name search and reservation',who:'Leverage',form:'SSM eSearch portal',days:'1–2 days',detail:'Leverage runs name availability check. Name must not conflict with existing companies or be too similar to registered trademarks. Name approval letter valid 30 days.'},
+      {title:'Prepare Memorandum & Articles of Association (M&A)',who:'Leverage',form:'Standard M&A template',days:'1–2 days',detail:'Defines company structure, directors\' rights, share classes, and authorised business activities. Must explicitly state manufacturing / import / distribution activities — cannot be amended without EGM later.'},
+      {title:'Submit Form 49 (Directors) + Form 24 (Share allotment)',who:'Leverage',form:'SSM MyCoID portal',days:'1 day',detail:'All directors and shareholders must be listed with identification. Minimum 1 director who ordinarily resides in Malaysia — this can be the company secretary\'s registered address.'},
+      {title:'Pay incorporation fee and await certificate',who:'Leverage',form:'SSM online payment',days:'3–5 working days',detail:'Fee varies by authorised share capital. Standard paid-up: RM 1. Practical minimum: RM 100,000 to satisfy bank KYC. Certificate issued digitally — original PDF is the legal document.'},
+      {title:'Register company secretary within 30 days',who:'Leverage',form:'Section 236 lodgement',days:'Within 30 days',detail:'Mandatory under Companies Act 2016. Must be a licensed Company Secretary (MAICSA or MIA member). Leverage coordinates appointment.'}
     ],
     docs:[
-      {name:'Director passports (certified true copy)',note:'All directors — must be CTC, not a plain scan',status:'done'},
-      {name:'Shareholder passports (CTC)',note:'All shareholders with ≥25% equity',status:'done'},
-      {name:'Proof of registered address',note:'Utility bill or tenancy agreement for registered address',status:'done'},
+      {name:'Director passports (certified true copy)',note:'All directors — CTC by commissioner for oaths or notary. Plain scan not accepted.',status:'done'},
+      {name:'Shareholder passports (CTC)',note:'All shareholders with equity. For corporate shareholders: company cert + director IC.',status:'done'},
+      {name:'Proof of registered address',note:'Tenancy agreement or utility bill for registered address. Can be company secretary\'s office.',status:'done'},
+      {name:'Proposed company name (3 options)',note:'In preference order. Leverage checks availability before submission.',status:'done'},
+    ],
+    postApproval:[
+      'File annual return with SSM within 30 days of anniversary date',
+      'Maintain statutory registers at registered office',
+      'Hold AGM within 6 months of financial year end',
+      'Notify SSM of any director/shareholder changes within 14 days',
+    ],
+    rejectionReasons:[
+      {reason:'Company name too similar to existing registration',avoid:'Leverage checks similarity before submitting — rejected names require new name search and resubmission (adds 2–3 days)'},
+      {reason:'Director does not ordinarily reside in Malaysia',avoid:'Use company secretary\'s registered address for at least 1 director'},
     ]
   },
   {
     seq:2, code:'LHDN', name:'Tax File + Employer Registration',
+    fullName:'Lembaga Hasil Dalam Negeri — Income Tax + Employer Number',
+    legalBasis:'Income Tax Act 1967 · Employment Act 1955',
     status:'approved', dot:'var(--g)',
-    ref:'C2026XXXXXX / E2026XXXXXX', filed:'6 Mar 2026', approved:'10 Mar 2026',
-    notes:'Income tax file (C-number) and Employer E-number both issued. PCB monthly deduction schedule active.',
+    ref:'C26004XXXXXX / E26004XXXXXX', filed:'6 Mar 2026', approved:'10 Mar 2026',
+    notes:'Income tax file (C-number) and Employer E-number issued. PCB monthly deduction active. e-PCB account configured.',
     locked:false, blockedBy:null,
-    timeline:['MyTax portal submission','C-number issued','E-number issued','PCB setup'],
-    timelineStatus:['done','done','done','done'],
+    unlocksNext:['SST Registration (later)'],
+    timeline:['SSM cert received','MyTax registration','C-number issued','E-number issued','PCB setup'],
+    timelineStatus:['done','done','done','done','done'],
     govPortal:'https://mytax.hasil.gov.my',
     processingTime:'5–10 working days',
-    fee:'No fee',
+    fee:'No government fee',
+    renewalObligation:'Annual tax return (Form C) by 7 months after financial year end · Monthly PCB submission by 15th',
+    whoMustApply:'All incorporated companies. Employer registration required before hiring first employee.',
+    physicalPresence:'Not required — fully online',
     protocol:[
-      {title:'Register via MyTax portal',detail:'Create company tax account at mytax.hasil.gov.my using SSM Certificate. Both tax file and employer registration submitted simultaneously.'},
-      {title:'Income tax file (C-number) issued',detail:'Your company income tax reference number. Used for filing annual tax returns and corporate tax payments.'},
-      {title:'Employer number (E-number) issued',detail:'Required to deduct and remit PCB (monthly tax deduction) from employee salaries.'},
-      {title:'Set up PCB payment schedule',detail:'Register on e-PCB system. Monthly deduction from salaries must be remitted to LHDN by 15th of following month.'}
+      {title:'Register via MyTax portal (e-Daftar)',who:'Leverage',form:'MyTax e-Daftar',days:'1 day',detail:'Create company account on mytax.hasil.gov.my using SSM Certificate of Incorporation. Both income tax file and employer registration submitted simultaneously in the same session.'},
+      {title:'Receive Income Tax File (C-number)',who:'LHDN',form:'Automatic',days:'5–10 working days',detail:'Your company\'s income tax reference number (format: C26004XXXXXX). Used for filing annual corporate tax returns and any correspondence with LHDN.'},
+      {title:'Receive Employer Number (E-number)',who:'LHDN',form:'Automatic',days:'5–10 working days',detail:'Required to deduct and remit PCB (Potongan Cukai Bulanan — monthly tax deduction) from employee salaries. Must be active before paying any salary.'},
+      {title:'Set up e-PCB account and payment schedule',who:'Leverage',form:'e-PCB portal',days:'1 day',detail:'Monthly salary tax deductions must be remitted to LHDN by the 15th of the following month. Leverage configures the e-PCB account and advises on deduction rates per employee salary band.'},
+      {title:'Register for EPF, SOCSO, EIS (companion step)',who:'Leverage',form:'EPF / SOCSO portals',days:'2–3 days',detail:'Employer contributions: EPF 13%, SOCSO 1.75%, EIS 0.4%. Must be registered before hiring. Foreign workers: SOCSO required; EPF optional. Leverage handles all three concurrently.'}
     ],
     docs:[
-      {name:'SSM Certificate of Incorporation',note:'From Leverage Business — already on file',status:'lev'},
-      {name:'Director IC or passport',note:'Registered director identification',status:'done'},
+      {name:'SSM Certificate of Incorporation',note:'Already issued — from Leverage Business',status:'lev'},
+      {name:'Director IC or passport',note:'The director completing the registration',status:'done'},
+      {name:'Company bank account number (when opened)',note:'Required for refund correspondence. Can be added later.',status:'done'},
+    ],
+    postApproval:[
+      'Submit Form C (annual tax return) within 7 months of financial year end',
+      'Remit PCB monthly by 15th of following month via e-PCB',
+      'Pay corporate tax via CP204 installment (if applicable)',
+      'Annual estimated tax (CP204) submission by 30th day of 2nd month of financial year',
+    ],
+    rejectionReasons:[
+      {reason:'Mismatch between SSM address and MyTax registration address',avoid:'Use exact address as per SSM certificate — even minor differences trigger manual review'},
     ]
   },
   {
     seq:3, code:'Bomba', name:'Fire Safety Certificate',
+    fullName:'Jabatan Bomba dan Penyelamat Malaysia — Fire Certificate',
+    legalBasis:'Fire Services Act 1988 (Act 341) · Uniform Building By-Laws 1984',
     status:'approved', dot:'var(--g)',
-    ref:'BOMBA/2026/001234', filed:'7 Mar 2026', approved:'14 Mar 2026',
-    notes:'Fire Safety Certificate valid until 14 Mar 2027. Renewal due Mar 2027 — will be tracked.',
+    ref:'BOMBA/PUL/2026/FC/001234', filed:'7 Mar 2026', approved:'14 Mar 2026',
+    notes:'Fire Certificate valid until 14 Mar 2027. Annual renewal due — Leverage will initiate 6 weeks before expiry.',
     locked:false, blockedBy:null,
-    timeline:['Engage fire consultant','Submit plans','Inspector visit','Certificate issued'],
-    timelineStatus:['done','done','done','done'],
+    unlocksNext:['PBT Premise Licence'],
+    timeline:['Engage consultant','Submit plans','BOMBA inspection','Defects rectified','Certificate issued'],
+    timelineStatus:['done','done','done','done','done'],
     govPortal:'https://www.bomba.gov.my',
-    processingTime:'7–14 working days',
-    fee:'RM 200–600 (based on floor area)',
+    processingTime:'7–14 working days from inspection pass',
+    fee:'RM 200–600 (based on floor area) · Annual renewal same rate',
+    renewalObligation:'Annual renewal — certificate expires each year. Leverage tracks and renews.',
+    whoMustApply:'All commercial and industrial premises before opening. Required before PBT licence.',
+    physicalPresence:'BOMBA inspector visits — physical premises must be ready',
     protocol:[
-      {title:'Engage a BOMBA-registered fire safety company',detail:'The consultant prepares fire safety layout, sprinkler system design, and emergency exit plan. Must be a company on BOMBA\'s approved list.'},
-      {title:'Submit building plan and fire system layout',detail:'Plans show fire extinguisher positions, hose reel locations, emergency exits, and assembly points. Submitted to local BOMBA office.'},
-      {title:'BOMBA inspector conducts premises visit',detail:'Inspector physically checks the installed fire systems, emergency lighting, and exit signage. Any deficiencies must be rectified before certificate issued.'},
-      {title:'Certificate issued — valid 1 year',detail:'Displayed at premises. Annual renewal required. Your handler will track renewal date and initiate process 6 weeks before expiry.'}
+      {title:'Engage a BOMBA-registered fire safety company',who:'Leverage',form:'BOMBA approved consultant list',days:'1–2 days',detail:'The fire safety consultant assesses the premises and prepares the required plans. Must be from BOMBA\'s approved contractor list — unlicensed consultants\' submissions are rejected.'},
+      {title:'Prepare fire safety layout plan and system schematic',who:'Fire consultant (via Leverage)',form:'As-built drawings',days:'3–5 days',detail:'Plan must show: fire extinguisher positions (1 per 200m²), hose reel locations, sprinkler layout (if applicable), emergency exit routes, assembly point, emergency lighting positions, and fire alarm panel location.'},
+      {title:'Submit plans to local BOMBA office',who:'Leverage',form:'BOMBA plan submission form',days:'3–5 days review',detail:'Submitted to the BOMBA district office covering the premises\' address (Penang: BOMBA Pulau Pinang). Plans reviewed before inspection is scheduled.'},
+      {title:'BOMBA inspector conducts physical inspection',who:'BOMBA inspector',form:'On-site visit',days:'Scheduled 5–10 days after approval',detail:'Inspector physically verifies: installed fire extinguishers, hose reels, emergency lighting working, exit signage illuminated, fire doors operational, sprinklers not obstructed. Any deficiencies = conditional pass requiring rectification.'},
+      {title:'Certificate issued — valid 1 year',who:'BOMBA',form:'FC certificate',days:'3–5 days after pass',detail:'Physical certificate must be displayed at premises entrance. Leverage will calendar the expiry date and initiate renewal application 6 weeks before expiry date each year.'}
     ],
     docs:[
-      {name:'Building floor plan with fire exit markings',note:'Engineer-stamped plan showing fire safety layout',status:'done'},
-      {name:'Fire suppression system schematic',note:'Sprinkler / hose reel / extinguisher positions',status:'done'},
+      {name:'Building floor plan (as-built)',note:'Must show all rooms, exits, and dimensions. Engineer-stamped.',status:'done'},
+      {name:'Fire suppression system schematic',note:'Sprinkler / hose reel / extinguisher positions on plan',status:'done'},
+      {name:'Emergency lighting and exit signage layout',note:'Positions of all emergency lights and exit signs',status:'done'},
+    ],
+    postApproval:[
+      'Display Fire Certificate at premises entrance — inspector checks on visits',
+      'Annual renewal: Leverage initiates 6 weeks before expiry',
+      'Notify BOMBA if any major renovation or layout change — re-inspection required',
+      'Maintain fire extinguisher service records (annual service by licensed company)',
+    ],
+    rejectionReasons:[
+      {reason:'Missing exit signage or emergency lighting not functional',avoid:'Leverage checks all signage is working before scheduling BOMBA inspection — saves one round of rectification'},
+      {reason:'Fire extinguisher count or placement non-compliant',avoid:'Fire consultant calculates required count (1 per 200m²) before inspection — do not guess'},
     ]
   },
   {
     seq:4, code:'PBT', name:'Premise Licence (MBSP)',
+    fullName:'Majlis Bandaraya Seberang Perai — Business Premise Licence',
+    legalBasis:'Local Government Act 1976 (Act 171) · Uniform Building By-Laws 1984',
     status:'filed', dot:'var(--b)',
-    ref:'MBSP/2026/P/00234', filed:'15 Mar 2026', approved:null,
-    notes:'Application filed. Building inspection scheduled 2 April 2026. MBSP typically takes 14–30 days from inspection.',
+    ref:'MBSP/2026/P/L0023489', filed:'15 Mar 2026', approved:null,
+    notes:'Application filed. Building inspection scheduled 2 April 2026. MBSP typically issues within 14 days of passing inspection.',
     locked:false, blockedBy:null,
-    timeline:['Form submitted','Fee paid','Inspection scheduled','Licence issued'],
-    timelineStatus:['done','done','active','locked'],
+    unlocksNext:['DOSH Safety Registration'],
+    timeline:['Form submitted','Fee paid','Building inspection','Licence issued','Annual renewal'],
+    timelineStatus:['done','done','active','locked','locked'],
     govPortal:'https://www.mbsp.gov.my',
-    processingTime:'14–30 days after inspection',
-    fee:'RM 180–1,200/year (based on activity and floor area)',
+    processingTime:'14–30 days after inspection pass',
+    fee:'RM 180–1,200/year (activity-based). Manufacturing: typically RM 400–800/year.',
+    renewalObligation:'Annual renewal. Leverage manages — due January each year for most local authorities.',
+    whoMustApply:'All businesses operating from a physical premise in Malaysia.',
+    physicalPresence:'MBSP inspector visits — premises must be ready and signage installed',
     protocol:[
-      {title:'Submit Form PBT-1 to local authority (MBSP)',detail:'Form available at MBSP counter or online. State exact business activity — this determines the licence category and annual fee.'},
-      {title:'Pay licence fee',detail:'Fee is based on business activity and floor area. Manufacturing activity typically RM 400–1,200/year.'},
-      {title:'MBSP building inspection',detail:'Inspector checks structure safety, ventilation, sanitation, and compliance with local by-laws. Any issues must be rectified before licence issued. Inspection date: 2 April 2026.'},
-      {title:'Licence issued and displayed',detail:'Annual business licence must be displayed visibly at premises. Your handler will initiate renewal 6 weeks before expiry each year.'}
+      {title:'Submit Form PBT-1 to MBSP',who:'Leverage',form:'MBSP Form PBT-1 (online or counter)',days:'1 day',detail:'State exact business activity code — this determines the annual licence fee category and which by-laws apply. Manufacturing of electronics (EE category) is different from storage/warehouse. Incorrect activity code causes reclassification later.'},
+      {title:'Pay annual licence fee',who:'Leverage',form:'MBSP payment',days:'Same day',detail:'Fee calculated based on business activity, floor area, and number of business categories applied for. Manufacturing premises: RM 400–800/year typically. Receipt is proof of application pending.'},
+      {title:'MBSP building inspection (2 April 2026)',who:'MBSP inspector',form:'On-site visit',days:'Scheduled',detail:'Inspector checks: structural safety, adequate ventilation, proper sanitation facilities (toilet ratio per staff headcount), fire safety certificate present, signboard in place. Any deficiencies must be rectified before licence issued.'},
+      {title:'Satisfy MBSP conditions',who:'Client + Leverage',form:'Varies',days:'7–14 days',detail:'Common conditions: install approved signboard, provide emergency contact on door, confirm fire certificate is current. Leverage coordinates follow-up after inspection report is received.'},
+      {title:'Licence issued and displayed',who:'MBSP',form:'Licence certificate',days:'7–14 days after pass',detail:'Annual business licence (Lesen Perniagaan) must be displayed visibly at premises entrance. Leverage will renew each year before expiry.'}
     ],
     docs:[
-      {name:'SSM Certificate of Incorporation',note:'From Leverage Business',status:'lev'},
-      {name:'Tenancy agreement / title deed',note:'Proof of right to occupy the premises',status:'done'},
-      {name:'Bomba Fire Safety Certificate',note:'Required at time of submission',status:'done'},
+      {name:'SSM Certificate of Incorporation',note:'From Leverage Business — on file',status:'lev'},
+      {name:'Tenancy agreement / title deed',note:'Proof of right to occupy the premises. Must show same address as application.',status:'done'},
+      {name:'Bomba Fire Safety Certificate',note:'REQUIRED — cannot be issued without current Bomba certificate',status:'done'},
+      {name:'Building plan approval (BP number)',note:'Obtained from MBSP — Leverage checks this is current',status:'done'},
+    ],
+    postApproval:[
+      'Annual renewal — Leverage manages, due January (MBSP) or on anniversary date',
+      'Notify MBSP of any change in business activity, area, or ownership',
+      'Display current licence at premises at all times — inspection liability',
+      'Any renovation: re-apply for building plan approval before proceeding',
+    ],
+    rejectionReasons:[
+      {reason:'Premises in wrong zoning for stated activity',avoid:'Leverage verifies zoning before you sign the lease — manufacturing requires industrial zone, not commercial'},
+      {reason:'Bomba certificate expired or not yet issued',avoid:'Leverage sequences Bomba before PBT — PBT inspectors check Bomba certificate on site visit'},
     ]
   },
   {
     seq:5, code:'MIDA', name:'ICA 10 Exemption (Manufacturing)',
+    fullName:'Malaysian Investment Development Authority — Industrial Coordination Act 1975 Exemption',
+    legalBasis:'Industrial Coordination Act 1975 (Act 156) · MIDA Guidelines on Manufacturing Incentives',
     status:'action', dot:'var(--a)',
     ref:null, filed:null, approved:null,
-    notes:'CRITICAL — handler is ready to file. Waiting for machinery list with HS codes from client. This application unlocks JKDM, Employment Pass, and KDN.',
+    notes:'Handler ready to file. BLOCKED on machinery list with HS codes from client. This single approval unlocks JKDM, Employment Pass, KDN Foreign Worker Quota, and MITI Cost Analysis.',
     locked:false, blockedBy:null,
-    timeline:['Prepare documents','Handler review','File online','MIDA processing','Approval'],
+    unlocksNext:['JKDM JPC 1','ESD Employment Pass','KDN Foreign Worker Quota','MITI Cost Analysis'],
+    timeline:['Prepare documents','Handler HS code verification','Submit InvestMalaysia portal','MIDA processing','Approval letter'],
     timelineStatus:['active','locked','locked','locked','locked'],
     govPortal:'https://investmalaysia.mida.gov.my',
-    processingTime:'6–10 weeks from filing',
-    fee:'No fee',
+    processingTime:'6–10 weeks (standard) · 10–16 weeks (if supplementary submission requested)',
+    fee:'No government fee · Pioneer Status / ITA incentives assessed at this stage',
+    renewalObligation:'Annual Manufacturing Performance Report to MIDA (Form IMP) · 3-year inspection by MIDA officers',
+    whoMustApply:'All manufacturers with shareholders\' funds ≥ RM 2.5 million OR ≥ 75 full-time employees. ICA 10 Exemption for those below threshold.',
+    physicalPresence:'MIDA may schedule factory visit for large applications. Remote submission possible.',
     protocol:[
-      {title:'Prepare machinery list with HS codes and CIF values',detail:'CRITICAL — your responsibility. List every machine by name, model, manufacturer, quantity, CIF value (USD), and 8-digit HS code. Incorrect HS codes cause MIDA to put the application on hold.'},
-      {title:'Prepare 3-year business plan',detail:'Required by MIDA. Must include: projected revenue per year, number of employees (local and foreign), planned production volume, and local vendor spending commitment.'},
-      {title:'Handler reviews all documents',detail:'Your handler verifies every HS code against the JKDM tariff schedule before submission. This step prevents rejection. Do not skip.'},
-      {title:'Submit via MIDA InvestMalaysia portal',detail:'Handler files the complete application online. MIDA may request supplementary documents or schedule a factory visit during processing.'},
-      {title:'MIDA processing (6–10 weeks)',detail:'MIDA reviews and issues Approval Letter with reference number. This reference number is mandatory for JKDM JPC 1 and Employment Pass applications — both are blocked until this arrives.'}
+      {title:'Prepare machinery list with verified HS codes and CIF values',who:'CLIENT — action required now',form:'Excel template',days:'Client responsibility',detail:'CRITICAL — this is what is blocking the application today. Required for every piece of machinery:\n• Equipment name and model number\n• Manufacturer name and country of origin\n• Quantity\n• CIF value in USD per unit\n• 8-digit HS code (Harmonised System)\nHS codes must be verified against the current JKDM Customs tariff schedule — errors trigger MIDA supplementary submission adding 4–8 weeks. Your handler will verify all HS codes before filing.'},
+      {title:'Prepare 3-year business plan',who:'Leverage (with client input)',form:'MIDA Business Plan template',days:'2–3 days once docs received',detail:'MIDA requires a structured business plan showing:\n• Projected annual revenue (Year 1, 2, 3)\n• Projected headcount (local vs foreign, skilled vs unskilled)\n• Production volume per year\n• Local vendor / raw material sourcing commitment\n• Export value (if any)\nLeverage prepares this from client\'s financial projections. Ask handler for the MIDA-accepted template.'},
+      {title:'Handler reviews and verifies all HS codes',who:'Handler (Sarah Tan)',form:'JKDM tariff cross-check',days:'1–2 days',detail:'Handler cross-references every HS code on the machinery list against the JKDM tariff schedule. Wrong HS codes are the single most common cause of MIDA supplementary submissions — adding 4–8 weeks. This step is non-negotiable.'},
+      {title:'Submit via MIDA InvestMalaysia portal',who:'Leverage',form:'MIDA Form 1 (online)',days:'1 day',detail:'Complete application submitted online. All documents attached as PDFs. Handler retains originals. MIDA may request clarification within 2–4 weeks of submission.'},
+      {title:'MIDA processing — 6 to 10 weeks',who:'MIDA',form:'Government processing',days:'6–10 weeks',detail:'MIDA officer reviews the application. May:\n(a) Issue approval letter directly, or\n(b) Request supplementary submission for HS code clarifications, or\n(c) Schedule factory visit (larger applications ≥ RM 10M)\nApproval letter contains the MIDA reference number — mandatory for JKDM, Employment Pass, and KDN applications.'}
     ],
     docs:[
-      {name:'Machinery list with HS codes + CIF value (USD)',note:'8-digit HS code required per item. CIF value in USD. UPLOAD THIS NOW — it is blocking MIDA filing.',status:'need',urgent:true},
-      {name:'Business plan (3-year projection)',note:'Revenue, headcount, production volume, local vendor spending',status:'need'},
-      {name:'Audited accounts 2024',note:'Re-upload — flagged version was missing auditor signature page',status:'flagged'},
-      {name:'Factory floor plan',note:'Production layout, emergency exits, storage zones',status:'need'},
-      {name:'Director passports (CTC)',note:'Already uploaded — on file',status:'done'},
-      {name:'SSM Certificate',note:'From Leverage Business — on file',status:'lev'},
+      {name:'Machinery list with HS codes + CIF value (USD)',note:'8-digit HS codes required per item. CIF value in USD per unit. THIS IS BLOCKING FILING — UPLOAD NOW.',status:'need',urgent:true},
+      {name:'Business plan (3-year financial projection)',note:'Revenue, headcount (local vs foreign), production volume, local vendor spending',status:'need',urgent:true},
+      {name:'Factory floor plan',note:'Showing production zones, machinery layout, emergency exits, storage, office space',status:'need'},
+      {name:'Audited accounts 2024',note:'Re-upload required — flagged for missing auditor signature page on final page',status:'flagged'},
+      {name:'Director passports (CTC)',note:'Already on file — uploaded during SSM registration',status:'done'},
+      {name:'SSM Certificate of Incorporation',note:'From Leverage Business — on file',status:'lev'},
+      {name:'Tenancy agreement for factory premises',note:'Must show the exact factory address being registered with MIDA',status:'done'},
+    ],
+    postApproval:[
+      'Annual Manufacturing Performance Report (Form IMP) to MIDA — due March each year',
+      'Notify MIDA within 30 days of any change in production activity, capacity, or ownership',
+      'MIDA site inspection every 3 years — advance notice given',
+      'If Pioneer Status granted: maintain pioneer conditions (employment, local content)',
+      'ICA conditions attached to approval letter — Leverage reviews and calendars each one',
+    ],
+    rejectionReasons:[
+      {reason:'Incorrect or unverifiable HS codes on machinery list',avoid:'Handler verifies all HS codes against JKDM tariff schedule before submission. Never self-classify without verification.'},
+      {reason:'Business plan too vague — MIDA requires specific financial figures',avoid:'Use MIDA\'s accepted business plan template. "TBD" projections will trigger supplementary submission request.'},
+      {reason:'Shareholders\' funds below RM 2.5M with >75 employees — ICA 1975 licence required instead of ICA 10',avoid:'Leverage assesses which route applies (ICA 10 exemption vs full ICA licence) during scoping call — different forms and timelines.'},
     ]
   },
   {
     seq:6, code:'JKDM', name:'JPC 1 — Machinery Duty Exemption',
+    fullName:'Jabatan Kastam Diraja Malaysia — Customs Duty Exemption on Machinery (JPC 1)',
+    legalBasis:'Customs Act 1967 (Act 235) · Customs Duties Order 2017 · MIDA-JKDM Circular',
     status:'blocked', dot:'#C8C8CC',
     ref:null, filed:null, approved:null,
-    notes:'Locked — cannot file until MIDA ICA 10 approval is received. JKDM requires a valid MIDA reference number. No exceptions.',
-    locked:true, blockedBy:'MIDA ICA 10 Approval',
-    timeline:['Wait for MIDA','Submit JPC 1','JKDM review','Approval'],
-    timelineStatus:['active','locked','locked','locked'],
+    notes:'Locked — requires MIDA ICA 10 Approval Letter with reference number. No MIDA reference = automatic rejection by JKDM. Cannot be bypassed.',
+    locked:true, blockedBy:'MIDA ICA 10 Approval Letter',
+    unlocksNext:['Machinery importation without import duty'],
+    timeline:['Receive MIDA letter','Prepare JPC 1 form','Submit via MyCustoms','JKDM review','Approval',],
+    timelineStatus:['active','locked','locked','locked','locked'],
     govPortal:'https://www.customs.gov.my',
-    processingTime:'4–8 weeks after MIDA approval',
-    fee:'No fee (but saves significant import duty on machinery)',
+    processingTime:'4–8 weeks from submission',
+    fee:'No fee. Exemption saves 5–25% import duty on approved machinery (significant cost saving)',
+    renewalObligation:'JPC 1 approval is per-shipment. Each machinery import needs its own JPC 1 reference.',
+    whoMustApply:'All MIDA-approved manufacturers importing machinery listed in MIDA approval letter.',
+    physicalPresence:'JKDM may inspect machinery at Port Klang before releasing. No client presence usually required.',
     protocol:[
-      {title:'Receive MIDA ICA 10 Approval Letter',detail:'LOCKED until this arrives. The MIDA reference number must appear on the JPC 1 form. Filing without it results in immediate rejection.'},
-      {title:'Submit JPC 1 form via MyCustoms portal',detail:'Attach MIDA Approval Letter, machinery list (identical to MIDA submission), commercial invoice, and bill of lading.'},
-      {title:'JKDM may inspect machinery at port',detail:'For large shipments, JKDM may physically verify machinery against the approved list at Port Klang before releasing duty exemption.'},
-      {title:'Exemption approval issued',detail:'Allows import of approved machinery without import duty. Significant cost saving — applicable per shipment.'}
+      {title:'Receive MIDA ICA 10 Approval Letter (PREREQUISITE)',who:'MIDA',form:'Approval letter',days:'After MIDA approves',detail:'CANNOT PROCEED WITHOUT THIS. The MIDA reference number (format: MIDA/ICA/2026/XXXXX) must appear on the JPC 1 form. JKDM will reject any application without it — no exceptions, no workarounds.'},
+      {title:'Prepare JPC 1 form with MIDA reference attached',who:'Leverage',form:'JKDM JPC 1 form',days:'1–2 days',detail:'Handler prepares the JPC 1 application attaching: MIDA Approval Letter, machinery list (identical to MIDA submission — same HS codes, same CIF values), and commercial invoice from supplier.'},
+      {title:'Attach commercial invoice and packing list',who:'Client (supplier provides)',form:'Supplier documents',days:'Obtain from supplier',detail:'The commercial invoice from the machinery supplier must match exactly with the machinery list submitted to MIDA. Price discrepancies between MIDA submission and invoice are flagged by JKDM.'},
+      {title:'Submit via MyCustoms portal',who:'Leverage',form:'MyCustoms JPC 1',days:'1 day',detail:'Online submission via Royal Malaysian Customs portal. Application number issued immediately — track status online.'},
+      {title:'JKDM review and physical inspection (if applicable)',who:'JKDM',form:'At Port Klang',days:'4–8 weeks',detail:'For large machinery consignments, JKDM may inspect at port before releasing duty exemption. Customs Agent (licensed forwarding agent) required to represent at port. Leverage coordinates with appointed customs agent.'}
     ],
     docs:[
-      {name:'MIDA ICA 10 Approval Letter',note:'MANDATORY — not yet received. Waiting on MIDA approval.',status:'wait'},
-      {name:'Machinery list (identical to MIDA submission)',note:'Prepare this now — will use same document as MIDA',status:'need'},
-      {name:'Commercial invoice + packing list',note:'From machinery supplier — obtain when placing order',status:'wait'},
-      {name:'Bill of lading',note:'From shipping company — obtained at time of shipment',status:'wait'},
+      {name:'MIDA ICA 10 Approval Letter',note:'MANDATORY — not yet received. Will be available after MIDA approves.',status:'wait'},
+      {name:'Machinery list (identical to MIDA submission)',note:'Same HS codes, same CIF values as MIDA submission. Prepare now using same file.',status:'need'},
+      {name:'Commercial invoice from machinery supplier',note:'Supplier provides — obtain when placing order. Must match MIDA machinery list.',status:'wait'},
+      {name:'Packing list',note:'From shipping / freight company. Lists actual pieces shipped.',status:'wait'},
+      {name:'Bill of lading / airway bill',note:'Proof of shipment from origin country.',status:'wait'},
+    ],
+    postApproval:[
+      'Duty exemption reference must be quoted at port clearance — Leverage coordinates with customs agent',
+      'Machinery must be used for the purpose stated in MIDA approval — JKDM/MIDA may verify',
+      'Any machinery sold or repurposed within 5 years: notify MIDA and JKDM, duty may be clawed back',
+    ],
+    rejectionReasons:[
+      {reason:'No MIDA reference number on application',avoid:'Never file JPC 1 before receiving MIDA approval — automatic rejection'},
+      {reason:'Machinery on invoice not matching MIDA list',avoid:'Order only machinery listed on MIDA approval. Any additions require MIDA amendment first.'},
+      {reason:'HS code on invoice differs from MIDA-submitted HS code',avoid:'Verify supplier\'s invoice HS code matches MIDA submission before filing JPC 1'},
     ]
   },
   {
-    seq:7, code:'ESD/JIM', name:'Employment Pass × 3',
+    seq:7, code:'ESD/JIM', name:'Employment Pass × 3 (Foreign Professionals)',
+    fullName:'Expatriate Services Division / Jabatan Imigresen — Employment Pass (EP) Category I',
+    legalBasis:'Immigration Act 1959/63 (Act 155) · EP Guidelines by ESD',
     status:'blocked', dot:'#C8C8CC',
     ref:null, filed:null, approved:null,
-    notes:'Locked — cannot file until MIDA ICA 10 approval received. Applies to 3 foreign technical specialists.',
-    locked:true, blockedBy:'MIDA ICA 10 Approval',
-    timeline:['Wait for MIDA','File via ESD','Processing','Pass issued'],
-    timelineStatus:['active','locked','locked','locked'],
+    notes:'Locked — requires MIDA ICA 10 Approval. ESD system cross-checks MIDA reference during application. 3 Employment Passes to be applied for technical specialists.',
+    locked:true, blockedBy:'MIDA ICA 10 Approval Letter',
+    unlocksNext:['Foreign specialist staff can work legally in Malaysia'],
+    timeline:['Receive MIDA letter','Create ESD account','Submit per employee','Processing','Pass issued'],
+    timelineStatus:['active','locked','locked','locked','locked'],
     govPortal:'https://www.esd.gov.my',
-    processingTime:'4–8 weeks after MIDA approval',
-    fee:'RM 120 per application',
+    processingTime:'4–8 weeks per application',
+    fee:'RM 120 per application (government) · RM 60 renewal annual',
+    renewalObligation:'Annual renewal — Leverage tracks expiry and renews. Pass is employer-specific — cannot transfer.',
+    whoMustApply:'All foreign nationals working for the company. Mandatory — no employment without EP.',
+    physicalPresence:'Employee must present passport at Immigration on first entry and on pass issuance.',
     protocol:[
-      {title:'Receive MIDA ICA 10 Approval Letter',detail:'LOCKED until this arrives. ESD system will block submission if MIDA reference is missing or unverified.'},
-      {title:'Create company account on ESD MyExpats portal',detail:'Register company with ESD. Requires SSM Certificate and MIDA Approval Letter. Your handler sets this up.'},
-      {title:'Submit individual application per employee',detail:'Each Employment Pass application is separate. Required per applicant: offer letter, passport (min 18 months validity), academic certificates.'},
-      {title:'Processing and pass issuance',detail:'Pass is employer-specific — employee cannot transfer to another company. Valid 1–5 years depending on designation and salary band. Renewal managed by your handler.'}
+      {title:'Receive MIDA ICA 10 Approval Letter (PREREQUISITE)',who:'MIDA',form:'Approval letter',days:'After MIDA approves',detail:'ESD\'s system validates the company\'s MIDA reference number during application. Applications submitted without valid MIDA approval are blocked at system level.'},
+      {title:'Create company account on ESD MyExpats portal',who:'Leverage',form:'ESD MyExpats',days:'1–2 days',detail:'Company registers on ESD\'s employer portal. Requires SSM Certificate and MIDA Approval Letter. Leverage sets up the account and registers the company as an eligible employer.'},
+      {title:'Submit Employment Pass application per employee',who:'Leverage',form:'ESD EP application form',days:'1 day per person',detail:'Each application requires per employee:\n• Passport (minimum 18 months validity remaining)\n• Signed offer letter on company letterhead\n• Highest academic certificate (degree minimum for EP Category I)\n• Latest salary slip (if transferring from another EP)\n• CV / professional experience summary\nPass category: EP Category I (monthly salary ≥ RM 10,000) or Category II (≥ RM 5,000)'},
+      {title:'ESD processing and pass issuance',who:'ESD/Immigration',form:'Government processing',days:'4–8 weeks',detail:'ESD reviews qualifications and salary against the approved post. May request additional documents. Pass is employer-specific: employee bound to this company. To transfer employer: Cancellation + new application required (30-day grace period)'},
+      {title:'Employee collects pass and registers',who:'Employee',form:'Immigration Dept',days:'Within 14 days of arrival',detail:'Employee must present passport at Immigration Department within 14 days of arriving in Malaysia. Pass label is affixed in passport. Spouse/children: Dependant Pass application via same portal.'}
     ],
     docs:[
-      {name:'MIDA ICA 10 Approval Letter',note:'MANDATORY — not yet received. Waiting on MIDA.',status:'wait'},
-      {name:'Employee passport × 3 (min 18 months validity)',note:'Can prepare now — collect from each future employee',status:'need'},
-      {name:'Signed offer letters × 3',note:'On company letterhead — can draft now before MIDA arrives',status:'need'},
-      {name:'Academic certificates × 3',note:'Degree / diploma for each employee',status:'need'},
-      {name:'Company bank statements (3 months)',note:'Shows company can pay the salaries stated in offer letters',status:'need'},
+      {name:'MIDA ICA 10 Approval Letter',note:'MANDATORY — waiting for MIDA approval',status:'wait'},
+      {name:'Employee passports × 3 (min 18 months validity)',note:'Can collect from employees now — start preparation in advance',status:'need'},
+      {name:'Signed offer letters × 3 (on company letterhead)',note:'Can draft now using final salary and job title — countersign when EP filing begins',status:'need'},
+      {name:'Academic certificates × 3 (degree level minimum)',note:'Certified true copies — degree certificate + transcript for each employee',status:'need'},
+      {name:'CVs / professional experience summaries × 3',note:'Highlighting relevant experience for the role applied for',status:'need'},
+      {name:'Company bank statements (latest 3 months)',note:'Shows company capacity to pay the salaries stated in offer letters',status:'need'},
+    ],
+    postApproval:[
+      'Annual renewal — Leverage tracks EP expiry and initiates renewal 3 months before expiry date',
+      'Salary changes ≥ 10%: notify ESD within 14 days',
+      'Employee resignation: cancel EP within 14 days — 30-day grace period for employee to exit Malaysia',
+      'Spouse/children: Dependant Pass application via same ESD portal after EP issued',
+    ],
+    rejectionReasons:[
+      {reason:'Passport validity less than 18 months at time of application',avoid:'Check passport expiry before applying. Renewal must be completed before EP application.'},
+      {reason:'Salary below minimum for EP category',avoid:'EP Category I: min RM 10,000/month. EP Category II: min RM 5,000/month. Verify salary against category before applying.'},
+      {reason:'Academic qualification not recognised by ESD',avoid:'Leverage checks recognised institutions list before filing. Unrecognised degrees require attestation from Ministry of Education Malaysia.'},
     ]
   },
   {
     seq:8, code:'KDN', name:'Foreign Worker Quota',
+    fullName:'Kementerian Dalam Negeri — Foreign Worker Quota for Semi-Skilled / Low-Skilled Workers',
+    legalBasis:'Immigration Act 1959/63 · Employment Agencies Act 1981 · KDN Circular on Foreign Workers',
     status:'blocked', dot:'#C8C8CC',
     ref:null, filed:null, approved:null,
-    notes:'Locked — requires Employment Pass to be issued first. Quota application for non-skilled foreign workers.',
+    notes:'Locked — requires Employment Pass to be issued first. KDN quota system requires proof that skilled positions are filled before unskilled quota is granted. Timeline: 2–4 months after EP.',
     locked:true, blockedBy:'Employment Pass (ESD/JIM)',
-    timeline:['Wait for ESD','Quota application','KDN approval','Workers arrival'],
-    timelineStatus:['locked','locked','locked','locked'],
+    unlocksNext:['Recruitment of foreign production workers from approved source countries'],
+    timeline:['EP issued','Quota application','KDN approval','Worker visa','Arrival'],
+    timelineStatus:['locked','locked','locked','locked','locked'],
     govPortal:'https://www.imi.gov.my',
-    processingTime:'2–4 months',
-    fee:'RM 410 per worker (levy) + administrative fee',
+    processingTime:'2–4 months from application',
+    fee:'RM 410 levy per worker per year (ongoing) · RM 1,500 recruitment fee per worker (approximate)',
+    renewalObligation:'Annual levy payment per worker. Passport and permit renewal every 2 years. Accommodation audit by KDN.',
+    whoMustApply:'Any manufacturer hiring foreign production workers (semi-skilled / unskilled). EP covers skilled professionals only.',
+    physicalPresence:'Workers undergo medical (FOMEMA) and fingerprint registration on arrival',
     protocol:[
-      {title:'Apply only after Employment Pass issued',detail:'KDN foreign worker quota requires proof that skilled positions are already filled by permit holders. Employment Pass must be active.'},
-      {title:'Submit quota application to Jabatan Imigresen Malaysia',detail:'State number of workers, job category (based on CIDB or industry classification), and manufacturing activity.'},
-      {title:'Approval and worker visa issuance',detail:'Quota approval allows recruitment of foreign workers from approved source countries (Bangladesh, Nepal, Indonesia, Myanmar). Levy must be paid per worker per year.'}
+      {title:'Confirm Employment Pass holders are in place (PREREQUISITE)',who:'Company / Leverage',form:'EP approval letters',days:'After EP issued',detail:'KDN requires proof that skilled and supervisory roles are filled by qualified permit holders before approving production worker quota. Submit EP copies as evidence.'},
+      {title:'Submit quota application to KDN / IMI',who:'Leverage',form:'KDN quota application',days:'Application + 2–4 months',detail:'State requested number of workers, job category (using CIDB or industry classification codes), and manufacturing activity. Supported by MIDA approval letter as proof of legitimate manufacturing.'},
+      {title:'KDN approval and source country allocation',who:'KDN',form:'Approval letter',days:'2–4 months',detail:'KDN approves quota and allocates source countries (Bangladesh, Nepal, Indonesia, Myanmar, India). Company must use approved recruitment agencies from the source country. Leverage recommends vetted agencies.'},
+      {title:'Worker recruitment and FOMEMA medical',who:'Recruitment agent',form:'FOMEMA medical',days:'2–4 weeks',detail:'All foreign workers must pass FOMEMA medical examination before entry. Levy must be paid (RM 410/worker/year for manufacturing). Workers enter on Visit Pass (Temporary Employment) — VTEP.'},
+      {title:'Worker registration and fingerprinting',who:'Worker + Leverage coordination',form:'IMI registration',days:'Within 7 days of arrival',detail:'All workers must register biometrics (fingerprints) at nearest Immigration office within 7 days. Employers face RM 10,000 fine per worker for late registration.'}
     ],
     docs:[
-      {name:'Employment Pass (active) for technical staff',note:'Proof that skilled roles are filled before unskilled quota is granted',status:'wait'},
-      {name:'Manufacturing licence / MIDA Approval',note:'Proves operating manufacturing activity',status:'wait'},
-      {name:'Worker job descriptions',note:'For each position in the quota application',status:'need'},
+      {name:'Employment Pass approval letters (as evidence)',note:'Proof skilled roles are filled — required for KDN quota justification',status:'wait'},
+      {name:'MIDA ICA 10 Approval Letter',note:'Proof of approved manufacturing activity',status:'wait'},
+      {name:'Manning matrix / workforce plan',note:'Shows how many workers needed, in which roles, and why',status:'need'},
+      {name:'Accommodation plan / hostel details',note:'KDN requires proof of worker accommodation before approving quota',status:'need'},
+      {name:'Worker insurance documentation',note:'Foreign workers must be insured before entry',status:'need'},
+    ],
+    postApproval:[
+      'Annual levy payment (RM 410/worker/year for manufacturing) via MyIMMs portal',
+      'FOMEMA annual medical for each worker — Leverage tracks and coordinates',
+      'Worker permit renewal every 2 years — Leverage manages',
+      'KDN accommodation audit possible — maintain hostel records',
+      'Report any worker absconding within 24 hours via IMI portal',
+    ],
+    rejectionReasons:[
+      {reason:'Insufficient skilled/supervisory staff before quota application',avoid:'Ensure EP holders are in place and operational before applying for production worker quota'},
+      {reason:'Accommodation does not meet KDN standards',avoid:'Leverage reviews accommodation plan against KDN Worker Minimum Standards of Housing Act before submission'},
     ]
   },
   {
-    seq:9, code:'DOSH', name:'Safety & Health Registration',
+    seq:9, code:'DOSH', name:'Safety & Health Registration + Machinery Clearance',
+    fullName:'Jabatan Keselamatan dan Kesihatan Pekerjaan — OSH Registration + PMA Certification',
+    legalBasis:'Occupational Safety and Health Act 1994 (Act 514) · Factories and Machinery Act 1967 (Act 139)',
     status:'blocked', dot:'#C8C8CC',
     ref:null, filed:null, approved:null,
-    notes:'Locked — requires Premise Licence (PBT) to be issued first. OSH Act registration for manufacturing premises.',
+    notes:'Locked — requires Premise Licence (PBT) first. OSH Act registration and DOSH machinery clearance (PMA) for all pressure vessels and hoists. Timeline: 2–4 weeks after PBT.',
     locked:true, blockedBy:'Premise Licence (PBT)',
-    timeline:['Wait for PBT','Register DOSH','Safety officer appt','Compliance'],
-    timelineStatus:['active','locked','locked','locked'],
+    unlocksNext:['Legal operation of machinery and production equipment'],
+    timeline:['PBT licence issued','Register premises','Appoint SHO','PMA inspection','Clearance'],
+    timelineStatus:['active','locked','locked','locked','locked'],
     govPortal:'https://www.dosh.gov.my',
-    processingTime:'2–4 weeks',
-    fee:'RM 50–200',
+    processingTime:'2–4 weeks for registration · 6–10 weeks for PMA machinery clearance',
+    fee:'RM 50–200 for premises registration · RM 800–2,000 per machine for PMA inspection',
+    renewalObligation:'Annual Safety & Health Programme submission · PMA certificates renewed every 15 months · Annual DOSH inspection possible',
+    whoMustApply:'All manufacturing premises with 5+ workers. PMA mandatory for all pressure vessels, boilers, hoists, cranes, and passenger lifts.',
+    physicalPresence:'DOSH inspector visits for PMA certification. Safety officer must be present.',
     protocol:[
-      {title:'Register premises with DOSH after PBT licence',detail:'Occupational Safety and Health Act (OSHA) 1994 requires registration of all manufacturing premises with 5+ workers.'},
-      {title:'Appoint a Safety & Health Officer (SHO)',detail:'Manufacturing premises with 40+ workers must appoint a registered SHO. For smaller operations, employer can act as SHO after completing a 40-hour course.'},
-      {title:'Submit Safety & Health Programme',detail:'Annual programme covering risk assessment, emergency response, first aid, and PPE provision. Must be filed with DOSH each year.'}
+      {title:'Register manufacturing premises with DOSH',who:'Leverage',form:'DOSH eNotifikasi portal',days:'1–2 days',detail:'All manufacturing premises with 5+ workers must be registered under OSHA 1994. Register via DOSH eNotifikasi portal. State number of workers, type of manufacturing activity, and machinery installed.'},
+      {title:'Appoint Safety & Health Officer (SHO)',who:'Company',form:'DOSH SHO registration',days:'Concurrent with registration',detail:'Premises with 40+ workers: must appoint a DOSH-registered SHO (Safety & Health Officer). For smaller operations: employer can act as SHO after completing DOSH-approved 40-hour OSH course. Leverage recommends certified SHO consultant.'},
+      {title:'Submit Annual Safety & Health Programme',who:'Leverage',form:'DOSH standard template',days:'By January each year',detail:'Annual programme documents: risk assessment for all activities, emergency response procedure, first aid provisions, PPE requirements, accident investigation procedure. Leverage prepares template.'},
+      {title:'DOSH PMA inspection for machinery clearance',who:'DOSH inspector',form:'PMA (Perakuan Mesin dan Alat) certificate',days:'6–10 weeks',detail:'Mandatory for: pressure vessels, boilers (DOSH competent examiner required), overhead cranes, hoists, forklifts, passenger lifts. DOSH inspector physically examines each machine. Certificate valid 15 months — renewal by DOSH-approved inspector.'},
+      {title:'Register Scheduled Wastes if applicable',who:'Leverage',form:'eSWIS (DOE portal)',days:'2–3 days',detail:'Manufacturing activities generating scheduled wastes (SW202 used lubricants, SW410 contaminated containers etc.) must register with DOE via eSWIS. Leverage assesses at scoping stage.'}
     ],
     docs:[
-      {name:'PBT Premise Licence',note:'Required before DOSH registration',status:'wait'},
-      {name:'Employee headcount declaration',note:'Number of workers in the premises',status:'need'},
-      {name:'Safety Officer appointment letter',note:'If headcount ≥40 — appoint registered SHO',status:'need'},
+      {name:'PBT Premise Licence',note:'Required before DOSH registration can be made',status:'wait'},
+      {name:'Machine specifications / technical data sheets',note:'For all pressure vessels, cranes, hoists requiring PMA certification',status:'need'},
+      {name:'SHO appointment letter or employer OSH qualification',note:'Evidence of appointed Safety & Health Officer',status:'need'},
+      {name:'Workers\' headcount by department',note:'For DOSH to determine SHO requirement (≥40 = mandatory SHO)',status:'need'},
+    ],
+    postApproval:[
+      'Annual Safety & Health Programme — file with DOSH by January',
+      'PMA certificates renewed every 15 months — DOSH-approved inspector required',
+      'Accident / near-miss: report to DOSH within 7 days (JKKP 8 form)',
+      'Annual DOSH inspection possible — maintain all records on-site',
+    ],
+    rejectionReasons:[
+      {reason:'No qualified SHO on premises during inspection',avoid:'Appoint SHO (or complete employer course) before calling DOSH for inspection'},
     ]
   },
   {
-    seq:10, code:'LHDN', name:'SST Registration',
+    seq:10, code:'LHDN', name:'SST Registration (Sales & Service Tax)',
+    fullName:'Lembaga Hasil Dalam Negeri — Sales and Service Tax Registration',
+    legalBasis:'Sales Tax Act 2018 (Act 806) · Service Tax Act 2018 (Act 807)',
     status:'blocked', dot:'#C8C8CC',
     ref:null, filed:null, approved:null,
-    notes:'Locked — assess whether SST applies after MIDA approval. Manufacturers with annual revenue ≥RM 500k must register for Sales & Service Tax.',
-    locked:true, blockedBy:'MIDA ICA 10 Approval',
-    timeline:['Assess threshold','Register online','Returns schedule','Compliance'],
+    notes:'Locked pending MIDA approval — threshold assessment depends on projected revenue from manufacturing activity. Manufacturers with taxable sales ≥ RM 500,000/year must register. Handler will assess eligibility after MIDA approval and first 6 months of operation.',
+    locked:true, blockedBy:'MIDA Approval + revenue threshold assessment',
+    unlocksNext:['Legal collection of Sales Tax from customers (if applicable)'],
+    timeline:['Revenue threshold assessment','MySST registration','Bi-monthly returns','Compliance'],
     timelineStatus:['locked','locked','locked','locked'],
     govPortal:'https://mysst.customs.gov.my',
-    processingTime:'1–3 days',
-    fee:'No fee',
+    processingTime:'1–3 days once threshold confirmed',
+    fee:'No registration fee · Sales Tax 5% or 10% on taxable goods · Service Tax 6% on taxable services',
+    renewalObligation:'Bi-monthly SST returns (Form SST-02) by last day of month following taxable period',
+    whoMustApply:'Manufacturers with annual taxable turnover ≥ RM 500,000. Voluntary registration possible below threshold.',
+    physicalPresence:'Not required — fully online via MySST',
     protocol:[
-      {title:'Assess SST registration threshold',detail:'Manufacturers must register for SST if annual taxable turnover exceeds RM 500,000. Service providers: RM 500,000. Your handler will assess when you are closer to operational.'},
-      {title:'Register via MySST portal',detail:'Online registration at mysst.customs.gov.my. Immediate confirmation on approval.'},
-      {title:'File bi-monthly SST returns',detail:'Sales Tax returns must be submitted every 2 months. Your handler will manage this as part of compliance calendar.'}
+      {title:'Assess SST registration threshold',who:'Leverage (after 6 months operation)',form:'Revenue analysis',days:'After first operational period',detail:'Sales Tax registration mandatory when annual taxable sales reach RM 500,000. Your handler will monitor revenue and advise when registration becomes mandatory or beneficial. Some manufactured goods are exempt from SST (check Schedule A of Sales Tax Act 2018).'},
+      {title:'Determine applicable SST rate for products',who:'Leverage',form:'Sales Tax Act Schedule',days:'1 day',detail:'Most manufactured goods: 10% sales tax. Some essential goods: 5% or exempt. Electronics components exported: zero-rated. Leverage determines the applicable rate for each product category and advises on input tax clawback for exported goods.'},
+      {title:'Register via MySSTportal',who:'Leverage',form:'MySSTportal registration',days:'1 day',detail:'Online registration at mysst.customs.gov.my. Registration confirmation within 1–3 working days. SST registration number issued — must appear on all invoices to customers once registered.'},
+      {title:'Configure invoicing and filing schedule',who:'Leverage',form:'e-SST system',days:'1 day',detail:'Bi-monthly filing periods: Jan-Feb, Mar-Apr, May-Jun, Jul-Aug, Sep-Oct, Nov-Dec. Returns due by last day of following month. Leverage sets up the filing schedule in the compliance calendar.'}
     ],
     docs:[
-      {name:'SSM Certificate',note:'Already on file',status:'lev'},
-      {name:'Revenue projection',note:'Needed to confirm if SST threshold is met',status:'need'},
+      {name:'SSM Certificate of Incorporation',note:'Already on file',status:'lev'},
+      {name:'Revenue projection or actual revenue statement',note:'Needed to confirm SST registration threshold is met',status:'need'},
+      {name:'Product list with HS codes',note:'To determine which products are taxable, exempt, or zero-rated',status:'wait'},
+    ],
+    postApproval:[
+      'Bi-monthly SST returns (SST-02) by last day of following month — Leverage manages',
+      'Sales Tax must appear on all invoices issued to customers',
+      'Input tax credit for raw materials used in exempt goods — Leverage calculates',
+      'Annual SST audit possible — maintain records for 7 years',
+    ],
+    rejectionReasons:[
+      {reason:'Taxable goods not correctly classified',avoid:'Leverage determines Sales Tax Act Schedule classification for all product SKUs before registration'},
     ]
   },
   {
-    seq:11, code:'MITI', name:'Cost of Production Analysis (CA)',
+    seq:11, code:'MITI', name:'Cost of Production Analysis (Annual)',
+    fullName:'Kementerian Perdagangan Antarabangsa dan Industri — Manufacturing Performance Report / Cost Analysis',
+    legalBasis:'Industrial Coordination Act 1975 (Act 156) · MIDA Conditions attached to ICA 10 Approval',
     status:'blocked', dot:'#C8C8CC',
     ref:null, filed:null, approved:null,
-    notes:'Locked — required after first year of operation. Annual submission to Ministry of International Trade & Industry verifying manufacturing activity.',
-    locked:true, blockedBy:'MIDA ICA 10 Approval + 1 year operation',
-    timeline:['Wait for operations','Prepare CA report','Submit to MITI','Compliance'],
+    notes:'Locked — annual obligation, begins after first full year of manufacturing operations. Required to maintain MIDA ICA 10 approval and any Pioneer Status / ITA incentives. Failure to submit can result in incentive revocation.',
+    locked:true, blockedBy:'MIDA Approval + 1 year of manufacturing operations',
+    unlocksNext:['Maintenance of MIDA incentives (Pioneer Status / ITA)'],
+    timeline:['Complete first year','Prepare CA report','Submit to MIDA','Annual repeat'],
     timelineStatus:['locked','locked','locked','locked'],
-    govPortal:'https://www.miti.gov.my',
-    processingTime:'Processed within 4 weeks',
+    govPortal:'https://investmalaysia.mida.gov.my',
+    processingTime:'Processed within 4–8 weeks. Annual obligation.',
     fee:'No fee',
+    renewalObligation:'Annual — due March of each year after first year of operations. Leverage will prepare and submit.',
+    whoMustApply:'All MIDA-approved manufacturers. Attached as condition in ICA 10 Approval Letter.',
+    physicalPresence:'Not required — submitted via MIDA portal',
     protocol:[
-      {title:'Complete first year of manufacturing operations',detail:'MITI Cost Analysis is an annual reporting obligation. Cannot be completed until you have 12 months of production data.'},
-      {title:'Prepare Cost of Production Analysis report',detail:'Detailed breakdown of production costs — raw materials, labour, overheads — showing the manufacturing value-add justifying your MIDA incentives.'},
-      {title:'Submit to MITI annually',detail:'Required each year to maintain MIDA Pioneer Status or ICA exemption. Failure to submit can result in incentive revocation.'}
+      {title:'Complete first full year of manufacturing operations',who:'Company',form:'N/A',days:'Year 1 of operations',detail:'The Cost Analysis report cannot be completed until 12 months of actual production data exists. Leverage will calendar the first submission due date from the MIDA approval date.'},
+      {title:'Compile Cost of Production Analysis data',who:'Leverage + Company accountant',form:'MIDA CA template',days:'2–3 weeks',detail:'Required data for each product:\n• Direct raw material cost per unit\n• Direct labour cost per unit\n• Factory overhead per unit (electricity, depreciation, rent)\n• Administrative cost per unit\n• Total cost of production\n• Sales revenue\n• Local content percentage\nThis demonstrates the manufacturing value-add justifying the MIDA incentive.'},
+      {title:'Submit Manufacturing Performance Report (Form IMP)',who:'Leverage',form:'MIDA Form IMP + CA attachment',days:'By March each year',detail:'Annual Manufacturing Performance Report covers: production volume, employment headcount (local vs foreign), export value, R&D spending, and local vendor purchases. The Cost Analysis is attached as a supporting document.'},
+      {title:'MIDA review and conditions compliance check',who:'MIDA',form:'Internal review',days:'4–8 weeks',detail:'MIDA verifies that the conditions in the ICA 10 approval letter are being met: employment targets, local content commitments, and export commitments (if any). Non-compliance triggers advisory letter from MIDA and potential incentive review.'}
     ],
     docs:[
-      {name:'Audited accounts (operational year)',note:'After first year of production',status:'wait'},
-      {name:'Production cost breakdown',note:'Raw material, labour, overhead per unit',status:'wait'},
+      {name:'Audited accounts (first operational year)',note:'Prepared by company auditor — Leverage coordinates timing with your accountant',status:'wait'},
+      {name:'Production cost breakdown per product',note:'Direct material, labour, overhead per unit of production for each SKU',status:'wait'},
+      {name:'Employee headcount by category',note:'Local vs foreign, skilled vs unskilled, permanent vs contract — by month',status:'wait'},
+      {name:'Local vendor purchase records',note:'Total purchases from Malaysian suppliers vs imported raw materials',status:'wait'},
+    ],
+    postApproval:[
+      'Annual submission every March — Leverage prepares and submits',
+      'MIDA may request 3-year verification visit — Leverage coordinates',
+      'If Pioneer Status: maintain employment and local content conditions or file for extension',
+    ],
+    rejectionReasons:[
+      {reason:'Cost analysis not matching audited accounts',avoid:'Leverage cross-references CA with audited accounts before submission — figures must reconcile'},
+      {reason:'Employment conditions not met (Pioneer Status)',avoid:'Monitor headcount monthly. If headcount drops below conditions, notify MIDA proactively — better than being flagged in CA review'},
     ]
   },
 ];
-
 
 const DOCS = [
   {name:'Machinery_List_with_HS_Codes.xlsx',meta:'Required for MIDA · Due 20 Mar',status:'action',type:'required'},
@@ -1042,8 +1241,13 @@ function renderTasks() {
     const protoSteps = (t.protocol||[]).map((p,j) => `<div class="proto-step">
       <div class="proto-num">${j+1}</div>
       <div class="proto-content">
-        <div class="proto-title">${p.title}</div>
-        <div class="proto-detail">${p.detail}</div>
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;flex-wrap:wrap">
+          <div class="proto-title" style="margin-bottom:0">${p.title}</div>
+          ${p.who?`<span style="font-size:9px;font-weight:700;padding:1px 6px;border-radius:7px;background:var(--navy);color:var(--gold)">${p.who}</span>`:''}
+          ${p.form&&p.form!=='N/A'?`<span style="font-size:9px;color:var(--text3);font-family:var(--fm)">${p.form}</span>`:''}
+          ${p.days?`<span style="font-size:9px;color:var(--text3);margin-left:auto">⏱ ${p.days}</span>`:''}
+        </div>
+        <div class="proto-detail" style="white-space:pre-line">${p.detail}</div>
       </div>
     </div>`).join('');
 
@@ -1104,17 +1308,24 @@ function renderTasks() {
           ${docRows||'<div style="padding:12px;font-size:12px;color:var(--text3)">No documents required for this application.</div>'}
         </div>
         <div class="app-tab-content" id="task-info-${i}">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+          ${t.fullName?`<div style="font-size:11px;color:var(--text3);margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid var(--border)">${t.fullName}</div>`:''}
+          ${t.legalBasis?`<div style="font-size:10px;color:var(--text3);font-family:var(--fm);margin-bottom:10px">Legal basis: ${t.legalBasis}</div>`:''}
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
             <div style="padding:10px 12px;background:var(--off);border-radius:7px;border:1px solid var(--border)">
-              <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Processing time</div>
-              <div style="font-size:13px;font-weight:500;color:var(--text)">${t.processingTime||'—'}</div>
+              <div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Processing time</div>
+              <div style="font-size:12px;font-weight:500;color:var(--text)">${t.processingTime||'—'}</div>
             </div>
             <div style="padding:10px 12px;background:var(--off);border-radius:7px;border:1px solid var(--border)">
-              <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Government fee</div>
-              <div style="font-size:13px;font-weight:500;color:var(--text)">${t.fee||'—'}</div>
+              <div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Government fee</div>
+              <div style="font-size:12px;font-weight:500;color:var(--text)">${t.fee||'—'}</div>
             </div>
+            ${t.renewalObligation?`<div style="padding:10px 12px;background:var(--off);border-radius:7px;border:1px solid var(--border);grid-column:1/-1"><div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Renewal obligation</div><div style="font-size:12px;color:var(--text2)">${t.renewalObligation}</div></div>`:''}
+            ${t.whoMustApply?`<div style="padding:10px 12px;background:var(--off);border-radius:7px;border:1px solid var(--border);grid-column:1/-1"><div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Who must apply</div><div style="font-size:12px;color:var(--text2)">${t.whoMustApply}</div></div>`:''}
           </div>
-          ${t.ref?`<div style="padding:10px 12px;background:var(--gbg);border-radius:7px;margin-bottom:10px;font-size:12px;color:var(--g)"><strong>Reference number:</strong> <span style="font-family:var(--fm)">${t.ref}</span>${t.filed?' &nbsp;·&nbsp; Filed: '+t.filed:''}${t.approved?' &nbsp;·&nbsp; Approved: '+t.approved:''}</div>`:''}
+          ${t.ref?`<div style="padding:10px 12px;background:var(--gbg);border-radius:7px;margin-bottom:8px;font-size:12px;color:var(--g)"><strong>Reference:</strong> <span style="font-family:var(--fm)">${t.ref}</span>${t.filed?' &nbsp;·&nbsp; Filed: '+t.filed:''}${t.approved?' &nbsp;·&nbsp; Approved: '+t.approved:''}</div>`:''}
+          ${t.unlocksNext&&t.unlocksNext.length?`<div style="padding:10px 12px;background:var(--bbg);border-radius:7px;margin-bottom:8px;font-size:12px;color:var(--b);border:1px solid rgba(30,91,138,.12)"><strong>Unlocks:</strong> ${t.unlocksNext.join(' · ')}</div>`:''}
+          ${t.postApproval&&t.postApproval.length?`<div style="margin-bottom:8px"><div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">Post-approval obligations</div>${t.postApproval.map(p=>`<div style="display:flex;gap:7px;font-size:12px;color:var(--text2);padding:4px 0;border-bottom:1px solid var(--border)"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="flex-shrink:0;margin-top:2px;color:var(--b)"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>${p}</span></div>`).join('')}</div>`:''}
+          ${t.rejectionReasons&&t.rejectionReasons.length?`<div style="margin-bottom:8px"><div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">Common rejection reasons</div>${t.rejectionReasons.map(r=>`<div style="padding:7px 10px;background:var(--rbg);border-radius:7px;margin-bottom:5px;border:1px solid rgba(192,57,43,.12)"><div style="font-size:12px;font-weight:600;color:var(--r);margin-bottom:2px">✕ ${r.reason}</div><div style="font-size:11px;color:var(--text2)">How to avoid: ${r.avoid}</div></div>`).join('')}</div>`:''}
           ${t.govPortal?`<a href="${t.govPortal}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--b);text-decoration:none;padding:7px 11px;background:var(--bbg);border-radius:6px;border:1px solid rgba(30,91,138,.15)"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>Open ${t.code} government portal</a>`:''}
         </div>
       </div>
